@@ -1,0 +1,1464 @@
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
+<title>الدليل الشامل لاختبار STEP 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<style>
+/* === ROOT VARIABLES === */
+:root {
+  --forest: #1E3F2B;
+  --dark-green: #2D5A3D;
+  --sage: #84A98C;
+  --light-sage: #B5C7A3;
+  --pale-green: #E8F0E4;
+  --ivory: #F5F0E8;
+  --cream: #FAF7F2;
+  --beige: #E8DFD0;
+  --gold: #C4A35A;
+  --soft-gold: #D4BC7C;
+  --dark-text: #2C3E2C;
+  --muted: #6B7B6B;
+  --white: #FEFCF9;
+  --card-bg: #F0EDE5;
+  --correct: #2D7A4F;
+  --wrong: #A94442;
+  --slide-w: 100vw;
+  --slide-h: 100vh;
+}
+
+/* === RESET === */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+body { overflow-x: hidden; }
+body { font-family: 'Cairo', sans-serif; background: var(--forest); color: var(--dark-text); direction: rtl; }
+
+/* === SLIDE BASE === */
+.slide {
+  width: 100vw; min-height: 100vh; min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  position: relative;
+  overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: clamp(1rem, 3vw, 3rem);
+}
+
+/* === BACKGROUNDS === */
+.bg-dark { background: linear-gradient(135deg, var(--forest) 0%, #162E1F 50%, #1a3528 100%); color: var(--white); }
+.bg-light { background: linear-gradient(160deg, var(--cream) 0%, var(--ivory) 60%, var(--pale-green) 100%); color: var(--dark-text); }
+.bg-sage { background: linear-gradient(135deg, var(--sage) 0%, var(--dark-green) 100%); color: var(--white); }
+.bg-gold { background: linear-gradient(135deg, var(--forest) 0%, #2a4a35 50%, var(--dark-green) 100%); color: var(--white); }
+
+/* === DECORATIVE ELEMENTS === */
+.deco-circle {
+  position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+}
+.deco-circle.c1 { width: clamp(150px,25vw,400px); height: clamp(150px,25vw,400px); background: radial-gradient(circle, rgba(132,169,140,0.15), transparent 70%); top: -5%; right: -5%; }
+.deco-circle.c2 { width: clamp(100px,18vw,300px); height: clamp(100px,18vw,300px); background: radial-gradient(circle, rgba(196,163,90,0.1), transparent 70%); bottom: -5%; left: -5%; }
+.deco-circle.c3 { width: clamp(80px,12vw,200px); height: clamp(80px,12vw,200px); background: radial-gradient(circle, rgba(181,199,163,0.12), transparent 70%); top: 20%; left: 10%; }
+
+/* === TYPOGRAPHY === */
+.title-xl { font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; line-height: 1.2; }
+.title-lg { font-size: clamp(1.5rem, 3.5vw, 2.8rem); font-weight: 700; line-height: 1.3; }
+.title-md { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 700; line-height: 1.3; }
+.title-sm { font-size: clamp(1rem, 2vw, 1.5rem); font-weight: 600; }
+.subtitle { font-size: clamp(0.85rem, 1.5vw, 1.2rem); font-weight: 400; opacity: 0.8; }
+.body-text { font-size: clamp(0.75rem, 1.2vw, 1rem); line-height: 1.6; }
+.label { font-size: clamp(0.65rem, 1vw, 0.85rem); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+.en-text { font-family: 'Playfair Display', Georgia, serif; direction: ltr; }
+.gold-text { color: var(--gold); }
+.sage-text { color: var(--sage); }
+
+/* === SLIDE CONTENT WRAPPER === */
+.slide-content {
+  position: relative; z-index: 1;
+  width: min(90vw, 1100px);
+  max-height: 85vh;
+  display: flex; flex-direction: column;
+  gap: clamp(0.5rem, 1.5vh, 1.5rem);
+}
+
+/* === BADGE === */
+.badge {
+  display: inline-block; padding: 0.3em 1.2em;
+  background: var(--gold); color: var(--white);
+  border-radius: 2em; font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+  font-weight: 700; letter-spacing: 1px;
+  align-self: flex-start;
+}
+
+/* === CARDS === */
+.card-grid { display: grid; gap: clamp(0.5rem, 1vw, 1rem); }
+.card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: clamp(8px, 1vw, 16px);
+  padding: clamp(0.6rem, 1.5vw, 1.5rem);
+  /* backdrop-filter removed for iOS perf */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+.bg-light .card { background: var(--white); border-color: rgba(0,0,0,0.06); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+.card-number { font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 800; color: var(--gold); line-height: 1; }
+
+/* === GOLD LINE === */
+.gold-line { width: clamp(60px, 10vw, 150px); height: 3px; background: var(--gold); border-radius: 2px; }
+
+/* === TABLES === */
+.data-table {
+  width: 100%; border-collapse: collapse;
+  font-size: clamp(0.65rem, 1vw, 0.85rem);
+}
+.data-table th {
+  background: var(--dark-green); color: var(--white);
+  padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.4rem, 1vw, 0.8rem);
+  text-align: right; font-weight: 600;
+}
+.data-table td {
+  padding: clamp(0.25rem, 0.6vw, 0.5rem) clamp(0.4rem, 1vw, 0.8rem);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  text-align: right;
+}
+.data-table tr:nth-child(even) td { background: var(--pale-green); }
+.bg-dark .data-table th { background: rgba(196,163,90,0.3); }
+.bg-dark .data-table td { border-color: rgba(255,255,255,0.08); color: var(--white); }
+.bg-dark .data-table tr:nth-child(even) td { background: rgba(255,255,255,0.04); }
+
+/* === GRAMMAR RULE SLIDE === */
+.rule-header { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.rule-num {
+  width: clamp(40px, 5vw, 60px); height: clamp(40px, 5vw, 60px);
+  background: var(--gold); color: var(--white);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: clamp(1rem, 2vw, 1.5rem); font-weight: 800;
+}
+.formula-box {
+  background: rgba(196,163,90,0.15); border: 1px solid rgba(196,163,90,0.3);
+  border-radius: 8px; padding: clamp(0.4rem, 1vw, 0.8rem);
+  font-family: 'Playfair Display', monospace; direction: ltr;
+  font-size: clamp(0.7rem, 1.1vw, 0.95rem); color: var(--gold);
+  text-align: center;
+}
+.bg-light .formula-box { background: rgba(45,90,61,0.08); border-color: rgba(45,90,61,0.15); color: var(--dark-green); }
+.example {
+  display: flex; align-items: flex-start; gap: 0.5rem;
+  font-size: clamp(0.7rem, 1.1vw, 0.9rem); line-height: 1.5;
+}
+.example::before { content: "✓"; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+.bg-light .example::before { color: var(--dark-green); }
+.warning { 
+  font-size: clamp(0.65rem, 1vw, 0.85rem); padding: 0.4em 0.8em;
+  background: rgba(196,163,90,0.12); border-radius: 6px; border-right: 3px solid var(--gold);
+}
+
+/* === QUIZ === */
+.quiz-container { width: 100%; }
+.quiz-q {
+  font-size: clamp(0.8rem, 1.3vw, 1.1rem); font-weight: 600;
+  margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
+  font-family: 'Playfair Display', serif; direction: ltr; text-align: left;
+}
+.quiz-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(0.3rem, 0.6vw, 0.5rem); }
+.quiz-opt {
+  padding: clamp(0.4rem, 0.8vw, 0.7rem);
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 8px; cursor: pointer;
+  font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+  text-align: center; transition: all 0.3s;
+  font-family: 'Playfair Display', serif; direction: ltr;
+  background: rgba(255,255,255,0.05);
+}
+.bg-light .quiz-opt { border-color: rgba(0,0,0,0.1); background: var(--white); }
+.quiz-opt:hover { border-color: var(--gold); transform: scale(1.02); }
+.quiz-opt.correct { background: var(--correct); color: #fff; border-color: var(--correct); }
+.quiz-opt.wrong { background: var(--wrong); color: #fff; border-color: var(--wrong); opacity: 0.7; }
+.quiz-opt.disabled { pointer-events: none; }
+.quiz-explain {
+  margin-top: 0.5rem; padding: 0.5rem 0.8rem;
+  background: rgba(196,163,90,0.15); border-radius: 8px;
+  font-size: clamp(0.65rem, 1vw, 0.85rem);
+  display: none; line-height: 1.5;
+}
+.quiz-explain.show { display: block; animation: fadeIn 0.4s; }
+.quiz-score {
+  text-align: center; padding: 0.5rem;
+  font-size: clamp(0.8rem, 1.2vw, 1rem); font-weight: 700;
+  color: var(--gold);
+}
+
+/* === LISTENING === */
+.listen-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.6em 1.5em; background: var(--gold); color: var(--white);
+  border: none; border-radius: 2em; cursor: pointer;
+  font-family: 'Cairo', sans-serif; font-size: clamp(0.75rem, 1.1vw, 0.95rem); font-weight: 600;
+  transition: all 0.3s;
+}
+.listen-btn:hover { background: var(--soft-gold); transform: scale(1.05); }
+.listen-btn.playing { animation: pulse 1.5s infinite; }
+.transcript-box {
+  background: rgba(255,255,255,0.06); border: 1px dashed rgba(196,163,90,0.3);
+  border-radius: 8px; padding: 0.6rem 1rem;
+  font-size: clamp(0.7rem, 1vw, 0.85rem); direction: ltr; text-align: left;
+  max-height: 0; overflow: hidden; transition: max-height 0.5s;
+  line-height: 1.6;
+}
+.transcript-box.open { max-height: 200px; }
+.bg-light .transcript-box { background: rgba(45,90,61,0.04); border-color: rgba(45,90,61,0.15); }
+.show-transcript-btn {
+  background: none; border: 1px solid rgba(255,255,255,0.2);
+  color: inherit; padding: 0.3em 1em; border-radius: 1em; cursor: pointer;
+  font-family: 'Cairo'; font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+}
+.bg-light .show-transcript-btn { border-color: rgba(0,0,0,0.15); }
+
+/* === PROGRESS BAR === */
+#progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); z-index: 100; transition: width 0.3s; width: 0; transform: translateZ(0); will-change: width; }
+
+/* === NAV DOTS === */
+#nav {
+  position: fixed; left: clamp(8px, 1vw, 16px); top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 4px; z-index: 100;
+}
+.nav-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.3); cursor: pointer;
+  transition: all 0.3s; border: none;
+}
+.nav-dot.active { background: var(--gold); transform: scale(1.4); }
+.nav-section {
+  width: 8px; height: 2px; background: rgba(255,255,255,0.15);
+  margin: 2px 0; border-radius: 1px;
+}
+
+/* === SECTION NAV (TOP) === */
+#section-nav {
+  position: fixed; top: 12px; right: 50%; transform: translateX(50%);
+  display: flex; gap: 0.5rem; z-index: 100;
+  background: rgba(30,63,43,0.95);
+  padding: 0.4rem 1rem; border-radius: 2rem;
+  opacity: 0; transition: opacity 0.3s;
+}
+#section-nav.show { opacity: 1; }
+.sec-btn {
+  padding: 0.15em 0.6em; border: none; border-radius: 1em;
+  background: transparent; color: rgba(255,255,255,0.6);
+  font-family: 'Cairo'; font-size: clamp(0.5rem, 0.7vw, 0.65rem); font-weight: 600;
+  cursor: pointer; transition: all 0.3s; white-space: nowrap;
+  line-height: 1.2; text-align: center;
+}
+.sec-btn.active { background: var(--gold); color: var(--white); }
+
+.nav-en { display:block; font-family:'Playfair Display',Georgia,serif; font-size:clamp(0.55rem,0.8vw,0.7rem); opacity:0.8; letter-spacing:0.5px; direction:ltr; line-height:1; }
+.nav-ar { display:block; font-size:clamp(0.6rem,0.85vw,0.75rem); line-height:1.2; margin-top:1px; }
+
+.sec-btn:hover { color: var(--white); }
+
+/* === ANIMATIONS === */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(196,163,90,0.4); } 50% { box-shadow: 0 0 0 12px rgba(196,163,90,0); } }
+@keyframes scaleIn { from { opacity:0; transform: scale(0.9); } to { opacity:1; transform: scale(1); } }
+.slide.visible .anim { animation: fadeInUp 0.6s ease-out both; }
+.slide.visible .anim-d1 { animation-delay: 0.1s; }
+.slide.visible .anim-d2 { animation-delay: 0.2s; }
+.slide.visible .anim-d3 { animation-delay: 0.3s; }
+.slide.visible .anim-d4 { animation-delay: 0.4s; }
+.slide.visible .anim-d5 { animation-delay: 0.5s; }
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .card-grid.cols-2, .card-grid.cols-3, .card-grid.cols-4 { grid-template-columns: 1fr; }
+  .quiz-options { grid-template-columns: 1fr; }
+  #section-nav { display: none; }
+  #nav { display: none; }
+}
+@media (max-height: 600px) {
+  .slide { padding: clamp(0.5rem, 2vw, 1.5rem); }
+}
+
+/* === MOBILE TOUCH FIX === */
+@media (hover: none) and (pointer: coarse) {
+  .card { -webkit-tap-highlight-color: rgba(196,163,90,0.2); }
+  .card:active { transform: scale(0.98); opacity: 0.9; }
+  .quiz-opt { -webkit-tap-highlight-color: rgba(196,163,90,0.3); min-height: 44px; }
+  .quiz-opt:active { transform: scale(0.98); }
+  .listen-btn { min-height: 44px; }
+  .sec-btn { min-height: 36px; padding: 0.3em 0.5em; }
+  .show-transcript-btn { min-height: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* === VOCAB GRID === */
+.vocab-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+.vocab-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.3em 0.7em; border-radius: 6px;
+  font-size: clamp(0.65rem, 1vw, 0.82rem);
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06);
+}
+.bg-light .vocab-item { background: var(--white); border-color: rgba(0,0,0,0.05); }
+.vocab-en { font-family: 'Playfair Display', serif; direction: ltr; font-weight: 700; color: var(--gold); }
+.bg-light .vocab-en { color: var(--dark-green); }
+
+/* === PERCENTAGE BAR === */
+.pct-bar-wrap { display: flex; align-items: center; gap: 0.5rem; }
+.pct-bar { flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+.bg-light .pct-bar { background: rgba(0,0,0,0.06); }
+.pct-fill { height: 100%; border-radius: 4px; transition: width 1s ease-out; }
+
+/* Scrollbar hide */
+html::-webkit-scrollbar { width: 0; }
+html { scrollbar-width: none; }
+</style>
+<style>@media (max-width:768px){.slide{overflow:visible;min-height:auto;padding-top:clamp(1.5rem,4vw,3rem);padding-bottom:clamp(1.5rem,4vw,3rem)}.slide-content{max-height:none}}</style><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#33449A"><meta name="apple-mobile-web-app-title" content="STEP"></head>
+<body>
+
+<div id="progress"></div>
+
+<nav id="section-nav">
+  <button class="sec-btn active" onclick="navTo('top')"><span class="nav-en">Home</span><span class="nav-ar">البداية</span></button>
+  <button class="sec-btn" onclick="navTo('overview-start')"><span class="nav-en">Overview</span><span class="nav-ar">نظرة عامة</span></button>
+  <button class="sec-btn" onclick="navTo('plan-start')"><span class="nav-en">Plan</span><span class="nav-ar">الخطة</span></button>
+  <button class="sec-btn" onclick="navTo('grammar-start')"><span class="nav-en">Grammar</span><span class="nav-ar">القواعد</span></button>
+  <button class="sec-btn" onclick="navTo('vocab-start')"><span class="nav-en">Vocabulary</span><span class="nav-ar">المفردات</span></button>
+  <button class="sec-btn" onclick="navTo('reading-start')"><span class="nav-en">Reading</span><span class="nav-ar">القراءة</span></button>
+  <button class="sec-btn" onclick="navTo('listening-start')"><span class="nav-en">Listening</span><span class="nav-ar">الاستماع</span></button>
+  <button class="sec-btn" onclick="navTo('writing-start')"><span class="nav-en">Writing</span><span class="nav-ar">الكتابي</span></button>
+  <button class="sec-btn" onclick="navTo('exam-grammar')"><span class="nav-en">Q-Bank</span><span class="nav-ar">بنك الأسئلة</span></button>
+</nav>
+</nav>
+
+<!-- ============================================ -->
+<!-- SLIDE 0: COVER -->
+<!-- ============================================ -->
+<section class="slide bg-dark" data-section="البداية">
+  <div class="deco-circle c1"></div>
+  <div class="deco-circle c2"></div>
+  <div class="deco-circle c3"></div>
+  <div class="slide-content" style="text-align:center; align-items:center;">
+    <div class="label gold-text anim" style="letter-spacing:4px;">STANDARDIZED TEST OF ENGLISH PROFICIENCY</div>
+    <div class="gold-line anim anim-d1" style="width:clamp(80px,15vw,200px);margin:0.5rem auto;"></div>
+    <h1 class="title-xl anim anim-d2">الدليل الشامل لاختبار STEP</h1>
+    <p class="subtitle anim anim-d3" style="max-width:600px;">كل القواعد + المفردات + نماذج الأسئلة + تمارين استماع تفاعلية<br>مع الشرح بالعربي</p>
+    <div class="gold-line anim anim-d4" style="width:clamp(80px,15vw,200px);margin:0.5rem auto;"></div>
+    <p class="body-text anim anim-d5" style="opacity:0.5;margin-top:1rem;">٢٠٢٦ — اسحب للأسفل أو اضغط ↓</p>
+    <p class="body-text anim anim-d5" style="opacity:0.7;margin-top:0.5rem;color:var(--soft-gold);">إعداد الأستاذ: يوسف الشمراني</p>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- SLIDE 1: WHAT IS STEP -->
+<!-- ============================================ -->
+<section class="slide bg-light" data-section="البداية">
+  <div class="deco-circle c1" style="background:radial-gradient(circle,rgba(45,90,61,0.08),transparent 70%);"></div>
+  <div class="slide-content">
+    <span class="badge anim">OVERVIEW</span>
+    <h2 class="title-lg anim anim-d1">ما هو اختبار STEP؟</h2>
+    <p class="subtitle anim anim-d2">تعريف بالاختبار وأقسامه ونظام درجاته</p>
+    <div class="card-grid cols-2 anim anim-d3" style="margin-top:0.5rem;">
+      <div class="card">
+        <table class="data-table">
+          <tr><th>البند</th><th>التفاصيل</th></tr>
+          <tr><td>الجهة</td><td>هيئة تقويم التعليم والتدريب (قياس)</td></tr>
+          <tr><td>عدد الأسئلة</td><td>117 – 133 سؤال اختيار من متعدد</td></tr>
+          <tr><td>المدة</td><td>2.5 – 3 ساعات + 15 دقيقة إجراءات</td></tr>
+          <tr><td>الدرجة</td><td>من 0 إلى 100 (لا نجاح/رسوب)</td></tr>
+          <tr><td>الصلاحية</td><td>3 سنوات</td></tr>
+        </table>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center;gap:0.8rem;">
+        <div style="text-align:center;">
+          <div class="card-number">4</div>
+          <div class="title-sm">أقسام رئيسية</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="card-number" style="font-family:'Playfair Display';">CEFR</div>
+          <div class="body-text">مبني على الإطار الأوروبي المشترك</div>
+        </div>
+        <div style="text-align:center;">
+          <div class="card-number">+337K</div>
+          <div class="body-text">مختبر في 2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 2: SECTIONS BREAKDOWN -->
+<section class="slide bg-dark" data-section="نظرة عامة" id="overview-start">
+  <div class="deco-circle c1"></div>
+  <div class="deco-circle c2"></div>
+  <div class="slide-content">
+    <span class="badge anim">TEST MAP</span>
+    <h2 class="title-lg anim anim-d1">أقسام الاختبار الأربعة</h2>
+    <div class="card-grid cols-4 anim anim-d2" style="margin-top:1rem;">
+      <div class="card" style="text-align:center;border-top:3px solid var(--sage);">
+        <div class="card-number">40%</div>
+        <div class="title-sm">القراءة</div>
+        <div class="body-text" style="opacity:0.6;">~40 سؤال • 60 دقيقة</div>
+        <div class="pct-bar-wrap" style="margin-top:0.5rem;">
+          <div class="pct-bar"><div class="pct-fill" style="width:40%;background:var(--sage);"></div></div>
+        </div>
+      </div>
+      <div class="card" style="text-align:center;border-top:3px solid var(--light-sage);">
+        <div class="card-number">30%</div>
+        <div class="title-sm">القواعد</div>
+        <div class="body-text" style="opacity:0.6;">~40 سؤال • 45 دقيقة</div>
+        <div class="pct-bar-wrap" style="margin-top:0.5rem;">
+          <div class="pct-bar"><div class="pct-fill" style="width:30%;background:var(--light-sage);"></div></div>
+        </div>
+      </div>
+      <div class="card" style="text-align:center;border-top:3px solid var(--soft-gold);">
+        <div class="card-number">20%</div>
+        <div class="title-sm">الاستماع</div>
+        <div class="body-text" style="opacity:0.6;">~20 سؤال • 25 دقيقة</div>
+        <div class="pct-bar-wrap" style="margin-top:0.5rem;">
+          <div class="pct-bar"><div class="pct-fill" style="width:20%;background:var(--soft-gold);"></div></div>
+        </div>
+      </div>
+      <div class="card" style="text-align:center;border-top:3px solid var(--gold);">
+        <div class="card-number">10%</div>
+        <div class="title-sm">التحليل الكتابي</div>
+        <div class="body-text" style="opacity:0.6;">~15 سؤال • 15 دقيقة</div>
+        <div class="pct-bar-wrap" style="margin-top:0.5rem;">
+          <div class="pct-bar"><div class="pct-fill" style="width:10%;background:var(--gold);"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: LEVELS -->
+<section class="slide bg-light" data-section="نظرة عامة">
+  <div class="slide-content">
+    <span class="badge anim">LEVELS</span>
+    <h2 class="title-lg anim anim-d1">المستويات والدرجات</h2>
+    <div class="anim anim-d2">
+      <table class="data-table">
+        <tr><th>المستوى</th><th>الدرجة</th><th>الوصف</th><th>IELTS</th></tr>
+        <tr><td>تأسيسي A1</td><td>0 – 40</td><td>معرفة محدودة جداً</td><td>—</td></tr>
+        <tr><td>مبتدئ A2</td><td>41 – 60</td><td>تواصل بسيط</td><td>~4.0</td></tr>
+        <tr><td>متوسط B1</td><td>61 – 75</td><td>فهم جيد واستخدام متوسط</td><td>~5.0</td></tr>
+        <tr><td>فوق المتوسط B2</td><td>76 – 85</td><td>تواصل فعال</td><td>~6.0</td></tr>
+        <tr><td>متقدم C1</td><td>86 – 95</td><td>إتقان عالي</td><td>~7.0</td></tr>
+        <tr><td>متقدم جداً C2</td><td>96 – 100</td><td>إتقان شبه كامل</td><td>~8.0+</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: REQUIRED SCORES -->
+<section class="slide bg-dark" data-section="نظرة عامة">
+  <div class="deco-circle c1"></div>
+  <div class="slide-content">
+    <span class="badge anim">REQUIRED SCORES</span>
+    <h2 class="title-lg anim anim-d1">الدرجات المطلوبة حسب الجهة</h2>
+    <div class="warning" style="margin-bottom:0.5rem;">⚠ هذه الدرجات تقريبية وتتغير باستمرار — تأكد من الجهة مباشرة قبل التقديم</div>
+    <div class="card-grid cols-2 anim anim-d2">
+      <div class="card">
+        <table class="data-table">
+          <tr><th>الجهة</th><th>الدرجة</th></tr>
+          <tr><td>الجامعة السعودية الإلكترونية</td><td>83</td></tr>
+          <tr><td>ماجستير (تخصصات إنجليزية)</td><td>85</td></tr>
+          <tr><td>ماجستير (تخصصات عربية)</td><td>60</td></tr>
+          <tr><td>المسارات الصحية</td><td>85</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <table class="data-table">
+          <tr><th>الجهة</th><th>الدرجة</th></tr>
+          <tr><td>المسارات غير الصحية</td><td>75</td></tr>
+          <tr><td>معظم الوظائف الحكومية</td><td>85</td></tr>
+          <tr><td>الحد الأدنى لأغلب الجامعات</td><td>68</td></tr>
+          <tr><td>الكليات العسكرية / الابتعاث</td><td>متفاوتة</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: STUDY TIPS -->
+<section class="slide bg-light" data-section="نظرة عامة">
+  <div class="slide-content">
+    <span class="badge anim">STUDY SMART</span>
+    <h2 class="title-lg anim anim-d1">كيف تذاكر بذكاء؟</h2>
+    <div class="card-grid cols-2 anim anim-d2">
+      <div class="card" style="border-top:3px solid var(--dark-green);">
+        <div class="title-sm" style="color:var(--dark-green);margin-bottom:0.5rem;">✅ المؤكد رسميًا</div>
+        <div class="example">طبيعة الاختبار وارتباطه بـ CEFR</div>
+        <div class="example">الأقسام الأساسية الأربعة ووزنها</div>
+        <div class="example">قسم التحليل الكتابي (لا يتطلب كتابة مقال)</div>
+        <div class="example">الاختبار محوسب بالكامل</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--gold);">
+        <div class="title-sm" style="color:var(--gold);margin-bottom:0.5rem;">💡 المتكرر في تجارب المختبرين</div>
+        <div class="example">القراءة طويلة وتستهلك وقتًا كبيرًا</div>
+        <div class="example">الجرامر عالي التكرار يرفع الدرجة بسرعة</div>
+        <div class="example">الأسئلة تعتمد على الفهم لا الحفظ</div>
+        <div class="example">الكلمات الانتقالية مهمة جداً في الاستماع</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: STUDY ORDER -->
+<section class="slide bg-sage" data-section="نظرة عامة">
+  <div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <span class="badge anim" style="background:var(--forest);">STUDY ORDER</span>
+    <h2 class="title-lg anim anim-d1">ترتيب المذاكرة المقترح</h2>
+    <div class="card-grid cols-3 anim anim-d2" style="margin-top:1rem;">
+      <div class="card" style="text-align:center;background:rgba(255,255,255,0.15);">
+        <div class="card-number">1</div>
+        <div class="title-sm">Grammar Core</div>
+        <div class="body-text">الأزمنة • التطابق • الأدوات • الضمائر</div>
+      </div>
+      <div class="card" style="text-align:center;background:rgba(255,255,255,0.15);">
+        <div class="card-number">2</div>
+        <div class="title-sm">Grammar Advanced</div>
+        <div class="body-text">حروف الجر • الأفعال الناقصة • المبني للمجهول</div>
+      </div>
+      <div class="card" style="text-align:center;background:rgba(255,255,255,0.15);">
+        <div class="card-number">3</div>
+        <div class="title-sm">Reading</div>
+        <div class="body-text">الفكرة الرئيسية ← التفاصيل ← الاستنتاج</div>
+      </div>
+      <div class="card" style="text-align:center;background:rgba(255,255,255,0.15);">
+        <div class="card-number">4</div>
+        <div class="title-sm">Vocabulary</div>
+        <div class="body-text">مفردات أكاديمية • بادئات • لواحق • تلازمات</div>
+      </div>
+      <div class="card" style="text-align:center;background:rgba(255,255,255,0.15);">
+        <div class="card-number">5</div>
+        <div class="title-sm">Listening</div>
+        <div class="body-text">المشكلة/الحل • المكان • الموقف • الاقتراح</div>
+      </div>
+      <div class="card" style="text-align:center;background:rgba(255,255,255,0.15);">
+        <div class="card-number">6</div>
+        <div class="title-sm">Mock Practice</div>
+        <div class="body-text">نماذج مؤقتة كاملة بالتوقيت</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 30-DAY PLAN -->
+<!-- ============================================ -->
+<section class="slide bg-dark" data-section="الخطة" id="plan-start">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(2rem,5vw,4rem);">30</div>
+    <h2 class="title-xl anim anim-d1">الخطة الدراسية — ٣٠ يوم</h2>
+    <p class="subtitle anim anim-d2">خطة مجربة ترفع درجتك ~25 نقطة • بمعدل 3 ساعات يومياً</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+
+<div id="plan-slides"></div>
+
+
+<!-- ============================================ -->
+<!-- GRAMMAR SECTION -->
+<!-- ============================================ -->
+<section class="slide bg-dark" data-section="القواعد" id="grammar-start">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(3rem,8vw,6rem);">1</div>
+    <h2 class="title-xl anim anim-d1">قسم القواعد</h2>
+    <p class="subtitle anim anim-d2">Grammar — 30% من الاختبار — ~40 سؤال — 45 دقيقة</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+    <p class="body-text anim anim-d4" style="max-width:500px;opacity:0.7;">أهم القواعد المتكررة مع الشرح والأمثلة والاختبارات التفاعلية</p>
+  </div>
+</section>
+
+<!-- GRAMMAR RULES: Generated via JS for efficiency -->
+<!-- EXPLANATIONS SECTION -->
+<section class="slide bg-dark" data-section="القواعد" id="explanations-section">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(2rem,5vw,4rem);">📘</div>
+    <h2 class="title-xl anim anim-d1">شروحات القواعد</h2>
+    <p class="subtitle anim anim-d2">ملخص شامل لكل القواعد — اقرأها أولاً ثم انتقل للأسئلة</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+
+<section class="slide bg-light" data-section="القواعد">
+  <div class="slide-content">
+    <span class="badge" style="background:var(--dark-green);">TENSES</span>
+    <h2 class="title-md">ملخص الأزمنة الستة</h2>
+    <div class="card-grid cols-2" style="margin-top:0.3rem;">
+      <div class="card"><div class="title-sm" style="color:var(--dark-green);">Present Simple</div><div class="body-text">العادات والحقائق: S + V1<br>⚠ always, usually, every day</div></div>
+      <div class="card"><div class="title-sm" style="color:var(--dark-green);">Present Continuous</div><div class="body-text">حدث الآن: S + am/is/are + V-ing<br>⚠ now, right now, look!</div></div>
+      <div class="card"><div class="title-sm" style="color:var(--dark-green);">Present Perfect</div><div class="body-text">ربط الماضي بالحاضر: S + have/has + V3<br>⚠ already, yet, since, for</div></div>
+      <div class="card"><div class="title-sm" style="color:var(--dark-green);">Past Simple</div><div class="body-text">حدث انتهى: S + V2<br>⚠ yesterday, ago, last week</div></div>
+      <div class="card"><div class="title-sm" style="color:var(--dark-green);">Past Perfect</div><div class="body-text">الحدث الأقدم: S + had + V3<br>⚠ by the time, before, after</div></div>
+      <div class="card"><div class="title-sm" style="color:var(--dark-green);">Future</div><div class="body-text">will + V1 | will be + V-ing | will have + V3<br>⚠ tomorrow, by + مستقبل</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide bg-dark" data-section="القواعد">
+  <div class="deco-circle c1"></div>
+  <div class="slide-content">
+    <span class="badge">CONDITIONALS</span>
+    <h2 class="title-md">ملخص الشرطيات</h2>
+    <div class="card-grid cols-2" style="margin-top:0.3rem;">
+      <div class="card"><div class="title-sm gold-text">Zero Conditional</div><div class="body-text">حقائق ثابتة<br>If + Present → Present<br>If you heat ice, it melts.</div></div>
+      <div class="card"><div class="title-sm gold-text">First Conditional</div><div class="body-text">ممكن بالمستقبل<br>If + Present → will + V1<br>If I study, I will pass.</div></div>
+      <div class="card"><div class="title-sm gold-text">Second Conditional</div><div class="body-text">خيال بالحاضر<br>If + Past → would + V1<br>If I were you, I would go.</div></div>
+      <div class="card"><div class="title-sm gold-text">Third Conditional</div><div class="body-text">ندم بالماضي<br>If + had V3 → would have V3<br>If I had studied, I would have passed.</div></div>
+    </div>
+    <div class="warning" style="margin-top:0.5rem;">⚠ لا تستخدم will بعد if! | في الثانية نستخدم were مع كل الضمائر</div>
+  </div>
+</section>
+
+<section class="slide bg-light" data-section="القواعد">
+  <div class="slide-content">
+    <span class="badge">PASSIVE & MODAL</span>
+    <h2 class="title-md">المبني للمجهول + أفعال Modal</h2>
+    <div class="card-grid cols-2" style="margin-top:0.3rem;">
+      <div class="card"><div class="title-sm" style="color:var(--dark-green);">Passive Voice</div><div class="body-text">Object + be + V3<br>Present: is/are + V3<br>Past: was/were + V3<br>Perfect: has/have been + V3<br>Future: will be + V3</div></div>
+      <div class="card"><div class="title-sm" style="color:var(--dark-green);">Modal Verbs</div><div class="body-text">must = ضرورة | should = نصيحة<br>can = قدرة | might = احتمال<br><br>Modal + have + V3 (ماضي):<br>should have = كان لازم (ندم)<br>must have = أكيد (استنتاج)<br>can't have = مستحيل</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide bg-dark" data-section="القواعد">
+  <div class="deco-circle c1"></div>
+  <div class="slide-content">
+    <span class="badge">CONNECTORS</span>
+    <h2 class="title-md">أدوات الربط الأساسية</h2>
+    <div class="card-grid cols-3" style="margin-top:0.3rem;">
+      <div class="card"><div class="title-sm gold-text">التضاد</div><div class="body-text">although + جملة<br>despite + اسم<br>however (بعد ;)<br>but / yet</div></div>
+      <div class="card"><div class="title-sm gold-text">السبب</div><div class="body-text">because + جملة<br>due to + اسم<br>since + جملة<br>because of + اسم</div></div>
+      <div class="card"><div class="title-sm gold-text">النتيجة</div><div class="body-text">therefore<br>consequently<br>so<br>thus / hence</div></div>
+    </div>
+    <div class="warning" style="margin-top:0.5rem;">⚠ because + جملة | due to + اسم — لا تخلط بينهم! | So = Therefore | But = However</div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<div id="grammar-slides"></div>
+
+<!-- ============================================ -->
+<!-- VOCABULARY SECTION -->
+<!-- ============================================ -->
+<section class="slide bg-dark" data-section="المفردات" id="vocab-start">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(3rem,8vw,6rem);">2</div>
+    <h2 class="title-xl anim anim-d1">المفردات</h2>
+    <p class="subtitle anim anim-d2">Vocabulary — أهم الكلمات المتكررة في STEP</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+
+<div id="vocab-slides"></div>
+
+<section class="slide bg-light" data-section="المفردات">
+  <div class="slide-content">
+    <span class="badge">KEY VOCAB</span>
+    <h2 class="title-md">أهم المترادفات المتكررة في STEP</h2>
+    <div class="vocab-grid" style="font-size:clamp(0.6rem,0.9vw,0.8rem);">
+      <div class="vocab-item"><span class="vocab-en">spread</span><span>passed/انتقل</span></div>
+      <div class="vocab-item"><span class="vocab-en">wealthy</span><span>rich/غني</span></div>
+      <div class="vocab-item"><span class="vocab-en">Guard</span><span>defend/يحرس</span></div>
+      <div class="vocab-item"><span class="vocab-en">Secrete</span><span>discharge/يفرز</span></div>
+      <div class="vocab-item"><span class="vocab-en">Intestine</span><span>bowel/أمعاء</span></div>
+      <div class="vocab-item"><span class="vocab-en">detoxification</span><span>purification/تنقية</span></div>
+      <div class="vocab-item"><span class="vocab-en">divulged</span><span>revealed/كشف</span></div>
+      <div class="vocab-item"><span class="vocab-en">catastrophic</span><span>devastating/كارثي</span></div>
+      <div class="vocab-item"><span class="vocab-en">drawback</span><span>disadvantage/عيب</span></div>
+      <div class="vocab-item"><span class="vocab-en">blurring</span><span>confusing/تشويش</span></div>
+      <div class="vocab-item"><span class="vocab-en">benchmark</span><span>standard/معيار</span></div>
+      <div class="vocab-item"><span class="vocab-en">prevailing</span><span>predominant/سائد</span></div>
+      <div class="vocab-item"><span class="vocab-en">projecting</span><span>imposing/فرض</span></div>
+      <div class="vocab-item"><span class="vocab-en">ideology</span><span>belief/معتقد</span></div>
+      <div class="vocab-item"><span class="vocab-en">identical</span><span>uniform/متطابق</span></div>
+      <div class="vocab-item"><span class="vocab-en">phenomenal</span><span>amazing/مذهل</span></div>
+      <div class="vocab-item"><span class="vocab-en">dissolution</span><span>ending/انتهاء</span></div>
+      <div class="vocab-item"><span class="vocab-en">legitimate</span><span>law/قانوني</span></div>
+      <div class="vocab-item"><span class="vocab-en">echo</span><span>copy/نسخة</span></div>
+      <div class="vocab-item"><span class="vocab-en">eliminating</span><span>ending/إزالة</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- READING SECTION -->
+<!-- ============================================ -->
+<section class="slide bg-dark" data-section="القراءة" id="reading-start">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(3rem,8vw,6rem);">3</div>
+    <h2 class="title-xl anim anim-d1">قسم القراءة</h2>
+    <p class="subtitle anim anim-d2">Reading — 40% من الاختبار — ~40 سؤال — 60 دقيقة</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+
+<section class="slide bg-light" data-section="القراءة">
+  <div class="slide-content">
+    <span class="badge">READING PATTERNS</span>
+    <h2 class="title-lg">أنماط أسئلة القراءة الستة</h2>
+    <div class="card-grid cols-3" style="margin-top:0.5rem;">
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">1</div><div class="title-sm">الفكرة الرئيسية</div><div class="body-text en-text" style="opacity:0.6;">What is the passage mainly about?</div></div>
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">2</div><div class="title-sm">التفاصيل المحددة</div><div class="body-text en-text" style="opacity:0.6;">According to the passage, which is true?</div></div>
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">3</div><div class="title-sm">الاستنتاج</div><div class="body-text en-text" style="opacity:0.6;">What can be inferred from paragraph 2?</div></div>
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">4</div><div class="title-sm">معنى الكلمة</div><div class="body-text en-text" style="opacity:0.6;">The word '___' is closest in meaning to...</div></div>
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">5</div><div class="title-sm">الإشارة المرجعية</div><div class="body-text en-text" style="opacity:0.6;">The word 'they' in line X refers to...</div></div>
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">6</div><div class="title-sm">هدف الكاتب</div><div class="body-text en-text" style="opacity:0.6;">The author's purpose is to...</div></div>
+    </div>
+    <div class="warning" style="margin-top:0.5rem;">⚠ اقرأ الأسئلة أول ثم القطعة — يوفر وقت كثير! وزّع الوقت: 1.5 دقيقة لكل سؤال</div>
+  </div>
+</section>
+
+
+<!-- READING COMPREHENSION EXAMS -->
+<section class="slide bg-dark" data-section="القراءة">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(2rem,5vw,3rem);">📚</div>
+    <h2 class="title-lg anim anim-d1">أسئلة قطع القراءة من النماذج</h2>
+    <p class="subtitle anim anim-d2">29 سؤال من نماذج التيفود والكوفيد والدوبامين</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+<section class="slide bg-light" data-section="القراءة" id="reading-exam">
+  <div class="slide-content">
+    <span class="badge">READING EXAM</span>
+    <h2 class="title-md">اختبار القراءة التفاعلي</h2>
+    <div id="rExamArea" style="margin-top:0.5rem;"></div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;">
+      <button class="listen-btn" onclick="loadReadingQ()" id="rExamBtn">▶ السؤال التالي</button>
+      <div class="quiz-score" id="rExamScore">0 / 0</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide bg-dark" data-section="القراءة">
+  <div class="deco-circle c1"></div>
+  <div class="slide-content">
+    <span class="badge">READING STRATEGY</span>
+    <h2 class="title-md">استراتيجيات القراءة الذهبية</h2>
+    <div class="card-grid cols-2" style="margin-top:0.3rem;">
+      <div class="card"><div class="example">اقرأ الأسئلة أول ثم القطعة — يوفر وقت كثير!</div></div>
+      <div class="card"><div class="example">حدد الكلمات المفتاحية في السؤال وابحث عنها في النص</div></div>
+      <div class="card"><div class="example">لا تختر إجابة لمجرد أنها تذكر كلمة من النص — ممكن فخ!</div></div>
+      <div class="card"><div class="example">في Main Idea: لا تختر تفصيل واحد بل الفكرة الشاملة</div></div>
+      <div class="card"><div class="example">في Vocabulary: المعنى يعتمد على السياق وليس المعجم</div></div>
+      <div class="card"><div class="example">في Inference: الجواب ما يكون مذكور مباشرة — استنتج!</div></div>
+    </div>
+    <div class="warning" style="margin-top:0.5rem;">⚠ وزّع الوقت: 1.5 دقيقة لكل سؤال | المواضيع المتكررة: البيئة، التكنولوجيا، الصحة، التعليم</div>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- LISTENING SECTION -->
+<!-- ============================================ -->
+<section class="slide bg-dark" data-section="الاستماع" id="listening-start">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(3rem,8vw,6rem);">4</div>
+    <h2 class="title-xl anim anim-d1">قسم الاستماع</h2>
+    <p class="subtitle anim anim-d2">Listening — 20% — المقطع يُشغّل مرة واحدة فقط!</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+
+<section class="slide bg-light" data-section="الاستماع">
+  <div class="slide-content">
+    <span class="badge">LISTENING TIPS</span>
+    <h2 class="title-lg">نصائح الاستماع الذهبية</h2>
+    <div class="card-grid cols-2" style="margin-top:0.5rem;">
+      <div class="card"><div class="example">اقرأ الأسئلة قبل ما يبدأ المقطع — أهم نصيحة!</div></div>
+      <div class="card"><div class="example">المقطع يُشغّل مرة واحدة فقط — ركّز من أول لحظة</div></div>
+      <div class="card"><div class="example">الكلمات الانتقالية (however, but, actually) — الجواب غالباً يجي بعدها</div></div>
+      <div class="card"><div class="example">لو سمعت كلمة من الخيارات بالضبط — غالباً فخ!</div></div>
+      <div class="card"><div class="example">انتبه لنبرة المتحدث: متحمس؟ قلق؟ ساخر؟ محايد؟</div></div>
+      <div class="card"><div class="example">تدرب يومياً: BBC Learning English / TED Talks</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LISTENING PRACTICES -->
+<div id="listening-slides"></div>
+
+<!-- ============================================ -->
+<!-- WRITTEN ANALYSIS -->
+<!-- ============================================ -->
+<section class="slide bg-dark" data-section="الكتابي" id="writing-start">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(3rem,8vw,6rem);">5</div>
+    <h2 class="title-xl anim anim-d1">التحليل الكتابي</h2>
+    <p class="subtitle anim anim-d2">Written Analysis — 10% — ~15 سؤال — لا يتطلب كتابة مقال</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+
+<section class="slide bg-light" data-section="الكتابي">
+  <div class="slide-content">
+    <span class="badge">WRITING ANALYSIS</span>
+    <h2 class="title-lg">أنماط أسئلة التحليل الكتابي</h2>
+    <div class="card-grid cols-3" style="margin-top:0.5rem;">
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">1</div><div class="title-sm">اكتشاف الخطأ</div><div class="body-text en-text" style="opacity:0.6;font-size:0.7rem;">Error Identification</div><div class="body-text">أي جزء من الجملة فيه خطأ نحوي؟</div></div>
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">2</div><div class="title-sm">إعادة الصياغة</div><div class="body-text en-text" style="opacity:0.6;font-size:0.7rem;">Restatement</div><div class="body-text">أي جملة تحمل نفس المعنى؟</div></div>
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">3</div><div class="title-sm">ترتيب الجمل</div><div class="body-text en-text" style="opacity:0.6;font-size:0.7rem;">Sentence Ordering</div><div class="body-text">رتب لتكوين فقرة متماسكة</div></div>
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">4</div><div class="title-sm">ملء الفراغ</div><div class="body-text en-text" style="opacity:0.6;font-size:0.7rem;">Paragraph Completion</div><div class="body-text">أي جملة مناسبة للسياق؟</div></div>
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">5</div><div class="title-sm">علامات الترقيم</div><div class="body-text en-text" style="opacity:0.6;font-size:0.7rem;">Punctuation</div><div class="body-text">أين الخطأ في الترقيم؟</div></div>
+      <div class="card"><div class="card-number" style="font-size:1.2rem;">6</div><div class="title-sm">الحروف الكبيرة</div><div class="body-text en-text" style="opacity:0.6;font-size:0.7rem;">Capitalization</div><div class="body-text">أين يجب Capital letter؟</div></div>
+    </div>
+    <div class="warning" style="margin-top:0.5rem;">⚠ خطأ شائع في STEP: الخلط بين its (ملكية) و it's (اختصار it is)</div>
+  </div>
+</section>
+
+
+<!-- WRITTEN ANALYSIS EXAMS -->
+<section class="slide bg-dark" data-section="الكتابي">
+  <div class="deco-circle c1"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(2rem,5vw,3rem);">✏️</div>
+    <h2 class="title-lg anim anim-d1">اختبار التحليل الكتابي</h2>
+    <p class="subtitle anim anim-d2">10 أسئلة: اكتشاف الخطأ + الترقيم + الحروف الكبيرة</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+<section class="slide bg-light" data-section="الكتابي" id="writing-exam">
+  <div class="slide-content">
+    <span class="badge">WRITING ANALYSIS</span>
+    <h2 class="title-md">اختبار التحليل الكتابي التفاعلي</h2>
+    <div id="wExamArea" style="margin-top:0.5rem;"></div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;">
+      <button class="listen-btn" onclick="loadWritingQ()" id="wExamBtn">▶ السؤال التالي</button>
+      <div class="quiz-score" id="wExamScore">0 / 0</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ============================================ -->
+<section class="slide bg-light" data-section="الكتابي">
+  <div class="slide-content">
+    <span class="badge">WRITING TIPS</span>
+    <h2 class="title-md">نصائح التحليل الكتابي</h2>
+    <div class="card-grid cols-2" style="margin-top:0.3rem;">
+      <div class="card"><div class="title-sm" style="color:var(--dark-green);">Capitalization</div><div class="body-text">بداية الجملة ✓<br>أسماء العلم: Riyadh, John ✓<br>أيام وأشهر: Monday, July ✓<br>I دائماً كبيرة ✓<br>الجنسيات واللغات: Arabic ✓</div></div>
+      <div class="card"><div class="title-sm" style="color:var(--dark-green);">Punctuation</div><div class="body-text">Comma: قبل but, and, or<br>Semicolon: تربط جملتين مستقلتين<br>its = ملكية ≠ it's = it is<br>Apostrophe: don't = do not<br>students' = ملكية جمع</div></div>
+    </div>
+    <div class="warning" style="margin-top:0.5rem;">⚠ أشهر أخطاء STEP: its vs it's | affect vs effect | your vs you're</div>
+  </div>
+</section>
+
+<!-- EXAM BANKS -->
+<section class="slide bg-dark" data-section="بنك الأسئلة">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(2rem,5vw,4rem);">📝</div>
+    <h2 class="title-xl anim anim-d1">بنك أسئلة القرامر</h2>
+    <p class="subtitle anim anim-d2">40 سؤال من نماذج اختبارات STEP</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+<section class="slide bg-light" data-section="بنك الأسئلة" id="exam-grammar">
+  <div class="slide-content">
+    <span class="badge">GRAMMAR EXAM</span>
+    <h2 class="title-md">اختبار القرامر التفاعلي</h2>
+    <div id="gExamArea" style="margin-top:0.5rem;"></div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;">
+      <button class="listen-btn" onclick="loadExamQ('grammar')" id="gExamBtn">▶ السؤال التالي</button>
+      <div class="quiz-score" id="gExamScore">0 / 0</div>
+    </div>
+  </div>
+</section>
+<section class="slide bg-dark" data-section="بنك الأسئلة">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(2rem,5vw,4rem);">📖</div>
+    <h2 class="title-xl anim anim-d1">بنك المترادفات</h2>
+    <p class="subtitle anim anim-d2">212 سؤال من نماذج الريدينق وتجميعات 1446</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+<section class="slide bg-light" data-section="بنك الأسئلة" id="exam-vocab">
+  <div class="slide-content">
+    <span class="badge">VOCAB EXAM</span>
+    <h2 class="title-md">اختبار المترادفات التفاعلي</h2>
+    <div id="vExamArea" style="margin-top:0.5rem;"></div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;">
+      <button class="listen-btn" onclick="loadExamQ('vocab')" id="vExamBtn">▶ السؤال التالي</button>
+      <div class="quiz-score" id="vExamScore">0 / 0</div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- EDUCATIONAL RESOURCES -->
+<section class="slide bg-dark" data-section="بنك الأسئلة" id="resources-section">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="card-number anim" style="font-size:clamp(2rem,5vw,4rem);">🎓</div>
+    <h2 class="title-xl anim anim-d1">مصادر تعليمية</h2>
+    <p class="subtitle anim anim-d2">قنوات ودورات مجانية موثوقة لشرح كل القواعد بالعربي</p>
+    <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
+  </div>
+</section>
+
+<section class="slide bg-light" data-section="بنك الأسئلة">
+  <div class="slide-content">
+    <span class="badge" style="background:var(--dark-green);">FREE COURSES</span>
+    <h2 class="title-md">دورات مجانية شاملة</h2>
+    <div class="card-grid cols-2" style="margin-top:0.5rem;">
+      <div onclick="window.open('https://ayedacademy.co/course/314/%D8%AF%D9%88%D8%B1%D8%A9-STEP-%D8%A7%D9%84%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9','_blank')" style="cursor:pointer;-webkit-tap-highlight-color:rgba(196,163,90,0.3);">
+        <div class="card" style="border-top:3px solid var(--gold);cursor:pointer;">
+          <div class="title-sm" style="color:var(--dark-green);">⭐ دورة عايد السطوحي المجانية</div>
+          <div class="body-text en-text" style="opacity:0.6;font-size:0.7rem;">Ayed Academy — Free STEP Course</div>
+          <div class="body-text" style="margin-top:0.3rem;">شرح كامل للقواعد + القراءة + الاستماع + التحليل الكتابي<br>تقييم عالي جداً من آلاف المختبرين — فيديوهات مسجلة</div>
+          <div class="body-text" style="color:var(--gold);font-size:0.7rem;margin-top:0.2rem;">📌 Grammar: Tenses, Conditionals, Verbs, Relative Clauses, Connectors, Writing Analysis</div>
+        </div>
+      </div>
+      <div onclick="window.open('https://dalilk4step.com/course/','_blank')" style="cursor:pointer;-webkit-tap-highlight-color:rgba(196,163,90,0.3);">
+        <div class="card" style="border-top:3px solid var(--sage);cursor:pointer;">
+          <div class="title-sm" style="color:var(--dark-green);">⭐ دليلك للستيب — عبدالرحمن حجازي</div>
+          <div class="body-text en-text" style="opacity:0.6;font-size:0.7rem;">Dalilk4STEP — Abdulrahman Hijazi</div>
+          <div class="body-text" style="margin-top:0.3rem;">كتيب جرامر شامل + شروحات فيديو + 380 كلمة أساسية<br>اختبارات تجريبية كاملة بالتوقيت</div>
+          <div class="body-text" style="color:var(--gold);font-size:0.7rem;margin-top:0.2rem;">📌 كتيب الجرامر + المفردات + اختبارات تجريبية</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide bg-dark" data-section="بنك الأسئلة">
+  <div class="deco-circle c1"></div>
+  <div class="slide-content">
+    <span class="badge">TELEGRAM CHANNELS</span>
+    <h2 class="title-md">قنوات تلجرام للتجميعات والشروحات</h2>
+    <div class="card-grid cols-2" style="margin-top:0.5rem;">
+      <div onclick="window.open('https://t.me/STEPACADEMY0','_blank')" style="cursor:pointer;-webkit-tap-highlight-color:rgba(196,163,90,0.3);">
+        <div class="card" style="cursor:pointer;">
+          <div class="title-sm gold-text">📢 أكاديمية ستيب المجانية</div>
+          <div class="body-text" style="opacity:0.8;">أحدث التجميعات + نماذج محلولة + مناقشات جماعية</div>
+        </div>
+      </div>
+      <div onclick="window.open('https://t.me/step_alhassani','_blank')" style="cursor:pointer;-webkit-tap-highlight-color:rgba(196,163,90,0.3);">
+        <div class="card" style="cursor:pointer;">
+          <div class="title-sm gold-text">📢 تجميعات أ. عبدالله الحساني</div>
+          <div class="body-text" style="opacity:0.8;">ملفات القرامر والقطع والمترادفات — محدّثة باستمرار</div>
+        </div>
+      </div>
+      <div onclick="window.open('https://t.me/SamiEnglishGrammar','_blank')" style="cursor:pointer;-webkit-tap-highlight-color:rgba(196,163,90,0.3);">
+        <div class="card" style="cursor:pointer;">
+          <div class="title-sm gold-text">📢 قناة أ. سامي لشرح القرامر</div>
+          <div class="body-text" style="opacity:0.8;">شرح مفصل لكل قاعدة بالعربي مع أمثلة وتمارين</div>
+        </div>
+      </div>
+      <div onclick="window.open('https://t.me/STEP_512','_blank')" style="cursor:pointer;-webkit-tap-highlight-color:rgba(196,163,90,0.3);">
+        <div class="card" style="cursor:pointer;">
+          <div class="title-sm gold-text">📢 كويزات النماذج كاملة</div>
+          <div class="body-text" style="opacity:0.8;">اختبارات تجريبية تفاعلية على نمط الاختبار الحقيقي</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- CONCLUSION -->
+<section class="slide bg-dark" data-section="الخطة" id="conclusion">
+  <div class="deco-circle c1"></div><div class="deco-circle c2"></div><div class="deco-circle c3"></div>
+  <div class="slide-content" style="text-align:center;align-items:center;">
+    <div class="gold-line anim" style="margin:0 auto;"></div>
+    <h2 class="title-xl anim anim-d1" style="margin:1rem 0;">بالتوفيق والنجاح!</h2>
+    <div class="gold-line anim anim-d2" style="margin:0 auto;"></div>
+    <p class="title-sm anim anim-d3" style="margin-top:1.5rem;color:var(--soft-gold);">افهم القاعدة ← احفظ الأمثلة ← تدرب على الأسئلة ← كرر</p>
+    <p class="body-text anim anim-d4" style="opacity:0.5;margin-top:1rem;">اسحب للأعلى للرجوع للبداية</p>
+    <p class="body-text anim anim-d5" style="opacity:0.7;margin-top:0.5rem;color:var(--soft-gold);">إعداد الأستاذ: يوسف الشمراني</p>
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- JAVASCRIPT -->
+<!-- ============================================ -->
+<script>
+// === GRAMMAR DATA ===
+const grammarRules = [
+  { num:1, ar:"المضارع البسيط", en:"Present Simple", desc:"العادات والحقائق والروتين اليومي", formula:"Subject + V1 | He/She/It + V1+s", examples:["She works at a hospital every day.","Water boils at 100°C.","I don't eat meat."], keywords:"always, usually, often, every day, never, sometimes",
+    quiz:{q:"She ___ to the gym every morning.", opts:["goes","is going","has gone","went"], ans:0, explain:"المضارع البسيط للعادات. every morning = تكرار"}},
+  { num:2, ar:"المضارع المستمر", en:"Present Continuous", desc:"حدث يحصل الآن في لحظة الكلام", formula:"Subject + am/is/are + V-ing", examples:["She is studying right now.","Look! It is raining!","They are not coming."], keywords:"now, right now, at the moment, look!, listen!, currently",
+    quiz:{q:"Look! The bus ___ .", opts:["comes","is coming","came","has come"], ans:1, explain:"المضارع المستمر مع Look! = حدث يحصل الآن"}},
+  { num:3, ar:"المضارع التام", en:"Present Perfect", desc:"ربط الماضي بالحاضر — حدث وقت غير محدد أو مستمر", formula:"Subject + have/has + V3", examples:["I have visited London twice.","She has already finished.","He has lived here since 2010."], keywords:"already, yet, just, ever, never, since, for",
+    quiz:{q:"They have lived here ___ 2019.", opts:["for","since","during","by"], ans:1, explain:"since مع نقطة زمنية محددة (2019)"}},
+  { num:4, ar:"الماضي البسيط", en:"Past Simple", desc:"حدث بدأ وانتهى في الماضي", formula:"Subject + V2 (past form)", examples:["She went to Paris last summer.","I did not watch the movie.","When did you arrive?"], keywords:"yesterday, last week, ago, in 2020",
+    quiz:{q:"Sara ___ her keys yesterday.", opts:["is losing","lost","was losing","has lost"], ans:1, explain:"yesterday = ماضي بسيط لحدث انتهى"}},
+  { num:5, ar:"الماضي التام", en:"Past Perfect", desc:"الحدث الأقدم عندما يكون فيه حدثين في الماضي", formula:"Subject + had + V3", examples:["By the time I arrived, the train had left.","After he had finished dinner, he watched TV."], keywords:"by the time, before, after, already, until",
+    quiz:{q:"By the time the bus arrived, we ___ for an hour.", opts:["waited","have waited","had waited","were waiting"], ans:2, explain:"had waited = الحدث الأقدم (الانتظار سبق وصول الباص)"}},
+  { num:6, ar:"صيغ المستقبل", en:"Future Forms", desc:"will للقرار/التوقع | going to للخطة | المستقبل التام", formula:"will + V1 | will be + V-ing | will have + V3", examples:["I will help you tomorrow.","This time tomorrow, I will be flying.","By 2030, she will have graduated."], keywords:"tomorrow, next, by + future time",
+    quiz:{q:"By 2030, she ___ from college.", opts:["graduates","will have graduated","had graduated","is graduating"], ans:1, explain:"By 2030 = مستقبل تام: will have + V3"}},
+  { num:7, ar:"الشرطية الصفرية والأولى", en:"Zero & First Conditional", desc:"الصفرية = حقائق | الأولى = ممكن في المستقبل", formula:"Zero: If + Present, Present | First: If + Present, will + V1", examples:["If you heat water, it boils. (حقيقة)","If I study hard, I will pass. (ممكن)"], keywords:"لا تستخدم will بعد if في الحالة الأولى!",
+    quiz:{q:"If you heat ice, it ___.", opts:["melts","melted","will melt","would melt"], ans:0, explain:"Zero Conditional = حقيقة علمية: If + present, present"}},
+  { num:8, ar:"الشرطية الثانية", en:"Second Conditional", desc:"مواقف خيالية أو غير محتملة في الحاضر", formula:"If + Past Simple, would + V1", examples:["If I had a million dollars, I would buy a house.","If I were you, I would study medicine."], keywords:"نستخدم were مع كل الضمائر",
+    quiz:{q:"If I were you, I ___ apologize.", opts:["will","would","had","am"], ans:1, explain:"Second Conditional: If + past, would + V1"}},
+  { num:9, ar:"الشرطية الثالثة والمختلطة", en:"Third & Mixed Conditional", desc:"الثالثة = ندم | المختلطة = شرط ماضي + نتيجة حاضر", formula:"Third: If + had V3, would have V3", examples:["If I had studied, I would have passed.","Mixed: If I had accepted the job, I would be rich now."], keywords:"Third = ندم | Mixed = شرط ماضي + نتيجة حالية",
+    quiz:{q:"If they had left earlier, they ___ the train.", opts:["would catch","would have caught","caught","had caught"], ans:1, explain:"Third Conditional = ندم: would have + V3"}},
+  { num:10, ar:"المبني للمجهول", en:"Passive Voice", desc:"الفاعل مجهول أو غير مهم", formula:"Object + be + V3 (+ by Agent)", examples:["English is spoken worldwide.","The car was stolen last night.","The report has been completed."], keywords:"حول be حسب الزمن + التصريف الثالث دائماً",
+    quiz:{q:"The emails ___ every morning.", opts:["check","are checked","checked","are checking"], ans:1, explain:"Passive: be + V3 → are checked"}},
+  { num:11, ar:"الضمائر الوصلية", en:"Relative Pronouns", desc:"who للأشخاص | which للأشياء | whose للملكية", formula:"who | whom | which | that | whose | where", examples:["The student who won the prize is my neighbor.","The house whose roof leaked...","This is the restaurant where we had dinner."], keywords:"that لا تأتي بعد فاصلة!",
+    quiz:{q:"The man ___ called you is my uncle.", opts:["which","who","where","whose"], ans:1, explain:"who = للأشخاص (الرجل الذي)"}},
+  { num:12, ar:"أدوات الربط — التضاد", en:"Contrast Connectors", desc:"although + جملة | despite + اسم | however", formula:"although/despite/however/but/yet", examples:["Although it was cold, we went out.","Despite the rain, we played.","It was cold; however, we went out."], keywords:"although + جملة كاملة | despite + اسم أو V-ing",
+    quiz:{q:"___ the heavy rain, the match continued.", opts:["Because of","Despite","Due to","Since"], ans:1, explain:"Despite = بالرغم من (تضاد) + اسم"}},
+  { num:13, ar:"السبب والنتيجة", en:"Cause & Effect", desc:"because/since/due to → therefore/so/consequently", formula:"because + جملة | due to + اسم | therefore/so = لذلك", examples:["Because it rained, we stayed home.","Due to the rain, we stayed home.","He was ill; therefore, he stayed home."], keywords:"because + جملة | due to + اسم — لا تخلط!",
+    quiz:{q:"We stayed home ___ it was raining.", opts:["because","although","unless","however"], ans:0, explain:"because = لأن (سبب + جملة)"}},
+  { num:14, ar:"Gerund vs Infinitive", en:"Gerund & Infinitive", desc:"بعض الأفعال V-ing وبعضها to + V", formula:"enjoy/avoid/finish + V-ing | want/decide/hope + to V", examples:["I enjoy reading books.","He decided to quit his job.","remember + V-ing = تتذكر شيء حصل"], keywords:"remember, forget, stop, try تأخذ الاثنين بمعنى مختلف!",
+    quiz:{q:"She enjoys ___ classical music.", opts:["listen","listening","to listen","listened"], ans:1, explain:"enjoy + V-ing دائماً"}},
+  { num:15, ar:"حروف الجر مع الأفعال", en:"Verb + Preposition", desc:"تركيبات ثابتة لازم تحفظها", formula:"depend on | consist of | belong to | apologize for | refer to", examples:["look for (يبحث) | look after (يعتني) | look forward to (يتطلع)","result from (ينتج عن) | result in (يؤدي إلى)"], keywords:"interested in | good at | responsible for | afraid of",
+    quiz:{q:"She is interested ___ learning new languages.", opts:["on","in","at","for"], ans:1, explain:"interested in = تركيب ثابت"}},
+  { num:16, ar:"أفعال Modal", en:"Modals & Modal Perfect", desc:"can/could/may/should/must + V1 | في الماضي: modal + have + V3", formula:"should have V3 = كان لازم | must have V3 = أكيد", examples:["You should see a doctor.","You should have told me! (لوم)","He must have forgotten. (استنتاج)"], keywords:"should have = ندم | must have = تأكيد | can't have = مستحيل",
+    quiz:{q:"You ___ have told me earlier!", opts:["should","could","should have","might"], ans:2, explain:"should have + V3 = لوم على شيء لم يحصل"}},
+  { num:17, ar:"المقارنة والتفضيل", en:"Comparatives & Superlatives", desc:"قصيرة: -er/est | طويلة: more/most | شاذة", formula:"adj-er than | more adj than | the adj-est | the most adj", examples:["She is taller than her brother.","This is the most expensive.","Irregular: good-better-best | bad-worse-worst"], keywords:"لا تقول more better أو most fastest!",
+    quiz:{q:"This book is ___ than that one.", opts:["interesting","more interesting","most interesting","interestingly"], ans:1, explain:"صفة طويلة = more + adj + than"}},
+  { num:18, ar:"أدوات التعريف", en:"Articles", desc:"a/an = نكرة | the = معرفة | بدون = عام", formula:"a + صوت ساكن | an + صوت علة | the = محدد/فريد", examples:["a university (صوت /يو/) | an hour (h صامت)","the sun, the moon (أشياء فريدة)","Dogs are loyal. (بدون أداة = عام)"], keywords:"المهم الصوت وليس الحرف!",
+    quiz:{q:"I saw ___ elephant at the zoo.", opts:["a","an","the","—"], ans:1, explain:"elephant تبدأ بصوت علة = an"}},
+  { num:19, ar:"الكلام المنقول", en:"Reported Speech", desc:"ننقل الزمن خطوة للخلف ونغير الضمائر", formula:"am/is → was | will → would | can → could", examples:['"I am happy." → She said she was happy.','"I will come." → He said he would come.'], keywords:"في الأسئلة المنقولة: بدون do/does/did + ترتيب عادي",
+    quiz:{q:'He said, "I am tired." → He said he ___ tired.', opts:["is","was","has been","will be"], ans:1, explain:"am → was في الكلام المنقول"}},
+  { num:20, ar:"تطابق + تمني + سببية", en:"Agreement, Wish, Causative", desc:"3 قواعد مهمة في سلايد واحد", formula:"Everyone IS | wish + past | have + obj + V3", examples:["Everyone IS here. (مفرد)","I wish I WERE taller.","I had my car repaired. (سببية)"], keywords:"A number of = جمع | The number of = مفرد",
+    quiz:{q:"Everyone in the class ___ to participate.", opts:["want","wants","are wanting","wanting"], ans:1, explain:"Everyone = مفرد دائماً → wants"}},
+  { num:21, ar:"الترقيم والحروف الكبيرة", en:"Punctuation & Capitalization", desc:"تجي في قسم التحليل الكتابي", formula:"Capital: بداية الجملة + أسماء العلم + أيام/أشهر + I", examples:["its = ملكية | it's = it is","Semicolon (;) تربط جملتين مستقلتين","students' = ملكية جمع"], keywords:"خطأ STEP الشائع: its vs it's",
+    quiz:{q:"Which is correct?", opts:["i visited riyadh in july.","I visited Riyadh in July.","I visited Riyadh in july.","I visited riyadh in July."], ans:1, explain:"Capital: I + أسماء العلم (Riyadh) + أشهر (July)"}},
+];
+
+// === GENERATE GRAMMAR SLIDES ===
+const gContainer = document.getElementById('grammar-slides');
+grammarRules.forEach((r, idx) => {
+  const bgClass = idx % 2 === 0 ? 'bg-light' : 'bg-dark';
+  const html = `
+  <section class="slide ${bgClass}" data-section="القواعد">
+    ${bgClass === 'bg-dark' ? '<div class="deco-circle c1"></div>' : ''}
+    <div class="slide-content">
+      <div class="rule-header anim">
+        <div class="rule-num">${r.num}</div>
+        <div>
+          <div class="title-md">${r.ar}</div>
+          <div class="body-text en-text" style="opacity:0.6;">${r.en}</div>
+        </div>
+      </div>
+      <p class="body-text anim anim-d1" style="margin-bottom:0.2rem;">${r.desc}</p>
+      <div class="formula-box anim anim-d1">${r.formula}</div>
+      <div class="card anim anim-d2" style="padding:0.5rem 0.8rem;">
+        <div class="body-text" style="font-weight:600;margin-bottom:0.3rem;${bgClass === 'bg-dark' ? 'color:var(--gold);' : 'color:var(--dark-green);'}">📖 الشرح والأمثلة:</div>
+        <div style="display:flex;flex-direction:column;gap:0.15rem;">
+          ${r.examples.map(e => '<div class="example">' + e + '</div>').join('')}
+        </div>
+        <div class="warning" style="margin-top:0.3rem;">⚠ ${r.keywords}</div>
+      </div>
+      <div class="card anim anim-d3" style="padding:0.5rem 0.8rem;border-top:2px solid var(--gold);">
+        <div class="body-text" style="font-weight:600;margin-bottom:0.3rem;${bgClass === 'bg-dark' ? 'color:var(--gold);' : 'color:var(--dark-green);'}">✍ اختبر نفسك:</div>
+        <div class="quiz-container" id="gq${idx}">
+          <div class="quiz-q">${r.quiz.q}</div>
+          <div class="quiz-options">
+            ${r.quiz.opts.map((o,i) => '<div class="quiz-opt" data-qid="gq'+idx+'" data-i="'+i+'" data-a="'+r.quiz.ans+'" onclick="checkAns(this,this.dataset.qid,+this.dataset.i,+this.dataset.a)">' + o + '</div>').join('')}
+          </div>
+          <div class="quiz-explain" id="gq${idx}-ex">${r.quiz.explain}</div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+  gContainer.insertAdjacentHTML('beforeend', html);
+});
+
+// === VOCABULARY DATA ===
+const vocabSlides = [
+  { title:"التلازمات اللفظية: Make vs Do", badge:"COLLOCATIONS", bg:"bg-light",
+    content:`<div class="card-grid cols-2"><div class="card"><div class="title-sm" style="color:var(--dark-green);margin-bottom:0.5rem;">Do (أنشطة/مهام)</div><div class="vocab-grid"><div class="vocab-item"><span>do homework</span><span class="vocab-en">واجب</span></div><div class="vocab-item"><span>do research</span><span class="vocab-en">بحث</span></div><div class="vocab-item"><span>do exercise</span><span class="vocab-en">رياضة</span></div><div class="vocab-item"><span>do business</span><span class="vocab-en">أعمال</span></div><div class="vocab-item"><span>do a favor</span><span class="vocab-en">معروف</span></div><div class="vocab-item"><span>do damage</span><span class="vocab-en">ضرر</span></div><div class="vocab-item"><span>do one's best</span><span class="vocab-en">أفضل ما يمكن</span></div></div></div><div class="card"><div class="title-sm" style="color:var(--gold);margin-bottom:0.5rem;">Make (إنتاج/إنشاء)</div><div class="vocab-grid"><div class="vocab-item"><span>make a decision</span><span class="vocab-en">قرار</span></div><div class="vocab-item"><span>make a mistake</span><span class="vocab-en">خطأ</span></div><div class="vocab-item"><span>make progress</span><span class="vocab-en">تقدم</span></div><div class="vocab-item"><span>make money</span><span class="vocab-en">مال</span></div><div class="vocab-item"><span>make an effort</span><span class="vocab-en">جهد</span></div><div class="vocab-item"><span>make a suggestion</span><span class="vocab-en">اقتراح</span></div><div class="vocab-item"><span>make a difference</span><span class="vocab-en">فرق</span></div></div></div></div>`,
+    quiz:{q:"We need to ___ a decision soon.", opts:["do","make","take","have"], ans:1, explain:"make a decision = تلازم ثابت"}},
+  { title:"الكلمات المتشابهة", badge:"CONFUSING WORDS", bg:"bg-dark",
+    content:`<div class="vocab-grid" style="gap:0.3rem;"><div class="vocab-item"><span class="vocab-en">affect (فعل)</span><span>يؤثر</span></div><div class="vocab-item"><span class="vocab-en">effect (اسم)</span><span>تأثير</span></div><div class="vocab-item"><span class="vocab-en">accept</span><span>يقبل</span></div><div class="vocab-item"><span class="vocab-en">except</span><span>ما عدا</span></div><div class="vocab-item"><span class="vocab-en">advice (اسم)</span><span>نصيحة</span></div><div class="vocab-item"><span class="vocab-en">advise (فعل)</span><span>ينصح</span></div><div class="vocab-item"><span class="vocab-en">its</span><span>ملكية</span></div><div class="vocab-item"><span class="vocab-en">it's</span><span>it is</span></div><div class="vocab-item"><span class="vocab-en">lose (فعل)</span><span>يخسر</span></div><div class="vocab-item"><span class="vocab-en">loose (صفة)</span><span>فضفاض</span></div><div class="vocab-item"><span class="vocab-en">quite</span><span>تماماً</span></div><div class="vocab-item"><span class="vocab-en">quiet</span><span>هادئ</span></div><div class="vocab-item"><span class="vocab-en">rise</span><span>يرتفع بنفسه</span></div><div class="vocab-item"><span class="vocab-en">raise</span><span>يرفع شيء</span></div><div class="vocab-item"><span class="vocab-en">farther</span><span>مسافة</span></div><div class="vocab-item"><span class="vocab-en">further</span><span>إضافي</span></div></div>`,
+    quiz:{q:"Pollution ___ health.", opts:["effects","affects","effected","affecting"], ans:1, explain:"affect = فعل (يؤثر) | effect = اسم (تأثير)"}},
+  { title:"البادئات واللواحق", badge:"PREFIXES & SUFFIXES", bg:"bg-light",
+    content:`<div class="card-grid cols-2"><div class="card"><div class="title-sm" style="margin-bottom:0.4rem;">البادئات (Prefixes)</div><div class="vocab-grid"><div class="vocab-item"><span class="vocab-en">un-</span><span>عكس: unhappy</span></div><div class="vocab-item"><span class="vocab-en">dis-</span><span>عكس: disagree</span></div><div class="vocab-item"><span class="vocab-en">im-/in-</span><span>نفي: impossible</span></div><div class="vocab-item"><span class="vocab-en">re-</span><span>إعادة: rewrite</span></div><div class="vocab-item"><span class="vocab-en">over-</span><span>إفراط: overwork</span></div><div class="vocab-item"><span class="vocab-en">pre-</span><span>قبل: preview</span></div></div></div><div class="card"><div class="title-sm" style="margin-bottom:0.4rem;">اللواحق (Suffixes)</div><div class="vocab-grid"><div class="vocab-item"><span class="vocab-en">-tion</span><span>اسم: education</span></div><div class="vocab-item"><span class="vocab-en">-ness</span><span>اسم: happiness</span></div><div class="vocab-item"><span class="vocab-en">-ful</span><span>صفة: helpful</span></div><div class="vocab-item"><span class="vocab-en">-less</span><span>بدون: hopeless</span></div><div class="vocab-item"><span class="vocab-en">-able</span><span>قابل: available</span></div><div class="vocab-item"><span class="vocab-en">-ly</span><span>حال: quickly</span></div></div></div></div>`,
+    quiz:{q:"The prefix 'un-' means:", opts:["again","before","opposite","more"], ans:2, explain:"un- = عكس / نفي: unhappy, unable, unfair"}},
+  { title:"مفردات أكاديمية متكررة (1)", badge:"ACADEMIC VOCAB", bg:"bg-dark",
+    content:`<div class="vocab-grid"><div class="vocab-item"><span class="vocab-en">abandon</span><span>يتخلى عن</span></div><div class="vocab-item"><span class="vocab-en">acquire</span><span>يكتسب</span></div><div class="vocab-item"><span class="vocab-en">analyze</span><span>يحلل</span></div><div class="vocab-item"><span class="vocab-en">apparent</span><span>واضح</span></div><div class="vocab-item"><span class="vocab-en">appropriate</span><span>مناسب</span></div><div class="vocab-item"><span class="vocab-en">consequence</span><span>نتائج/عواقب</span></div><div class="vocab-item"><span class="vocab-en">enhance</span><span>يعزز/يحسن</span></div><div class="vocab-item"><span class="vocab-en">establish</span><span>يؤسس</span></div><div class="vocab-item"><span class="vocab-en">exceed</span><span>يتجاوز</span></div><div class="vocab-item"><span class="vocab-en">emerge</span><span>يظهر</span></div><div class="vocab-item"><span class="vocab-en">essential</span><span>ضروري</span></div><div class="vocab-item"><span class="vocab-en">eliminate</span><span>يزيل</span></div><div class="vocab-item"><span class="vocab-en">feasible</span><span>قابل للتنفيذ</span></div><div class="vocab-item"><span class="vocab-en">fundamental</span><span>أساسي/جوهري</span></div><div class="vocab-item"><span class="vocab-en">generate</span><span>يولّد/ينتج</span></div><div class="vocab-item"><span class="vocab-en">hypothesis</span><span>فرضية</span></div></div>`,
+    quiz:{q:"'Proliferation' is closest in meaning to:", opts:["reduction","rapid increase","control","movement"], ans:1, explain:"proliferation = انتشار/تكاثر سريع"}},
+  { title:"مفردات أكاديمية متكررة (2)", badge:"ACADEMIC VOCAB", bg:"bg-light",
+    content:`<div class="vocab-grid"><div class="vocab-item"><span class="vocab-en">implement</span><span>ينفذ/يطبق</span></div><div class="vocab-item"><span class="vocab-en">inevitable</span><span>حتمي</span></div><div class="vocab-item"><span class="vocab-en">justify</span><span>يبرر</span></div><div class="vocab-item"><span class="vocab-en">maintain</span><span>يحافظ على</span></div><div class="vocab-item"><span class="vocab-en">minimize</span><span>يقلل</span></div><div class="vocab-item"><span class="vocab-en">occur</span><span>يحدث</span></div><div class="vocab-item"><span class="vocab-en">perceive</span><span>يدرك</span></div><div class="vocab-item"><span class="vocab-en">prohibit</span><span>يمنع/يحظر</span></div><div class="vocab-item"><span class="vocab-en">relevant</span><span>ذو صلة</span></div><div class="vocab-item"><span class="vocab-en">reveal</span><span>يكشف</span></div><div class="vocab-item"><span class="vocab-en">significant</span><span>مهم/كبير</span></div><div class="vocab-item"><span class="vocab-en">sufficient</span><span>كافٍ</span></div><div class="vocab-item"><span class="vocab-en">transform</span><span>يحوّل</span></div><div class="vocab-item"><span class="vocab-en">obtain</span><span>يحصل على</span></div><div class="vocab-item"><span class="vocab-en">constitute</span><span>يشكّل</span></div><div class="vocab-item"><span class="vocab-en">assume</span><span>يفترض</span></div></div>`,
+    quiz:{q:"Water is ___ for life.", opts:["sufficient","essential","relevant","significant"], ans:1, explain:"essential = ضروري (الماء ضروري للحياة)"}},
+];
+
+const vContainer = document.getElementById('vocab-slides');
+vocabSlides.forEach((v, idx) => {
+  vContainer.insertAdjacentHTML('beforeend', `
+  <section class="slide ${v.bg}" data-section="المفردات">
+    ${v.bg === 'bg-dark' ? '<div class="deco-circle c1"></div>' : ''}
+    <div class="slide-content">
+      <span class="badge anim">${v.badge}</span>
+      <h2 class="title-md anim anim-d1">${v.title}</h2>
+      <div class="anim anim-d2">${v.content}</div>
+      <div class="quiz-container anim anim-d3" id="vq${idx}">
+        <div class="quiz-q">${v.quiz.q}</div>
+        <div class="quiz-options">
+          ${v.quiz.opts.map((o,i) => `<div class="quiz-opt" onclick="checkAns(this,'vq${idx}',${i},${v.quiz.ans})">${o}</div>`).join('')}
+        </div>
+        <div class="quiz-explain" id="vq${idx}-ex">${v.quiz.explain}</div>
+      </div>
+    </div>
+  </section>`);
+});
+
+// === LISTENING DATA ===
+const listeningData = [
+  { num:1, title:"Registration Office", transcript:"A student asks the registration office whether he can still join the English club. The clerk says the online form is closed, but a paper form can be submitted before 3 p.m. at the front desk next to the library.",
+    qs:[{q:"Why did the student visit?", opts:["Pay a fine","Join a club late","Borrow a book","Ask about class"], ans:1},
+        {q:"What is already closed?", opts:["Front desk","Library","Online form","The club"], ans:2},
+        {q:"Where is the paper form?", opts:["Cafeteria","Front desk by library","Classroom 3","Email"], ans:1}]},
+  { num:2, title:"Research Report", transcript:"A student worries about a research report. The professor says the deadline is Friday, recommends using tomorrow to visit the digital library, and asks for the draft by email tonight so he can comment before noon tomorrow.",
+    qs:[{q:"What is the problem?", opts:["Missed class","Needs more sources","Lost report","Changed topic"], ans:1},
+        {q:"When is the deadline?", opts:["Tonight","Tomorrow","Friday","Next week"], ans:2},
+        {q:"What will professor do?", opts:["Extend deadline","Return books","Comment on draft","Cancel report"], ans:2}]},
+  { num:3, title:"Airport Announcement", transcript:"Attention passengers. Boarding for flight 702 to Jeddah will begin at gate 12 in fifteen minutes. Rows 20 to 30 should board first. Passengers needing help with luggage should ask the desk agent near the coffee shop.",
+    qs:[{q:"Which gate?", opts:["Gate 2","Gate 12","Gate 20","Gate 30"], ans:1},
+        {q:"Who boards first?", opts:["Families","Rows 1-10","Rows 20-30","Business class"], ans:2},
+        {q:"Where for luggage help?", opts:["Coffee shop","Passport desk","Desk agent near café","On plane"], ans:2}]},
+  { num:4, title:"Maintenance Call", transcript:"Hello, maintenance department. A tenant is calling because the air conditioner is very noisy. A technician is available this afternoon between four and six, but the tenant asks for tomorrow morning instead. They agree on nine thirty a.m.",
+    qs:[{q:"Why did tenant call?", opts:["Lights out","AC is noisy","Door locked","Water off"], ans:1},
+        {q:"First time offered?", opts:["Afternoon 4-6","Tomorrow 8","Tonight","Friday"], ans:0},
+        {q:"Final appointment?", opts:["Today 5pm","Tomorrow 9:30","Tomorrow 6","Next week"], ans:1}]},
+  { num:5, title:"Weekly Schedule", transcript:"Good morning team. A few changes to this week's schedule. The marketing presentation moves from Monday to Wednesday morning. The client call stays on Tuesday at ten as planned. And the monthly report is now due Thursday evening instead of Friday.",
+    qs:[{q:"What moved?", opts:["Client call","Monthly report","Team lunch","Marketing presentation"], ans:3},
+        {q:"When is client call?", opts:["Monday","Tuesday at 10","Wednesday","Thursday"], ans:1},
+        {q:"Report due when?", opts:["Friday","Thursday evening","Tuesday","Wednesday"], ans:1}]},
+];
+
+const lContainer = document.getElementById('listening-slides');
+listeningData.forEach((l, idx) => {
+  const bg = idx % 2 === 0 ? 'bg-light' : 'bg-dark';
+  lContainer.insertAdjacentHTML('beforeend', `
+  <section class="slide ${bg}" data-section="الاستماع">
+    ${bg === 'bg-dark' ? '<div class="deco-circle c1"></div>' : ''}
+    <div class="slide-content">
+      <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
+        <span class="badge anim">LISTENING ${l.num}</span>
+        <span class="title-sm en-text anim anim-d1">${l.title}</span>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;" class="anim anim-d1">
+        <button class="listen-btn" onclick="speakText(this, \`${l.transcript.replace(/`/g,"'")}\`)">▶ تشغيل الصوت</button>
+        <button class="show-transcript-btn" onclick="this.nextElementSibling.classList.toggle('open')">📝 إظهار النص</button>
+        <div class="transcript-box">${l.transcript}</div>
+      </div>
+      ${l.qs.map((q,qi) => `
+      <div class="quiz-container anim anim-d${qi+2}" id="lq${idx}_${qi}">
+        <div class="quiz-q">${qi+1}) ${q.q}</div>
+        <div class="quiz-options">
+          ${q.opts.map((o,i) => `<div class="quiz-opt" onclick="checkAns(this,'lq${idx}_${qi}',${i},${q.ans})">${o}</div>`).join('')}
+        </div>
+      </div>`).join('')}
+    </div>
+  </section>`);
+});
+
+
+// === 30-DAY PLAN ===
+const weeks = [
+  {num:"1", title:"التأسيس (1-7)", color:"var(--sage)", items:["الأزمنة الأساسية + 20 سؤال","الأزمنة المتقدمة + 20 سؤال","الشرطية (5 أنواع) + 15 سؤال","المبني للمجهول + 15 سؤال","الضمائر الوصلية + 15 سؤال","أدوات الربط + 20 سؤال","مراجعة + اختبار تجريبي"]},
+  {num:"2", title:"التعمق (8-14)", color:"var(--light-sage)", items:["Gerund vs Infinitive + 20 سؤال","حروف الجر (35 تركيب) + 15 سؤال","أفعال Modal + 15 سؤال","المقارنة + Articles","Reported Speech + 15 سؤال","قواعد إضافية","اختبار تجريبي كامل بالتوقيت"]},
+  {num:"3", title:"المفردات والقراءة (15-21)", color:"var(--soft-gold)", items:["25 كلمة أكاديمية + جمل","كلمات متشابهة + 25 كلمة","تلازمات + أفعال مركبة","بادئات + لواحق","تدريب قراءة (3 قطع)","تدريب قراءة مؤقت","اختبار تجريبي كامل"]},
+  {num:"4", title:"التدريب المكثف (22-30)", color:"var(--gold)", items:["تدريب استماع مكثف (يومين)","تحليل كتابي + أخطاء","اختبار تجريبي 3","مراجعة القواعد","مراجعة المفردات","اختبار تجريبي 4 + تحليل","مراجعة خفيفة + نوم مبكر 💤"]},
+];
+
+const pContainer = document.getElementById('plan-slides');
+weeks.forEach((w, idx) => {
+  const bg = idx % 2 === 0 ? 'bg-light' : 'bg-dark';
+  pContainer.insertAdjacentHTML('beforeend', `
+  <section class="slide ${bg}" data-section="الخطة">
+    ${bg === 'bg-dark' ? '<div class="deco-circle c1"></div>' : ''}
+    <div class="slide-content">
+      <div class="rule-header anim">
+        <div class="rule-num" style="background:${w.color};">${w.num}</div>
+        <div class="title-md">أسبوع ${w.title}</div>
+      </div>
+      <div class="card-grid cols-2 anim anim-d1" style="margin-top:0.5rem;">
+        ${w.items.map((item, i) => `<div class="card" style="padding:0.5rem 0.8rem;display:flex;align-items:center;gap:0.5rem;"><span style="color:var(--gold);font-weight:700;font-size:0.8rem;">يوم ${idx*7+i+1}</span><span class="body-text">${item}</span></div>`).join('')}
+      </div>
+    </div>
+  </section>`);
+});
+
+// === QUIZ LOGIC ===
+function checkAns(el, qId, selected, correct) {
+  const container = document.getElementById(qId) || el.closest('.quiz-container') || el.parentElement;
+  const opts = container.querySelectorAll ? container.querySelectorAll('.quiz-opt') : el.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach((o, i) => {
+    o.classList.add('disabled');
+    if (i === correct) o.classList.add('correct');
+    else if (i === selected && i !== correct) o.classList.add('wrong');
+  });
+  const explainEl = document.getElementById(qId + '-ex');
+  if (explainEl) explainEl.classList.add('show');
+}
+
+// === PREMIUM TEXT-TO-SPEECH ===
+// Selects the best available neural/human voice on the device
+// iOS: Samantha (very natural) | Windows: Microsoft Neural | Chrome: Google US
+let _bestVoice = null;
+
+function _pickBestVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices.length) return null;
+  // Priority list — neural voices that sound most human
+  const PRIORITY = [
+    'Samantha',            // iOS/macOS — most natural
+    'Alex',                // macOS male — very clear
+    'Karen',               // macOS Australian female
+    'Daniel',              // macOS British male
+    'Moira',               // macOS Irish female
+    'Microsoft Aria',      // Windows neural — sounds very human
+    'Microsoft Jenny',     // Windows neural female
+    'Microsoft Guy',       // Windows neural male
+    'Microsoft Emma',      // Windows neural UK female
+    'Microsoft Brian',     // Windows neural UK male
+    'Microsoft Zira',      // Windows standard female (fallback)
+    'Google UK English Female',
+    'Google UK English Male',
+    'Google US English',
+  ];
+  for (const name of PRIORITY) {
+    const v = voices.find(v => v.name.includes(name));
+    if (v) return v;
+  }
+  // Fallback: any non-compact, non-espeak English voice
+  return voices.find(v =>
+    v.lang.startsWith('en') &&
+    !v.name.toLowerCase().includes('compact') &&
+    !v.name.toLowerCase().includes('espeak') &&
+    !v.name.toLowerCase().includes('mbrola')
+  ) || voices.find(v => v.lang.startsWith('en')) || voices[0];
+}
+
+// Load voices (async in Chrome, sync in Safari)
+function _ensureVoice() {
+  if (!_bestVoice) _bestVoice = _pickBestVoice();
+  return _bestVoice;
+}
+window.speechSynthesis.onvoiceschanged = () => { _bestVoice = _pickBestVoice(); updateVoiceInfo(); };
+
+// Show voice info in listening section
+function updateVoiceInfo() {
+  const v = _ensureVoice();
+  const el = document.getElementById('voice-info');
+  if (el && v) el.textContent = '🎙 الصوت المستخدم: ' + v.name;
+}
+setTimeout(updateVoiceInfo, 800);
+window.speechSynthesis.onvoiceschanged = () => { _bestVoice = _pickBestVoice(); updateVoiceInfo(); };
+
+setTimeout(() => { _ensureVoice(); }, 300);
+
+function speakText(btn, text) {
+  if (window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+    btn.classList.remove('playing');
+    btn.textContent = '▶ تشغيل الصوت';
+    return;
+  }
+  const voice = _ensureVoice();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'en-US';
+  utter.rate = 0.88;    // Slightly slower = clearer, more natural
+  utter.pitch = 1.05;   // Slight pitch lift = less robotic
+  utter.volume = 1.0;
+  if (voice) utter.voice = voice;
+  btn.classList.add('playing');
+  btn.textContent = '⏸ إيقاف';
+  utter.onend = () => { btn.classList.remove('playing'); btn.textContent = '▶ تشغيل الصوت'; };
+  utter.onerror = () => { btn.classList.remove('playing'); btn.textContent = '▶ تشغيل الصوت'; };
+  window.speechSynthesis.speak(utter);
+}
+
+// === SCROLL & NAVIGATION ===
+const slides = document.querySelectorAll('.slide');
+const progress = document.getElementById('progress');
+const secNav = document.getElementById('section-nav');
+
+// Observe slides for animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      updateProgress();
+      updateSecNav(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function updateProgress() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+  progress.style.width = pct + '%';
+}
+
+function updateSecNav(slide) {
+  const section = slide.dataset.section;
+  document.querySelectorAll('.sec-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === section);
+  });
+  secNav.classList.add('show');
+}
+
+
+function navTo(targetId) {
+  const NAV_HEIGHT = Math.ceil(document.getElementById('section-nav')?.getBoundingClientRect().height || 50);
+  if (targetId === 'top') {
+    window.scrollTo({top: 0, behavior: 'instant'});
+    return;
+  }
+  const el = document.getElementById(targetId);
+  if (!el) return;
+  // Get absolute Y position of element
+  const rect = el.getBoundingClientRect();
+  const absoluteY = rect.top + window.pageYOffset - NAV_HEIGHT;
+  window.scrollTo({top: absoluteY, behavior: 'instant'});
+  // Update active nav button
+  document.querySelectorAll('.sec-btn').forEach(b => b.classList.remove('active'));
+  // find the button that called this
+  document.querySelectorAll('.sec-btn').forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(targetId)) {
+      b.classList.add('active');
+    }
+  });
+}
+
+function goToSlide(idx) {
+  const allSlides = document.querySelectorAll('.slide');
+  if (allSlides[idx]) allSlides[idx].scrollIntoView({ behavior: window.innerWidth<768?"instant":"smooth" });
+}
+
+
+let scrollTimer;
+window.addEventListener('scroll', () => {
+  if (!scrollTimer) {
+    scrollTimer = requestAnimationFrame(() => {
+      updateProgress();
+      secNav.classList.add('show');
+      scrollTimer = null;
+    });
+  }
+}, { passive: true });
+
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  const allSlides = [...document.querySelectorAll('.slide')];
+  const current = allSlides.findIndex(s => {
+    const r = s.getBoundingClientRect();
+    return r.top >= -100 && r.top < window.innerHeight / 2;
+  });
+  if (e.key === 'ArrowDown' || e.key === ' ') {
+    e.preventDefault();
+    if (current < allSlides.length - 1) allSlides[current + 1].scrollIntoView({ behavior: window.innerWidth<768?"instant":"smooth" });
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (current > 0) allSlides[current - 1].scrollIntoView({ behavior: window.innerWidth<768?"instant":"smooth" });
+  }
+});
+</script>
+<script id="exam-data-script">
+const examGrammar = [{"q": "Which sentence has the correct word order?", "opts": ["To push each other around, the children like, on the chairs until one of them falls and start", "On the chairs until one of them falls, the children like to push each other around, and start", "The children like to push each other around on the chairs until one of them falls and", "One of them falls and starts to cry until the children like to push each other around on the"], "ans": 2, "explain": "الإجابة الصحيحة: The children like to push each other around on the chairs until one of them falls and"}, {"q": "We ......... football three days ago.", "opts": ["play", "played", "have played", "had play"], "ans": 1, "explain": "الإجابة الصحيحة: played"}, {"q": "Adam lives ……. New York. He is a student …….. New York University.", "opts": ["on / at", "in / at", "in / on", "at / in"], "ans": 1, "explain": "الإجابة الصحيحة: in / at"}, {"q": "Lucy could have gone to London with her family ................ .", "opts": ["but she didn\\'t", "so, she didn\\'t", "and she did", "but she did"], "ans": 0, "explain": "الإجابة الصحيحة: but she didn\\'t"}, {"q": "Anna\\'s family is very worried about her ............. she hasn\\'t called them since she", "opts": ["she", "because", "unless", "until"], "ans": 1, "explain": "الإجابة الصحيحة: because"}, {"q": "…………. you play many sports?", "opts": ["Are", "Have", "Had", "Do"], "ans": 3, "explain": "الإجابة الصحيحة: Do"}, {"q": "In which sentence is all CAPITALIZATION correct?", "opts": ["My School Year begins on Saturday in late August.", "My School year begins on Saturday in late august.", "My school year begins on Saturday in late august.", "My school year begins on Saturday in late August."], "ans": 3, "explain": "الإجابة الصحيحة: My school year begins on Saturday in late August."}, {"q": "The man had ....… for the furniture in full, but when it was delivered some items", "opts": ["pay", "Paying", "paid", "pays"], "ans": 2, "explain": "الإجابة الصحيحة: paid"}, {"q": "If I have snacks, I always .......... them with my friends.", "opts": ["share", "shared", "had shared", "am going to share"], "ans": 0, "explain": "الإجابة الصحيحة: share"}, {"q": "At the moment I .......... anything, Let\\'s go to the coffeehouse.", "opts": ["do not do", "did not do", "am not doing", "have not done"], "ans": 2, "explain": "الإجابة الصحيحة: am not doing"}, {"q": "The second exam was ......... than the first one.", "opts": ["easy", "easier", "easiest", "easily"], "ans": 1, "explain": "الإجابة الصحيحة: easier"}, {"q": "John\\'s teacher told him that he ……… an excellent presentation yesterday.", "opts": ["give", "gives", "giving", "gave"], "ans": 3, "explain": "الإجابة الصحيحة: gave"}, {"q": "When Lisa ......... a child, she learned to read Arabic.", "opts": ["has been", "had been", "is", "was"], "ans": 3, "explain": "الإجابة الصحيحة: was"}, {"q": "I need to conduct some research for my marketing course. ....... author’s books", "opts": ["Who", "Where", "Which", "Whose"], "ans": 2, "explain": "الإجابة الصحيحة: Which"}, {"q": "Although some of the students disagreed with the instructor, they respected ......", "opts": ["which", "what", "that", "it"], "ans": 1, "explain": "الإجابة الصحيحة: what"}, {"q": "Excuse me, Paul. Could I borrow ........ money until next week?”", "opts": ["a", "few", "a bit", "some"], "ans": 3, "explain": "الإجابة الصحيحة: some"}, {"q": "Dave always ........ the watch that was given to him by his father.", "opts": ["wears", "will wear", "was to wear", "has been wearing"], "ans": 0, "explain": "الإجابة الصحيحة: wears"}, {"q": "Which sentence has the CORRECT WORD ORDER?", "opts": ["The student came in late for the exam and also forgot to bring a pen, or else be", "The student came in late for the exam and also forgot to bring a pen, so the", "The teacher gave him five minutes to go buy a pen and, so come back, or else be marked", "The teacher gave him five minutes to go buy a pen and come back, so the student came in"], "ans": 1, "explain": "الإجابة الصحيحة: The student came in late for the exam and also forgot to bring a pen, so the"}, {"q": "Which one of the underlined words or phrases is incorrect?My brother explained", "opts": ["explained me", "so", "my", "on time"], "ans": 0, "explain": "الإجابة الصحيحة: explained me"}, {"q": "In which sentence is all PUNCTUATION correct?", "opts": ["My favorite animals include cats goldfish birds and, horses.", "My favorite animals include: cats goldfish birds, and horses.", "My favorite animals include, cats, goldfish, birds,and, horses.", "My favorite animals include: cats, goldfish, birds, and horses."], "ans": 3, "explain": "الإجابة الصحيحة: My favorite animals include: cats, goldfish, birds, and horses."}, {"q": "Roger: Do you travel a lot? Steve: Oh yes. I spend eight or nine weeks travelling", "opts": ["have you been visiting", "have you visited", "do you visit", "you visit"], "ans": 1, "explain": "الإجابة الصحيحة: have you visited"}, {"q": "The city has really changed over the last few years; many new buildings ........ .", "opts": ["built", "were built", "have built", "have been built"], "ans": 3, "explain": "الإجابة الصحيحة: have been built"}, {"q": "While I ....... in the medical college, I earned extra money as a cook in a restaurant.", "opts": ["was studying", "am studying", "would study", "will study"], "ans": 0, "explain": "الإجابة الصحيحة: was studying"}, {"q": "I finished ......... the mystery novel I bought last month.", "opts": ["read", "to read", "reading", "to reading"], "ans": 2, "explain": "الإجابة الصحيحة: reading"}, {"q": "The mechanic ......... works on my car is very experienced.", "opts": ["who he", "that he", "which", "who"], "ans": 3, "explain": "الإجابة الصحيحة: who"}, {"q": "Alex: Is this Eric\\'s car? Will: Yes, it\\'s ........ .", "opts": ["him", "his", "he\\'s", "he"], "ans": 1, "explain": "الإجابة الصحيحة: his"}, {"q": "Jenny wasn’t able to come to yesterday\\'s meeting. She ........ take her mother to", "opts": ["could", "would", "had to", "must to"], "ans": 2, "explain": "الإجابة الصحيحة: had to"}, {"q": "The cake was sitting on the table as the group of children ........ excitedly.", "opts": ["entered", "enter", "are entering", "will enter"], "ans": 0, "explain": "الإجابة الصحيحة: entered"}, {"q": "My mother and ......... will finish the shopping and come home by taxi.", "opts": ["myself", "mine", "me", "I"], "ans": 3, "explain": "الإجابة الصحيحة: I"}, {"q": "If I get my car back from the mechanic tomorrow, I ....... to Jordan for the", "opts": ["am driven", "am going drive", "will drive", "will driving"], "ans": 2, "explain": "الإجابة الصحيحة: will drive"}, {"q": "Typically, Naïf makes breakfast while lunch ......... by his wife.", "opts": ["made", "makes", "is made", "has made"], "ans": 2, "explain": "الإجابة الصحيحة: is made"}, {"q": "I ......... do it if I could, but I am already busy with something else.", "opts": ["can", "will", "shall", "would"], "ans": 3, "explain": "الإجابة الصحيحة: would"}, {"q": "Please remember to say, \\\"Thank you,\\\" and \\\"You\\'re welcome\\\", when ...... to the", "opts": ["speaking", "you speaking", "are speaking", "was speaking"], "ans": 0, "explain": "الإجابة الصحيحة: speaking"}, {"q": "Mr. Brown: What are you doing? Mr. Davis: I\\'m ......... my car.", "opts": ["fix", "fixing", "fixen", "fixed"], "ans": 1, "explain": "الإجابة الصحيحة: fixing"}, {"q": "Female lions ....... two thirds of their adult size by the time they are two years old.", "opts": ["reach", "reached", "have reach", "are reaching"], "ans": 0, "explain": "الإجابة الصحيحة: reach"}, {"q": "choose the correct order to make the followingsentences into a paragraph:", "opts": ["4,5,2,3,1", "4,5,2,1,3", "4,5,1,3,2", "5,4,1,2,3"], "ans": 2, "explain": "الإجابة الصحيحة: 4,5,1,3,2"}, {"q": "To which sentence from the paragraph can we add the following clause? ...............,", "opts": ["1", "2", "3", "4"], "ans": 0, "explain": "الإجابة الصحيحة: 1"}, {"q": "Sara: Help! I lost my key and can\\'t get into my house! Mona: Don\\'t worry, I ..........", "opts": ["have", "will", "should", "would"], "ans": 1, "explain": "الإجابة الصحيحة: will"}, {"q": "If you want to become a doctor, you .......... go to the college of medicine.", "opts": ["should", "might", "ought", "would"], "ans": 0, "explain": "الإجابة الصحيحة: should"}, {"q": "Many students from different parts of the world attend my classes at the", "opts": ["some of them are Arabs but the rest are from the Far East", "all of them are from Bahrain", "some of them are Arabs but the rest are from Bahrain", "all of them are from the Far East"], "ans": 0, "explain": "الإجابة الصحيحة: some of them are Arabs but the rest are from the Far East"}];
+const examVocab = [{"q": "The word 'cartographer' is closest in meaning to:", "opts": ["ship maker", "map maker", "navigator", "sailor"], "ans": 1, "explain": "cartographer = map maker"}, {"q": "The word 'unscheduled' is closest in meaning to:", "opts": ["NOT planned", "NOT timed", "extra", "long"], "ans": 0, "explain": "unscheduled = NOT planned"}, {"q": "The word 'carved' is closest in meaning to:", "opts": ["sourced", "planned", "shaped", "copied"], "ans": 2, "explain": "carved = shaped"}, {"q": "The word 'expedition' is closest in meaning to:", "opts": ["life", "invention", "experience", "journey"], "ans": 3, "explain": "expedition = journey"}, {"q": "The word 'equilibrium' is closest in meaning to:", "opts": ["equality", "pressure", "airflow", "balance"], "ans": 3, "explain": "equilibrium = balance"}, {"q": "The word 'leisure' is closest in meaning to:", "opts": ["free", "ease", "holiday", "relaxation"], "ans": 3, "explain": "leisure = relaxation"}, {"q": "The word 'crucial' is closest in meaning to:", "opts": ["fair", "difficult", "important", "complicated"], "ans": 2, "explain": "crucial = important"}, {"q": "The word 'essentially' is closest in meaning to:", "opts": ["closely", "basically", "normally", "strongly"], "ans": 1, "explain": "essentially = basically"}, {"q": "The word 'clues' is closest in meaning to:", "opts": ["signs", "results", "factors", "procedures"], "ans": 0, "explain": "clues = signs"}, {"q": "The word 'dozing' is closest in meaning to:", "opts": ["opening one eye", "waking up", "dreaming", "sleeping"], "ans": 3, "explain": "dozing = sleeping"}, {"q": "The word 'compatible' is closest in meaning to:", "opts": ["available", "matching", "common", "identical"], "ans": 1, "explain": "compatible = matching"}, {"q": "The word 'effortless' is closest in meaning to:", "opts": ["without goals", "without details", "without working", "without significance"], "ans": 2, "explain": "effortless = without working"}, {"q": "The word 'resemble' is closest in meaning to:", "opts": ["differ from", "look like", "live in", "move"], "ans": 1, "explain": "resemble = look like"}, {"q": "The word 'derived from' is closest in meaning to:", "opts": ["originated", "translated", "explained", "produced"], "ans": 0, "explain": "derived from = originated"}, {"q": "The word 'premature' is closest in meaning to:", "opts": ["late", "early", "final", "developing"], "ans": 1, "explain": "premature = early"}, {"q": "The word 'nocturnal' is closest in meaning to:", "opts": ["used to light", "active at night", "scared of humans", "efficient"], "ans": 1, "explain": "nocturnal = active at night"}, {"q": "The word 'compound' is closest in meaning to:", "opts": ["complex", "whole", "round", "complete"], "ans": 0, "explain": "compound = complex"}, {"q": "The word 'transfigure' is closest in meaning to:", "opts": ["replace", "inform", "deform", "change"], "ans": 3, "explain": "transfigure = change"}, {"q": "The word 'ancestors' is closest in meaning to:", "opts": ["developments", "predecessors", "competitors", "link"], "ans": 1, "explain": "ancestors = predecessors"}, {"q": "The word 'sufficient' is closest in meaning to:", "opts": ["enough", "necessary", "required", "significant"], "ans": 0, "explain": "sufficient = enough"}, {"q": "The word 'far-fetched' is closest in meaning to:", "opts": ["difficult to believe", "easy to believe", "definite", "clear"], "ans": 0, "explain": "far-fetched = difficult to believe"}, {"q": "The word 'occur' is closest in meaning to:", "opts": ["go", "fight", "stand", "happen"], "ans": 3, "explain": "occur = happen"}, {"q": "The word 'nutritious' means having:", "opts": ["high food value", "medium food value", "low food value", "no food value"], "ans": 0, "explain": "nutritious = high food value"}, {"q": "The word 'reign' is closest in meaning to:", "opts": ["rule", "visit", "year", "history"], "ans": 0, "explain": "reign = rule"}, {"q": "The word 'proficient' is closest in meaning to:", "opts": ["skilled", "trained", "dedicated", "disciplined"], "ans": 0, "explain": "proficient = skilled"}, {"q": "The word 'myriad' is closest in meaning to:", "opts": ["say", "plants", "multiple", "advertised"], "ans": 2, "explain": "myriad = multiple"}, {"q": "The word 'tamed' is closest in meaning to:", "opts": ["say", "plants", "controlled", "advertised"], "ans": 2, "explain": "tamed = controlled"}, {"q": "The word 'mankind' is closest in meaning to:", "opts": ["say", "plants", "achieved", "human beings"], "ans": 3, "explain": "mankind = human beings"}, {"q": "The word 'governed' is closest in meaning to:", "opts": ["celebrated", "controlled", "achieved", "advertised"], "ans": 1, "explain": "governed = controlled"}, {"q": "The word 'accurate' is closest in meaning to:", "opts": ["public", "healthy", "correct", "famous"], "ans": 2, "explain": "accurate = correct"}, {"q": "The word 'introduced' is closest in meaning to:", "opts": ["changed", "broke", "ended", "began"], "ans": 3, "explain": "introduced = began"}, {"q": "The word 'isolate' is closest in meaning to:", "opts": ["contain", "separate", "maintain", "combine"], "ans": 1, "explain": "isolate = separate"}, {"q": "The word 'extinction' is closest in meaning to:", "opts": ["suffering", "destruction", "separation", "departure"], "ans": 1, "explain": "extinction = destruction"}, {"q": "The word 'constraint' is closest in meaning to:", "opts": ["limit", "opinion", "attempt", "doubt"], "ans": 0, "explain": "constraint = limit"}, {"q": "The word 'sophisticated' is closest in meaning to:", "opts": ["special", "classical", "complicated", "mathematical"], "ans": 2, "explain": "sophisticated = complicated"}, {"q": "The word 'replicate' is closest in meaning to:", "opts": ["make", "copy", "record", "reduce"], "ans": 1, "explain": "replicate = copy"}, {"q": "The word 'impact' is closest in meaning to:", "opts": ["damage", "effect", "benefit", "connection"], "ans": 1, "explain": "impact = effect"}, {"q": "The word 'extracted' is closest in meaning to:", "opts": ["removed", "replaced", "returned", "reflected"], "ans": 0, "explain": "extracted = removed"}, {"q": "The word 'liability' is closest in meaning to:", "opts": ["knowledge", "crime", "fault", "fact"], "ans": 2, "explain": "liability = fault"}, {"q": "The word 'negotiations' is closest in meaning to:", "opts": ["differences", "discussions", "emergencies", "relationships"], "ans": 1, "explain": "negotiations = discussions"}, {"q": "The word 'rapid' is closest in meaning to:", "opts": ["low", "quick", "normal", "average"], "ans": 1, "explain": "rapid = quick"}, {"q": "The word 'comprehensive' is closest in meaning to:", "opts": ["complete", "average", "global", "universal"], "ans": 0, "explain": "comprehensive = complete"}, {"q": "The word 'abandoned' is closest in meaning to:", "opts": ["begun", "stopped", "increased", "continued"], "ans": 1, "explain": "abandoned = stopped"}, {"q": "The word 'legislation' is closest in meaning to:", "opts": ["announcement", "law", "ban", "bureaucracy"], "ans": 1, "explain": "legislation = law"}, {"q": "The word 'alternative' is closest in meaning to:", "opts": ["ingredient", "material", "option", "connection"], "ans": 2, "explain": "alternative = option"}, {"q": "The word 'irrational' is closest in meaning to:", "opts": ["unreasonable", "laughable", "ridiculous", "unknown"], "ans": 0, "explain": "irrational = unreasonable"}, {"q": "The word 'indigenous' is closest in meaning to:", "opts": ["average", "foreign", "native", "rare"], "ans": 2, "explain": "indigenous = native"}, {"q": "The word 'minuscule' is closest in meaning to:", "opts": ["hot", "tiny", "fast", "heavy"], "ans": 1, "explain": "minuscule = tiny"}, {"q": "The word 'perplexed' is closest in meaning to:", "opts": ["interested", "shocked", "unhappy", "confused"], "ans": 3, "explain": "perplexed = confused"}, {"q": "The word 'alarming' is closest in meaning to:", "opts": ["confusing", "frustrating", "devastating", "frightening"], "ans": 3, "explain": "alarming = frightening"}, {"q": "The word 'inauguration' is closest in meaning to:", "opts": ["typical", "preserved", "opening", "plan"], "ans": 2, "explain": "inauguration = opening"}, {"q": "The word 'definition' is closest in meaning to:", "opts": ["explanation", "powerful", "say", "required"], "ans": 0, "explain": "definition = explanation"}, {"q": "The word 'Celebrate' is closest in meaning to:", "opts": ["enjoy", "secondary", "development", "stunt"], "ans": 0, "explain": "Celebrate = enjoy"}, {"q": "The word 'Recycling' is closest in meaning to:", "opts": ["use again", "signs", "empty", "frightening"], "ans": 0, "explain": "Recycling = use again"}, {"q": "The word 'Individual' is closest in meaning to:", "opts": ["separated", "negative", "native", "teacher"], "ans": 0, "explain": "Individual = separated"}, {"q": "The word 'Current' is closest in meaning to:", "opts": ["director", "steady", "illnesses", "recent"], "ans": 3, "explain": "Current = recent"}, {"q": "The word 'Remark' is closest in meaning to:", "opts": ["main", "mind", "comment", "arguable"], "ans": 2, "explain": "Remark = comment"}, {"q": "The word 'Unlikely' is closest in meaning to:", "opts": ["launch", "changes", "instructions", "improbable"], "ans": 3, "explain": "Unlikely = improbable"}, {"q": "The word 'Unconvincing' is closest in meaning to:", "opts": ["balance", "far-fetched", "missing", "extraordinary"], "ans": 1, "explain": "Unconvincing = far-fetched"}, {"q": "The word 'Brighter' is closest in meaning to:", "opts": ["kill", "joining", "negative", "more shiny"], "ans": 3, "explain": "Brighter = more shiny"}, {"q": "The word 'greedy' is closest in meaning to:", "opts": ["repeat", "moved", "wanting more", "illustrated"], "ans": 2, "explain": "greedy = wanting more"}, {"q": "The word 'Inconvenience' is closest in meaning to:", "opts": ["trouble", "forcing", "fault", "land"], "ans": 0, "explain": "Inconvenience = trouble"}, {"q": "The word 'Function' is closest in meaning to:", "opts": ["routes", "facts", "process", "protects"], "ans": 2, "explain": "Function = process"}, {"q": "The word 'Suffer' is closest in meaning to:", "opts": ["unreasonable", "problem", "create", "separated"], "ans": 1, "explain": "Suffer = problem"}, {"q": "The word 'pleased' is closest in meaning to:", "opts": ["intention", "happy", "problem", "forcing"], "ans": 1, "explain": "pleased = happy"}, {"q": "The word 'Bid' is closest in meaning to:", "opts": ["offer", "free", "facts", "teacher"], "ans": 0, "explain": "Bid = offer"}, {"q": "The word 'Physician' is closest in meaning to:", "opts": ["started", "missing", "doctor", "fits"], "ans": 2, "explain": "Physician = doctor"}, {"q": "The word 'Chart' is closest in meaning to:", "opts": ["original", "maps", "common", "work"], "ans": 1, "explain": "Chart = maps"}, {"q": "The word 'Nutrients' is closest in meaning to:", "opts": ["high food value", "more shiny", "took", "thinking"], "ans": 0, "explain": "Nutrients = high food value"}, {"q": "The word 'Allocate' is closest in meaning to:", "opts": ["difficult to believe", "assign", "collect", "enjoy"], "ans": 1, "explain": "Allocate = assign"}, {"q": "The word 'Assumed' is closest in meaning to:", "opts": ["original", "fire", "took", "started"], "ans": 2, "explain": "Assumed = took"}, {"q": "The word 'Diet' is closest in meaning to:", "opts": ["typical", "food", "high food value", "dangerous"], "ans": 1, "explain": "Diet = food"}, {"q": "The word 'Harvesting' is closest in meaning to:", "opts": ["healthier", "collect", "falling", "limit"], "ans": 1, "explain": "Harvesting = collect"}, {"q": "The word 'Exhausted' is closest in meaning to:", "opts": ["frightening", "destruction", "tired", "continuing"], "ans": 2, "explain": "Exhausted = tired"}, {"q": "The word 'Herbs' is closest in meaning to:", "opts": ["use again", "buy", "plant", "explained"], "ans": 2, "explain": "Herbs = plant"}, {"q": "The word 'Antique' is closest in meaning to:", "opts": ["buy", "shaped", "necessary", "old"], "ans": 3, "explain": "Antique = old"}, {"q": "The word 'Stress' is closest in meaning to:", "opts": ["looking back", "land", "pressure", "reasonable"], "ans": 2, "explain": "Stress = pressure"}, {"q": "The word 'Adapted' is closest in meaning to:", "opts": ["required", "confused", "accepted", "dealers"], "ans": 2, "explain": "Adapted = accepted"}, {"q": "The word 'Risk' is closest in meaning to:", "opts": ["human beings", "offer", "dangerous", "continuing"], "ans": 2, "explain": "Risk = dangerous"}, {"q": "The word 'Pronunciation' is closest in meaning to:", "opts": ["main", "required", "recovered", "say"], "ans": 3, "explain": "Pronunciation = say"}, {"q": "The word 'Accomplish' is closest in meaning to:", "opts": ["negative", "plan", "basically", "preserved"], "ans": 1, "explain": "Accomplish = plan"}, {"q": "The word 'Accommodation' is closest in meaning to:", "opts": ["unreasonable", "changes", "getting", "home"], "ans": 3, "explain": "Accommodation = home"}, {"q": "The word 'Tension' is closest in meaning to:", "opts": ["skilled", "use again", "complete", "stress"], "ans": 3, "explain": "Tension = stress"}, {"q": "The word 'Slaughter' is closest in meaning to:", "opts": ["skilled", "tired", "kill", "self"], "ans": 2, "explain": "Slaughter = kill"}, {"q": "The word 'Multiple' is closest in meaning to:", "opts": ["consisting of", "protects", "occupied", "getting"], "ans": 0, "explain": "Multiple = consisting of"}, {"q": "The word 'flaming' is closest in meaning to:", "opts": ["getting", "home", "fire", "took"], "ans": 2, "explain": "flaming = fire"}, {"q": "The word 'essential' is closest in meaning to:", "opts": ["preserved", "necessary", "useful", "name"], "ans": 1, "explain": "essential = necessary"}, {"q": "The word 'preserve' is closest in meaning to:", "opts": ["fits", "worry", "protect", "recent"], "ans": 2, "explain": "preserve = protect"}, {"q": "The word 'lacking' is closest in meaning to:", "opts": ["missing", "consisting of", "change", "stopped"], "ans": 0, "explain": "lacking = missing"}, {"q": "The word 'forceful' is closest in meaning to:", "opts": ["unreasonable", "powerful", "made", "typical"], "ans": 1, "explain": "forceful = powerful"}, {"q": "The word 'versatility' is closest in meaning to:", "opts": ["useful", "extraordinary", "explain", "original"], "ans": 0, "explain": "versatility = useful"}, {"q": "The word 'escalate' is closest in meaning to:", "opts": ["increase", "display", "damage", "perfectly"], "ans": 0, "explain": "escalate = increase"}, {"q": "The word 'head' is closest in meaning to:", "opts": ["preserved", "director", "separated", "swear"], "ans": 1, "explain": "head = director"}, {"q": "The word 'allocates' is closest in meaning to:", "opts": ["assign", "limit", "wanting more", "explained"], "ans": 0, "explain": "allocates = assign"}, {"q": "The word 'derived' is closest in meaning to:", "opts": ["originated", "order", "combines", "keep"], "ans": 0, "explain": "derived = originated"}, {"q": "The word 'examine' is closest in meaning to:", "opts": ["mapmaker", "removed", "primary", "looking"], "ans": 3, "explain": "examine = looking"}, {"q": "The word 'location' is closest in meaning to:", "opts": ["correct", "support", "property", "place"], "ans": 3, "explain": "location = place"}, {"q": "The word 'mutual intelligibility' is closest in meaning to:", "opts": ["buy", "similarity", "options", "fault"], "ans": 1, "explain": "mutual intelligibility = similarity"}, {"q": "The word 'exhibit' is closest in meaning to:", "opts": ["trained", "plant", "display", "continuing"], "ans": 2, "explain": "exhibit = display"}, {"q": "The word 'define' is closest in meaning to:", "opts": ["explain", "protect", "chunk", "traditional"], "ans": 0, "explain": "define = explain"}, {"q": "The word 'introduce' is closest in meaning to:", "opts": ["confused", "say", "begin", "use again"], "ans": 2, "explain": "introduce = begin"}, {"q": "The word 'retrospect' is closest in meaning to:", "opts": ["pressure", "looking back", "arguable", "protects"], "ans": 1, "explain": "retrospect = looking back"}, {"q": "The word 'ancestor' is closest in meaning to:", "opts": ["predecessor", "arguable", "main", "launch"], "ans": 0, "explain": "ancestor = predecessor"}, {"q": "The word 'device' is closest in meaning to:", "opts": ["steep", "mobile phone", "marketing", "level"], "ans": 1, "explain": "device = mobile phone"}, {"q": "The word 'far-fetched' is closest in meaning to:", "opts": ["difficult to believe", "problem", "frightening", "cost"], "ans": 0, "explain": "far-fetched = difficult to believe"}, {"q": "The word 'tutor' is closest in meaning to:", "opts": ["extra", "comment", "missing", "teacher"], "ans": 3, "explain": "tutor = teacher"}, {"q": "The word 'thrust' is closest in meaning to:", "opts": ["buy", "options", "predecessor", "intention"], "ans": 3, "explain": "thrust = intention"}, {"q": "The word 'concentrated' is closest in meaning to:", "opts": ["powerful", "emphasized", "help", "sleep"], "ans": 1, "explain": "concentrated = emphasized"}, {"q": "The word 'reduction' is closest in meaning to:", "opts": ["repeat", "primary", "fall", "standards"], "ans": 2, "explain": "reduction = fall"}, {"q": "The word 'agreement' is closest in meaning to:", "opts": ["arrangement", "empty", "similarity", "tired"], "ans": 0, "explain": "agreement = arrangement"}, {"q": "The word 'theory' is closest in meaning to:", "opts": ["idea", "cash", "shaped", "testing"], "ans": 0, "explain": "theory = idea"}, {"q": "The word 'express' is closest in meaning to:", "opts": ["level", "experiencing", "explain", "fault"], "ans": 2, "explain": "express = explain"}, {"q": "The word 'potential' is closest in meaning to:", "opts": ["wages", "possible", "confused", "amounts"], "ans": 1, "explain": "potential = possible"}, {"q": "The word 'criteria' is closest in meaning to:", "opts": ["home", "mind", "required", "standards"], "ans": 3, "explain": "criteria = standards"}, {"q": "The word 'invented' is closest in meaning to:", "opts": ["fall", "made", "missing", "fire"], "ans": 1, "explain": "invented = made"}, {"q": "The word 'impressive' is closest in meaning to:", "opts": ["extraordinary", "increased", "indicated", "correct"], "ans": 0, "explain": "impressive = extraordinary"}, {"q": "The word 'connecting' is closest in meaning to:", "opts": ["joining", "basically", "changed", "options"], "ans": 0, "explain": "connecting = joining"}, {"q": "The word 'guidelines' is closest in meaning to:", "opts": ["negative", "comment", "support", "instructions"], "ans": 3, "explain": "guidelines = instructions"}, {"q": "The word 'obtaining' is closest in meaning to:", "opts": ["keep", "option", "buy", "getting"], "ans": 3, "explain": "obtaining = getting"}, {"q": "The word 'probable' is closest in meaning to:", "opts": ["reasonable", "level", "support", "started"], "ans": 0, "explain": "probable = reasonable"}, {"q": "The word 'booked' is closest in meaning to:", "opts": ["usually", "property", "registered", "fits"], "ans": 2, "explain": "booked = registered"}, {"q": "The word 'maintain' is closest in meaning to:", "opts": ["empty", "instructions", "combines", "keep"], "ans": 3, "explain": "maintain = keep"}, {"q": "The word 'employment' is closest in meaning to:", "opts": ["extraordinary", "work", "discussions", "useful"], "ans": 1, "explain": "employment = work"}, {"q": "The word 'assistance' is closest in meaning to:", "opts": ["support", "limit", "controlled", "matching"], "ans": 0, "explain": "assistance = support"}, {"q": "The word 'conventional' is closest in meaning to:", "opts": ["destruction", "limit", "basically", "traditional"], "ans": 3, "explain": "conventional = traditional"}, {"q": "The word 'alternatives' is closest in meaning to:", "opts": ["options", "consisting of", "self", "changes"], "ans": 0, "explain": "alternatives = options"}, {"q": "The word 'vacant' is closest in meaning to:", "opts": ["empty", "recovered", "facts", "originated"], "ans": 0, "explain": "vacant = empty"}, {"q": "The word 'major' is closest in meaning to:", "opts": ["skilled", "important", "problem", "cash"], "ans": 1, "explain": "major = important"}, {"q": "The word 'shift' is closest in meaning to:", "opts": ["experiencing", "change", "old", "explained"], "ans": 1, "explain": "shift = change"}, {"q": "The word 'identify' is closest in meaning to:", "opts": ["name", "controlled", "skilled", "tiny"], "ans": 0, "explain": "identify = name"}, {"q": "The word 'generally' is closest in meaning to:", "opts": ["registered", "primary", "usually", "human beings"], "ans": 2, "explain": "generally = usually"}, {"q": "The word 'reported' is closest in meaning to:", "opts": ["quick", "increase", "explained", "more shiny"], "ans": 2, "explain": "reported = explained"}, {"q": "The word 'undergoing' is closest in meaning to:", "opts": ["wanting more", "experiencing", "property", "happy"], "ans": 1, "explain": "undergoing = experiencing"}, {"q": "The word 'intellectual' is closest in meaning to:", "opts": ["more shiny", "testing", "made", "thinking"], "ans": 3, "explain": "intellectual = thinking"}, {"q": "The word 'promote' is closest in meaning to:", "opts": ["destruction", "connections", "occupied", "help"], "ans": 3, "explain": "promote = help"}, {"q": "The word 'shields' is closest in meaning to:", "opts": ["protects", "began", "rule", "trouble"], "ans": 0, "explain": "shields = protects"}, {"q": "The word 'accumulate' is closest in meaning to:", "opts": ["home", "buy", "collect", "stopped"], "ans": 2, "explain": "accumulate = collect"}, {"q": "The word 'bonds' is closest in meaning to:", "opts": ["predecessor", "connections", "feeling", "problem"], "ans": 1, "explain": "bonds = connections"}, {"q": "The word 'intuition' is closest in meaning to:", "opts": ["common", "stress", "changes", "feeling"], "ans": 3, "explain": "intuition = feeling"}, {"q": "The word 'phenomena' is closest in meaning to:", "opts": ["events", "stunt", "intention", "solution"], "ans": 0, "explain": "phenomena = events"}, {"q": "The word 'modified' is closest in meaning to:", "opts": ["changed", "important", "protects", "made"], "ans": 0, "explain": "modified = changed"}, {"q": "The word 'infect' is closest in meaning to:", "opts": ["damage", "mobile phone", "property", "active at night"], "ans": 0, "explain": "infect = damage"}, {"q": "The word 'desirable' is closest in meaning to:", "opts": ["dealers", "protects", "required", "extraordinary"], "ans": 2, "explain": "desirable = required"}, {"q": "The word 'impure' is closest in meaning to:", "opts": ["stress", "early", "dirty", "maps"], "ans": 2, "explain": "impure = dirty"}, {"q": "The word 'rates' is closest in meaning to:", "opts": ["increase", "healthier", "amounts", "collect"], "ans": 2, "explain": "rates = amounts"}, {"q": "The word 'produce' is closest in meaning to:", "opts": ["create", "stopped", "perfectly", "accepted"], "ans": 0, "explain": "produce = create"}, {"q": "The word 'growth' is closest in meaning to:", "opts": ["negative", "collect", "development", "empty"], "ans": 2, "explain": "growth = development"}, {"q": "The word 'response' is closest in meaning to:", "opts": ["forcing", "reply", "worry", "enough"], "ans": 1, "explain": "response = reply"}, {"q": "The word 'evidence' is closest in meaning to:", "opts": ["typical", "property", "original", "facts"], "ans": 3, "explain": "evidence = facts"}, {"q": "The word 'examining' is closest in meaning to:", "opts": ["testing", "protects", "intention", "offer"], "ans": 0, "explain": "examining = testing"}, {"q": "The word 'ideally' is closest in meaning to:", "opts": ["preserved", "perfectly", "increased", "high food value"], "ans": 1, "explain": "ideally = perfectly"}, {"q": "The word 'worthwhile' is closest in meaning to:", "opts": ["stunt", "useful", "idea", "common"], "ans": 1, "explain": "worthwhile = useful"}, {"q": "The word 'converts' is closest in meaning to:", "opts": ["standards", "removed", "changes", "tiny"], "ans": 2, "explain": "converts = changes"}, {"q": "The word 'aggregate' is closest in meaning to:", "opts": ["total", "combine", "tiny", "moved"], "ans": 1, "explain": "aggregate = combine"}, {"q": "The word 'characteristic' is closest in meaning to:", "opts": ["typical", "getting", "confused", "important"], "ans": 0, "explain": "characteristic = typical"}, {"q": "The word 'ego' is closest in meaning to:", "opts": ["work", "self", "director", "sleep"], "ans": 1, "explain": "ego = self"}, {"q": "The word 'stabilized' is closest in meaning to:", "opts": ["comment", "original", "change", "preserved"], "ans": 3, "explain": "stabilized = preserved"}, {"q": "The word 'exposed' is closest in meaning to:", "opts": ["plan", "change", "shown", "matching"], "ans": 2, "explain": "exposed = shown"}, {"q": "The word 'represented' is closest in meaning to:", "opts": ["similarity", "illustrated", "more shiny", "matching"], "ans": 1, "explain": "represented = illustrated"}, {"q": "The word 'specified' is closest in meaning to:", "opts": ["explained", "took", "changes", "thinking"], "ans": 0, "explain": "specified = explained"}, {"q": "The word 'accommodates' is closest in meaning to:", "opts": ["started", "fits", "idea", "food"], "ans": 1, "explain": "accommodates = fits"}, {"q": "The word 'principle' is closest in meaning to:", "opts": ["far-fetched", "land", "primary", "feeling"], "ans": 2, "explain": "principle = primary"}, {"q": "The word 'adverse' is closest in meaning to:", "opts": ["loose", "negative", "say", "plan"], "ans": 1, "explain": "adverse = negative"}, {"q": "The word 'purchase' is closest in meaning to:", "opts": ["buy", "continuing", "cost", "missing"], "ans": 0, "explain": "purchase = buy"}, {"q": "The word 'feat' is closest in meaning to:", "opts": ["missing", "feeling", "looking back", "stunt"], "ans": 3, "explain": "feat = stunt"}, {"q": "The word 'retrieved' is closest in meaning to:", "opts": ["recovered", "secondary", "home", "cost"], "ans": 0, "explain": "retrieved = recovered"}, {"q": "The word 'migrated' is closest in meaning to:", "opts": ["active at night", "quick", "moved", "change"], "ans": 2, "explain": "migrated = moved"}, {"q": "The word 'surged' is closest in meaning to:", "opts": ["idea", "wages", "skilled", "increased"], "ans": 3, "explain": "surged = increased"}, {"q": "The word 'staple' is closest in meaning to:", "opts": ["illustrated", "fault", "destruction", "common"], "ans": 3, "explain": "staple = common"}, {"q": "The word 'promotional' is closest in meaning to:", "opts": ["difficult to believe", "recovered", "active at night", "marketing"], "ans": 3, "explain": "promotional = marketing"}, {"q": "The word 'proportions' is closest in meaning to:", "opts": ["amounts", "without work", "discussions", "combine"], "ans": 0, "explain": "proportions = amounts"}, {"q": "The word 'conditioned' is closest in meaning to:", "opts": ["steep", "trained", "name", "worry"], "ans": 1, "explain": "conditioned = trained"}, {"q": "The word 'infections' is closest in meaning to:", "opts": ["total", "standards", "illnesses", "problem"], "ans": 2, "explain": "infections = illnesses"}, {"q": "The word 'cure' is closest in meaning to:", "opts": ["solution", "began", "destruction", "effect"], "ans": 0, "explain": "cure = solution"}, {"q": "The word 'status' is closest in meaning to:", "opts": ["recent", "made", "level", "stopped"], "ans": 2, "explain": "status = level"}, {"q": "The word 'traders' is closest in meaning to:", "opts": ["important", "sleep", "falling", "dealers"], "ans": 3, "explain": "traders = dealers"}, {"q": "The word 'possessions' is closest in meaning to:", "opts": ["instructions", "property", "useful", "protects"], "ans": 1, "explain": "possessions = property"}, {"q": "The word 'shelter' is closest in meaning to:", "opts": ["amounts", "registered", "important", "protection"], "ans": 3, "explain": "shelter = protection"}, {"q": "The word 'broken out' is closest in meaning to:", "opts": ["secondary", "doctor", "started", "possible"], "ans": 2, "explain": "broken out = started"}, {"q": "The word 'marked' is closest in meaning to:", "opts": ["experiencing", "correct", "indicated", "worry"], "ans": 2, "explain": "marked = indicated"}, {"q": "The word 'assure' is closest in meaning to:", "opts": ["process", "maps", "swear", "standards"], "ans": 2, "explain": "assure = swear"}, {"q": "The word 'sequence' is closest in meaning to:", "opts": ["tired", "order", "indicated", "cash"], "ans": 1, "explain": "sequence = order"}, {"q": "The word 'consistent' is closest in meaning to:", "opts": ["recovered", "steady", "help", "matching"], "ans": 1, "explain": "consistent = steady"}, {"q": "The word 'peripheral' is closest in meaning to:", "opts": ["primary", "order", "secondary", "stress"], "ans": 2, "explain": "peripheral = secondary"}, {"q": "The word 'lanes' is closest in meaning to:", "opts": ["negative", "comment", "routes", "cash"], "ans": 2, "explain": "lanes = routes"}, {"q": "The word 'pitting' is closest in meaning to:", "opts": ["forcing", "say", "steady", "place"], "ans": 0, "explain": "pitting = forcing"}, {"q": "The word 'moot' is closest in meaning to:", "opts": ["arguable", "forcing", "powerful", "help"], "ans": 0, "explain": "moot = arguable"}, {"q": "The word 'exorbitant' is closest in meaning to:", "opts": ["fits", "steep", "arrangement", "marketing"], "ans": 1, "explain": "exorbitant = steep"}, {"q": "The word 'elaborated' is closest in meaning to:", "opts": ["illnesses", "instructions", "complete", "explained"], "ans": 3, "explain": "elaborated = explained"}, {"q": "The word 'recur' is closest in meaning to:", "opts": ["repeat", "continuing", "powerful", "place"], "ans": 0, "explain": "recur = repeat"}, {"q": "The word 'pioneering' is closest in meaning to:", "opts": ["wages", "original", "empty", "main"], "ans": 1, "explain": "pioneering = original"}, {"q": "The word 'soil' is closest in meaning to:", "opts": ["land", "instructions", "chunk", "fire"], "ans": 0, "explain": "soil = land"}, {"q": "The word 'additional' is closest in meaning to:", "opts": ["dangerous", "confused", "looking", "extra"], "ans": 3, "explain": "additional = extra"}, {"q": "The word 'inhabited' is closest in meaning to:", "opts": ["mobile phone", "fire", "occupied", "important"], "ans": 2, "explain": "inhabited = occupied"}, {"q": "The word 'chief' is closest in meaning to:", "opts": ["indicated", "begin", "recent", "main"], "ans": 3, "explain": "chief = main"}, {"q": "The word 'descending' is closest in meaning to:", "opts": ["correct", "mind", "changes", "falling"], "ans": 3, "explain": "descending = falling"}, {"q": "The word 'flame' is closest in meaning to:", "opts": ["traditional", "quick", "fire", "confused"], "ans": 2, "explain": "flame = fire"}, {"q": "The word 'currency' is closest in meaning to:", "opts": ["look like", "cash", "keep", "unreasonable"], "ans": 1, "explain": "currency = cash"}, {"q": "The word 'slab' is closest in meaning to:", "opts": ["events", "protect", "chunk", "increased"], "ans": 2, "explain": "slab = chunk"}, {"q": "The word 'unites' is closest in meaning to:", "opts": ["comment", "emphasized", "combines", "enough"], "ans": 2, "explain": "unites = combines"}, {"q": "The word 'unstable' is closest in meaning to:", "opts": ["options", "loose", "facts", "required"], "ans": 1, "explain": "unstable = loose"}, {"q": "The word 'income' is closest in meaning to:", "opts": ["teacher", "wages", "complete", "multiple"], "ans": 1, "explain": "income = wages"}, {"q": "The word 'overloaded' is closest in meaning to:", "opts": ["intention", "buy", "use again", "under pressure"], "ans": 3, "explain": "overloaded = under pressure"}, {"q": "The word 'plunge' is closest in meaning to:", "opts": ["sleep", "cost", "options", "launch"], "ans": 3, "explain": "plunge = launch"}, {"q": "The word 'hike' is closest in meaning to:", "opts": ["arrangement", "level", "registered", "increase"], "ans": 3, "explain": "hike = increase"}, {"q": "The word 'psyche' is closest in meaning to:", "opts": ["human beings", "instructions", "pressure", "mind"], "ans": 3, "explain": "psyche = mind"}, {"q": "The word 'build up' is closest in meaning to:", "opts": ["reply", "launch", "increase", "work"], "ans": 2, "explain": "build up = increase"}, {"q": "The word 'Gross' is closest in meaning to:", "opts": ["usually", "total", "registered", "home"], "ans": 1, "explain": "Gross = total"}, {"q": "The word 'Expense' is closest in meaning to:", "opts": ["keep", "main", "emphasized", "cost"], "ans": 3, "explain": "Expense = cost"}, {"q": "The word 'Prominence' is closest in meaning to:", "opts": ["keep", "complex", "important", "usually"], "ans": 2, "explain": "Prominence = important"}, {"q": "The word 'Trauma' is closest in meaning to:", "opts": ["more shiny", "worry", "secondary", "experiencing"], "ans": 1, "explain": "Trauma = worry"}, {"q": "The word 'Chronic' is closest in meaning to:", "opts": ["continuing", "tired", "removed", "began"], "ans": 0, "explain": "Chronic = continuing"}];
+
+let gIdx=0,gCorrect=0,gTotal=0,vIdx=0,vCorrect=0,vTotal=0;
+function loadExamQ(type){
+  const bank=type==='grammar'?examGrammar:examVocab;
+  const idx=type==='grammar'?gIdx:vIdx;
+  const area=document.getElementById(type==='grammar'?'gExamArea':'vExamArea');
+  if(idx>=bank.length){area.innerHTML='<div class="title-sm" style="text-align:center;color:var(--dark-green);">🎉 أحسنت! انتهت الأسئلة</div>';return;}
+  const q=bank[idx];
+  area.innerHTML='<div style="animation:fadeIn 0.4s;"><div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;"><span class="label" style="opacity:0.5;">سؤال '+(idx+1)+' من '+bank.length+'</span></div><div class="quiz-q" style="font-size:clamp(0.85rem,1.4vw,1.1rem);">'+q.q+'</div><div class="quiz-options" id="eopts_'+type+'_'+idx+'">'+q.opts.map(function(o,i){return '<div class="quiz-opt" data-idx="'+i+'" data-ans="'+q.ans+'" data-type="'+type+'" data-qidx="'+idx+'">'+String.fromCharCode(65+i)+') '+o+'</div>';}).join('')+'</div><div id="eexpl_'+type+'_'+idx+'" class="quiz-explain"></div></div>';
+  area.querySelectorAll('.quiz-opt').forEach(function(el){el.addEventListener('click',handleExamClick);});
+}
+function handleExamClick(e){
+  const el=e.currentTarget;
+  const type=el.dataset.type,qidx=parseInt(el.dataset.qidx),selected=parseInt(el.dataset.idx),correct=parseInt(el.dataset.ans);
+  const container=el.parentElement;
+  container.querySelectorAll('.quiz-opt').forEach(function(o,i){
+    o.classList.add('disabled');o.style.pointerEvents='none';
+    if(i===correct)o.classList.add('correct');
+    else if(i===selected&&i!==correct)o.classList.add('wrong');
+  });
+  const bank=type==='grammar'?examGrammar:examVocab;
+  const explEl=document.getElementById('eexpl_'+type+'_'+qidx);
+  if(explEl&&bank[qidx].explain){
+    explEl.className='quiz-explain show';
+    explEl.innerHTML=(selected===correct?'✅ صح! ':'❌ خطأ! ')+bank[qidx].explain;
+  }
+  if(type==='grammar'){gTotal++;if(selected===correct)gCorrect++;gIdx++;document.getElementById('gExamScore').textContent=gCorrect+' / '+gTotal;setTimeout(function(){loadExamQ('grammar');},2000);}
+  else{vTotal++;if(selected===correct)vCorrect++;vIdx++;document.getElementById('vExamScore').textContent=vCorrect+' / '+vTotal;setTimeout(function(){loadExamQ('vocab');},2000);}
+}
+var examObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){if(e.target.id==='exam-grammar'&&gIdx===0)loadExamQ('grammar');if(e.target.id==='exam-vocab'&&vIdx===0)loadExamQ('vocab');}});},{threshold:0.3});
+document.querySelectorAll('#exam-grammar,#exam-vocab').forEach(function(s){examObs.observe(s);});
+</script>
+
+<script id="new-exams-script">
+const examReading = [{"topic": "Typhoid (حمى التيفود)", "q": "How is typhoid caused?", "opts": ["By a virus", "By contaminated water", "By bacteria", "By fungi"], "ans": 2, "explain": "التيفود تسببه بكتيريا Salmonella typhi", "passage": "Typhoid fever is a serious bacterial infection caused by Salmonella typhi. It spreads through contaminated food and water, particularly in areas with poor sanitation. One of the most famous cases in history was that of Mary Mallon, known as 'Typhoid Mary.' She was a cook who unknowingly carried the bacteria and spread it to dozens of people through the food she prepared. Although she showed no symptoms herself, she was the only person identified as an asymptomatic carrier who transmitted the bacteria to others. Today, typhoid can be prevented through vaccination and treated with antibiotics, but it remains a significant health concern in developing countries."}, {"topic": "Typhoid", "q": "Why was Mallory Manson called Typhoid Mallory?", "opts": ["She was a famous chef", "She passed typhoid through food", "She transmitted bacteria", "She discovered the cure"], "ans": 2, "explain": "نقلت البكتيريا للآخرين بدون أن تظهر عليها أعراض", "passage": "Typhoid fever is a serious bacterial infection caused by Salmonella typhi. It spreads through contaminated food and water, particularly in areas with poor sanitation. One of the most famous cases in history was that of Mary Mallon, known as 'Typhoid Mary.' She was a cook who unknowingly carried the bacteria and spread it to dozens of people through the food she prepared. Although she showed no symptoms herself, she was the only person identified as an asymptomatic carrier who transmitted the bacteria to others. Today, typhoid can be prevented through vaccination and treated with antibiotics, but it remains a significant health concern in developing countries."}, {"topic": "Typhoid", "q": "What does the word 'spread' mean in this passage?", "opts": ["passed", "traveled", "kept", "left"], "ans": 0, "explain": "spread = passed (انتقل/انتشر)", "passage": "Typhoid fever is a serious bacterial infection caused by Salmonella typhi. It spreads through contaminated food and water, particularly in areas with poor sanitation. One of the most famous cases in history was that of Mary Mallon, known as 'Typhoid Mary.' She was a cook who unknowingly carried the bacteria and spread it to dozens of people through the food she prepared. Although she showed no symptoms herself, she was the only person identified as an asymptomatic carrier who transmitted the bacteria to others. Today, typhoid can be prevented through vaccination and treated with antibiotics, but it remains a significant health concern in developing countries."}, {"topic": "Healthcare", "q": "What does the word 'wealthy' mean?", "opts": ["Rich", "Poverty", "Poor", "Good"], "ans": 0, "explain": "wealthy = rich (غني/ثري)", "passage": "Universal health care systems aim to provide medical services to all citizens regardless of their income. However, financing such systems remains a major challenge for governments worldwide. Wealthy nations can often afford to fund these programs through taxation, but not all governments can do this successfully. The cost of medical technology, pharmaceuticals, and an aging population continue to drive expenses higher. Many experts believe that everyone in society should contribute to making the health care system better, whether through taxes, insurance premiums, or community support programs."}, {"topic": "Healthcare", "q": "What does the word 'however' indicate here?", "opts": ["Governments find it easy to finance", "Governments struggle with paying", "Healthcare is free", "Taxes are reduced"], "ans": 1, "explain": "however = تضاد — الحكومات تواجه صعوبة في التمويل", "passage": "Universal health care systems aim to provide medical services to all citizens regardless of their income. However, financing such systems remains a major challenge for governments worldwide. Wealthy nations can often afford to fund these programs through taxation, but not all governments can do this successfully. The cost of medical technology, pharmaceuticals, and an aging population continue to drive expenses higher. Many experts believe that everyone in society should contribute to making the health care system better, whether through taxes, insurance premiums, or community support programs."}, {"topic": "Korean Mother (الأم الكورية)", "q": "What is the main idea of the passage?", "opts": ["Importance of second language", "Immigrants and education", "Language and identity", "Immigrants in the US"], "ans": 2, "explain": "القطعة تتحدث عن العلاقة بين اللغة والهوية", "passage": "Mrs. Kim moved to the United States from South Korea twenty years ago. She struggles daily with the English language, which affects her relationship with her children. Her eldest daughter, now 18, was born in the U.S. and speaks only English very well. While the daughter understands some Korean, she sometimes misunderstands things in Korean and communicates better with her parents than her younger brother and sister do. The pronoun 'they' in the family context often refers to the mother and her children as they navigate between two languages and two cultures. The passage highlights how language shapes identity and how immigrants often suffer problems related to communication gaps between generations."}, {"topic": "Korean Mother", "q": "The word 'suffer' is closest in meaning to having:", "opts": ["Accidents", "Problems", "Injuries", "Skills"], "ans": 1, "explain": "suffer = problems (معاناة/مشاكل)", "passage": "Mrs. Kim moved to the United States from South Korea twenty years ago. She struggles daily with the English language, which affects her relationship with her children. Her eldest daughter, now 18, was born in the U.S. and speaks only English very well. While the daughter understands some Korean, she sometimes misunderstands things in Korean and communicates better with her parents than her younger brother and sister do. The pronoun 'they' in the family context often refers to the mother and her children as they navigate between two languages and two cultures. The passage highlights how language shapes identity and how immigrants often suffer problems related to communication gaps between generations."}, {"topic": "Petra (البتراء)", "q": "What does the passage say about Petra?", "opts": ["It is in northern Syria", "It is the capital of Jordan", "It was the Nabatean capital", "It was a commercial city"], "ans": 2, "explain": "البتراء كانت عاصمة مملكة الأنباط", "passage": "Petra is an ancient city carved into rose-red cliffs in southern Jordan. It was the capital of the Nabatean Kingdom, a powerful Arab civilization that controlled important trade routes between Arabia, Egypt, and the Mediterranean. The Nabateans built an impressive city with elaborate temples, tombs, and a sophisticated water management system. Petra was a successful commercial city that thrived for centuries before being abandoned and forgotten by the Western world until it was rediscovered in 1812 by Swiss explorer Johann Ludwig Burckhardt."}, {"topic": "Mammals (الثدييات)", "q": "Why does the passage mention whales and bats?", "opts": ["To show different species of mammals", "To compare sizes", "To discuss endangered animals", "To explain evolution"], "ans": 0, "explain": "لإظهار تنوع أنواع الثدييات", "passage": "Mammals are a diverse group of warm-blooded vertebrates characterized by the presence of mammary glands, hair or fur, and a neocortex in the brain. While most mammals live on land, some have adapted to aquatic environments, such as whales and dolphins, while others, like bats, have developed the ability to fly. The passage mentions whales and bats to show different species of mammals and their remarkable adaptations. What makes mammals particularly fascinating is their intelligence. The mammalian brain is the most complex organ found in any living creature, enabling advanced behaviors such as problem-solving, social cooperation, and communication."}, {"topic": "Mammals", "q": "How does the passage show mammals are intelligent?", "opts": ["Mammal brain is the most complex organ", "By mentioning their lives", "By comparing to reptiles", "By showing tool use"], "ans": 0, "explain": "دماغ الثديي هو أعقد عضو حي", "passage": "Mammals are a diverse group of warm-blooded vertebrates characterized by the presence of mammary glands, hair or fur, and a neocortex in the brain. While most mammals live on land, some have adapted to aquatic environments, such as whales and dolphins, while others, like bats, have developed the ability to fly. The passage mentions whales and bats to show different species of mammals and their remarkable adaptations. What makes mammals particularly fascinating is their intelligence. The mammalian brain is the most complex organ found in any living creature, enabling advanced behaviors such as problem-solving, social cooperation, and communication."}, {"topic": "Astronomy (الفلك)", "q": "Who used the 'Merkhet' to measure altitude?", "opts": ["Babylonian and Egyptian", "Babylonian and Greek", "Greek and Egyptian", "Greek and Chinese"], "ans": 2, "explain": "العلماء اليونانيون والمصريون استخدموا المركت", "passage": "Ancient civilizations made remarkable contributions to astronomy. Greek and Egyptian astronomers used an instrument called the 'Merkhet' to measure the altitude of celestial bodies and track their movements across the sky. Meanwhile, the Babylonians and Chinese believed that both the earth and the sun rotated on an axis, a concept that was revolutionary for its time. In 364 BC, the Chinese astronomer Gan De made significant contributions by creating observations of Jupiter's moons and compiling a detailed star catalogue. These early astronomical achievements laid the foundation for modern space science."}, {"topic": "Astronomy", "q": "What did Gan De make in 364 BC?", "opts": ["Star map and Jupiter moons", "Star catalogue and five planets", "Five planets and Jupiter moons", "Jupiter moons and star catalogue"], "ans": 3, "explain": "Gan De رصد أقمار المشتري وعمل فهرس نجوم", "passage": "Ancient civilizations made remarkable contributions to astronomy. Greek and Egyptian astronomers used an instrument called the 'Merkhet' to measure the altitude of celestial bodies and track their movements across the sky. Meanwhile, the Babylonians and Chinese believed that both the earth and the sun rotated on an axis, a concept that was revolutionary for its time. In 364 BC, the Chinese astronomer Gan De made significant contributions by creating observations of Jupiter's moons and compiling a detailed star catalogue. These early astronomical achievements laid the foundation for modern space science."}, {"topic": "Great Depression", "q": "How many people lost their job in 1933?", "opts": ["Over 50 million", "Around 15 million", "About 10 million", "Less than 5 million"], "ans": 1, "explain": "حوالي 15 مليون شخص فقدوا وظائفهم في 1933", "passage": "The Great Depression was the worst economic downturn in modern history, beginning with the stock market crash of October 1929. Between 1920 and 1929, the money supply in the United States had roughly doubled, creating an unsustainable economic bubble. By 1933, around 15 million Americans had lost their jobs, representing nearly 25 percent of the workforce. Banks were crushed in the fall of 1931 as panicked depositors rushed to withdraw their savings. The crisis spread globally, affecting economies worldwide and leading to profound social and political changes."}, {"topic": "Berlin Wall (جدار برلين)", "q": "What does the word 'Guard' mean?", "opts": ["Defend", "Attack", "Observe", "Escape"], "ans": 0, "explain": "Guard = defend (يحرس/يدافع)", "passage": "After Germany's loss in World War II, the country was divided into two separate nations: West Germany and East Germany. The Berlin Wall was constructed in 1961 by the East German government to prevent its citizens from fleeing to the West. Armed guards were stationed along the wall to defend the border and prevent crossings. The wall stood as a powerful symbol of the Cold War division between communist and democratic nations. When the Berlin Wall finally fell on November 9, 1989, it marked the beginning of the end of the Cold War, and Germany was formally reunified on October 3, 1990."}, {"topic": "Berlin Wall", "q": "Why was Germany divided into two countries?", "opts": ["Because of WWII loss", "Because of economy", "Because of religion", "Because of language"], "ans": 0, "explain": "بسبب خسارة ألمانيا في الحرب العالمية الثانية", "passage": "After Germany's loss in World War II, the country was divided into two separate nations: West Germany and East Germany. The Berlin Wall was constructed in 1961 by the East German government to prevent its citizens from fleeing to the West. Armed guards were stationed along the wall to defend the border and prevent crossings. The wall stood as a powerful symbol of the Cold War division between communist and democratic nations. When the Berlin Wall finally fell on November 9, 1989, it marked the beginning of the end of the Cold War, and Germany was formally reunified on October 3, 1990."}, {"topic": "Liver (الكبد)", "q": "What does the word 'Secrete' mean?", "opts": ["Discharge", "Hide", "Absorb", "Store"], "ans": 0, "explain": "Secrete = Discharge (يفرز)", "passage": "The liver is one of the most vital organs in the human body, performing over 500 essential functions. One of its primary roles is detoxification, or purification, which involves filtering harmful substances from the blood. The liver also secretes bile, a substance that is discharged into the intestine, or bowel, to aid in the digestion of fats. Additionally, the liver stores vitamins and minerals, produces proteins necessary for blood clotting, and helps regulate blood sugar levels. Without a functioning liver, the body cannot survive for more than a few days."}, {"topic": "Liver", "q": "What does 'detoxification' mean?", "opts": ["Purification", "Poisoning", "Digestion", "Absorption"], "ans": 0, "explain": "detoxification = purification (تنقية/إزالة السموم)", "passage": "The liver is one of the most vital organs in the human body, performing over 500 essential functions. One of its primary roles is detoxification, or purification, which involves filtering harmful substances from the blood. The liver also secretes bile, a substance that is discharged into the intestine, or bowel, to aid in the digestion of fats. Additionally, the liver stores vitamins and minerals, produces proteins necessary for blood clotting, and helps regulate blood sugar levels. Without a functioning liver, the body cannot survive for more than a few days."}, {"topic": "Renewable Energy", "q": "What do the passages say about solar energy?", "opts": ["Only generates electricity", "Uncommon sight", "Not sustainable", "Used to heat water"], "ans": 3, "explain": "الطاقة الشمسية تُستخدم لتسخين الماء", "passage": "Renewable energy sources are becoming increasingly important as the world seeks alternatives to fossil fuels. Solar energy is one of the most accessible forms, used not only to generate electricity but also to heat water in homes and businesses. Wind energy works by using wind to spin the blades of a turbine, which then generates electricity. Geothermal energy can be extracted from hot water and steam present underground beneath our feet. In the UK, hydroelectricity powers 2 percent of homes, and wind power could potentially provide power for another 10 percent. However, renewable energy resources still make up only a small portion of the total energy supply, partly because large collecting devices are required and government permissions can be difficult to obtain."}, {"topic": "Renewable Energy", "q": "What do the passages say about geothermal energy?", "opts": ["Extracted from underground water", "Relies on weather", "Source of greenhouse gas", "Not renewable"], "ans": 0, "explain": "الطاقة الحرارية الأرضية تُستخرج من المياه الجوفية", "passage": "Renewable energy sources are becoming increasingly important as the world seeks alternatives to fossil fuels. Solar energy is one of the most accessible forms, used not only to generate electricity but also to heat water in homes and businesses. Wind energy works by using wind to spin the blades of a turbine, which then generates electricity. Geothermal energy can be extracted from hot water and steam present underground beneath our feet. In the UK, hydroelectricity powers 2 percent of homes, and wind power could potentially provide power for another 10 percent. However, renewable energy resources still make up only a small portion of the total energy supply, partly because large collecting devices are required and government permissions can be difficult to obtain."}, {"topic": "COVID & Marketing", "q": "What does 'desires' mean?", "opts": ["Choices", "Interests", "Requirements", "Necessities"], "ans": 1, "explain": "desires = interests (رغبات/اهتمامات)", "passage": "The COVID-19 pandemic fundamentally changed consumer behavior and marketing strategies worldwide. Online shopping increased significantly in 2020, with online sales in the UK rising by approximately 30 percent. For businesses, it became essential to keep up with the changing needs and desires, or interests, of customers. Social media marketing proved to be particularly effective during this period, as more people spent time online. Companies that adapted quickly to digital marketing strategies were better positioned to survive the economic challenges brought by the pandemic."}, {"topic": "Remote Work", "q": "What does 'drawback' mean?", "opts": ["Disadvantage", "Advantage", "Feature", "Benefit"], "ans": 0, "explain": "drawback = disadvantage (عيب/سلبية)", "passage": "Remote working has become increasingly common since the global pandemic. While it offers many advantages such as flexibility and reduced commuting time, there are also significant drawbacks, or disadvantages. One major concern is the blurring, or confusing, of boundaries between work and personal life. Companies have had to establish new benchmarks, or standards, for measuring employee productivity outside the traditional office environment. The prevailing, or predominant, trend suggests that hybrid work models combining office and remote work will become the new norm."}, {"topic": "Remote Work", "q": "What does 'blurring' mean?", "opts": ["Confusing", "Clearing", "Sharpening", "Focusing"], "ans": 0, "explain": "blurring = confusing (تشويش/عدم وضوح)", "passage": "Remote working has become increasingly common since the global pandemic. While it offers many advantages such as flexibility and reduced commuting time, there are also significant drawbacks, or disadvantages. One major concern is the blurring, or confusing, of boundaries between work and personal life. Companies have had to establish new benchmarks, or standards, for measuring employee productivity outside the traditional office environment. The prevailing, or predominant, trend suggests that hybrid work models combining office and remote work will become the new norm."}, {"topic": "Remote Work", "q": "What does 'benchmark' mean?", "opts": ["Standard", "Test", "Challenge", "Goal"], "ans": 0, "explain": "benchmark = standard (معيار)", "passage": "Remote working has become increasingly common since the global pandemic. While it offers many advantages such as flexibility and reduced commuting time, there are also significant drawbacks, or disadvantages. One major concern is the blurring, or confusing, of boundaries between work and personal life. Companies have had to establish new benchmarks, or standards, for measuring employee productivity outside the traditional office environment. The prevailing, or predominant, trend suggests that hybrid work models combining office and remote work will become the new norm."}, {"topic": "Agenda", "q": "What does 'prevailing' mean?", "opts": ["Predominant", "Weak", "Rare", "Declining"], "ans": 0, "explain": "prevailing = predominant (سائد/مهيمن)", "passage": "Remote working has become increasingly common since the global pandemic. While it offers many advantages such as flexibility and reduced commuting time, there are also significant drawbacks, or disadvantages. One major concern is the blurring, or confusing, of boundaries between work and personal life. Companies have had to establish new benchmarks, or standards, for measuring employee productivity outside the traditional office environment. The prevailing, or predominant, trend suggests that hybrid work models combining office and remote work will become the new norm."}, {"topic": "Agenda", "q": "What does 'ideology' mean?", "opts": ["Belief", "Science", "Method", "Theory"], "ans": 0, "explain": "ideology = belief (أيديولوجيا/معتقد)", "passage": "Remote working has become increasingly common since the global pandemic. While it offers many advantages such as flexibility and reduced commuting time, there are also significant drawbacks, or disadvantages. One major concern is the blurring, or confusing, of boundaries between work and personal life. Companies have had to establish new benchmarks, or standards, for measuring employee productivity outside the traditional office environment. The prevailing, or predominant, trend suggests that hybrid work models combining office and remote work will become the new norm."}, {"topic": "Dopamine (الدوبامين)", "q": "What is the important idea related to neurotransmitters?", "opts": ["Take info from cell to cell", "Generate electricity", "Create hormones", "Store memories"], "ans": 0, "explain": "الناقلات العصبية تنقل المعلومات من خلية لخلية", "passage": "Dopamine is a chemical neurotransmitter produced in the brain that plays a crucial role in how we feel pleasure, think, and plan. Neurotransmitters are important because they take information from cell to cell throughout the nervous system. When dopamine levels are balanced, we feel motivated and focused. However, imbalances in dopamine are associated with several medical conditions. Parkinson's disease, for example, is caused by the death of dopamine-producing cells in the brain, demonstrating the vital connection between dopamine and health. Researchers studying cancer have found that tumors can normally be removed by surgery, but understanding cell cycle proteins better could help scientists avoid destroying healthy cells during treatment. Chemotherapy, however, has its dangers, as it can damage healthy cells along with cancerous ones."}, {"topic": "Cancer (السرطان)", "q": "What does paragraph 1 say about cancer?", "opts": ["Can be removed by surgery", "Cannot be treated", "Only affects elderly", "Is always genetic"], "ans": 0, "explain": "يمكن إزالة السرطان عادةً بالجراحة", "passage": "Dopamine is a chemical neurotransmitter produced in the brain that plays a crucial role in how we feel pleasure, think, and plan. Neurotransmitters are important because they take information from cell to cell throughout the nervous system. When dopamine levels are balanced, we feel motivated and focused. However, imbalances in dopamine are associated with several medical conditions. Parkinson's disease, for example, is caused by the death of dopamine-producing cells in the brain, demonstrating the vital connection between dopamine and health. Researchers studying cancer have found that tumors can normally be removed by surgery, but understanding cell cycle proteins better could help scientists avoid destroying healthy cells during treatment. Chemotherapy, however, has its dangers, as it can damage healthy cells along with cancerous ones."}, {"topic": "Singapore", "q": "What two areas made Singapore successful?", "opts": ["Trade and tourism", "Agriculture and mining", "Oil and gas", "Technology only"], "ans": 0, "explain": "التجارة والسياحة جعلتا سنغافورة ناجحة", "passage": "Singapore is a small island nation in Southeast Asia that has transformed itself into one of the world's most prosperous countries. Two main areas made Singapore successful: trade and tourism. In its early days, a strong trade policy and industrial development helped strengthen the economy. The city-state is also home to natural attractions such as Bukit Timah Nature Reserve and central catchment areas. Singapore's strategic location along major shipping routes has made it a global hub for commerce and finance."}, {"topic": "Atoms", "q": "What does the word 'identical' mean?", "opts": ["Uniform", "Different", "Opposite", "Varied"], "ans": 0, "explain": "identical = uniform (متطابق/موحد)", "passage": "All matter is composed of atoms, which are the basic building blocks of the physical world. For centuries, scientists believed that atoms were identical, or uniform, indivisible particles. However, modern physics has revealed that atoms are actually made up of smaller subatomic particles: protons, neutrons, and electrons. Each element has atoms with a specific number of protons, which determines its chemical properties. The discovery of atomic structure revolutionized our understanding of chemistry and physics."}];
+const examWriting = [{"q": "Find the error: The children (A) was playing (B) in the park (C) when it started (D) to rain.", "opts": ["A - was playing", "B - in the park", "C - when it", "D - to rain"], "ans": 0, "explain": "children = جمع → were playing وليس was playing"}, {"q": "Choose the correctly punctuated sentence:", "opts": ["my favorite animals include cats goldfish and horses.", "My favorite animals include: cats goldfish and horses.", "My favorite animals include: cats, goldfish, and horses.", "My Favorite Animals include cats, goldfish, and horses."], "ans": 2, "explain": "فاصلة بين العناصر + Capital في بداية الجملة فقط"}, {"q": "Which sentence has correct capitalization?", "opts": ["i visited riyadh in july.", "I visited Riyadh in July.", "I Visited Riyadh In July.", "I visited riyadh in July."], "ans": 1, "explain": "Capital: I + أسماء العلم (Riyadh) + أشهر (July)"}, {"q": "Find the error: She don't (A) like (B) swimming (C) in cold (D) water.", "opts": ["A - don't", "B - like", "C - swimming", "D - water"], "ans": 0, "explain": "She = مفرد → doesn't وليس don't"}, {"q": "Choose the best connector: He was tired; ___, he finished his work.", "opts": ["because", "however", "so that", "unless"], "ans": 1, "explain": "however = ومع ذلك (تضاد بين التعب وإكمال العمل)"}, {"q": "Find the error: Each of the students (A) have (B) completed (C) their (D) assignment.", "opts": ["A - have", "B - completed", "C - their", "D - assignment"], "ans": 0, "explain": "Each = مفرد → has وليس have"}, {"q": "Which sentence uses the semicolon correctly?", "opts": ["She is smart; and talented.", "She is smart; however, she is lazy.", "She is; smart and talented.", "She; is smart and talented."], "ans": 1, "explain": "الفاصلة المنقوطة تربط جملتين مستقلتين مع however"}, {"q": "Choose the correct order to form a paragraph:", "opts": ["1-3-2-4", "2-1-4-3", "3-1-2-4", "4-2-1-3"], "ans": 2, "explain": "الترتيب المنطقي للفقرة يبدأ بالمقدمة ثم التفاصيل"}, {"q": "Find the error: The team (A) are (B) going to (C) win the (D) championship.", "opts": ["A - are", "B - going to", "C - win the", "D - championship"], "ans": 0, "explain": "team = مفرد في الإنجليزية الأمريكية → is"}, {"q": "Which uses the apostrophe correctly?", "opts": ["Its raining outside.", "It's raining outside.", "Its' raining outside.", "Raining it's outside."], "ans": 1, "explain": "It's = It is (اختصار) | its = ملكية بدون فاصلة عليا"}];
+let rIdx=0,rCorrect=0,rTotal=0,wIdx=0,wCorrect=0,wTotal=0;
+
+function loadReadingQ(){
+  if(rIdx>=examReading.length){document.getElementById('rExamArea').innerHTML='<div class="title-sm" style="text-align:center;color:var(--dark-green);">🎉 أحسنت! انتهت الأسئلة</div>';return;}
+  const q=examReading[rIdx];
+  var passageHtml = '';
+  if(q.passage){
+    passageHtml = '<div class="transcript-box open" style="max-height:none;margin-bottom:0.5rem;padding:0.8rem 1rem;background:rgba(45,90,61,0.04);border:1px solid rgba(45,90,61,0.12);border-radius:8px;font-size:clamp(0.7rem,1vw,0.85rem);line-height:1.7;direction:ltr;text-align:left;">'+q.passage+'</div>';
+  }
+  document.getElementById('rExamArea').innerHTML='<div style="animation:fadeIn 0.4s;"><div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;"><span class="label" style="opacity:0.5;">'+q.topic+' — سؤال '+(rIdx+1)+' من '+examReading.length+'</span></div>'+passageHtml+'<div class="quiz-q" style="font-size:clamp(0.85rem,1.4vw,1.1rem);">'+q.q+'</div><div class="quiz-options">'+q.opts.map(function(o,i){return '<div class="quiz-opt" onclick="answerReading(this,'+i+','+q.ans+')">'+String.fromCharCode(65+i)+') '+o+'</div>';}).join('')+'</div><div id="rexpl_'+rIdx+'" class="quiz-explain"></div></div>';
+}
+function answerReading(el,sel,cor){
+  el.parentElement.querySelectorAll('.quiz-opt').forEach(function(o,i){o.classList.add('disabled');o.style.pointerEvents='none';if(i===cor)o.classList.add('correct');else if(i===sel&&i!==cor)o.classList.add('wrong');});
+  var ex=document.getElementById('rexpl_'+rIdx);if(ex){ex.className='quiz-explain show';ex.innerHTML=(sel===cor?'✅ ':'❌ ')+examReading[rIdx].explain;}
+  rTotal++;if(sel===cor)rCorrect++;rIdx++;document.getElementById('rExamScore').textContent=rCorrect+' / '+rTotal;
+  setTimeout(loadReadingQ,2000);
+}
+
+function loadWritingQ(){
+  if(wIdx>=examWriting.length){document.getElementById('wExamArea').innerHTML='<div class="title-sm" style="text-align:center;color:var(--dark-green);">🎉 أحسنت! انتهت الأسئلة</div>';return;}
+  const q=examWriting[wIdx];
+  document.getElementById('wExamArea').innerHTML='<div style="animation:fadeIn 0.4s;"><div style="display:flex;justify-content:space-between;margin-bottom:0.3rem;"><span class="label" style="opacity:0.5;">سؤال '+(wIdx+1)+' من '+examWriting.length+'</span></div><div class="quiz-q" style="font-size:clamp(0.85rem,1.4vw,1.1rem);">'+q.q+'</div><div class="quiz-options">'+q.opts.map(function(o,i){return '<div class="quiz-opt" onclick="answerWriting(this,'+i+','+q.ans+')">'+String.fromCharCode(65+i)+') '+o+'</div>';}).join('')+'</div><div id="wexpl_'+wIdx+'" class="quiz-explain"></div></div>';
+}
+function answerWriting(el,sel,cor){
+  el.parentElement.querySelectorAll('.quiz-opt').forEach(function(o,i){o.classList.add('disabled');o.style.pointerEvents='none';if(i===cor)o.classList.add('correct');else if(i===sel&&i!==cor)o.classList.add('wrong');});
+  var ex=document.getElementById('wexpl_'+wIdx);if(ex){ex.className='quiz-explain show';ex.innerHTML=(sel===cor?'✅ ':'❌ ')+examWriting[wIdx].explain;}
+  wTotal++;if(sel===cor)wCorrect++;wIdx++;document.getElementById('wExamScore').textContent=wCorrect+' / '+wTotal;
+  setTimeout(loadWritingQ,2000);
+}
+
+var newObs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){if(e.target.id==='reading-exam'&&rIdx===0)loadReadingQ();if(e.target.id==='writing-exam'&&wIdx===0)loadWritingQ();}});},{threshold:0.3});
+document.querySelectorAll('#reading-exam,#writing-exam').forEach(function(s){newObs.observe(s);});
+</script>
+
+<script>
+// iOS Safari touch scroll fix
+document.addEventListener('touchstart', function(){}, {passive: true});
+document.addEventListener('touchmove', function(){}, {passive: true});
+</script>
+</body>
+</html>
