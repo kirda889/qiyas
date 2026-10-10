@@ -89,7 +89,7 @@ p{margin:0}
 .chip .dot{width:8px;height:8px;border-radius:50%}
 .chip.done{border-color:var(--good);color:var(--good)}
 .chip.hot{border-color:var(--warn);color:var(--warn)}
-.code{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);direction:ltr;unicode-bidi:isolate}
+.code{font-size:.78rem;color:var(--muted);unicode-bidi:isolate;white-space:nowrap}
 
 /* home */
 .today{display:grid;gap:14px}
@@ -2665,7 +2665,7 @@ function lessonStats(id){
 function planTasks(){
   return [{id:"diag",type:"test",t:"الاختبار التشخيصي",s:"40 سؤالاً من كل المجالات لقياس مستواك قبل البداية"},
           {id:"official",type:"test",t:"أسئلة الدليل الرسمي",s:"32 سؤالاً من دليل الهيئة لإنجليزي 2 بإجاباتها وشرحها"}]
-    .concat(LESSONS.map(l=>({id:l.id,type:"lesson",t:l.ar,s:DOM[l.d].ar+" · "+l.std,d:l.d})))
+    .concat(LESSONS.map(l=>({id:l.id,type:"lesson",t:l.ar,s:DOM[l.d].ar+" · "+SN(l.std),d:l.d})))
     .concat([
       {id:"mock1",type:"test",t:"الاختبار المحاكي 1",s:"88 سؤالاً بنفس توزيع المجالات · 90 دقيقة"},
       {id:"rev1",type:"review",t:"مراجعة أخطاء المحاكي 1",s:"مراجعة الأخطاء + إعادة قراءة فخاخ أضعف درسين"},
@@ -2739,6 +2739,8 @@ function domBar(d){
   <div class="w">${AR(p)}% إتقان${s.att?` · دقة ${AR(s.acc)}%`:""}</div>
   <div class="bar"><i style="width:${p}%;background:var(--d${d})"></i></div></div>`;
 }
+// رقم المعيار للعرض: 6.9.1 في وثيقة الهيئة = «المعيار 1» من 11 معياراً لتخصص الإنجليزي
+const SN = k => "المعيار " + String(k).split(".").pop();
 const STD_AR = {"6.9.1":"المهارات الأربع والمفردات والقواعد","6.9.2":"تخطيط الدرس وتسلسل الأنشطة","6.9.3":"التقويم والتغذية الراجعة","6.9.4":"طرق التدريس","6.9.5":"الأهداف وتصنيف بلوم","6.9.6":"مصادر التعلم والمواد والتقنية","6.9.7":"المتعلمون: الأنماط والدافعية والثقافة","6.9.8":"نظريات التعلم واكتساب اللغة الثانية","6.9.9":"لغة المتعلم والفروق وتعليم الإنجليزية","6.9.10":"اللغة كنظام وتاريخها وتنوعاتها","6.9.11":"الأصوات والصرف والنحو والدلالة"};
 function coverCard(){
   const nQ=QS.length, nOf=QS.filter(q=>q.of).length, nV=LESSONS.reduce((a,l)=>a+(l.vid||[]).length,0);
@@ -2771,7 +2773,7 @@ function examMap(){
   const keys=Object.keys(STDW); const max=Math.max(...keys.map(k=>STDW[k]));
   return `<div class="section-title"><h2>خريطة الاختبار</h2><span class="line"></span></div>
   <div class="sheet stack"><p class="small muted">كم سؤالاً يجيك تقريباً من كل معيار من أصل 88، حسب أوزان دليل الهيئة. اضغط المعيار لتفتح درسه.</p>
-  <div class="map">${keys.map(k=>{const l=LESSONS.find(x=>x.std===k); if(!l) return ""; return `<button class="mrow" data-lesson="${l.id}"><span class="mn">${STD_AR[k]||k}<span class="code">${k}</span></span><span class="mq">≈ ${AR(STD_N[k])} سؤالاً</span><span class="mb"><i style="width:${Math.round(STDW[k]/max*100)}%;background:var(--d${l.d})"></i></span></button>`}).join("")}</div>
+  <div class="map">${keys.map(k=>{const l=LESSONS.find(x=>x.std===k); if(!l) return ""; return `<button class="mrow" data-lesson="${l.id}"><span class="mn">${STD_AR[k]||k}<span class="code">${SN(k)}</span></span><span class="mq">≈ ${AR(STD_N[k])} سؤالاً</span><span class="mb"><i style="width:${Math.round(STDW[k]/max*100)}%;background:var(--d${l.d})"></i></span></button>`}).join("")}</div>
   <div><button class="btn ghost" data-go="lessons">انتقل إلى الدروس</button></div></div>`;
 }
 function viewHome(){
@@ -2829,7 +2831,7 @@ function viewLessons(){
   return `<section style="padding-top:18px"><h1>الدروس</h1><p class="muted small">مرتبة على معايير هيئة تقويم التعليم 6٫9٫1 إلى 6٫9٫11 لمعلمي اللغة الإنجليزية 2.</p>
   ${DORDER.map(d=>`<div class="dhead"><span class="sw" style="background:var(--d${d})"></span><h2>${DOM[d].ar}</h2><span class="code">${DOM[d].en}</span><span class="w">${AR(DOM[d].w)}% ≈ ${AR(DOM[d].n)} سؤالاً</span></div>
     <div class="lgroup">${LESSONS.filter(l=>l.d===d).map(l=>{const st=S.lessons[l.id]||{};const ls=lessonStats(l.id);
-      return `<button class="lcard" data-lesson="${l.id}"><span class="idx">${AR(l.n)}</span><div class="grow"><div class="t">${esc(l.ar)}</div><div class="s en" dir="ltr" style="text-align:right">${esc(l.en)} · <span class="code">${l.std}${STDW[l.std]?` (${STDW[l.std]}%)`:""}</span></div></div>
+      return `<button class="lcard" data-lesson="${l.id}"><span class="idx">${AR(l.n)}</span><div class="grow"><div class="t">${esc(l.ar)}</div><div class="s en" dir="ltr" style="text-align:right">${esc(l.en)} · <span class="code">${SN(l.std)}${STDW[l.std]?` (${STDW[l.std]}%)`:""}</span></div></div>
       ${st.done?`<span class="chip done">${st.best!=null?AR(st.best)+"%":"تم"}</span>`:ls.att?`<span class="chip">${AR(ls.acc)}%</span>`:`<span class="chip">جديد</span>`}</button>`}).join("")}</div>`).join("")}
   </section>`;
 }
@@ -2839,7 +2841,7 @@ function viewLesson(id){
   const prev=LESSONS[l.n-2], next=LESSONS[l.n];
   return `<article class="stack" style="padding-top:6px">
   <div class="lesson-head">
-    <div class="row"><button class="btn sm quiet" data-go="lessons">→ الدروس</button><span class="chip"><span class="dot" style="background:var(--d${l.d})"></span>${DOM[l.d].ar} · ${AR(DOM[l.d].w)}%</span><span class="code">Standard ${l.std}${STDW[l.std]?` · ${STDW[l.std]}%`:""}</span></div>
+    <div class="row"><button class="btn sm quiet" data-go="lessons">→ الدروس</button><span class="chip"><span class="dot" style="background:var(--d${l.d})"></span>${DOM[l.d].ar} · ${AR(DOM[l.d].w)}%</span><span class="code">${SN(l.std)}${STDW[l.std]?` · ${STDW[l.std]}%`:""}</span></div>
     <h1 class="eh1" dir="ltr">${l.n}. ${esc(l.en)}</h1>
     <div class="muted">${esc(l.ar)}</div>
     <div class="goal" dir="ltr" style="text-align:left;border-inline-start:0;border-left:3px solid var(--accent);padding-left:12px;padding-inline-start:12px"><span class="en"><strong>Goal:</strong> ${fmtEn(Array.isArray(l.goal)?l.goal[0]:l.goal)}</span>${Array.isArray(l.goal)?`<div class="pa">${esc(l.goal[1])}</div>`:""}</div>
@@ -2912,7 +2914,7 @@ function viewQuiz(){
      <span class="mono small">${AR(s.i+1)}/${AR(n)}</span>
      ${s.mode==="exam"?`<span class="timer mono" id="timer"></span>`:""}</div>
    <div class="qcard">
-     <div class="qmeta"><span class="chip"><span class="dot" style="background:var(--d${q.d})"></span>${DOM[q.d].ar}</span><span class="code">${LBY[q.l].std}</span>${q.of?`<span class="chip done">الدليل الرسمي</span>`:q.h?`<span class="chip hot">متكرر</span>`:""}${s.title?`<span class="small muted">${esc(s.title)}</span>`:""}</div>
+     <div class="qmeta"><span class="chip"><span class="dot" style="background:var(--d${q.d})"></span>${DOM[q.d].ar}</span><span class="code">${SN(LBY[q.l].std)}</span>${q.of?`<span class="chip done">الدليل الرسمي</span>`:q.h?`<span class="chip hot">متكرر</span>`:""}${s.title?`<span class="small muted">${esc(s.title)}</span>`:""}</div>
      <div class="qtext">${esc(q.q)}</div>
      <div class="opts">${opts}</div>
      ${shown?`<div class="explain ${chosen===q.a?"ok":"no"}"><b>${chosen===q.a?"صحيح":"الإجابة الصحيحة: "+L[q.a]}</b>${fmt(q.e)}${defBox(q)} <button class="btn sm quiet" data-lesson="${q.l}" style="margin-top:6px">افتح الدرس</button>${reportUI(q)}</div>`:""}
@@ -2959,7 +2961,7 @@ function viewResults(){
      ${wrong.length?`<p class="small muted">أُضيفت الأخطاء إلى «مراجعة الأخطاء» وسترجع لك تلقائياً.</p>`:""}
    </div>
    ${wrong.length?`<div class="section-title"><h2>الأخطاء (${AR(wrong.length)})</h2><span class="line"></span></div>
-   <div class="rlist">${wrong.map(id=>{const q=QBY[id],a=s.ans[id];return `<div class="ritem"><div class="qmeta"><span class="code">${LBY[q.l].std}</span><button class="chip" data-lesson="${q.l}" style="background:none">${esc(LBY[q.l].ar)}</button></div>
+   <div class="rlist">${wrong.map(id=>{const q=QBY[id],a=s.ans[id];return `<div class="ritem"><div class="qmeta"><span class="code">${SN(LBY[q.l].std)}</span><button class="chip" data-lesson="${q.l}" style="background:none">${esc(LBY[q.l].ar)}</button></div>
      <div class="qtext">${esc(q.q)}</div>
      <div class="ans-line">${a!=null?`<span class="y">${L[a]}. ${esc(q.o[a])}</span> → `:"— → "}<span class="c">${L[q.a]}. ${esc(q.o[q.a])}</span></div>
      <div class="small">${fmt(q.e)}</div>${defBox(q)}</div>`}).join("")}</div>`:""}
@@ -3009,7 +3011,7 @@ function viewSheet(){
    <div class="row"><button class="btn sm quiet" data-go="practice">→ التدريب</button></div>
    <h1>ورقة الليلة الأخيرة</h1>
    <div class="sheet stack"><h3>نصائح يوم الاختبار</h3><div class="tips">${tips.map(t=>`<div class="tip"><p>${fmt(t)}</p></div>`).join("")}</div></div>
-   <div class="hy">${DORDER.map(d=>`<div class="dhead"><span class="sw" style="background:var(--d${d})"></span><h2>${DOM[d].ar}</h2><span class="w">${AR(DOM[d].w)}%</span></div>`+LESSONS.filter(l=>l.d===d).map(l=>`<div class="hy-l"><h3><span class="code">${l.std}</span><span class="en">${esc(l.en)}</span></h3><ul class="pts">${l.trap.map(t=>Array.isArray(t)?`<li><div class="pe">${fmtEn(t[0])}</div><div class="pa">${esc(t[1]||"")}</div></li>`:`<li>${fmt(t)}</li>`).join("")}</ul></div>`).join("")).join("")}</div>
+   <div class="hy">${DORDER.map(d=>`<div class="dhead"><span class="sw" style="background:var(--d${d})"></span><h2>${DOM[d].ar}</h2><span class="w">${AR(DOM[d].w)}%</span></div>`+LESSONS.filter(l=>l.d===d).map(l=>`<div class="hy-l"><h3><span class="code">${SN(l.std)}</span><span class="en">${esc(l.en)}</span></h3><ul class="pts">${l.trap.map(t=>Array.isArray(t)?`<li><div class="pe">${fmtEn(t[0])}</div><div class="pa">${esc(t[1]||"")}</div></li>`:`<li>${fmt(t)}</li>`).join("")}</ul></div>`).join("")).join("")}</div>
    <div class="row"><button class="btn" data-act="markFinal">${S.tasks.final?"تمت مراجعتها":"أنهيت الورقة"}</button></div>
   </section>`;
 }
