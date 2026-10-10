@@ -4205,7 +4205,7 @@ function pct(a,b){return b?Math.round(a*100/b):0}
 const QS = (window.QB||[]).filter(r=>LBY[r[0]]).map(([l,f,q,o,e])=>{
   const id = hash(q).toString(36);
   const order = shuffle([0,1,2,3], hash(id));
-  return {id,l,d:LBY[l].d,std:LBY[l].std,h:f.includes("h"),m:f.includes("m"),q,o:order.map(i=>o[i]),a:order.indexOf(0),e};
+  return {id,l,d:LBY[l].d,std:LBY[l].std,h:f.includes("h"),m:f.includes("m"),n:f.includes("n"),q,o:order.map(i=>o[i]),a:order.indexOf(0),e};
 }).concat((window.OFFICIAL||[]).filter(r=>LBY[r[0]]).map(([l,q,o,a,e,src])=>({id:"o"+hash(q).toString(36),l,d:LBY[l].d,std:LBY[l].std,h:true,m:false,of:true,src,q,o,a,e})));
 const _seen=new Set(); for(let i=QS.length-1;i>=0;i--){ if(_seen.has(QS[i].id)) QS.splice(i,1); else _seen.add(QS[i].id) }
 const QBY = Object.fromEntries(QS.map(q=>[q.id,q]));
@@ -4217,7 +4217,7 @@ const STD_N = (function(){const keys=SORDER; const raw=keys.map(k=>88*STDW[k]/10
 function buildMocks(){
   const mocks=[[],[],[]];
   SORDER.forEach((sd,si)=>{
-    const inStd=q=>q.std===sd && !q.of;
+    const inStd=q=>q.std===sd && !q.of && !q.n;
     const pool = shuffle(QS.filter(q=>inStd(q)&&q.m),101+si).concat(shuffle(QS.filter(q=>inStd(q)&&!q.m),201+si));
     pool.slice(0,STD_N[sd]*3).forEach((q,i)=>mocks[i%3].push(q.id));
   });
@@ -4227,7 +4227,7 @@ const MOCKS = buildMocks();
 const DIAG = (function(){
   const n={V:8,K:17,P:15}; let ids=[];
   DORDER.forEach((d,di)=>{
-    const pool = shuffle(QS.filter(q=>q.d===d&&!q.m&&!q.of&&q.h),401+di).concat(shuffle(QS.filter(q=>q.d===d&&!q.m&&!q.of&&!q.h),501+di));
+    const pool = shuffle(QS.filter(q=>q.d===d&&!q.m&&!q.n&&!q.of&&q.h),401+di).concat(shuffle(QS.filter(q=>q.d===d&&!q.m&&!q.n&&!q.of&&!q.h),501+di));
     ids = ids.concat(pool.slice(0,n[d]).map(q=>q.id));
   });
   return shuffle(ids,601);

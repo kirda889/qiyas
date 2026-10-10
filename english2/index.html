@@ -2188,6 +2188,307 @@ window.LESSONS = (window.LESSONS || []).concat([
   (window.LESSONS||[]).forEach(function(l){ if(ADD[l.id]) l.sec = l.sec.concat(ADD[l.id]); });
 })();
 
+// v2 gap-fill (set 1) — short sections appended to existing lessons.
+// Same shape as v2 files: {h:[en,ar], pts:[[en,ar]], t:[[term, English definition, Arabic gloss]]}
+(function(){ var ADD = {
+
+"L01": [
+  { h: ["Bottom-up listening and linguistic knowledge", "الاستماع من الأسفل والمعرفة اللغوية"],
+    pts: [["Bottom-up processing relies mainly on the listener's **grammatical (linguistic) competence**: knowledge of sounds, words, endings and sentence patterns. Top-down processing relies on background knowledge and context.", "من الأسفل = معرفة لغوية؛ من الأعلى = خلفية وسياق"],
+          ["Following spoken classroom instructions is itself a listening task: learners must hear, understand and order the steps before acting.", "اتباع التعليمات الشفهية مهارة استماع"]] }
+],
+
+"L03": [
+  { h: ["Silent and oral reading", "القراءة الصامتة والجهرية"],
+    pts: [["**Silent reading** is faster than reading aloud and lets the reader focus on meaning, so it builds **reading fluency** (speed with comprehension).", "الصامتة تبني الطلاقة والفهم"],
+          ["**Oral reading** (reading aloud) is mainly used to check decoding and pronunciation accuracy; it is slower and splits attention between sound and meaning.", "الجهرية للدقة والنطق"]],
+    t: [["Silent reading", "Reading without vocalising, focusing on meaning; it builds speed and comprehension.", "القراءة الصامتة"],
+        ["Oral reading", "Reading aloud; used mainly to check decoding and pronunciation.", "القراءة الجهرية"]] }
+],
+
+"L05": [
+  { h: ["Text types and Arab writers", "أنواع النصوص والكاتب العربي"],
+    pts: [["Knowing the **text type** (a report, a complaint letter, a story) tells writers which **tense, vocabulary and register** to use.", "نوع النص يحدد الزمن والمفردات ومستوى الرسمية"],
+          ["**Freewriting**, brainstorming, clustering and outlining are all **pre-writing** activities for generating and organising ideas.", "الكتابة الحرة من مرحلة ما قبل الكتابة"],
+          ["**Contrastive rhetoric** (Kaplan): Arabic prose often links ideas through repeated coordination ('wa'), parallelism and restatement, while English expects explicit, specific links — so Arab writers' difficulties are often in **cohesion and organisation**.", "الفرق في التماسك وتنظيم النص"],
+          ["Arabic writing relies less on full stops and more on joining clauses with 'wa', so Arab students often produce **run-on sentences** in English; explicit teaching of **punctuation** helps.", "علامات الترقيم والجمل المتصلة"]],
+    t: [["Contrastive rhetoric", "The study of how the organisation of writing differs across languages and cultures (Kaplan).", "البلاغة التقابلية"]] }
+],
+
+"L07": [
+  { h: ["The Direct Method as the 'natural method'", "الطريقة المباشرة: الطريقة الطبيعية"],
+    pts: [["The **Direct Method** is also called the **natural method**: it arose as a **reaction against Grammar-Translation**, imitating the way children pick up their first language through oral use of the target language only.", "رد فعل على الترجمة النحوية"]] }
+],
+
+"L10": [
+  { h: ["More on testing listening and the C-test", "المزيد عن اختبار الاستماع واختبار C"],
+    pts: [["Good evidence of listening comprehension comes from tasks that need real understanding of what was heard, such as **retelling or summarising** a talk in speech or writing — not spelling or reading tasks.", "التلخيص بعد الاستماع"],
+          ["In a **C-test** learners must **read** the damaged text to restore the missing halves of words, so it draws mainly on reading and overall proficiency.", "اختبار C يعتمد على القراءة"]] }
+],
+
+"L12": [
+  { h: ["Sharing the syllabus and the teaching cycle", "مشاركة المنهج ودورة التدريس"],
+    pts: [["Distributing the **syllabus** at the start of a course informs students of the content, schedule and **expected learning outcomes**.", "توزيع المنهج يوضح النواتج المتوقعة"],
+          ["The teaching cycle: **preparation** (planning) → **implementation** (teaching) → **reflection** (judging what worked and modifying later teaching).", "التحضير ← التنفيذ ← التأمل"]] }
+],
+
+"L13": [
+  { h: ["Digital writing tools", "أدوات الكتابة الرقمية"],
+    pts: [["**Google Docs**: several students write and edit the same document online at the same time (collaborative writing).", "كتابة تعاونية"],
+          ["**Grammarly** checks grammar, spelling and style — a **writing** tool. In Microsoft Word, the **spelling checker** marks misspelled words, the **thesaurus** suggests synonyms and **word count** counts words.", "أدوات تدقيق الكتابة"]] }
+],
+
+"L14": [
+  { h: ["Culture and participation", "الثقافة والمشاركة"],
+    pts: [["Students from **collectivist cultures** (group harmony, respect for the teacher's authority) are often reluctant to **ask questions** or disagree in front of the class; small-group work and anonymous question slips help.", "الثقافات الجماعية وتجنب السؤال العلني"],
+          ["Immediate public **criticism** of answers discourages participation; praising effort, giving wait time and building on partly correct answers encourage it.", "النقد الفوري يقتل المشاركة"]],
+    t: [["Collectivist culture", "A culture that values group harmony and belonging over individual expression.", "ثقافة جماعية"]] }
+],
+
+"L15": [
+  { h: ["Theories of writing", "نظريات الكتابة"],
+    pts: [["**Ecological theory** of writing (Cooper): writing is shaped by **place, community and local context**. **Cognitive theory** focuses on the writer's mental processes (planning, translating, reviewing). **Sociocultural theory** stresses collaboration and peer feedback.", "البيئية ← المكان والسياق المحلي"]],
+    t: [["Ecological theory of writing", "A view that writing is shaped by the writer's place, community and local context.", "النظرية البيئية في الكتابة"]] }
+],
+
+"L16": [
+  { h: ["Self-repair", "تصحيح المتعلم لنفسه"],
+    pts: [["When learners notice and correct their own slip while speaking ('I goed… went'), this shows **metalinguistic awareness** and self-monitoring; the slip itself is a performance mistake, not a gap in competence.", "التصحيح الذاتي = وعي ما وراء لغوي"]] }
+],
+
+"L17": [
+  { h: ["From transfer to fossilization", "من النقل إلى التحجر"],
+    pts: [["Differences between L1 and L2 cause **negative transfer**; when such errors are repeated without noticing or feedback they can become permanent — **fossilization**.", "الفروق ← نقل سلبي ← تحجر"]] }
+],
+
+"L18": [
+  { h: ["More British–American differences", "فروق أخرى بين البريطانية والأمريكية"],
+    pts: [["The main differences between British and American English lie in **vocabulary** (lift/elevator), **spelling** and **pronunciation**; grammar differs very little.", "الفرق الأكبر في المفردات"],
+          ["British English uses past forms in **-t** more often (learnt, burnt, spilt, dreamt); American English prefers **-ed** (learned, burned, spilled).", "-t بريطانية / -ed أمريكية"],
+          ["Plurals such as **oxen** and **children** keep the **Old English** plural ending **-en**.", "-en من الإنجليزية القديمة"]] }
+],
+
+"L19": [
+  { h: ["Counting sounds; phonemes differ across languages", "عدّ الأصوات واختلاف الفونيمات بين اللغات"],
+    pts: [["Count **sounds, not letters**: 'shoe' /ʃuː/ has 2 sounds, 'ship' /ʃɪp/ has 3, 'through' /θruː/ has 3.", "نعد الأصوات لا الحروف"],
+          ["Phonemes are language-specific: English contrasts /p/ and /b/ (pin–bin), but in Arabic they are **not distinct phonemes**, so Arab learners often fail to hear or produce the difference.", "/p/ و/b/ ليسا فونيمين مستقلين في العربية"]] }
+],
+
+"L21": [
+  { h: ["Objects of prepositions", "مفعول حرف الجر"],
+    pts: [["In a prepositional phrase, the noun phrase after the preposition is the **object of the preposition**: in 'behind the door', 'the door' is the object of 'behind'.", "الاسم بعد حرف الجر"]],
+    t: [["Object of a preposition", "The noun phrase that follows a preposition and completes the prepositional phrase.", "مفعول حرف الجر"]] }
+]
+
+}; (window.LESSONS||[]).forEach(function(l){ if(ADD[l.id]) l.sec = l.sec.concat(ADD[l.id]); }); })();
+
+// v2 additions — coverage pass 2 (short topical sections appended to existing lessons).
+(function(){ var ADD = {
+
+"L01": [
+  { h: ["Choosing listening texts and pre-listening tasks", "اختيار نص الاستماع ومهام ما قبله"],
+    pts: [["Learner **interest** in the topic is the factor most linked to how engaging and followable a listening text is; speed, length and accent matter, but an interesting topic keeps attention.", "الموضوع الممتع أهم عامل للتفاعل والفهم"],
+          ["Typical **pre-listening** tasks: predicting from a title or picture, **generating questions** the text might answer, pre-teaching key words. **While**: note-taking, checking predictions. **Post**: summarizing, discussing.", "قبل: توقع وتوليد أسئلة؛ أثناء: تدوين؛ بعد: تلخيص"]],
+    t: [["Question generation", "A pre-listening task in which learners write questions they expect the text to answer, giving them a purpose for listening.", "توليد أسئلة قبل الاستماع"]] }
+],
+
+"L02": [
+  { h: ["Repair strategies and role-play", "استراتيجيات الإصلاح ولعب الأدوار"],
+    pts: [["**Repair strategies** are formulaic phrases learners use to fix breakdowns: asking for repetition ('Sorry, could you say that again?'), asking for help or clarification, paraphrasing a missing word.", "عبارات جاهزة لإصلاح انقطاع التواصل"],
+          ["In a **role-play**, two or three learners act out an extended dialogue; the teacher acts as a **facilitator**: sets up the roles, monitors, supports and gives feedback afterwards rather than taking over.", "المعلم ميسّر يراقب ويؤجل التصحيح"]],
+    t: [["Repair strategies", "Phrases and moves used to fix communication breakdowns, e.g. asking for repetition or help.", "استراتيجيات إصلاح التواصل"]] }
+],
+
+"L04": [
+  { h: ["Word association and review routines", "ترابط الكلمات وروتين المراجعة"],
+    pts: [["Words that learners link in memory around one topic (tree → apples, leaves, green) show **association**, not synonymy or antonymy; brainstorming associations helps recall.", "كلمات مترابطة حول موضوع واحد"],
+          ["A simple review routine — **write** the word, **look** at it, **practise** using it, **repeat** the review over days — builds vocabulary through repeated encounters.", "اكتب، انظر، تدرّب، كرّر"]],
+    t: [["Word association", "The mental links between words that belong to the same topic or experience (desert – sand – camel).", "تداعي الكلمات وترابطها"]] }
+],
+
+"L05": [
+  { h: ["Matching writing tasks to level and purpose", "مواءمة مهام الكتابة للمستوى والهدف"],
+    pts: [["Formal tasks such as a **complaint letter** suit **intermediate and advanced** learners.", "رسالة الشكوى للمتوسط والمتقدم"],
+          ["A **reproduction** task asks learners to write down content they have seen, heard or read (e.g. a video) as it was, without analysis.", "إعادة إنتاج المحتوى كتابة"]],
+    t: [["Transition words", "Linking words such as moreover, hence, in addition that connect ideas smoothly.", "كلمات الانتقال والربط"],
+        ["Reproduction task", "A writing task in which learners record content they have seen or heard rather than create or evaluate it.", "مهمة إعادة الإنتاج"]] }
+],
+
+"L09": [
+  { h: ["Formal and informal formative assessment", "التقويم التكويني الرسمي وغير الرسمي"],
+    pts: [["**Formal formative**: planned, recorded tasks during learning (quizzes, worksheets) that are marked and returned with feedback.", "رسمي: مهام مكتوبة مصححة أثناء التعلم"],
+          ["**Informal formative**: on-the-spot checks such as observation, questioning and thumbs up/down, usually not graded.", "غير رسمي: ملاحظة وأسئلة سريعة"]],
+    t: [["Formal formative assessment", "Planned, marked tasks during a unit used to give feedback and guide learning.", "تقويم تكويني رسمي"]] }
+],
+
+"L14": [
+  { h: ["Personality and nonverbal culture", "الشخصية والتواصل غير اللفظي"],
+    pts: [["**Introverted** learners often prefer quiet, individual work such as an **independent project**; debates and public role-plays suit extroverts more.", "الانطوائي يناسبه العمل الفردي"],
+          ["**Gestures** are culture-specific: the same gesture can mean different things in different cultures, so nonverbal behaviour is part of teaching culture.", "الإيماءات تختلف معانيها بين الثقافات"]],
+    t: [["Introversion", "A personality trait marked by preferring reflection and individual work to social interaction.", "الانطوائية"]] }
+],
+
+"L15": [
+  { h: ["Generative grammar and innatism", "القواعد التوليدية والفطرية"],
+    pts: [["Chomsky's **generative grammar** describes the rules that let speakers produce infinite sentences; it is studied under **innatism (nativism)**, the view that language ability is inborn.", "القواعد التوليدية تابعة للنظرية الفطرية"]],
+    t: [["Generative grammar", "Chomsky's model of the finite set of rules that can generate all grammatical sentences of a language.", "القواعد التوليدية"]] }
+],
+
+"L17": [
+  { h: ["Reflection frameworks, avoidance and ESP", "أطر التأمل والتجنب والإنجليزية لأغراض خاصة"],
+    pts: [["The **5 R's of reflection**: **Reporting** (what happened) → **Responding** (feelings) → **Relating** (link to own experience) → **Reasoning** (explain using theory, e.g. ZPD) → **Reconstructing** (plan changes).", "وصف ← شعور ← ربط بالتجربة ← تفسير بالنظرية ← إعادة بناء"],
+          ["**Avoidance**: learners steer clear of words or structures they find difficult or unlike L1, often to avoid errors or embarrassment.", "تجنب التراكيب الصعبة خوفاً من الخطأ"],
+          ["**ESP** courses in the **workplace** are tailored to employees' job-related language needs (e.g. cabin crew, nurses, engineers).", "دورات مصممة لاحتياجات العمل"]],
+    t: [["5 R's of reflection", "Reporting, Responding, Relating, Reasoning, Reconstructing: stages of structured reflection.", "مراحل التأمل الخمس"],
+        ["Avoidance", "Not using difficult or unfamiliar language forms to escape errors.", "التجنب"]] }
+],
+
+"L18": [
+  { h: ["Language as a rule-governed system", "اللغة نظام قواعدي"],
+    pts: [["Language is **systematic**: it follows rules and patterns at every level (sounds, words, sentences); it is not random.", "اللغة منهجية منظمة"]] }
+],
+
+"L21": [
+  { h: ["Phrase types and noun clause functions", "أنواع العبارات ووظائف الجملة الاسمية"],
+    pts: [["A phrase is named after its head: 'extremely tired' = **adjective phrase** (AdjP); 'very quickly' = adverb phrase; 'the old house' = noun phrase.", "العبارة تُسمّى برأسها"],
+          ["A **noun clause** can act as subject ('What she said surprised me'), **direct object** ('I don't know what she said') or complement ('The problem is that we are late').", "الجملة الاسمية: فاعل أو مفعول أو تكملة"]],
+    t: [["Adjective phrase", "A phrase headed by an adjective, often with a modifier (extremely tired).", "عبارة وصفية"],
+        ["Noun clause", "A dependent clause that does the job of a noun (subject, object or complement).", "جملة اسمية تابعة"]] }
+]
+
+}; (window.LESSONS||[]).forEach(function(l){ if(ADD[l.id]) l.sec = l.sec.concat(ADD[l.id]); }); })();
+
+// v2 additions (gap check, set 3) — short sections appended to existing lessons.
+// Same shape as other v2 files: {h:[en,ar], pts:[[en,ar]], t:[[term, English definition, Arabic gloss]]}
+(function(){ var ADD = {
+
+"L02": [
+  { h: ["Peer correction", "تصحيح الأقران"],
+    pts: [["In **peer correction** learners point out and fix each other's errors before the teacher steps in; it builds **learner autonomy**, cooperation and awareness of errors.", "يبني الاستقلالية والتعاون"],
+          ["It works best in controlled practice, with clear guidance and a supportive atmosphere; the teacher still confirms the correct form.", "مع توجيه وجو داعم"]],
+    t: [["Peer correction", "Learners correct one another's errors, usually before the teacher intervenes.", "تصحيح الطلاب لبعضهم"]] }
+],
+
+"L04": [
+  { h: ["Lexical sets and checking word meaning", "المجموعات المعجمية والتحقق من المعنى"],
+    pts: [["A **lexical set** is a group of words from one topic or semantic field taught together, e.g. sports: archery, fencing, rowing, scuba diving.", "كلمات موضوع واحد معاً"],
+          ["To check a new word, use short **CCQs** that test the core of the meaning, often as either/or questions: 'starving' → 'A little hungry or extremely hungry?'; 'furious' → 'A bit angry or very angry?'.", "أسئلة ثنائية تكشف درجة المعنى"]],
+    t: [["Lexical set", "A group of words from the same topic or semantic field presented together.", "مجموعة معجمية"]] }
+],
+
+"L06": [
+  { h: ["Inside PPP and checking meaning", "داخل مراحل PPP والتحقق من المعنى"],
+    pts: [["**Presentation**: the teacher introduces the new form in context — the stage with the **most teacher control**.", "العرض: أعلى تحكم من المعلم"],
+          ["**Practice**: controlled and semi-controlled activities (drills, gap-fills, matching) that build **accuracy**, with close monitoring and correction.", "الممارسة: دقة وأنشطة موجهة"],
+          ["**Production**: free, communicative use (role plays, discussions) that builds **fluency**; the teacher monitors with minimal intervention and gives delayed feedback.", "الإنتاج: طلاقة واستخدام حر"],
+          ["Grammar CCQs target the meaning: 'You mustn't use your phone' → 'Is it allowed?'; 'He must wear a uniform' → 'Does he have a choice?'; 'He was driving when it rained' → 'Which started first?'.", "أمثلة أسئلة المفهوم للقواعد"]],
+    t: [["Controlled practice", "Highly guided activities that focus on accurate use of the new form.", "تدريب موجه للدقة"],
+        ["Free practice (production)", "Open activities in which learners use the new language freely for fluency.", "استخدام حر للطلاقة"]] }
+],
+
+"L08": [
+  { h: ["The functional approach", "المنهج الوظيفي"],
+    pts: [["The **functional (notional-functional) approach** organises teaching around what learners do with language — requesting, apologising, inviting, giving advice — rather than around grammar forms.", "الوظائف قبل القواعد"]],
+    t: [["Functional approach", "Teaching organised around communicative functions such as requesting or apologising.", "تدريس قائم على الوظائف"]] }
+],
+
+"L09": [
+  { h: ["Peer assessment and beneficial washback", "تقييم الأقران والأثر الرجعي الإيجابي"],
+    pts: [["**Peer assessment**: learners evaluate a classmate's work against criteria given by the teacher; **self-assessment**: learners judge their own work.", "الأقران / الذات"],
+          ["**Beneficial (positive) washback**: a well-designed test encourages useful teaching and learning (e.g., a speaking test leads to more speaking practice in class).", "الاختبار يوجه لتعلم مفيد"]],
+    t: [["Peer assessment", "Learners evaluate each other's work using shared criteria.", "تقييم الأقران"],
+        ["Beneficial washback", "A positive effect of a test on classroom teaching and learning.", "أثر رجعي إيجابي"]] }
+],
+
+"L10": [
+  { h: ["Scoring tools and item formats", "أدوات التصحيح وأشكال الأسئلة"],
+    pts: [["**Checklist**: yes/no — is the behaviour present or absent? **Rating scale**: marks the degree of a behaviour (e.g., 1–5). **Rubric**: criteria plus descriptions of each performance level.", "قائمة رصد / سلم تقدير / روبرك"],
+          ["A classic **cloze** deletes every nth word (e.g., every 7th) — a **fixed-ratio** cloze.", "حذف منتظم لكل كلمة رقم n"],
+          ["**Multiple-choice** items are quick and objective to score but allow guessing and do not show productive ability directly.", "سهل التصحيح لكن فيه تخمين"],
+          ["Construct validity is threatened when scores depend on something else, e.g., a long, fast listening test that really measures memory, or a reading test that mainly measures speed.", "قياس شيء غير المقصود"]],
+    t: [["Checklist", "A list of behaviours marked only as present or absent.", "قائمة رصد نعم/لا"],
+        ["Rating scale", "A scale for judging the degree or frequency of a behaviour (e.g., 1–5).", "سلم تقدير بالدرجات"],
+        ["Fixed-ratio cloze", "A cloze test that deletes every nth word of a passage.", "حذف كل كلمة رقم n"]] }
+],
+
+"L11": [
+  { h: ["Objectives in practice", "الأهداف عملياً"],
+    pts: [["Objectives are what link each lesson to the **national standards**; write them as **learner outcomes** ('Students will retell…'), not teacher activities.", "الأهداف تربط الدرس بالمعايير"],
+          ["Typical verbs: summarize, explain → **Understand**; categorize, compare/contrast → **Analyze** (in common verb lists); critique, defend, judge → **Evaluate**; design, construct, compose → **Create**.", "أفعال كل مستوى"]],
+    t: [["Time-bound objective", "The T in SMART: the objective states when it will be achieved ('by the end of this 45-minute lesson').", "هدف محدد بزمن"]] }
+],
+
+"L12": [
+  { h: ["Classroom management: seating, instructions and routines", "إدارة الصف: الجلوس والتعليمات والروتين"],
+    pts: [["Seating: **rows** suit teacher-led presentations, quiet individual work and tests; **clusters** suit group projects; **horseshoe / circle** suit whole-class discussion and debates (everyone sees everyone); **pairs** suit pair work; **movable furniture** allows quick changes between patterns.", "كل ترتيب لغرض"],
+          ["Instructions: give them **before** students move into pairs/groups and before handing out materials; keep them short, demonstrate, then check with **ICQs** (e.g., 'Alone or with a partner?') or ask a student to explain the steps.", "التعليمات قبل الحركة ثم ICQ"],
+          ["**CCQs** check meaning; teachers use them because 'Do you understand?' usually gets 'yes' without real understanding.", "سبب استخدام CCQ"],
+          ["Minor misbehaviour: use **non-verbal cues** — eye contact, gestures, **proximity control** (moving closer) — so the lesson continues.", "إشارات غير لفظية"],
+          ["Rules: few, clear, ideally agreed with students; applied with calm, consistent consequences; their purpose is a safe, orderly, supportive environment. Routines are taught, modelled, practised and reinforced.", "قواعد وروتين"],
+          ["Keep **TTT** low to raise **STT**: use gestures, demonstration and model examples instead of long explanations.", "قلل كلام المعلم"],
+          ["Smooth transitions: materials ready in advance, **signposting** language ('Now that we've read…'), time warnings ('one minute left'), and **extension tasks** for fast finishers. Give groups clear **roles** (leader, note-taker, timekeeper, reporter).", "انتقال سلس وأدوار"],
+          ["A lesson plan is a flexible **roadmap** (objectives, timing, activities, assessment); its **assessment** component states how achievement of the objectives will be checked.", "الخطة خارطة مرنة"]],
+    t: [["Teacher Talking Time (TTT)", "The proportion of lesson time in which the teacher talks.", "وقت كلام المعلم"],
+        ["Student Talking Time (STT)", "The proportion of lesson time in which learners use the language.", "وقت كلام الطلاب"],
+        ["Horseshoe (U-shape)", "Desks arranged in a U so all learners can see each other and the teacher.", "ترتيب حرف U"],
+        ["Signposting", "Language that marks the move from one lesson stage to the next.", "عبارات الانتقال"]] }
+],
+
+"L13": [
+  { h: ["Online platforms for skills practice", "منصات رقمية لممارسة المهارات"],
+    pts: [["Text-based social networks and blogs (e.g., Facebook posts and comment threads) give practice in **writing**; video sites mainly support **listening**.", "المنشورات المكتوبة للكتابة"],
+          ["**Online tutoring platforms** (e.g., Cambly) connect learners with native or proficient speakers for live **speaking** practice.", "محادثة مباشرة مع متحدثين"],
+          ["A **vlog** is a video blog; a **vodcast** is a video podcast — both are recorded, one-way input.", "محتوى مسجل باتجاه واحد"]],
+    t: [["Vlog", "A video blog: regular video posts by one creator.", "مدونة فيديو"],
+        ["Vodcast", "A video podcast distributed as episodes.", "بودكاست مرئي"],
+        ["Online tutoring platform", "A service that connects learners with tutors for live one-to-one lessons.", "منصة دروس مباشرة"]] }
+],
+
+"L14": [
+  { h: ["Technology and motivation", "التقنية والدافعية"],
+    pts: [["Interactive technology (educational games, quizzes on devices, multimedia) generally **raises engagement and motivation**, especially when it gives learners active roles.", "التقنية التفاعلية ترفع الدافعية"]] }
+],
+
+"L15": [
+  { h: ["Piaget's four stages and peer scaffolding", "مراحل بياجيه الأربع والدعم بين الأقران"],
+    pts: [["Piaget: **sensorimotor** (0–2), **preoperational** (2–7), **concrete operational** (7–11, logical thinking about concrete objects and events), **formal operational** (11+, abstract reasoning).", "المراحل الأربع"],
+          ["**Social constructivism** (Vygotsky): a more capable peer can scaffold a less able one within the ZPD — the basis for mixed-ability pairing.", "زميل أقدر يدعم الأضعف"]],
+    t: [["Concrete operational stage", "Piaget's stage (about 7–11) when children reason logically about concrete situations.", "المرحلة الإجرائية المحسوسة"],
+        ["Formal operational stage", "Piaget's stage (from about 11) when abstract and hypothetical reasoning develops.", "المرحلة الإجرائية الشكلية"],
+        ["Social constructivism", "The view that knowledge is built through social interaction with more capable others.", "البنائية الاجتماعية"]] }
+],
+
+"L17": [
+  { h: ["Where L1 influence shows most", "أين يظهر أثر اللغة الأم أكثر"],
+    pts: [["L1 influence is usually **most noticeable in phonology**: a foreign accent often remains even when grammar and vocabulary are advanced.", "اللكنة أوضح أثر"]],
+    t: [["Foreign accent", "Pronunciation features carried over from the first language.", "لكنة أجنبية"]] }
+],
+
+"L18": [
+  { h: ["How English spread", "كيف انتشرت الإنجليزية"],
+    pts: [["Settlers from **England** carried English to North America and later to Australia; American and Australian English then developed their own features (both are inner-circle varieties).", "من إنجلترا إلى أمريكا وأستراليا"]] }
+],
+
+"L20": [
+  { h: ["Suppletion and verb-forming suffixes", "الاستبدال الكلي ولواحق الأفعال"],
+    pts: [["**Suppletion**: a grammatical form is expressed by an entirely different word form — go/went, good/better, bad/worse.", "صيغة مختلفة كلياً"],
+          ["Derivational suffixes that form **verbs**: -ate (activate), -ify (simplify), -ize (modernize), -en (widen).", "لواحق تكوّن أفعالاً"]],
+    t: [["Suppletion", "Use of a completely different form to mark a grammatical category (go → went).", "الاستبدال الكلي"],
+        ["Verb-forming suffix", "A derivational suffix that turns a noun or adjective into a verb (-ate, -ify, -ize, -en).", "لاحقة تكوّن فعلاً"]] }
+],
+
+"L22": [
+  { h: ["Searle's five types of speech acts", "أنواع أفعال الكلام عند سيرل"],
+    pts: [["**Assertives (representatives)** state facts or claims ('It's raining'); **directives** try to get the listener to act ('Close the door'); **commissives** commit the speaker ('I'll call you'); **expressives** show feelings ('Sorry!', 'Congratulations'); **declarations** change reality ('I now pronounce you…').", "خمسة أنواع"]],
+    t: [["Assertives (representatives)", "Speech acts that state what the speaker believes to be true.", "إخباريات"],
+        ["Directives", "Speech acts that try to get the listener to do something.", "طلبيات"],
+        ["Commissives", "Speech acts that commit the speaker to a future action.", "التزاميات"],
+        ["Expressives", "Speech acts that express the speaker's feelings or attitude.", "تعبيريات"],
+        ["Declarations", "Speech acts that change a situation by being said.", "إعلانيات"]] }
+]
+
+}; (window.LESSONS||[]).forEach(function(l){ if(ADD[l.id]) l.sec = l.sec.concat(ADD[l.id]); }); })();
+
 // Question bank — format: [lessonId, flags, stem, [correct, d1, d2, d3], explanation]
 // flags: h = concept repeated in recalled exams, m = reserved for mock exams
 window.QB = (window.QB || []).concat([
@@ -3221,6 +3522,188 @@ window.QB = (window.QB || []).concat([
 ["L22","n","'Ali visited Omar' and 'Omar was visited by Ali' express the same:",["proposition","utterance","sentence","phoneme"],"جملتان مختلفتان بقضية (معنى) واحدة."],
 ["L22","n","A student says to a teacher 'Give me the paper', translating an Arabic request formula directly, and sounds rude. This is an example of:",["pragmalinguistic failure","sociopragmatic failure","a phonological error","syntactic ambiguity"],"خطأ في الصيغة اللغوية المنقولة من العربية."],
 ["L22","n","A learner asks a new colleague how much money he earns, not realizing that the topic is inappropriate in that culture. This is:",["sociopragmatic failure","pragmalinguistic failure","lexical ambiguity","a grammatical error"],"سوء تقدير للأعراف الاجتماعية."]
+]);
+
+// Gap-fill questions (set 1): concepts not yet tested elsewhere in the bank.
+// format: [lessonId, flags, stem, [correct, d1, d2, d3], explanation]
+window.QB = (window.QB || []).concat([
+// L01 Listening
+["L01","hn","Recognising word endings, word order and sentence patterns while listening (bottom-up processing) draws mainly on the learner's ___ competence.",["grammatical (linguistic)","sociolinguistic","strategic","discourse"],"المعالجة من الأسفل تبني المعنى من الأصوات والكلمات والقواعد، فتعتمد على المعرفة اللغوية (النحوية). أما المعالجة من الأعلى فتعتمد على الخلفية والسياق."],
+["L01","hn","Following a set of spoken classroom instructions in order to complete a task mainly develops:",["listening","reading","writing","handwriting"],"فهم التعليمات الشفهية وترتيبها قبل التنفيذ عمل استماع بالدرجة الأولى."],
+// L02 Speaking
+["L02","hn","Practising adjacency pairs (e.g., offer–acceptance) and discourse markers such as 'well' and 'anyway' mainly develops:",["speaking (managing a conversation)","reading speed","spelling accuracy","handwriting"],"الأزواج المتجاورة وأدوات الخطاب تنظّم تبادل الأدوار وربط الكلام في المحادثة، فأكثر ما تخدمه مهارة التحدث."],
+// L03 Reading
+["L03","hn","Encouraging students to read silently, rather than aloud, mainly helps to build their reading:",["fluency (speed with comprehension)","pronunciation accuracy","spelling","handwriting"],"القراءة الصامتة أسرع وتركّز على المعنى فتبني طلاقة القراءة والفهم، أما الجهرية فتخدم دقة النطق وفك الرموز."],
+["L03","hn","A reader who works out an unfamiliar word from its prefix, root and suffix, and follows grammatical cues and discourse markers, is using a ___ strategy.",["bottom-up","top-down","field-dependent","concept-driven"],"الاعتماد على الإشارات اللغوية داخل النص (اللواحق والسوابق والقواعد وأدوات الربط) معالجة من الأسفل إلى الأعلى."],
+// L05 Writing
+["L05","hn","Teaching students the features of different text types mainly helps them decide on the appropriate ___ when they write.",["tense, vocabulary and register","speed of handwriting","spelling of single words","length of the title"],"كل نوع نص (تقرير، رسالة شكوى، قصة) له زمن ومفردات ومستوى رسمية معتاد، فمعرفته توجّه اختيارات الكاتب."],
+["L05","hn","Which of the following belongs to the PRE-writing stage?",["Freewriting to generate ideas","Proofreading for spelling","Publishing the final copy","Revising after peer feedback"],"الكتابة الحرة مثل العصف الذهني: توليد أفكار قبل كتابة المسودة، فهي من مرحلة ما قبل الكتابة."],
+["L05","hn","An essay that uses facts, logic and expert opinion to convince readers to accept the writer's position is a(n) ___ essay.",["persuasive","narrative","descriptive","expository"],"الإقناعي يتبنى موقفاً ويدعمه بالأدلة والمنطق ليقنع القارئ؛ التفسيري يشرح فقط دون أن يتبنى موقفاً."],
+["L05","hn","Arab students' English essays often join ideas with repeated 'and', restate points and stay general, whereas English expects explicit and specific linking. This contrast mainly concerns:",["cohesion and text organisation","morphology","orthography","phonology"],"هذا ما يسميه Kaplan البلاغة التقابلية: الفرق في طريقة ربط الأفكار وتنظيم النص، أي في التماسك."],
+["L05","hn","Many Arab students write run-on sentences in English mainly because Arabic writing:",["relies less on full stops, joining clauses with 'wa'","has no verbs","has no conjunctions","is written from left to right"],"العربية تربط الجمل الطويلة بالواو وتقل فيها النقطة، فينقل الطالب ذلك إلى الإنجليزية؛ والعلاج تدريس علامات الترقيم صراحة."],
+// L06 Grammar
+["L06","hn","To give students meaningful practice of 'be going to' for future plans, the most suitable writing topic is:",["My plans for the coming Eid holiday","What I did last weekend","My daily routine","A famous event in history"],"الموضوع المناسب يستدعي الزمن المستهدف بشكل طبيعي: الخطط القادمة تحتاج المستقبل، أما عطلة مضت فتحتاج الماضي والروتين يحتاج المضارع البسيط."],
+// L07 Methods I
+["L07","hn","Rejecting translation, this method teaches only through the target language, as children pick up their mother tongue, and is often called the 'natural method'. It is:",["The Direct Method","The Silent Way","Suggestopedia","Community Language Learning"],"الطريقة المباشرة سُميت الطبيعية لأنها تحاكي اكتساب الطفل للغته، وجاءت رداً على الترجمة النحوية: اللغة الهدف فقط والتركيز على الكلام."],
+// L08 Methods II
+["L08","hn","In pairs, one student draws a simple map of his neighbourhood and his partner writes directions to a place on it; then they test whether the directions work. This is best described as a ___ activity.",["communicative","repetition","substitution","translation"],"المهمة لها هدف حقيقي ونتيجة يُتحقق منها وتبادل معلومات، فهي نشاط تواصلي لا تدريب آلي."],
+["L08","hn","Each group member studies a different section of a text, discusses it with members from other groups who had the same section, and then teaches it to the home group. This technique is:",["jigsaw","brainstorming","gamification","think-pair-share"],"في الجيكسو يتقن كل طالب جزءاً ثم يعلّمه لزملائه، فيعتمد الجميع على بعضهم لفهم النص كاملاً."],
+// L10 Assessment II
+["L10","hn","Which task gives the best evidence of a student's listening comprehension?",["Retelling or summarising the main points of a talk they heard","Copying words correctly from the board","Reading a passage aloud","Skimming a text for its main idea"],"التلخيص أو إعادة الحكي بعد الاستماع يثبت أن الطالب فهم ما سمع؛ بقية الخيارات تقيس الكتابة أو القراءة."],
+["L10","hn","A C-test, in which the second half of every second word is deleted, mainly requires learners to:",["read and reconstruct a written text","listen to a recording","speak with an examiner","write a free essay"],"اختبار C نص مكتوب ناقص؛ على الطالب قراءته وإكمال أنصاف الكلمات، فهو يعتمد على القراءة والكفاءة العامة."],
+// L11 Objectives
+["L11","hn","A teacher is planning a single lesson on kitchen utensils. Which is the most appropriate objective?",["By the end of the lesson, students will be able to use the names of five kitchen utensils in sentences.","By the end of the year, students will appreciate cooking vocabulary.","By the end of the lesson, students will know about different household items.","By the end of the semester, students will label international kitchen tools."],"هدف الدرس يكون بحدود الدرس نفسه، ومرتبطاً بموضوعه تحديداً، وبفعل قابل للملاحظة والقياس (use)، لا appreciate ولا know."],
+// L12 Planning
+["L12","hn","Giving students the course syllabus at the start of the term mainly helps the teacher to:",["inform them of the expected learning outcomes","replace daily lesson plans","grade their homework","avoid assessment"],"توزيع المنهج يوضح للطلاب المحتوى والجدول والنواتج المتوقعة من البداية."],
+["L12","hn","After finishing a unit, a teacher reviews what worked and what did not, and changes her next lessons accordingly. This phase of the teaching cycle is:",["reflection","preparation","administration","implementation"],"مرحلة التأمل تأتي بعد التنفيذ: الحكم على نجاح التعلم وتعديل التدريس القادم."],
+["L12","hn","According to the integrated-skills view, an L2 programme should ideally:",["develop the four skills together, linked within lessons","teach listening and speaking for a whole year before any reading","teach only reading and writing","teach each skill in a separate course with no links"],"التواصل الحقيقي يستعمل المهارات معاً، فالأفضل ربطها في الدرس الواحد (قراءة ثم نقاش ثم كتابة) بمستويات تناسب الطلاب."],
+// L13 Materials & technology
+["L13","hn","Which tool lets several students write and edit the same document online at the same time?",["Google Docs","Adobe Acrobat Reader","Microsoft Publisher","Audacity"],"مستندات قوقل تسمح بالكتابة والتعديل الجماعي في الوقت نفسه، وهي مناسبة للواجبات التعاونية."],
+["L13","hn","Grammarly, which checks grammar, spelling and style, mainly supports which skill?",["Writing","Listening","Speaking","Reading aloud"],"Grammarly أداة تدقيق للنص المكتوب، فهي تخدم الكتابة."],
+["L13","hn","Students type their essays in Microsoft Word. Which built-in feature helps them find and fix misspelled words?",["Spelling checker","Word count","Thesaurus","Translate"],"مدقق الإملاء يحدد الكلمات الخاطئة ويقترح الصحيح؛ المكنز للمترادفات، وعدّاد الكلمات للطول."],
+// L14 Learners & culture
+["L14","hn","EFL students raised in collectivist cultures are often reluctant to:",["ask questions in front of the whole class","work in groups","do homework","help classmates"],"في الثقافات الجماعية يتجنب الطالب الظهور منفرداً أو ما قد يُفهم إحراجاً للمعلم، فيقل سؤاله أمام الجميع؛ المجموعات الصغيرة تساعده."],
+["L14","hn","Which teacher behaviour is MOST likely to discourage students from participating?",["Criticising their answers immediately in front of the class","Praising effort","Giving enough wait time","Building on partly correct answers"],"النقد الفوري أمام الزملاء يرفع القلق ويجعل الطالب يتجنب المشاركة، بعكس الثناء على الجهد ووقت الانتظار."],
+// L15 Learning theories
+["L15","hn","In Chomsky's terms, the actual use of language in real situations — what speakers really say, including slips — is called:",["performance","competence","interference","interlanguage"],"الأداء هو الاستعمال الفعلي للغة، والكفاية هي المعرفة الضمنية بنظامها."],
+["L15","hn","A view of writing that sees every text as shaped by the writer's place, community and local surroundings is the:",["Ecological theory","Cognitive theory","Formalist theory","Behaviorist theory"],"النظرية البيئية ترى الكتابة متأثرة بالمكان والمجتمع والسياق المحلي، بينما المعرفية تركز على عمليات الكاتب الذهنية."],
+// L16 SLA
+["L16","hn","While speaking, Faisal says 'She don't… doesn't like tea' and fixes the error himself. This self-repair best shows his:",["metalinguistic awareness","lack of competence","cultural awareness","fossilization"],"تصحيح الطالب لنفسه يدل على وعيه بالقاعدة وقدرته على مراقبة لغته؛ الخطأ هنا زلة أداء وليس نقصاً في الكفاية."],
+["L16","hn","A shy, anxious learner takes in little even from comprehensible input, while a confident, motivated one takes in much more. Krashen explains this with the:",["Affective Filter Hypothesis","Natural Order Hypothesis","Monitor Hypothesis","Acquisition–Learning Hypothesis"],"القلق وضعف الدافعية يرفعان المصفاة الوجدانية فيُحجب المدخل، والثقة والدافعية تخفضانها."],
+// L17 Learner language
+["L17","hn","L1 features that differ from the L2, if they keep transferring negatively and are never noticed or corrected, may finally lead to:",["fossilization","positive transfer","native-like pronunciation","balanced bilingualism"],"الاختلاف بين اللغتين يسبب نقلاً سلبياً، وإذا تكرر الخطأ دون انتباه أو تغذية راجعة قد يثبت ويتحجر."],
+// L18 Language system & varieties
+["L18","hn","The most noticeable difference between British and American English that learners meet is in:",["vocabulary","grammar","the alphabet","basic word order"],"الفروق الأوضح في المفردات (lift/elevator) ثم التهجئة والنطق؛ أما القواعد وترتيب الكلمات فمتقاربة جداً."],
+["L18","hn","The plural ending in 'oxen' and 'children' is a remnant of:",["Old English","borrowing from French","Latin plural rules","modern American usage"],"-en لاحقة جمع قديمة من الإنجليزية القديمة بقيت في كلمات قليلة."],
+// L19 Phonetics & phonology
+["L19","hn","The word 'knee' is made up of how many phonemes?",["2","3","4","1"],"نعدّ الأصوات لا الحروف: k صامتة وee صوت واحد، فالكلمة /niː/ فيها صوتان."],
+["L19","hn","Many Arab learners hear 'pack' and 'back' as the same word. The main reason is that in Arabic [p] and [b]:",["are not two distinct phonemes","are spelled with the same English letter","are both nasal sounds","are homophones"],"العربية ليس فيها /p/ فونيماً مستقلاً، فالفرق بين الصوتين لا يغيّر المعنى في لغة المتعلم ولا ينتبه له."],
+// L20 Morphology
+// L21 Syntax
+["L21","hn","In 'The keys are on the shelf', the noun phrase 'the shelf' functions as the:",["object of the preposition","direct object","subject complement","indirect object"],"الاسم الذي يلي حرف الجر هو مفعول حرف الجر، والعبارة كلها on the shelf شبه جملة جر."],
+// L22 Semantics, pragmatics & discourse
+["L22","hn","'Ali bought a new phone. He uses it every day.' The words 'He' and 'it' are examples of ___ reference.",["anaphoric","cataphoric","exophoric","elliptical"],"الضميران يعودان على اسمين ذُكرا قبلهما، فهي إحالة سابقة (anaphoric)؛ الإحالة اللاحقة تشير إلى ما سيأتي."],
+]);
+
+// Coverage pass 2 — new questions for concepts not yet tested in the bank.
+// format: [lessonId, flags, stem, [correct, d1, d2, d3], explanation]
+window.QB = (window.QB || []).concat([
+// L01 Listening
+["L01","hn","When choosing a recording for a listening lesson, which factor most affects whether learners stay engaged and follow it?",["How interesting the topic is to the learners","The exact number of words in the text","Whether the speaker is male or female","The recording's file format"],"الموضوع الممتع للطلاب يشدّ انتباههم فيتابعون ويفهمون أكثر؛ بقية الخيارات لا تؤثر في التفاعل بنفس الدرجة."],
+["L01","hn","Before playing a recording, a teacher shows the title and asks pairs to write questions they expect the speaker to answer. This is a typical ___ activity.",["pre-listening","while-listening","post-listening","note-taking"],"كتابة أسئلة متوقعة قبل التشغيل تهيئة وتوقّع = نشاط ما قبل الاستماع. التدوين أثناء الاستماع، والتلخيص بعده."],
+// L02 Speaking
+["L02","hn","Pairs act out an extended conversation as a customer and a shop assistant, practising English while enjoying themselves. This activity is:",["Role-play","Show-and-tell","Gap-filling","Dictation"],"تقمّص شخصيات في حوار ممتد بين طالبين أو ثلاثة = لعب الأدوار، ويجمع بين ممارسة اللغة والمتعة."],
+["L02","hn","While students perform a role-play, the teacher should mainly:",["monitor and support as a facilitator, noting points for later feedback","take over the dialogue whenever a student hesitates","leave the room so students feel free","stop each pair to correct every error immediately"],"دور المعلم في لعب الأدوار ميسّر يراقب ويدعم ويؤجل التصحيح؛ لا يتكلم بدلهم ولا يقاطعهم."],
+["L02","hn","A teacher trains learners to use phrases such as 'Sorry, could you say that again?' and 'What do you call the thing that…?' to fix breakdowns in conversation. These are:",["repair strategies","memory strategies","affective strategies","avoidance strategies"],"عبارات طلب الإعادة والمساعدة تصلح انقطاع التواصل = استراتيجيات الإصلاح (جزء من الكفاية الاستراتيجية)."],
+// L03 Reading
+["L03","hn","A reading teacher first asks what learners already know and what interests them about the topic, and focuses on the overall meaning before details. This reflects a ___ approach.",["top-down","bottom-up","phonics-based","word-by-word"],"البدء بالمعرفة السابقة والاهتمامات والمعنى العام = المعالجة من أعلى إلى أسفل."],
+["L03","hn","Students highlight words such as 'however', 'as a result' and 'this' in a text and explain what each one links. The skill being developed is:",["recognizing text cohesion","scanning for numbers","skimming for the gist","guessing word meaning"],"تتبّع أدوات الربط والإحالة وكيف تربط الأفكار = فهم ترابط النص (cohesion)."],
+// L04 Vocabulary
+["L04","hn","Which statement about remembering new words is TRUE?",["The more often learners meet a word, the more easily they recall it","A word met once in a rich context is never forgotten","Rare words are remembered faster than common ones","Recycling words slows down learning"],"تكرار مصادفة الكلمة (التدوير) يسهّل تذكرها؛ مرة واحدة لا تكفي."],
+["L04","hn","A learner writes each new word, looks at it carefully, practises using it and reviews it several times during the week. This routine mainly builds:",["vocabulary","listening","grammar","intonation"],"كتابة الكلمة والنظر إليها والتدرّب عليها ومراجعتها = روتين لحفظ المفردات."],
+["L04","hn","A teacher writes 'desert' on the board and students add 'sand', 'camel', 'hot' and 'dunes'. The relationship between these words is mainly:",["association","synonymy","antonymy","homophony"],"كلمات مرتبطة بالموضوع نفسه في الذهن وليست مترادفة ولا متضادة = تداعي/ترابط المعاني."],
+// L05 Writing
+["L05","hn","With complete beginners, a writing lesson usually starts by giving learners:",["key words to build simple sentences from","a full essay to rewrite from memory","a free topic with no support","a research paper to summarize"],"المبتدئ يحتاج الكلمات أولاً ليبني منها جملاً قصيرة، ثم يتدرج."],
+["L05","hn","Words such as 'furthermore', 'consequently' and 'in contrast' that link sentences and ideas smoothly are called:",["transition words","compound words","content words","root words"],"كلمات الانتقال تربط الجمل والأفكار وتزيد ترابط الكتابة."],
+["L05","hn","After watching a short documentary about desert animals, students write down what they saw, without giving opinions or analysis. This task is mainly:",["reproduction","evaluation","analysis","creation"],"إعادة كتابة ما شاهدوه كما هو دون تحليل أو رأي = إعادة إنتاج للمحتوى."],
+["L05","hn","Writing a formal letter of complaint is most appropriate for learners at:",["intermediate and advanced levels","beginner level only","all levels equally","pre-literacy level"],"رسالة الشكوى تحتاج لغة رسمية وتراكيب أدق، فتناسب المتوسط والمتقدم."],
+["L05","hn","Students examine several model job-application letters, identify their typical structure and expressions, and then use these features in their own letters. This is the:",["genre approach","free writing approach","audio-lingual approach","controlled copying approach"],"تحليل نماذج نوع نصي محدد واستخدام سماته = المنهج القائم على النوع النصي."],
+["L05","hn","In a paragraph, the sentence that states the main idea is the:",["topic sentence","supporting sentence","concluding sentence","transition sentence"],"الجملة الرئيسية التي تحمل الفكرة العامة للفقرة = topic sentence."],
+["L05","hn","Before drafting, students write the topic in a circle and branch related ideas around it. This technique mainly supports:",["writing","listening","pronunciation","spelling tests"],"العصف الذهني والخرائط الذهنية لتوليد الأفكار وتنظيمها قبل الكتابة."],
+// L07 Methods I
+["L07","hn","Georgi Lozanov is the founder of:",["Suggestopedia","the Silent Way","Total Physical Response","Community Language Learning"],"لوزانوف أسس الإيحائية (استرخاء، موسيقى، إزالة الحواجز النفسية)."],
+// L08 Methods II
+["L08","hn","Students work in small teams, each member contributing to solving a shared problem. This is:",["cooperative learning","individual learning","passive learning","rote learning"],"العمل في مجموعات صغيرة لهدف مشترك = التعلم التعاوني."],
+// L09 Assessment I
+["L09","hn","A teacher collects students' completed worksheets and short quizzes during a unit, marks them and returns written feedback to guide further learning. This is:",["formal formative assessment","informal formative assessment","formal summative assessment","informal summative assessment"],"أثناء التعلم ولتحسينه = تكويني، وبأدوات مكتوبة مصححة = رسمي."],
+// L11 Objectives
+["L11","hn","Which verb should be avoided when writing a measurable lesson objective?",["understand","list","label","identify"],"understand لا يُلاحظ ولا يُقاس مباشرة؛ list وlabel وidentify أفعال سلوكية."],
+// L13 Materials / technology
+// L14 Learners
+["L14","hn","For a quiet, introverted student, which task is usually most comfortable?",["An independent project","A whole-class debate","A public role-play","A group competition"],"الانطوائي يرتاح للعمل الفردي الهادئ كالمشروع المستقل."],
+["L14","hn","Which statement about gestures across cultures is accurate?",["The same gesture can carry different meanings in different cultures","All cultures share the same gestures","Gestures never vary between languages","Gestures carry no meaning in communication"],"الإيماءة نفسها قد يختلف معناها من ثقافة لأخرى، لذا تُدرّس مع الثقافة."],
+// L15 Learning theories
+["L15","hn","Chomsky's generative grammar belongs to which view of language acquisition?",["Innatism (nativism)","Behaviorism","Social constructivism","Connectionism"],"القواعد التوليدية لتشومسكي تقوم على قدرة لغوية فطرية = الفطرية."],
+// L16 SLA
+["L16","hn","Krashen's claim that picking up a second language resembles the way children develop their mother tongue belongs to the:",["Acquisition–Learning Hypothesis","Monitor Hypothesis","Affective Filter Hypothesis","Natural Order Hypothesis"],"التمييز بين الاكتساب اللاواعي (مثل الطفل) والتعلم الواعي = فرضية الاكتساب والتعلم."],
+// L17 Learner language / TESOL
+["L17","hn","An airline runs an English course designed around the language its cabin crew need on the job. This is an example of:",["English for Specific Purposes (ESP)","General English","English for Academic Purposes (EAP)","English as a Lingua Franca"],"برنامج مصمم لاحتياجات الموظفين اللغوية في بيئة عملهم = الإنجليزية لأغراض خاصة."],
+["L17","hn","In the '5 R's' reflection framework, explaining a classroom event by linking it to a theory such as Vygotsky's ZPD is the stage of:",["Reasoning","Reporting","Responding","Reconstructing"],"Reasoning = تفسير الموقف وربطه بالنظرية والأدبيات."],
+["L17","hn","A learner never uses words or structures that are very different from Arabic so that classmates will not laugh at her mistakes. This behaviour is:",["avoidance","fossilization","overgeneralization","positive transfer"],"تجنّب الكلمات والتراكيب الصعبة خوفاً من الخطأ = التجنب."],
+// L18 Language system / varieties
+["L18","hn","Which of the following lists contains only design features of human language?",["arbitrariness, rapid fading, displacement","productivity, generalization, cultural transmission","displacement, duality, receptiveness","arbitrariness, imitation, translation"],"الاعتباطية والتلاشي السريع والإزاحة من خصائص هوكت؛ generalization وreceptiveness وimitation ليست منها."],
+["L18","hn","The statement 'every language follows rules and patterns at the level of sounds, words and sentences' shows that language is:",["systematic","random","fixed and unchanging","purely visual"],"اللغة نظام له قواعد وأنماط في كل مستوياتها."],
+["L18","hn","Which past participle form is most common in American English?",["learned","learnt","dreamt","spelt"],"الأمريكية تفضّل -ed (learned, dreamed)، والبريطانية تستعمل أحياناً -t (learnt)."],
+// L19 Phonetics
+["L19","hn","A teacher drills the word lists 'ship – sheep – shop' and 'cat – cut – cart'. The focus of this activity is mainly:",["phonetic (sound) differences","semantic relations","syntactic structure","morphological processes"],"الكلمات متقاربة ويختلف فيها صوت واحد، فالتركيز على الأصوات."],
+// L21 Syntax
+["L21","hn","In 'The exam was really difficult', 'really difficult' is a(n):",["adjective phrase","adverb clause","noun phrase","prepositional phrase"],"الرأس صفة (difficult) يسبقها ظرف مقوٍّ = عبارة وصفية."],
+["L21","hn","In 'We know what he wants', the clause 'what he wants' functions as the:",["direct object","subject","indirect object","subject complement"],"الجملة الاسمية تأتي بعد الفعل المتعدي know وتجيب عن ماذا = مفعول به مباشر."]
+]);
+
+// Amer chunk 3 — gap-filling questions (concepts not yet in the bank). Format: [lessonId, flags, stem, [correct, d1, d2, d3], explanation]
+window.QB = (window.QB || []).concat([
+["L02", "hn", "During controlled practice, a teacher lets students correct each other's mistakes before stepping in. The main benefit of this peer correction is that it:", ["encourages learner autonomy and cooperation", "removes the teacher's role in feedback", "punishes students who make errors", "avoids giving any feedback"], "تصحيح الأقران ينمّي الاستقلالية والتعاون ويجعل الطلاب ينتبهون للأخطاء."],
+["L03", "hn", "A reader decodes the words on the page while also drawing on what she already knows about the topic, and the two kinds of processing support each other. This reflects the ___ model of reading.", ["interactive", "bottom-up", "top-down", "linear decoding"], "النموذج التفاعلي يجمع المعالجة من الأسفل (الحروف والكلمات) والمعالجة من الأعلى (الخلفية والتوقع)."],
+["L04", "hn", "Teaching 'archery', 'fencing', 'rowing' and 'scuba diving' together in one lesson about sports is an example of presenting a:", ["Lexical set", "Collocation", "Polysemous word", "Homophone group"], "مجموعة كلمات من موضوع واحد تُدرَّس معاً = Lexical set."],
+["L04", "hn", "To check that students understand 'starving', which concept-checking question is MOST effective?", ["Is someone who is starving a little hungry or extremely hungry?", "What is the definition of 'starving'?", "How do you spell 'starving'?", "Do you understand 'starving'?"], "السؤال الثنائي يفحص درجة المعنى بسهولة دون مطالبة الطالب بتعريف معقد."],
+["L06", "hn", "In a PPP lesson on making requests, which activity belongs to the PRODUCTION stage?", ["Students role-play a hotel reception, making requests freely", "Students repeat model requests after the teacher", "Students complete a gap-fill with 'Could you…?'", "The teacher explains the form of 'Would you mind…?' on the board"], "الإنتاج = استخدام حر للغة في موقف تواصلي بأقل تدخل من المعلم، والهدف الطلاقة."],
+["L06", "hn", "In the PPP model, the PRACTICE stage mainly involves:", ["controlled and semi-controlled activities that build accuracy", "free communication with no teacher support", "the first explanation of the new language", "a formal end-of-unit test"], "الممارسة: أنشطة موجهة (تكرار، تعبئة فراغات) تركّز على الدقة قبل الانتقال للاستخدام الحر."],
+["L06", "hn", "In the PPP model, the teacher has the MOST control over the language during the:", ["Presentation stage", "Production stage", "Free role-play", "Peer feedback"], "في العرض يقدّم المعلم اللغة الجديدة ويشرحها، فهو الأكثر تحكماً."],
+["L08", "hn", "An approach that organises teaching around what learners need to DO with language (requesting, apologising, inviting) rather than around grammatical forms is the:", ["Functional (notional-functional) approach", "Grammar-Translation Method", "Structural approach", "Audio-Lingual Method"], "المنهج الوظيفي ينطلق من وظائف التواصل العملية لا من القواعد، وهو أساس التدريس التواصلي."],
+["L09", "hn", "A grammar test in which every item checks one isolated structure, such as choosing between 'much' and 'many', follows the ___ approach.", ["discrete-point", "integrative", "task-based performance", "holistic"], "كل سؤال يقيس عنصراً لغوياً واحداً منفصلاً = اختبار النقاط المنفصلة."],
+["L09", "hn", "A school picks a test because it is inexpensive, quick to administer and easy for the available staff to score. The principle being considered is:", ["Practicality", "Validity", "Authenticity", "Washback"], "العملية تخص الوقت والتكلفة وسهولة التطبيق والتصحيح."],
+["L09", "hn", "An oral interview scored only on the examiner's personal impression of the candidate is an example of a(n) ___ test.", ["subjective", "objective", "discrete-point", "standardized"], "الدرجة تعتمد على حكم المصحح وتقديره الشخصي، فهو اختبار ذاتي."],
+["L09", "hn", "Students swap paragraphs and assess a classmate's work using a short criteria sheet from the teacher. This is:", ["Peer assessment", "Self-assessment", "Diagnostic testing", "Summative assessment"], "تقييم الطالب لعمل زميله وفق معايير = تقييم الأقران."],
+["L09", "hn", "A well-designed test should ideally produce beneficial washback, which means it:", ["encourages good teaching and learning practices in class", "reduces the time needed to administer it", "makes the test harder for strong students", "ranks students precisely against each other"], "الأثر الرجعي الإيجابي: الاختبار يدفع المعلم والطالب نحو تعلم مفيد بدل التدريب على الحيل."],
+["L10", "hn", "A listening test uses very long, fast recordings, so scores depend mostly on memory rather than on listening comprehension. The test is weak in:", ["Construct validity", "Practicality", "Inter-rater reliability", "Intra-rater reliability"], "الاختبار صار يقيس قدرة أخرى (الذاكرة) غير المفهوم المقصود (فهم المسموع)، فهذا ضعف في صدق البناء."],
+["L10", "hn", "After a test, 18 of 30 students answered item 5 correctly (0.60). This figure is the item's:", ["Difficulty (facility) index", "Discrimination index", "Reliability coefficient", "Standard deviation"], "نسبة من أجابوا إجابة صحيحة من المجموع = معامل السهولة/الصعوبة."],
+["L10", "hn", "To assess writing, a teacher asks students to write an email inviting a friend to a party. This is a(n) ___ test.", ["direct", "indirect", "discrete-point", "objective"], "الطالب يؤدي المهارة نفسها (يكتب فعلاً)، فهو اختبار مباشر."],
+["L10", "hn", "A speaking observation sheet on which the teacher only ticks whether each behaviour (e.g., 'makes eye contact', 'uses linking words') is present or absent is a:", ["Checklist", "Rating scale", "Holistic rubric", "Analytic rubric"], "قائمة الرصد: نعم/لا لوجود السلوك فقط، بلا درجات أو أوصاف مستويات."],
+["L10", "hn", "A teacher marks the same essay in October and again in December and gives it very different scores. This reveals a problem with:", ["Intra-rater reliability", "Inter-rater reliability", "Content validity", "Washback"], "عدم اتساق المصحح نفسه مع نفسه عبر الزمن = ثبات المصحح الواحد."],
+["L10", "hn", "A teacher deletes every sixth word from a passage and asks learners to restore the missing words. This is a:", ["Cloze test (fixed-ratio deletion)", "Dictation", "Multiple-choice test", "Matching test"], "الحذف المنتظم لكل كلمة رقم n هو الصورة الكلاسيكية لاختبار Cloze."],
+["L10", "hn", "Which is a recognised WEAKNESS of multiple-choice items in language tests?", ["They allow guessing and cannot show whether learners can produce language", "They cannot be scored objectively", "They always take a long time to mark", "They can only be used to test listening"], "الاختيار من متعدد سريع وموضوعي التصحيح، لكنه يسمح بالتخمين ولا يقيس الكتابة والكلام مباشرة."],
+["L11", "hn", "Which verb in a task instruction demands the MOST critical thinking?", ["Categorize", "List", "Define", "Recall"], "التصنيف يحتاج فحص الخصائص والمقارنة بينها، أما list وdefine وrecall فاستدعاء فقط."],
+["L11", "hn", "Which lesson-plan element links each lesson to the national curriculum standards?", ["The learning objectives", "The seating plan", "The homework", "The procedure for handing out materials"], "الأهداف تُشتق من المعايير والنواتج المقررة، فهي حلقة الربط بينها وبين الدرس."],
+["L11", "hn", "In the SMART framework for learning objectives, the letters stand for:", ["Specific, Measurable, Achievable, Relevant, Time-bound", "Simple, Meaningful, Academic, Realistic, Teacher-led", "Specific, Motivational, Abstract, Relevant, Topic-centred", "Structured, Measurable, Assessed, Reviewed, Tested"], "SMART: محدد، قابل للقياس، قابل للتحقيق، مرتبط، ومحدد بزمن."],
+["L11", "hn", "An objective says students will complete the task 'by the end of this 45-minute lesson'. This phrase makes the objective:", ["Time-bound", "Specific", "Measurable", "Relevant"], "تحديد مدة الإنجاز هو شرط T في SMART."],
+["L11", "hn", "Which objective is written as a learner outcome rather than as a teacher activity?", ["Students will retell the main events of the story in five sentences.", "The teacher will present the past simple.", "The teacher will play a video about wild animals.", "The teacher will hand out worksheets to the groups."], "الهدف يصف ما سيفعله الطالب ويمكن ملاحظته، لا ما سيفعله المعلم."],
+["L11", "hn", "Which objective targets higher-order thinking skills (HOTS)?", ["Students will critique two opposing articles on fast food and justify which is more convincing.", "Students will recite the rule for forming plurals.", "Students will match ten words with their definitions.", "Students will copy the new words into their notebooks."], "النقد وإصدار الحكم بمبررات = تقويم، وهو من المهارات العليا مع التحليل والإبداع."],
+["L12", "hn", "Why do teachers ask concept-checking questions (CCQs) instead of simply asking 'Do you understand?'", ["Learners often say 'yes' without understanding, while CCQs show whether the meaning was grasped", "CCQs test spelling more reliably", "CCQs give instructions for pair work", "CCQs are used to grade oral performance"], "سؤال «فاهمين؟» جوابه غالباً نعم بلا فهم، وأسئلة CCQ قصيرة تكشف فهم المعنى فعلاً."],
+["L12", "hn", "Two students start chatting during silent reading. Without stopping the lesson, the teacher walks over and stands near their desks while still monitoring the class. This technique is:", ["Proximity control (a non-verbal cue)", "Public reprimand", "Time-out", "Detention"], "الاقتراب الهادئ يعيد الطالب للمهمة دون مقاطعة الدرس أو إحراجه."],
+["L12", "hn", "For a quiet individual written quiz or a teacher-led presentation on the board, the most suitable seating arrangement is usually:", ["Traditional rows facing the front", "Clusters of desks facing each other", "A horseshoe", "A closed circle"], "الصفوف التقليدية تركّز الانتباه على المعلم وتناسب العمل الفردي الهادئ والاختبارات."],
+["L12", "hn", "Students are working on a project that needs constant discussion and shared materials. The best seating arrangement is:", ["Clusters (groups of desks facing each other)", "Traditional rows facing the board", "Individual desks along the walls", "Lecture-hall seating"], "المجموعات المتقابلة تسهّل الحوار وتبادل المواد بين أعضاء الفريق."],
+["L12", "hn", "A whole-class debate works best in a horseshoe or circle mainly because these layouts:", ["let every student see and talk to the others and the teacher", "stop students from talking to each other", "give the teacher a hidden place to sit", "take up the least floor space"], "شكل U أو الدائرة يتيح التواصل البصري والكلامي بين الجميع."],
+["L12", "hn", "A class often switches between whole-class teaching, pair work and individual work within one lesson. The most suitable furniture is:", ["Light, movable desks and chairs that can be regrouped quickly", "Benches fixed to the floor", "Heavy desks in permanent rows", "Lecture seating with no desks"], "الأثاث المرن المتحرك يسمح بتغيير أنماط التفاعل بسرعة دون ضياع وقت."],
+["L12", "hn", "After setting up a timed reading task, which of these is an instruction-checking question (ICQ)?", ["Are you going to work alone or with a partner?", "What does 'scarce' mean?", "Do you like reading stories?", "Is the text about the past or the present?"], "ICQ يتأكد من طريقة تنفيذ النشاط (مع من، كم دقيقة، ماذا نكتب) لا من معنى اللغة."],
+["L12", "hn", "Before a complex group task begins, which is the most reliable check that learners understood the instructions?", ["Asking one or two students to explain or demonstrate the steps", "Asking 'Is everything clear?'", "Assuming understanding if nobody asks a question", "Repeating the instructions more loudly"], "إعادة الطالب للخطوات بكلماته أو عرضها عملياً دليل فعلي على الفهم."],
+["L12", "hn", "When should a teacher normally give instructions for a pair-work activity?", ["Before students move into pairs and before handing out the worksheet", "While students are moving their chairs", "After handing out the worksheet, while students are reading it", "At the end of the activity"], "بعد الحركة أو توزيع الأوراق ينشغل الطلاب ولا يسمعون، فالتعليمات تأتي قبلها."],
+["L12", "hn", "To make sure every member of a group contributes, the teacher should:", ["give each member a specific role (e.g., leader, note-taker, timekeeper, reporter)", "form groups of nine or ten students", "grade only the group leader", "let the strongest student do the task"], "الأدوار المحددة توزّع المسؤولية وتمنع الاتكالية."],
+["L12", "hn", "A student repeatedly talks loudly during lessons. Which response reflects effective classroom management?", ["Applying clear, pre-agreed rules with calm and consistent consequences", "Shouting at the student across the room", "Ignoring the behaviour all term", "Removing the student permanently without warning"], "الضبط الفعال: قواعد واضحة من البداية وعواقب هادئة ثابتة."],
+["L12", "hn", "The main purpose of setting classroom rules at the start of the year is to:", ["create a safe, orderly and supportive learning environment", "discourage students from asking questions", "increase the amount of homework", "shorten the school day"], "القواعد وسيلة لبيئة آمنة ومنظمة يتعلم فيها الجميع."],
+["L12", "hn", "Classroom rules are usually MOST effective when they are:", ["few, clear and developed together with the students", "long lists imposed without explanation", "changed every week", "applied only to some students"], "المشاركة في وضع القواعد تزيد شعور الطلاب بالمسؤولية والالتزام."],
+["L12", "hn", "The most effective way to establish a classroom routine, such as handing in homework, is to:", ["teach it explicitly, model it, let students practise it and reinforce it consistently", "mention it once on the first day", "punish students who break it before it is explained", "let students invent their own with no guidance"], "الروتين يُعلَّم كأي مهارة: شرح ونمذجة وممارسة وتعزيز مستمر."],
+["L12", "hn", "In a communicative lesson, reducing Teacher Talking Time (TTT) matters mainly because it:", ["increases Student Talking Time and chances to use the language", "lets the teacher mark homework during class", "removes the need for planning", "keeps the class silent"], "كل دقيقة يتكلم فيها المعلم أقل = فرصة أكبر للطلاب لممارسة اللغة."],
+["L12", "hn", "Which technique helps a teacher cut unnecessary Teacher Talking Time?", ["Using gestures, demonstration and a model example instead of long explanations", "Reading every text aloud twice", "Answering each question with a detailed lecture", "Repeating the instructions three times"], "الإشارة والنمذجة توصل الفكرة بسرعة وتترك وقتاً أطول للطلاب."],
+["L12", "hn", "Which helps a lesson move smoothly from one stage to the next?", ["Clear signposting language (e.g., 'Now that we've read the text, let's…') and checking instructions", "Changing activities suddenly without warning", "Waiting until every student finishes at exactly the same moment", "Raising the voice to regain attention"], "عبارات الانتقال الواضحة مع التحقق من التعليمات تجعل الانتقال سلساً."],
+["L12", "hn", "Lesson momentum is best maintained during transitions when the teacher:", ["has all materials, worksheets and media ready before the lesson", "searches for handouts between activities", "writes long notes on the board with back to the class", "asks students to wait with nothing to do"], "التحضير المسبق يمنع الفراغ والتشتت بين الأنشطة."],
+["L12", "hn", "A group task is taking longer than planned. The best response is usually to:", ["adjust the time limit and give a clear warning such as 'one minute left'", "cancel the rest of the lesson plan", "let the task run until everyone finishes", "stop at once without letting groups report back"], "المرونة في الوقت مع تنبيه واضح تحفظ النشاط وبقية الدرس."],
+["L12", "hn", "Some students finish an individual task much earlier than the rest of the class. The teacher should:", ["give them a prepared extension task linked to the lesson", "let them sit and wait", "let them do homework for another subject", "end the lesson for everyone"], "أنشطة الإثراء الجاهزة تبقي السريعين منشغلين بتعلم مفيد."],
+["L12", "hn", "For a professional teacher, a lesson plan is best described as:", ["a flexible roadmap of objectives, timing, activities and assessment", "a fixed script that must never change", "a document written only for inspectors", "a replacement for subject knowledge"], "الخطة دليل مرن يوجه الدرس ويسمح بالتعديل حسب الموقف."],
+["L12", "hn", "A teacher wants her lesson plan to show how she will check, at the end, that students reached the objectives. Which section does this?", ["Assessment / evaluation", "Lead-in", "Materials list", "Seating plan"], "عنصر التقويم يحدد أدوات التحقق من تحقق الأهداف."],
+["L13", "hn", "A teacher wants learners to practise writing short opinion posts and replying in writing to classmates' comments. Which platform suits this aim best?", ["Facebook (posts and comment threads)", "Snapchat (disappearing photo messages)", "YouTube (mainly watching videos)", "Instagram Stories (images that vanish in 24 hours)"], "فيسبوك يقوم على منشورات وتعليقات مكتوبة أطول نسبياً، بينما البقية تعتمد على الصورة أو الفيديو."],
+["L13", "hn", "A learner wants to practise live one-to-one conversation online with native or highly proficient English speakers. The most suitable tool is:", ["An online tutoring platform such as Cambly", "A vodcast", "A personal vlog", "An offline e-book reader"], "منصات المحادثة مثل Cambly تربط المتعلم بمتحدث مباشرة، والفودكاست والفلوق محتوى مسجّل بلا تفاعل."],
+["L14", "hn", "Which of the following is MOST likely to raise students' motivation in an EFL classroom?", ["Using interactive technology such as educational games and multimedia", "Giving a graded quiz at the start of every lesson", "Extending teacher lectures to cover more content", "Replacing pair work with silent individual tasks"], "التقنية التفاعلية تجعل الدرس أكثر جذباً ومشاركة فترفع الدافعية، والخيارات الأخرى تزيد القلق أو الملل."],
+["L15", "hn", "A teacher pairs a stronger learner with a weaker one so that the stronger partner can guide the other through the task. This practice is grounded mainly in:", ["Social constructivism (Vygotsky)", "Behaviorism", "Nativism", "Contrastive Analysis"], "البنائية الاجتماعية: الزميل الأقدر (MKO) يقدّم دعماً داخل منطقة النمو القريبة حتى يستقل المتعلم."],
+["L15", "hn", "According to Piaget, children first become able to think logically about real, concrete objects and events during the:", ["Concrete operational stage (about 7–11)", "Sensorimotor stage (0–2)", "Preoperational stage (2–7)", "Formal operational stage (11+)"], "التفكير المنطقي يبدأ في المرحلة الإجرائية المحسوسة، أما التفكير المجرد فيأتي لاحقاً في المرحلة الإجرائية الشكلية."],
+["L16", "hn", "To keep learners' affective filter low at the start of a lesson, a teacher should use:", ["a relaxed, low-stakes, personalised warm-up activity", "a surprise graded quiz", "immediate correction of every pronunciation error", "long silent individual reading"], "قلة الضغط والتوتر تخفض المرشح الوجداني فيزيد الاستيعاب والمشاركة."],
+["L17", "hn", "An Arab learner writes almost error-free English, yet listeners immediately notice that Arabic is the speaker's first language. This shows that L1 influence is usually MOST noticeable in:", ["Phonology (pronunciation)", "Semantics", "Pragmatics", "Morphology"], "اللكنة تكشف اللغة الأم بسرعة: عادات النطق تتكوّن مبكراً ويصعب تغييرها، لذلك يظهر أثر L1 في الأصوات أوضح من الصرف أو المعنى."],
+["L18", "hn", "American English and Australian English both grew out of the English taken overseas by settlers from:", ["England", "Canada", "France", "Germany"], "المستوطنون القادمون من إنجلترا نقلوا لغتهم إلى أمريكا ثم أستراليا، ثم تطوّر كل فرع محلياً."],
+["L19", "hn", "Which feature description fits the English sounds /m/, /n/ and /ŋ/?", ["[+nasal, −aspirated]", "[−nasal, +aspirated]", "[+nasal, +aspirated]", "[−nasal, −aspirated]"], "الهواء يخرج من الأنف فهي [+nasal]، والنفث خاص بالانفجارية المهموسة /p t k/ في بداية المقطع المنبور، فهي [−aspirated]."],
+["L20", "hn", "The past form 'went' bears no formal resemblance to 'go', and 'better' none to 'good'. This kind of irregular relationship is called:", ["Suppletion", "Reduplication", "Affixation", "Back-formation"], "Suppletion: صيغة مختلفة كلياً تؤدي المعنى النحوي بدل اللاحقة المعتادة، مثل go/went وgood/better."],
+["L20", "hn", "Which suffix is used to derive verbs, as in 'activate', 'captivate' and 'hyphenate'?", ["-ate", "-ly", "-ness", "-ment"], "-ate لاحقة اشتقاقية تكوّن أفعالاً، بينما -ly للظروف و-ness و-ment للأسماء."],
+["L21", "hn", "In the sentence 'The new teacher explained the rule', the words 'The new teacher' form a:", ["Noun phrase", "Verb phrase", "Prepositional phrase", "Adverb phrase"], "رأس العبارة الاسم teacher ومعه أداة وصفة، وهي تعمل فاعلاً، فهي عبارة اسمية NP."],
+["L22", "hn", "In Searle's classification of speech acts, utterances that state facts, make claims or describe how things are (e.g., 'The museum opens at nine') are:", ["Assertives (representatives)", "Directives", "Expressives", "Declarations"], "Assertives تُخبر عن الواقع ويمكن الحكم عليها بالصدق أو الكذب، أما Directives فتطلب من السامع فعل شيء."]
 ]);
 
 </script>
