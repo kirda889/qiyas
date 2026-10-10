@@ -469,7 +469,7 @@ html { scrollbar-width: none; }
     <p class="cover-year anim anim-d5">العام الدراسي 1448 – 1449 هـ</p>
     <p class="body-text anim anim-d5" style="opacity:0.5;">اسحب للأسفل أو اضغط ↓</p>
     <p class="body-text gold-text anim anim-d5" style="margin-top:1.2rem;font-weight:700;">إعداد الأستاذ يوسف الشمراني</p>
-  </div>
+  <p class="vcount" hidden style="margin-top:1rem;font-size:.85rem;opacity:.75;font-variant-numeric:tabular-nums;">عدد الزوار: <b class="vcount-n"></b></p></div>
 </section>
 
 <!-- ============================================ -->
@@ -1706,5 +1706,5 @@ document.querySelectorAll('.slide').forEach(function(s, i) {
 });
 </script>
 
-<style>#section-nav{transition:top .2s ease}</style><script>(function(){var n=document.getElementById("section-nav"),q=document.querySelector(".qt");if(!n||!q)return;function f(){var h=q.getBoundingClientRect().bottom;n.style.top=(h>0?(h+8)+"px":"")}addEventListener("scroll",f,{passive:true});addEventListener("resize",f);f()})();</script><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c26f510a6f2b4339af234504262282f4"}'></script></body>
+<style>#section-nav{transition:top .2s ease}</style><script>(function(){var n=document.getElementById("section-nav"),q=document.querySelector(".qt");if(!n||!q)return;function f(){var h=q.getBoundingClientRect().bottom;n.style.top=(h>0?(h+8)+"px":"")}addEventListener("scroll",f,{passive:true});addEventListener("resize",f);f()})();</script><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c26f510a6f2b4339af234504262282f4"}'></script><script>(function(){var K="step",F="vcount."+K,s=null,V=null;try{s=localStorage.getItem(F)}catch(e){}function show(){if(V===null)return;var t=Number(V).toLocaleString("en-US");document.querySelectorAll(".vcount").forEach(function(el){var n=el.querySelector(".vcount-n");if(n&&n.textContent!==t)n.textContent=t;if(el.hidden)el.hidden=false})}fetch("https://abacus.jasoncameron.dev/"+(s?"get":"hit")+"/"+(location.hostname==="yousefalshamrani.com"?"yousefalshamrani-com":"yousefalshamrani-test")+"/"+K).then(function(r){return r.json()}).then(function(d){if(typeof d.value!=="number")return;V=d.value;try{localStorage.setItem(F,"1")}catch(e){}show();new MutationObserver(show).observe(document.body,{childList:true,subtree:true})}).catch(function(){})})();</script></body>
 </html>
