@@ -1,0 +1,69 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>لوحة الإدارة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F5F3;--card:#fff;--ink:#172420;--mut:#5A6963;--line:#D9E1DD;--acc:#1F6B4C;--bad:#B42318;--warn:#8A5A00;--warnbg:#FFF4D6;--star:#E3A008}
+@media (prefers-color-scheme:dark){:root{--bg:#0F1512;--card:#16201B;--ink:#E6ECE8;--mut:#A3B1AA;--line:#2A3630;--acc:#5BC093;--bad:#FF8A80;--warn:#F2C35B;--warnbg:#3A3015}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',system-ui,sans-serif;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+h1{font-size:1.4rem;margin:8px 0 12px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer;font-weight:600}
+.tabs button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+.it{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px}
+.it.rep{border-color:var(--bad)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.85rem;color:var(--mut)}
+.meta b{color:var(--ink)}.st{color:var(--star);letter-spacing:1px}
+.tag{font-size:.75rem;border-radius:999px;padding:1px 9px;background:var(--warnbg);color:var(--warn);font-weight:700}
+.body{white-space:pre-wrap;margin:6px 0}
+.reply{background:var(--bg);border-radius:10px;padding:6px 10px;font-size:.9rem}
+.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.acts button{font:inherit;font-size:.85rem;border:1px solid var(--line);background:none;color:var(--ink);border-radius:999px;padding:4px 12px;cursor:pointer}
+.acts button.danger{color:var(--bad)}.acts button.ok{color:var(--acc);border-color:var(--acc)}
+textarea,input{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px}
+.login{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:10px}
+.empty{color:var(--mut)}
+</style></head><body><div class="wrap">
+<h1>لوحة إدارة التقييمات</h1>
+<div id="app"></div>
+</div>
+<script>
+(function(){
+var API="https://api.yousefalshamrani.com/v1", K="qr.admin";try{if(location.hostname==="localhost"&&localStorage.getItem("qr.dev")==="1")API="http://localhost:8787/v1"}catch(e){}var _x, EX={tarbawi:"التربوي",english2:"التخصصي EN2",step:"STEP"};
+var m=location.hash.match(/key=([^&]+)/); if(m){try{localStorage.setItem(K,decodeURIComponent(m[1]))}catch(e){} history.replaceState(null,"",location.pathname)}
+var key=""; try{key=localStorage.getItem(K)||""}catch(e){}
+var app=document.getElementById("app"), filter="pending";
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function api(method,path,body){return fetch(API+path,{method:method,headers:{"X-Admin-Key":key,"Content-Type":"application/json"},body:body?JSON.stringify(body):undefined}).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||"خطأ");return d})})}
+function stars(n){return "★★★★★".slice(0,n)+"☆☆☆☆☆".slice(0,5-n)}
+function date(s){return s?new Date(s).toLocaleString("ar-SA-u-nu-latn",{dateStyle:"medium",timeStyle:"short"}):""}
+function login(msg){app.innerHTML='<div class="login"><b>أدخل مفتاح الإدارة</b><input id="k" dir="ltr" placeholder="المفتاح"><button id="go" class="tabs" style="all:unset;cursor:pointer;background:var(--acc);color:#fff;border-radius:999px;padding:8px 18px;width:fit-content;font-weight:700">دخول</button>'+(msg?'<span style="color:var(--bad)">'+esc(msg)+'</span>':'')+'</div>';
+ document.getElementById("go").onclick=function(){key=document.getElementById("k").value.trim();try{localStorage.setItem(K,key)}catch(e){}show()}}
+function show(){
+ if(!key) return login();
+ if(filter==="takedowns") return api("GET","/admin/takedowns").then(function(d){frame(null);var L=document.getElementById("list");
+   L.innerHTML=d.items.length?d.items.map(function(t){return '<div class="it'+(t.status==="new"?" rep":"")+'" data-id="'+t.id+'"><div class="meta"><b>بلاغ رقم '+t.id+'</b><span class="tag">'+({new:"جديد",removed:"أُزيل",rejected:"مرفوض"}[t.status])+'</span><span>'+date(t.created_at)+'</span></div><div class="body"><b>المُبلِّغ:</b> '+esc(t.name)+(t.capacity?' — '+esc(t.capacity):'')+'<br><b>التواصل:</b> '+esc(t.contact)+'<br><b>الرابط:</b> '+esc(t.url)+'<br><b>الحق:</b> '+esc(t.right_desc)+(t.details?'<br><b>تفاصيل:</b> '+esc(t.details):'')+'</div><div class="acts"><button class="ok" data-td="removed">أزلت المحتوى</button><button data-td="rejected">رفض</button><button data-td="new">إرجاع لجديد</button></div></div>'}).join(""):'<p class="empty">لا توجد بلاغات حقوق.</p>'}).catch(fail);
+ api("GET","/admin/reviews?filter="+filter).then(function(d){frame(d.counts);var L=document.getElementById("list");
+   L.innerHTML=d.items.length?d.items.map(function(r){return '<div class="it'+(r.reports?" rep":"")+'" data-id="'+r.id+'"><div class="meta"><b>'+esc(r.name||"زائر")+'</b><span class="st">'+stars(r.stars)+'</span><span>'+EX[r.exam]+'</span><span>'+date(r.created_at)+'</span>'+
+    (r.text_status==="pending"?'<span class="tag">بانتظار الموافقة</span>':'')+(r.status==="hidden"?'<span class="tag">مخفي</span>':'')+(r.reports?'<span class="tag">بلاغات: '+r.reports+'</span>':'')+(r.edited?'<span>معدّل</span>':'')+'</div>'+
+    (r.body?'<div class="body">'+esc(r.body)+'</div>':'<div class="empty">(نجوم بدون تعليق)</div>')+(r.reply?'<div class="reply"><b>ردك:</b> '+esc(r.reply)+'</div>':'')+
+    '<div class="acts">'+(r.text_status==="pending"?'<button class="ok" data-a="publish">نشر التعليق</button>':'')+'<button data-a="reply">رد</button><button data-a="edit">تعديل</button>'+
+    (r.status==="hidden"?'<button data-a="unhide">إظهار</button>':'<button data-a="hide">إخفاء</button>')+(r.reports?'<button data-a="clear_reports">تجاهل البلاغات</button>':'')+'<button class="danger" data-a="delete">حذف</button></div><div class="ed"></div></div>'}).join(""):'<p class="empty">لا شيء هنا.</p>'}).catch(fail)}
+function fail(e){ if(/مصرّح/.test(e.message)){key="";try{localStorage.removeItem(K)}catch(x){} login("المفتاح غير صحيح")} else app.insertAdjacentHTML("beforeend",'<p style="color:var(--bad)">'+esc(e.message)+'</p>')}
+function frame(c){c=c||{};var T=[["pending","بانتظار الموافقة",c.pending],["reported","المبلّغ عنها",c.reported],["hidden","المخفية",c.hidden],["all","الكل",c.total],["takedowns","بلاغات الحقوق",c.takedowns]];
+ app.innerHTML='<div class="tabs">'+T.map(function(t){return '<button data-f="'+t[0]+'" aria-pressed="'+(filter===t[0])+'">'+t[1]+(t[2]!=null?' ('+(t[2]||0)+')':'')+'</button>'}).join("")+'</div><div id="list"></div>'}
+app.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;
+ if(b.dataset.f){filter=b.dataset.f;return show()}
+ var it=b.closest(".it"); if(!it) return; var id=it.dataset.id;
+ if(b.dataset.td) return api("POST","/admin/takedowns/"+id,{status:b.dataset.td}).then(show).catch(fail);
+ var a=b.dataset.a, ed=it.querySelector(".ed");
+ if(a==="delete"&&!confirm("حذف نهائي؟"))return;
+ if(a==="reply"){ed.innerHTML='<textarea rows="3" placeholder="ردك يظهر تحت التعليق"></textarea><div class="acts"><button class="ok" data-a="save-reply">حفظ الرد</button></div>';return}
+ if(a==="edit"){var body=it.querySelector(".body");ed.innerHTML='<input class="e-name" placeholder="الاسم" value="'+esc(it.querySelector(".meta b").textContent==="زائر"?"":it.querySelector(".meta b").textContent)+'"><input class="e-stars" type="number" min="1" max="5" value="'+(it.querySelector(".st").textContent.split("★").length-1)+'"><textarea class="e-body" rows="4">'+esc(body?body.textContent:"")+'</textarea><div class="acts"><button class="ok" data-a="save-edit">حفظ</button></div>';return}
+ var payload={action:a};
+ if(a==="save-reply") payload={action:"reply",reply:ed.querySelector("textarea").value};
+ if(a==="save-edit") payload={action:"edit",name:ed.querySelector(".e-name").value,stars:ed.querySelector(".e-stars").value,body:ed.querySelector(".e-body").value};
+ api("POST","/admin/reviews/"+id,payload).then(show).catch(fail)});
+show();
+})();
+</script></body></html>
