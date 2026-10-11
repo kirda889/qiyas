@@ -440,13 +440,22 @@ body{font-size:1rem;font-weight:500}
           (g.trap ? '<div class="qx-trap">⚠ ' + rich(g.trap) + "</div>" : "") + "</div></li>";
       }).join("") + "</ul></div>";
   }
+  // دليل مختصر تحت العجلة على الجوال فقط (العجلة الصغيرة لا تتسع للعناصر)
+  function legend(m) {
+    return '<div class="qx-leg">' + m.groups.map(function (g, i) {
+      var col = g.c || PAL[i % PAL.length], nm = esc(g.n || "");
+      return '<div class="qx-lg" style="--c:' + col + '"><b>' + (g.d ? '<button type="button" class="qx-dl" data-deep="' + g.d + '">' + nm + "</button>" : nm) + (g.ar && g.ar !== g.n ? " <small>" + esc(g.ar) + "</small>" : "") + '</b><span class="qx-lgi">' +
+        (g.items || []).map(function (it) { var t = esc(it.n) + (it.who ? ' <em>· ' + esc(it.who) + "</em>" : ""); return it.d ? '<button type="button" class="qx-dl" data-deep="' + it.d + '">' + t + "</button>" : "<i>" + t + "</i>"; }).join("") + "</span></div>";
+    }).join("") + "</div>";
+  }
+  // كل خريطة بشكل واحد فقط: عجلة، أو خطوط، أو شجرة، أو بطاقات (طلب يوسف: لا تتكرر الخريطة بشكلين)
   function map(m) {
     if (!m || !m.groups) return "";
-    var head = m.title ? '<div class="qx-mt"><span class="qx-badge">خريطة مفاهيمية</span></div>' : "";
-    if (m.type === "tree") return '<figure class="qx-map">' + head + tree(m) + "</figure>";
-    if (m.type === "fan") return '<figure class="qx-map">' + head + fan(m) + "</figure>";
-    var w = m.type === "cards" ? "" : '<div class="qx-wheelbox">' + wheel(m, false) + wheel(m, true) + "</div>";
-    return '<figure class="qx-map">' + head + w + cards(m) + "</figure>";
+    var open = '<figure class="qx-map"' + (window.QX_LTR ? ' dir="ltr"' : "") + ">";
+    if (m.type === "tree") return open + tree(m) + "</figure>";
+    if (m.type === "fan") return open + fan(m) + "</figure>";
+    if (m.type === "cards") return open + cards(m) + "</figure>";
+    return open + '<div class="qx-wheelbox">' + wheel(m, false) + wheel(m, true) + "</div>" + legend(m) + "</figure>";
   }
 
   // ---------- أجزاء القسم ----------
@@ -523,7 +532,7 @@ body{font-size:1rem;font-weight:500}
     ".qx-en{font-size:1rem;line-height:1.75;text-align:left}.qx-ar{font-size:.92rem;color:var(--muted,#4A5953);margin:2px 0 8px}",
     ".qx-ex{margin:10px 0 4px;padding:10px 14px;border-radius:14px;border:1px dashed var(--rule-strong,#C9D3CE)}.qx-exi+.qx-exi{border-top:1px solid var(--rule,#E1E7E4);padding-top:8px;margin-top:8px}",
     ".qx-map{margin:10px 0 16px;padding:0}.qx-mt{margin-bottom:6px}.qx-badge{display:inline-block;font-size:.72rem;font-weight:800;color:#fff;background:var(--accent,#1F6B4C);border-radius:999px;padding:1px 10px}",
-    ".qx-wheelbox{max-width:620px;margin:0 auto 10px}.qx-wheel{width:100%;height:auto;display:block}.qx-wheel text{font-family:inherit}.qx-c{display:none}",
+    ".qx-wheelbox{max-width:760px;margin:0 auto 10px}.qx-wheel{width:100%;height:auto;display:block}.qx-wheel text{font-family:inherit}.qx-c{display:none}",
     "@media (max-width:560px){.qx-f{display:none}.qx-c{display:block;max-width:340px;margin:0 auto}}",
     ".qx-node{fill:var(--sheet,#fff)}.qx-core{fill:var(--sheet,#fff);stroke:var(--rule,#D9E1DD);stroke-width:2}.qx-ink{fill:var(--ink,#172420)}.qx-sub{fill:var(--muted,#4A5953)}.qx-gold{fill:#B8892E}",
     ".qx-lat{font-family:Georgia,'Times New Roman',serif}",
@@ -601,6 +610,9 @@ body{font-size:1rem;font-weight:500}
     ".qx-fk .qx-trap{margin-top:6px}",
     "@media (max-width:560px){.qx-fan{grid-template-columns:1fr;--sp:16px}.qx-froot{margin-bottom:var(--g)}.qx-froot::after{display:none}.qx-fkids{padding-inline-start:calc(2 * var(--sp))}.qx-fkids>li:first-child::after{top:calc(-1 * var(--g) - 1px)}}",
     "@media (prefers-reduced-motion:reduce){.qx-froot,.qx-fkids>li{animation:none}}",
+    ".qx-leg{display:none}",
+    "@media (max-width:560px){.qx-leg{display:grid;gap:8px;margin-top:4px}.qx-lg{border-inline-start:4px solid var(--c);padding:3px 10px}.qx-lg>b{display:block;color:var(--c);font-size:.92rem}.qx-lg>b small{color:var(--muted,#4A5953);font-weight:600;font-size:.76rem}.qx-lg .qx-dl{color:var(--c)}.qx-lgi{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}.qx-lgi i,.qx-lgi .qx-dl{font-style:normal;font-size:.8rem;background:var(--paper,#EEF3F0);border-radius:999px;padding:1px 9px}.qx-lgi em{font-style:normal;font-weight:600;color:var(--muted,#4A5953)}}",
+    ".qx-map[dir=ltr] .qx-hd b,.qx-map[dir=ltr] .qx-th b{text-align:left}",
     ".qx-muted{color:var(--muted,#4A5953)}html.qx-lock,html.qx-lock body{overflow:hidden}",
     "@media (prefers-reduced-motion:reduce){#qx-drawer .qx-pane,#qx-drawer .qx-dim{transition:none}}"
   ].join("\n");
@@ -634,7 +646,7 @@ body{font-size:1rem;font-weight:500}
     if (br.length < 2) return "";
     var lat = /[A-Za-z]/.test(br[0].h[0]);
     var title = isPair(l.goal) || l.en ? (l.en || "") : "";
-    return '<details class="qx-rev"><summary><span class="qx-badge">خريطة المراجعة</span> مراجعة الدرس كاملاً في نظرة واحدة</summary><div class="qx-tree">' +
+    return '<details class="qx-rev"><summary><span class="qx-badge">خريطة المراجعة</span> مراجعة الدرس كاملاً في نظرة واحدة</summary><div class="qx-tree"' + (window.QX_LTR ? ' dir="ltr"' : "") + ">" +
       '<div class="qx-root">' + esc(l.ar || "") + (l.en ? '<small class="qx-lat" dir="ltr">' + esc(l.en) + "</small>" : "") + "</div>" +
       rows(br.map(function (b, i) {
         return '<div class="qx-br" style="--c:' + b.c + ";--i:" + i + '"><div class="qx-bh"' + (lat ? ' dir="ltr"' : "") + ">" + esc(b.h[0]) + (b.h[1] ? "<small>" + esc(b.h[1]) + "</small>" : "") + '</div><ul>' +
@@ -4028,6 +4040,33 @@ window.QB = (window.QB || []).concat([
 ["L22", "hn", "In Searle's classification of speech acts, utterances that state facts, make claims or describe how things are (e.g., 'The museum opens at nine') are:", ["Assertives (representatives)", "Directives", "Expressives", "Declarations"], "Assertives تُخبر عن الواقع ويمكن الحكم عليها بالصدق أو الكذب، أما Directives فتطلب من السامع فعل شيء."]
 ]);
 
+// خرائط موقع الإنجليزي تُعرض من اليسار إلى اليمين (طلب يوسف 2026-10-11)
+window.QX_LTR = true;
+// داخل خريطة اتجاهها LTR تنقلب الأسطر العربية التي فيها كلمة إنجليزية أو رقم أو «؟» في آخرها.
+// الحل: عزل كل نص عربي في الخرائط باتجاه RTL (U+2067 … U+2069)، وعزل رموز النطق مثل /triː/ داخله باتجاه LTR (U+2066 … U+2069).
+// يُستدعى في آخر ملف d_ (d_zc_th.js) بعد اكتمال كل الخرائط والأدراج.
+window.QX_LTR_FIX = function () {
+  var C = String.fromCharCode, RLI = C(0x2067), LRI = C(0x2066), PDI = C(0x2069);
+  var AR = new RegExp("[" + C(0x0600) + "-" + C(0x06FF) + "]");
+  function w(s) {
+    if (typeof s !== "string" || !AR.test(s) || s.charAt(0) === RLI) return s;
+    return RLI + s.replace(/\/[^\s\/]+\//g, function (x) { return LRI + x + PDI; }) + PDI;
+  }
+  function fix(m) {
+    if (!m || !m.groups) return;
+    if (m.title) m.title = m.title.map(w);
+    m.groups.forEach(function (g) {
+      ["n", "short", "ar", "idea", "trap", "who"].forEach(function (k) { if (g[k]) g[k] = w(g[k]); });
+      (g.items || []).forEach(function (it) {
+        ["n", "ar", "who"].forEach(function (k) { if (it[k]) it[k] = w(it[k]); });
+        if (it.kw) it.kw = it.kw.map(w);
+      });
+    });
+  }
+  (window.LESSONS || []).forEach(function (l) { fix(l.map); (l.sec || []).forEach(function (s) { fix(s.map); }); });
+  var D = window.DEEP || {}; Object.keys(D).forEach(function (k) { fix(D[k].map); });
+};
+
 // إثراء درس L15 (نظريات التعلم): خريطة العجلة + الفكرة ببساطة + أمثلة + شرح موسّع (الدرج)
 (function () {
   if (!window.QX) return;
@@ -4161,7 +4200,8 @@ window.QB = (window.QB || []).concat([
       body: [["Rogers, a psychologist, carried his client-centred therapy into education (*Freedom to Learn*, 1969). Learning is most effective when it is **learner-centred**, personally meaningful and happens in a **non-threatening** climate. The teacher is a **facilitator** who creates that climate and trusts learners to direct much of their own learning, not a transmitter of facts.",
               "نقل روجرز فكرة العلاج المتمركز حول العميل إلى التعليم: التعلم أنجح إذا تمركز حول المتعلم وكان ذا معنى له وفي جو آمن. والمعلم ميسّر لا ناقل معلومات."]],
       pts: [["[[Community Language Learning|en.meth.humanistic]] (Curran) is built on Rogers' counselling model: the teacher acts as a 'counsellor'.", "التعلم الجماعي للغة مبني على نموذج روجرز"]],
-      traps: [["Rogers = teacher as **facilitator**; this places him in **humanism**.", "المعلم ميسّر: روجرز والإنسانية"]],
+      traps: [["Rogers = teacher as **facilitator**; this places him in **humanism**.", "المعلم ميسّر: روجرز والإنسانية"],
+              ["Methods such as CLL and Suggestopedia are classed as **humanistic** methods.", "CLL والإيحائية طرق إنسانية"]],
       src: "Brown, Principles of Language Learning and Teaching; Richards & Rodgers, Approaches and Methods in Language Teaching" }
   });
 })();
@@ -4789,30 +4829,27 @@ window.QB = (window.QB || []).concat([
   window.DEEP = window.DEEP || {};
 
   /* ===================== L07 — Methods I ===================== */
+  // عجلة الطرق: كل عنصر = الطريقة + أشهر أسمائها (who) + فكرتها في سطر (ar)؛ العجلة وحدها بلا بطاقات
   QX.enrich("L07", null, { map: {
     title: ["Teaching Methods I", "الطرق التقليدية والإنسانية"],
     groups: [
-      { n: "Grammar-Translation", short: "GTM", ar: "القواعد والترجمة", idea: "اللغة نظام قواعد يُحفظ ويُترجم",
-        items: [{ n: "L1 + rules", ar: "شرح باللغة الأم وقواعد صريحة", kw: ["deductive", "translation"], d: "en.meth.gtm" },
-                { n: "Reading", ar: "قراءة وكتابة لا كلام", kw: ["literary texts", "accuracy"], d: "en.meth.gtm" }],
-        trap: "الطريقة التي تهمل الكلام = القواعد والترجمة" },
-      { n: "Direct Method", short: "Direct", ar: "المباشرة", idea: "اللغة الهدف فقط كما يتعلم الطفل لغته",
-        items: [{ n: "No L1", who: "Berlitz", ar: "بلا ترجمة إطلاقاً", kw: ["target language only"], d: "en.meth.direct" },
-                { n: "Inductive", ar: "القاعدة تُستنتج من الأمثلة", kw: ["inductive grammar"], d: "en.meth.direct" }],
-        trap: "تُسمّى أيضاً «الطريقة الطبيعية» لأنها تحاكي تعلّم الطفل لغته الأم" },
-      { n: "Audio-Lingual", short: "ALM", ar: "السمعية الشفهية", idea: "التعلم عادة: تقليد وتكرار وتعزيز",
-        items: [{ n: "Drills", ar: "تدريبات الأنماط والترديد", kw: ["pattern practice", "choral"], d: "en.meth.alm" },
-                { n: "Mim-mem", ar: "حفظ الحوارات وتقليدها", kw: ["dialogue memorization"], d: "en.meth.alm" }],
-        trap: "قائمة على السلوكية (سكنر) والبنيوية، ولا تشرح القاعدة" },
-      { n: "Humanistic", ar: "الطرق الإنسانية", idea: "المشاعر والحواجز النفسية قبل اللغة",
-        items: [{ n: "Silent Way", who: "Gattegno", ar: "المعلم صامت والطلاب يكتشفون", kw: ["rods"], d: "en.meth.humanistic" },
+      { n: "Grammar-Translation", short: "GTM", ar: "القواعد والترجمة",
+        items: [{ n: "L1 + rules", who: "Plötz et al.", ar: "ترجمة وقواعد باللغة الأم", d: "en.meth.gtm" },
+                { n: "Reading", ar: "تهمل الكلام: قراءة وكتابة", d: "en.meth.gtm" }] },
+      { n: "Direct Method", short: "Direct", ar: "المباشرة",
+        items: [{ n: "Series", who: "Gouin", ar: "أفعال متتابعة بلا ترجمة", d: "en.meth.direct" },
+                { n: "Direct", who: "Berlitz", ar: "اللغة الهدف فقط", d: "en.meth.direct" }] },
+      { n: "Oral & Audio-Lingual", short: "Oral", ar: "الشفهية البنيوية",
+        items: [{ n: "Situational", who: "Palmer, Hornby", ar: "تراكيب في مواقف", d: "en.meth.sit" },
+                { n: "Audio-Lingual", who: "Fries · Lado", ar: "تدريبات أنماط وتكرار", d: "en.meth.alm" },
+                { n: "Habits", who: "Skinner", ar: "سلوكية: تقليد وتعزيز", d: "en.skinner" }] },
+      { n: "Humanistic", ar: "الطرق الإنسانية",
+        items: [{ n: "Silent Way", who: "Gattegno", ar: "المعلم صامت والطالب يكتشف", d: "en.meth.humanistic" },
                 { n: "Suggestopedia", who: "Lozanov", ar: "استرخاء وموسيقى باروك", d: "en.meth.humanistic" },
-                { n: "CLL", who: "Curran", ar: "المعلم مرشد ناصح", kw: ["counselor"], d: "en.meth.humanistic" }],
-        trap: "التدريس تابع للتعلّم = الطريقة الصامتة" },
-      { n: "Comprehension-based", short: "Listen first", ar: "الفهم قبل الإنتاج", idea: "مدخلات مفهومة وصمت مسموح به في البداية",
-        items: [{ n: "TPR", who: "Asher", ar: "استجابة جسدية للأوامر", kw: ["Simon Says"], d: "en.meth.tpr" },
-                { n: "Natural", who: "Krashen & Terrell", ar: "المدخل الطبيعي", kw: ["i+1"], d: "en.meth.natural" }],
-        trap: "المدخل الطبيعي لكراشن وتيريل، لا لتشومسكي" }
+                { n: "CLL", who: "Curran", ar: "المعلم مرشد ناصح", d: "en.meth.humanistic" }] },
+      { n: "Comprehension-based", short: "Listen first", ar: "الفهم قبل الإنتاج",
+        items: [{ n: "TPR", who: "Asher", ar: "أوامر واستجابة جسدية", d: "en.meth.tpr" },
+                { n: "Natural", who: "Krashen", ar: "مع تيريل · مدخل مفهوم", d: "en.meth.natural" }] }
     ] } });
 
   QX.enrich("L07", "Approach, method, technique", {
@@ -4852,7 +4889,8 @@ window.QB = (window.QB || []).concat([
             ["Grammar taught **deductively**: rule first, then practice.", "القاعدة أولاً (استنباطي)"],
             ["Bilingual word lists, literary texts, translation in both directions.", "قوائم مفردات ونصوص أدبية وترجمة"],
             ["**Accuracy** is the standard; little or no attention to pronunciation or speaking.", "الدقة أولاً ولا اهتمام بالنطق والكلام"],
-            ["Teacher-centred; the same treatment for all learners.", "متمركزة حول المعلم"]],
+            ["Teacher-centred; the same treatment for all learners.", "متمركزة حول المعلم"],
+            ["**No single founder**: it grew in 19th-century German (Prussian) schools — in the US it was first called the 'Prussian Method'. Its best-known textbook writers: **Seidenstücker, Plötz, Ollendorf, Meidinger**.", "لا مؤسس واحد لها: نشأت في مدارس بروسيا، وأشهر مؤلفيها زايدنشتوكر وبلوتس وأولندورف وماينيغر"]],
       traps: [["Grammar-Translation = deductive; the Direct Method and ALM = inductive.", "الترجمة استنباطية، والمباشرة والسمعية استقرائية"],
               ["'Ignores speaking' or 'focuses on reading and writing' points to GTM.", "إهمال الكلام = القواعد والترجمة"]],
       src: "Richards & Rodgers, Approaches and Methods; Larsen-Freeman & Anderson, Techniques and Principles in Language Teaching" },
@@ -4862,9 +4900,11 @@ window.QB = (window.QB || []).concat([
       pts: [["Classes are conducted only in the target language.", "اللغة الهدف فقط"],
             ["Concrete words through objects, pictures and demonstration; abstract words through association of ideas.", "المحسوس بالأشياء والمجرد بربط الأفكار"],
             ["Grammar taught **inductively**; oral skills built through question-and-answer exchanges.", "قاعدة استقرائية وسؤال وجواب"],
-            ["Correct pronunciation and everyday vocabulary are emphasised.", "النطق الصحيح ومفردات الحياة اليومية"]],
+            ["Correct pronunciation and everyday vocabulary are emphasised.", "النطق الصحيح ومفردات الحياة اليومية"],
+            ["Who's who: **Gouin** (the earlier Series Method — sequences of related actions), **Sauveur** (natural, oral teaching in Boston from the late 1860s), **Berlitz** (spread it through his schools).", "غوان (طريقة السلاسل)، وسوفور، وبيرليتز الذي نشرها بمدارسه"]],
       traps: [["Direct Method ≠ Natural Approach: the first is a 19th-century method; the second is Krashen & Terrell (1983).", "الطريقة الطبيعية غير المدخل الطبيعي"],
-              ["It emphasises listening and speaking — not reading and writing.", "التركيز استماع وكلام"]],
+              ["It emphasises listening and speaking — not reading and writing.", "التركيز استماع وكلام"],
+              ["'Gouin and Berlitz' → the **Direct Method** family, not Audio-Lingual.", "غوان وبيرليتز = المباشرة"]],
       src: "Richards & Rodgers, Approaches and Methods; Brown, Teaching by Principles" },
     "en.meth.alm": { k: "Methods", t: ["The Audio-Lingual Method", "الطريقة السمعية الشفهية"],
       body: [["ALM developed in the United States in the 1950s, partly from intensive army language programmes. It combined **structural linguistics** (language as patterns of sounds and structures) with **behaviorist** psychology (learning as habit formation).",
@@ -4873,7 +4913,8 @@ window.QB = (window.QB || []).concat([
       pts: [["Dialogue memorisation (mim-mem) and **pattern drills**: repetition, substitution, transformation, chain, backward build-up.", "حفظ الحوار وتدريبات الأنماط"],
             ["Errors are avoided; correct responses get immediate **reinforcement**.", "منع الخطأ والتعزيز الفوري"],
             ["Grammar through examples — no explicit rules.", "القاعدة من الأمثلة دون شرح"],
-            ["Minimal pairs for pronunciation; order L → S → R → W.", "الثنائيات الصغرى وترتيب المهارات"]],
+            ["Minimal pairs for pronunciation; order L → S → R → W.", "الثنائيات الصغرى وترتيب المهارات"],
+            ["Who's who: **Charles Fries** (University of Michigan, structural linguistics), **Robert Lado** (also Contrastive Analysis), **Nelson Brooks** (coined 'audiolingualism', 1964); learning theory from **Skinner**'s behaviorism.", "فريز ولادو وبروكس، والنظرية من سلوكية سكنر"]],
       traps: [["Behaviorism + habit formation + drills = ALM (not CLT).", "سلوكية + عادات + تدريبات = السمعية الشفهية"],
               ["In ALM the teacher is the model and controller; learners imitate.", "المعلم نموذج ومتحكم"]],
       src: "Richards & Rodgers, Approaches and Methods; Larsen-Freeman & Anderson, Techniques and Principles" },
@@ -4897,6 +4938,8 @@ window.QB = (window.QB || []).concat([
             ["CLL: learners are 'clients'; the teacher translates what they want to say until they can manage alone.", "المعلم يترجم حتى يستقل الطالب"]],
       ex: [["Using coloured rods, a teacher silently points to a red rod and a blue rod; students try 'a red rod and a blue rod', and classmates correct each other while the teacher only gestures.",
             "قضبان ملونة ومعلم صامت وتصحيح بين الطلاب: الطريقة الصامتة."]],
+      traps: [["Founders: **Gattegno** → Silent Way; **Georgi Lozanov** → Suggestopedia; **Charles Curran** → Community Language Learning.", "غاتينو الصامتة، لوزانوف الإيحائية، كوران الجماعي"],
+              ["Cuisenaire rods and colour charts → the **Silent Way**.", "القضبان الملونة = الصامتة"]],
       src: "Richards & Rodgers, Approaches and Methods; Brown, Teaching by Principles; Larsen-Freeman & Anderson" },
     "en.meth.tpr": { k: "Methods", t: ["Total Physical Response (James Asher)", "الاستجابة الجسدية الكاملة"],
       body: [["TPR coordinates speech and action. Asher observed that children understand a great deal before they speak, and much of what they hear is commands. In TPR the teacher gives commands, models the action, and learners respond physically; speaking comes later, when learners feel ready.",
@@ -4916,34 +4959,37 @@ window.QB = (window.QB || []).concat([
             ["Low **affective filter**: anxiety blocks input.", "مصفاة وجدانية منخفضة"]],
       traps: [["Natural Approach = Krashen & Terrell — not Chomsky, not Asher.", "كراشن وتيريل"],
               ["It is not the same as the Direct Method's nickname 'natural method'.", "ليست الطريقة المباشرة"]],
-      src: "Richards & Rodgers, Approaches and Methods; Lightbown & Spada, How Languages are Learned" }
+      src: "Richards & Rodgers, Approaches and Methods; Lightbown & Spada, How Languages are Learned" },
+    "en.meth.sit": { k: "Methods", t: ["The Oral Approach and Situational Language Teaching", "المدخل الشفهي والتدريس الموقفي"],
+      body: [["British applied linguists developed the Oral Approach from the 1930s to the 1960s; its best-known figures are **Harold Palmer** and **A. S. Hornby**. Vocabulary and structures were selected and graded, then presented and practised orally in **situations** — with objects, pictures and actions — before reading and writing.",
+              "طوّره لغويون بريطانيون بين الثلاثينات والستينات، وأشهرهم بالمر وهورنبي: تراكيب ومفردات متدرجة تُعرض وتُدرّب شفهياً في مواقف قبل القراءة والكتابة."]],
+      pts: [["Like ALM it rests on a structural view of language and habit-forming practice, but it is British, while ALM is American.", "بنيوي مثل السمعية الشفهية، لكنه بريطاني وهي أمريكية"],
+            ["A typical lesson moves from presentation in a situation to controlled and then freer practice — the root of **PPP**.", "عرض في موقف ثم تدريب موجّه ثم أحرّ: أصل PPP"]],
+      traps: [["Palmer and Hornby → Oral Approach / Situational Language Teaching; Fries and Lado → Audio-Lingual.", "بالمر وهورنبي للموقفي، وفريز ولادو للسمعية الشفهية"]],
+      src: "Richards & Rodgers, Approaches and Methods in Language Teaching" }
   });
 
   /* ===================== L08 — Methods II ===================== */
   QX.enrich("L08", null, { map: {
     title: ["Teaching Methods II", "التواصلي والاتجاهات الحديثة"],
     groups: [
-      { n: "Communicative Language Teaching", short: "CLT", ar: "التدريس التواصلي", idea: "الهدف الكفاية التواصلية لا القواعد وحدها",
-        items: [{ n: "Comm. comp.", who: "Hymes", ar: "الكفاية التواصلية", kw: ["Canale & Swain"], d: "en.meth.clt" },
-                { n: "Info gap", ar: "فجوة المعلومات", kw: ["meaning first", "fluency"], d: "en.meth.clt" }],
-        trap: "التواصلي هو المدخل السائد اليوم، والمعلم ميسّر" },
-      { n: "Task-Based", short: "TBLT", ar: "التعلم بالمهام", idea: "مهمة ذات نتيجة حقيقية، واللغة تخدمها",
-        items: [{ n: "Willis", ar: "قبل المهمة ← دورة المهمة ← تركيز لغوي", kw: ["pre-task", "task cycle"], d: "en.meth.tblt" },
-                { n: "Projects", ar: "ملصق أو نشرة أو كتيّب", kw: ["outcome"], d: "en.meth.tblt" }],
-        trap: "نشأ من المدخل التواصلي" },
-      { n: "Content & CLIL", short: "CBI / CLIL", ar: "التعلم بالمحتوى", idea: "اللغة وسيلة لتعلّم مادة أو موضوع",
-        items: [{ n: "Theme-based", ar: "موضوعات: الأسرة والعمل والطقس", kw: ["CBI"], d: "en.meth.cbi" },
-                { n: "CLIL 4Cs", who: "Coyle", ar: "محتوى وتواصل وإدراك وثقافة", d: "en.meth.cbi" }],
-        trap: "المهمة والموضوع والمحتوى = تدريس تكاملي" },
-      { n: "Cooperative", ar: "التعلم التعاوني", idea: "مجموعات صغيرة يعتمد أفرادها على بعض",
-        items: [{ n: "Think-Pair", ar: "فكّر ثم ناقش ثم شارك", kw: ["Think-Pair-Share"], d: "en.meth.coop" },
-                { n: "Jigsaw", ar: "كل عضو خبير في جزء", kw: ["expert groups"], d: "en.meth.coop" }],
-        trap: "عمل المشاريع متمركز حول الطالب لا المعلم" },
-      { n: "Modern trends", short: "Trends", ar: "اتجاهات حديثة", idea: "لا طريقة مثلى: نختار حسب السياق",
-        items: [{ n: "Post-method", who: "Kumaravadivelu", ar: "الخصوصية والعملية والإمكان", d: "en.meth.postmethod" },
-                { n: "Eclectic", ar: "اختيار الأنسب من الطرق", kw: ["principled eclecticism"], d: "en.meth.postmethod" },
-                { n: "Flipped", ar: "المحتوى في البيت والتطبيق في الصف", kw: ["flipped classroom"], d: "en.meth.postmethod" }],
-        trap: "الانتقائية = الأنسب لا الأسهل" }
+      { n: "Communicative Language Teaching", short: "CLT", ar: "التدريس التواصلي",
+        items: [{ n: "Competence", who: "Hymes", ar: "معرفة المناسب للموقف", d: "en.meth.clt" },
+                { n: "Functions", who: "Wilkins", ar: "منهج المفاهيم والوظائف", d: "en.meth.clt" },
+                { n: "4 parts", who: "Canale & Swain", ar: "أربعة مكونات للكفاية", d: "en.sla-cc" }] },
+      { n: "Task-Based", short: "TBLT", ar: "التعلم بالمهام",
+        items: [{ n: "Origins", who: "Prabhu · Long", ar: "مشروع بنغالور", d: "en.meth.tblt" },
+                { n: "Task cycle", who: "Willis", ar: "مهمة ثم تركيز لغوي", d: "en.meth.tblt" }] },
+      { n: "Content & CLIL", short: "CBI / CLIL", ar: "التعلم بالمحتوى",
+        items: [{ n: "CBI", who: "Brinton et al.", ar: "موضوعي ومحمي ومساند", d: "en.meth.cbi" },
+                { n: "CLIL 4Cs", who: "Coyle", ar: "محتوى وتواصل وإدراك وثقافة", d: "en.meth.cbi" }] },
+      { n: "Cooperative", ar: "التعلم التعاوني",
+        items: [{ n: "Cooperative", who: "D&R Johnson", ar: "اعتماد متبادل ومسؤولية فردية", d: "en.meth.coop" },
+                { n: "Jigsaw", who: "Aronson", ar: "كل عضو خبير في جزء", d: "en.meth.coop" }] },
+      { n: "Modern trends", short: "Trends", ar: "اتجاهات حديثة",
+        items: [{ n: "Post-method", who: "Kumaravadivelu", ar: "خصوصية وعملية وإمكان", d: "en.meth.postmethod" },
+                { n: "Eclectic", ar: "الأنسب لا الأسهل", d: "en.meth.postmethod" },
+                { n: "Flipped", who: "Bergmann·Sams", ar: "الشرح في البيت والتطبيق صفياً", d: "en.meth.postmethod" }] }
     ] } });
 
   QX.enrich("L08", "Communicative Language Teaching", {
@@ -4969,7 +5015,8 @@ window.QB = (window.QB || []).concat([
       pts: [["Meaning is primary; language is learned through using it to communicate.", "المعنى أولاً"],
             ["Fluency and accuracy are complementary; errors are a natural part of learning.", "الطلاقة والدقة معاً"],
             ["Teacher = facilitator and co-communicator; learners = negotiators of meaning.", "المعلم ميسّر والطالب مفاوض للمعنى"],
-            ["Wilkins' **notional-functional syllabus** was an early CLT syllabus.", "منهج المفاهيم والوظائف"]],
+            ["Wilkins' **notional-functional syllabus** was an early CLT syllabus.", "منهج المفاهيم والوظائف"],
+            ["Who said what: **Hymes** (communicative competence), **Halliday** (functions of language), **Wilkins** (Notional Syllabuses, 1976), **Widdowson** (Teaching Language as Communication, 1978), **Canale & Swain** (components), **Brumfit & Johnson** (The Communicative Approach to Language Teaching, 1979).", "هايمز، هاليداي، ويلكنز، ويدوسون، كانال وسوين، برومفيت وجونسون"]],
       traps: [["Communicative competence = linguistic competence **plus** the ability to use it appropriately.", "ليست القواعد وحدها"],
               ["Communicative competence is Hymes; competence vs performance is Chomsky.", "هايمز لا تشومسكي"]],
       src: "Richards & Rodgers, Approaches and Methods; Brown, Principles of Language Learning and Teaching" },
@@ -4978,6 +5025,7 @@ window.QB = (window.QB || []).concat([
               "المهمة: المعنى أولاً، وفجوة، ولغة الطالب الخاصة، ونتيجة غير لغوية. أما التمرين فيتدرب على شكل لغوي."],
              ["Jane Willis (1996) proposed a widely used lesson framework, which reverses PPP: learners use language first and study form last.",
               "إطار ويليس يعكس ترتيب PPP: الاستخدام أولاً والقاعدة أخيراً."]],
+      pts: [["Who's who: **N. S. Prabhu** (the Bangalore project in India, 1979–84, a procedural syllabus of tasks), **Michael Long** (task-based syllabus, focus on form), **Jane Willis** (lesson framework), **David Nunan** and **Rod Ellis** (task design and research).", "برابو (مشروع بنغالور)، لونغ، ويليس، نونان، إليس"]],
       map: { type: "cards", groups: [
         { n: "Pre-task", ar: "قبل المهمة", items: [{ n: "Topic & task", ar: "تقديم الموضوع والمفردات المفيدة" }] },
         { n: "Task cycle", ar: "دورة المهمة", items: [{ n: "Task → planning → report", ar: "إنجاز ثم تحضير التقرير ثم عرضه" }] },
@@ -4989,7 +5037,7 @@ window.QB = (window.QB || []).concat([
               ["Problem-based learning = small groups solving a real-world problem.", "التعلم بحل المشكلات"]],
       src: "Willis, A Framework for Task-Based Learning; Richards & Rodgers; Ellis, Task-based Language Learning and Teaching" },
     "en.meth.cbi": { k: "Integrated teaching", t: ["Content-Based Instruction and CLIL", "التعلم بالمحتوى ودمج المحتوى واللغة"],
-      body: [["In **CBI**, learners acquire language while studying meaningful content. Common models are **theme-based** (a language course organised around topics), **sheltered** (subject teaching adapted for language learners) and **adjunct** (a language course linked to a content course).",
+      body: [["In **CBI**, learners acquire language while studying meaningful content. Common models (Brinton, Snow & Wesche, 1989) are **theme-based** (a language course organised around topics), **sheltered** (subject teaching adapted for language learners) and **adjunct** (a language course linked to a content course).",
               "التعلم بالمحتوى: نماذج موضوعية، ومحمية، ومساندة."],
              ["**CLIL** (Content and Language Integrated Learning) is the European term for teaching a subject through a foreign language with dual aims. Coyle's **4Cs** describe its planning: content, communication, cognition and culture.",
               "CLIL: تدريس مادة بلغة أجنبية بهدفين، وتخطيطها بالعناصر الأربعة."]],
@@ -5003,7 +5051,8 @@ window.QB = (window.QB || []).concat([
               "جونسون وجونسون حددا العناصر التي تجعل العمل الجماعي تعاونياً."]],
       pts: [["**Positive interdependence**: the group succeeds only if every member does.", "اعتماد متبادل إيجابي"],
             ["**Individual accountability**: each member is responsible for a part.", "مسؤولية فردية"],
-            ["**Face-to-face interaction**, **social skills** and **group processing** (reflecting on how the group worked).", "تفاعل مباشر ومهارات اجتماعية ومراجعة أداء المجموعة"]],
+            ["**Face-to-face interaction**, **social skills** and **group processing** (reflecting on how the group worked).", "تفاعل مباشر ومهارات اجتماعية ومراجعة أداء المجموعة"],
+            ["Names: **Jigsaw** was designed by Elliot **Aronson** (1971); **Think-Pair-Share** by Frank **Lyman** (1981).", "جيكسو لأرونسون، وفكّر-زاوج-شارك لليمان"]],
       ex: [["**Think-Pair-Share**: think alone (30 seconds) → discuss with a partner → share with the class.", "فكّر، ناقش زميلك، شارك الصف"],
            ["**Jigsaw**: home group → expert group on one part → back to teach the home group.", "جيكسو: مجموعة أم ← مجموعة خبراء ← رجوع للتعليم"]],
       traps: [["Group work in itself does not guarantee cooperation; roles and accountability make it work.", "الأدوار والمسؤولية تصنع التعاون"],
@@ -5016,7 +5065,7 @@ window.QB = (window.QB || []).concat([
               "واستراتيجيات كبرى مثل تعظيم فرص التعلم وتعزيز الاستقلالية."]],
       pts: [["**Eclecticism** = selecting the most suitable techniques from several methods for a purpose (principled, not random).", "انتقائية مبدئية لا عشوائية"],
             ["**Dogme** (Thornbury): materials-light, conversation-driven teaching.", "دوغمي: محادثة بأقل مواد"],
-            ["**Flipped classroom**: input at home, active practice in class.", "الفصل المقلوب"]],
+            ["**Flipped classroom**: input at home, active practice in class — popularised by Bergmann & Sams.", "الفصل المقلوب: برغمان وسامز"]],
       traps: [["Eclectic teachers pick the **most suitable**, not the easiest or newest, techniques.", "الأنسب لا الأسهل"],
               ["Particularity, practicality, possibility = post-method (Kumaravadivelu).", "المعايير الثلاثة لما بعد الطريقة"]],
       src: "Kumaravadivelu, Beyond Methods; Brown, Teaching by Principles; Richards & Rodgers" },
@@ -5274,7 +5323,7 @@ window.QB = (window.QB || []).concat([
 
   /* ===================== L11 — Objectives & Bloom ===================== */
   QX.enrich("L11", null, { map: { type: "tree",
-    title: ["Revised Bloom (2001)", "تصنيف بلوم المعدّل"],
+    title: ["Bloom (1956) → Anderson & Krathwohl (2001)", "تصنيف بلوم المعدّل"],
     groups: [
       { n: "Remember", ar: "يتذكر", idea: "استرجاع الحقائق — أدنى مستوى",
         items: [{ n: "Knowledge", ar: "اسمه في 1956", kw: ["original level 1"], d: "en.obj.bloom" },
@@ -5633,8 +5682,8 @@ window.QB = (window.QB || []).concat([
     title: ["Learner Differences", "الفروق بين المتعلمين"],
     groups: [
       { n: "Learning styles", short: "Styles", ar: "أنماط التعلم", idea: "كيف يفضّل الطالب استقبال المعلومة؟",
-        items: [{ n: "VAK", ar: "بصري، سمعي، حركي", kw: ["visual", "kinesthetic"], d: "en.lrn.styles" },
-                { n: "Kolb", ar: "أربعة أنماط من دورة الخبرة", kw: ["experiential"], d: "en.lrn.styles" }],
+        items: [{ n: "VAK / VARK", who: "Fleming (VARK)", ar: "بصري، سمعي، (قرائي)، حركي", kw: ["visual", "kinesthetic"], d: "en.lrn.styles" },
+                { n: "Experiential cycle", who: "Kolb", ar: "أربعة أنماط من دورة الخبرة", kw: ["experiential"], d: "en.lrn.styles" }],
         trap: "يتذكر الأسماء حين يراها مكتوبة = بصري" },
       { n: "Intelligences", short: "MI", ar: "الذكاءات المتعددة", idea: "قدرات متعددة لا ذكاء واحد",
         items: [{ n: "Linguistic", who: "Gardner", ar: "ألعاب كلمات وقصص", kw: ["crosswords"], d: "en.lrn.mi" },
@@ -5651,7 +5700,7 @@ window.QB = (window.QB || []).concat([
         trap: "القلق عامل وجداني" },
       { n: "Cognitive styles", short: "Cognitive", ar: "الأساليب المعرفية", idea: "طريقة الإدراك والمعالجة",
         items: [{ n: "Field indep.", who: "Witkin", ar: "التفاصيل بمعزل عن السياق", d: "en.lrn.cogstyles" },
-                { n: "Reflective", ar: "متروٍّ مقابل مندفع", kw: ["impulsive"], d: "en.lrn.cogstyles" }],
+                { n: "Reflective", who: "Kagan", ar: "متروٍّ مقابل مندفع", kw: ["impulsive"], d: "en.lrn.cogstyles" }],
         trap: "المستقل عن المجال يحب التحليل والتركيز على الشكل" },
       { n: "Differentiation", short: "Differentiate", ar: "التمايز", idea: "نكيّف المحتوى والعملية والناتج والبيئة",
         items: [{ n: "Tiered tasks", who: "Tomlinson", ar: "نفس الهدف بمستويات دعم", kw: ["mixed ability"], d: "en.lrn.diff" },
@@ -5730,7 +5779,7 @@ window.QB = (window.QB || []).concat([
     "en.lrn.cogstyles": { k: "Cognitive styles", t: ["Field Independence and Reflectivity", "الاستقلال عن المجال والتروي"],
       body: [["Cognitive styles are consistent ways of perceiving and processing information. Witkin's **field independence** is the ability to pick out a detail from a confusing background; **field dependence** is perceiving the field as a whole. Brown notes that field independence helps with analytic, form-focused classroom learning, while field dependence helps with face-to-face communication.",
               "المستقل عن المجال يلتقط التفاصيل، والمعتمد عليه يرى الكل ويتواصل اجتماعياً بسهولة."],
-             ["**Reflectivity vs impulsivity**: reflective learners take longer and make fewer errors; impulsive learners answer quickly, guess and may be faster at fluent tasks.",
+             ["**Reflectivity vs impulsivity** (described by Jerome Kagan, 1965): reflective learners take longer and make fewer errors; impulsive learners answer quickly, guess and may be faster at fluent tasks.",
               "المتروّي أبطأ وأدق، والمندفع أسرع ويخمّن أكثر."]],
       traps: [["Detail-focused, analytic, likes grammar rules = field-independent.", "تحليلي = مستقل عن المجال"],
               ["A style is not a disability: dyslexia and ADHD are learning difficulties, not styles.", "النمط ليس صعوبة تعلم"]],
@@ -5946,7 +5995,8 @@ window.QB = (window.QB || []).concat([
               "من الأسفل: فك الترميز بالترتيب، والنص هو المحرك."],
              ["**Top-down** models put the reader first. Goodman described reading as a *psycholinguistic guessing game*: readers sample the text, predict, and confirm or revise predictions using their knowledge.",
               "من الأعلى: القارئ أولاً، يتوقع ويؤكد (لعبة التخمين النفسية اللغوية عند غودمان)."]],
-      pts: [["Stanovich's **interactive-compensatory** model combines both: processes at all levels work together, and a deficit in one is compensated by greater reliance on the other.", "التفاعلي التعويضي لستانوفيتش: العمليتان معاً، والضعف في واحدة تعوّضه الأخرى."]],
+      pts: [["Names: **Gough** (1972) described a classic bottom-up model; **Goodman** (1967) the top-down 'psycholinguistic guessing game'; **Stanovich** (1980) the interactive-compensatory model.", "غوف من الأسفل، وغودمان من الأعلى، وستانوفيتش التفاعلي التعويضي"],
+            ["Stanovich's **interactive-compensatory** model combines both: processes at all levels work together, and a deficit in one is compensated by greater reliance on the other.", "التفاعلي التعويضي لستانوفيتش: العمليتان معاً، والضعف في واحدة تعوّضه الأخرى."]],
       traps: [["Reading word by word, looking up every unknown word, or using prefix + root + suffix to decode = bottom-up.", "كلمة كلمة أو تفكيك الكلمة = من الأسفل"],
               ["Starting from what learners know and the overall meaning = top-down.", "البدء من الخلفية والمعنى العام = من الأعلى"]],
       ex: [["A student reading about camel racing does not know *jockey* but understands it from the picture and topic (**top-down** compensating). Another student works out *unbelievable* from *un- + believe + -able* (**bottom-up**).", "فهم كلمة من الصورة والموضوع = من الأعلى، وتفكيكها إلى سابقة وجذر ولاحقة = من الأسفل."]],
@@ -6895,10 +6945,14 @@ window.QB = (window.QB || []).concat([
   function lesson(id) { return (window.LESSONS || []).filter(function (x) { return x.id === id; })[0]; }
 
   /* ===================== L07 — Methods I (العجلة باقية مع أسماء المؤسسين) ===================== */
+  // خريطة خطوط: المستويات الثلاثة (أنتوني) ومقابلها عند ريتشاردز ورودجرز — تحل محل نقطة التعريفات
   E("L07", "Approach, method, technique", [
-    ["[[Anthony (1963)|en.meth.levels]]: **approach** = beliefs about language and learning → method = overall plan → technique = one classroom activity.", "مدخل (معتقدات) ← طريقة (خطة) ← أسلوب (نشاط)"],
-    ["Richards & Rodgers: approach → design → **procedure**. A teaching strategy is wider than a technique.", "ريتشاردز ورودجرز، والاستراتيجية أوسع من الأسلوب"]
-  ], { ex: [["Communicative beliefs (approach) → task-based unit plan (method) → today's information-gap activity (technique).", "معتقد ← خطة ← نشاط"]] });
+    ["[[Anthony (1963)|en.meth.levels]] orders the levels from theory to the classroom; a teaching **strategy** is wider than a technique.", "من النظرية إلى الصف، والاستراتيجية أوسع من الأسلوب"]
+  ], { ex: [["Communicative beliefs (approach) → task-based unit plan (method) → today's information-gap activity (technique).", "معتقد ← خطة ← نشاط"]],
+    map: { type: "fan", title: ["Anthony (1963) · Richards & Rodgers", "المدخل والطريقة والأسلوب"], groups: [
+      { n: "Approach", ar: "معتقدات عن طبيعة اللغة وكيف تُتعلّم", items: [{ n: "R&R: approach" }], d: "en.meth.levels" },
+      { n: "Method", ar: "خطة منظمة لعرض اللغة مبنية على المدخل", items: [{ n: "R&R: design" }], d: "en.meth.levels" },
+      { n: "Technique", ar: "نشاط واحد داخل الصف يتّسق مع الطريقة", items: [{ n: "R&R: procedure" }], d: "en.meth.levels" }] } });
   E("L07", "Grammar-Translation", [
     ["[[Grammar-Translation|en.meth.gtm]]: taught in the **mother tongue**; translation, memorized rules, word lists, literary texts.", "باللغة الأم: ترجمة وقواعد ونصوص أدبية"],
     ["Focus on reading and writing; it **overlooks speaking** and ignores learners' unique abilities.", "تهمل الكلام والفروق الفردية"],
@@ -6909,7 +6963,7 @@ window.QB = (window.QB || []).concat([
     ["Concrete words through objects, pictures and demonstration (Berlitz; Gouin's earlier Series Method).", "المحسوس بالأشياء والصور"]
   ]);
   E("L07", "Audio-Lingual", [
-    ["[[ALM|en.meth.alm]] rests on **behaviorism** ([[Skinner|en.skinner]]) and structural linguistics: learning = **habit formation**.", "سلوكية: عادات بالتقليد والتكرار والتعزيز"],
+    ["[[ALM|en.meth.alm]] (Fries, Lado) rests on **behaviorism** ([[Skinner|en.skinner]]) and structural linguistics: learning = **habit formation**.", "سلوكية: عادات بالتقليد والتكرار والتعزيز"],
     ["Dialogue memorization, [[pattern drills|en.spk.drills]], **choral drilling**, minimal pairs; errors are prevented early.", "حفظ حوارات وتدريبات وترديد جماعي"],
     ["Grammar through examples — **explicit rules are not provided**. Order: **listening → speaking → reading → writing**.", "بلا شرح قواعد: استماع ← كلام ← قراءة ← كتابة"]
   ]);
@@ -6928,12 +6982,12 @@ window.QB = (window.QB || []).concat([
 
   /* ===================== L08 — Methods II (العجلة باقية) ===================== */
   E("L08", "Communicative Language Teaching", [
-    ["[[CLT|en.meth.clt]] = **linguistic competence plus the ability to use language appropriately** ([[communicative competence|en.sla-cc]]).", "قواعد + استخدام مناسب"],
+    ["[[CLT|en.meth.clt]] = **linguistic competence plus the ability to use language appropriately** ([[communicative competence|en.sla-cc]] — Hymes).", "قواعد + استخدام مناسب (هايمز)"],
     ["Meaning first; the **current dominant approach** in TESOL.", "السائد اليوم"],
     ["Suits **extroverted** students; the teacher is a facilitator.", "يناسب المنبسطين"]
   ]);
   E("L08", "Task-based and content-based", [
-    ["[[TBLT|en.meth.tblt]] emerged from the communicative approach; Willis: pre-task → task cycle → **language focus**.", "نشأ من التواصلي، وإطار ويليس"],
+    ["[[TBLT|en.meth.tblt]] emerged from the communicative approach (Prabhu's Bangalore project); Willis: pre-task → task cycle → **language focus**.", "نشأ من التواصلي (برابو)، وإطار ويليس"],
     ["Projects producing posters, brochures and pamphlets = **task-based learning**.", "الملصقات = بالمهمة", "o"],
     ["Small groups solving real-world problems = **problem-based learning**.", "حل المشكلات", "o"],
     ["[[Content-based instruction|en.meth.cbi]] uses subject matter; family/work/weather topics = **theme-based** model.", "المحتوى / الموضوعي"],
@@ -6996,11 +7050,13 @@ window.QB = (window.QB || []).concat([
     ["Portfolios and projects = [[**alternative / performance-based**|en.assess.alt]] assessment; portfolios track progress over time.", "تقويم بديل"]
   ]);
   E("L09", "The CEFR", [
-    ["The [[CEFR|en.assess.cefr]] (Council of Europe, 2001; Companion Volume 2020) is a reference framework — **not a test**.", "إطار مرجعي وليس اختباراً"],
-    ["Six levels: **A1–A2 basic user**, **B1–B2 independent user**, **C1–C2 proficient user**.", "أساسي، مستقل، متمكن"],
+    ["The [[CEFR|en.assess.cefr]] (Council of Europe, 2001; Companion Volume 2020) is a reference framework — **not a test**; six levels in three bands.", "إطار مرجعي وليس اختباراً، بستة مستويات"],
     ["Descriptors are positive **can-do statements** (action-oriented approach); the 2020 update added mediation.", "عبارات «أستطيع» إيجابية"],
     ["Uses: aligning curricula and tests, writing objectives, and learner **self-assessment**.", "مواءمة المناهج والتقييم الذاتي"]
-  ]);
+  ], { map: { type: "fan", title: ["CEFR levels", "مستويات الإطار الأوروبي"], groups: [
+      { n: "A1–A2 basic user", ar: "عبارات يومية بسيطة ← مواقف روتينية مألوفة", d: "en.assess.cefr" },
+      { n: "B1–B2 independent user", ar: "النقاط الرئيسية ومواقف السفر ← نصوص معقدة وطلاقة وعفوية", d: "en.assess.cefr" },
+      { n: "C1–C2 proficient user", ar: "نصوص طويلة ومعانٍ ضمنية ← فهم كل شيء تقريباً بسهولة", d: "en.assess.cefr" }] } });
   E("L09", "International standardized", [
     ["A **standardized test** uses uniform conditions and scoring, so results compare across test-takers.", "ظروف وتصحيح موحّد"],
     ["[[**IELTS**|en.assess.intl]]: Academic and General Training; four skills; **band scale of 0–9**; speaking is a face-to-face interview.", "آيلتس: 0–9 ومقابلة"],
@@ -7022,7 +7078,7 @@ window.QB = (window.QB || []).concat([
     groups: [
       { n: "Timing", ar: "حسب التوقيت", idea: "قبل التعلم وأثناءه وبعده",
         items: [{ n: "Diagnostic", ar: "قبل التدريس", kw: ["strengths & weaknesses"], d: "en.assess.formative" },
-                { n: "Formative", ar: "أثناء التعلم لتحسينه", kw: ["assessment for learning"], d: "en.assess.formative" },
+                { n: "Formative", who: "Black & Wiliam", ar: "أثناء التعلم لتحسينه", kw: ["assessment for learning"], d: "en.assess.formative" },
                 { n: "Summative", ar: "في النهاية للحكم", kw: ["assessment of learning"], d: "en.assess.formative" }],
         trap: "الاختبار القصير المفاجئ والبطاقة الختامية = تكويني" },
       { n: "Purpose", ar: "حسب الغرض", idea: "ماذا نريد أن نعرف عن الطالب؟",
@@ -7206,7 +7262,7 @@ window.QB = (window.QB || []).concat([
   ], { map: { type: "fan", title: ["Lesson planning models", "نماذج تخطيط الدروس"], groups: [
       { n: "Nine events", who: "Gagné", ar: "من جذب الانتباه وذكر الهدف إلى التقويم والنقل", items: [{ n: "gain attention → … → transfer" }], d: "en.plan.models" },
       { n: "Hunter model", who: "Madeline Hunter", ar: "يبدأ بالتهيئة الحافزة وينتهي بالتدريب المستقل", items: [{ n: "anticipatory set → … → independent practice" }], d: "en.plan.models" },
-      { n: "5E model", ar: "استقصائي: الاستكشاف قبل الشرح", items: [{ n: "Engage → Explore → Explain → Elaborate → Evaluate" }], d: "en.plan.models" }] } });
+      { n: "5E model", who: "Bybee (BSCS)", ar: "استقصائي: الاستكشاف قبل الشرح", items: [{ n: "Engage → Explore → Explain → Elaborate → Evaluate" }], d: "en.plan.models" }] } });
   E("L12", "Sharing the syllabus", [
     ["Distributing the **syllabus** at the start shows content, schedule and **expected learning outcomes**.", "توزيع المنهج يوضح النواتج المتوقعة"],
     ["Teaching cycle: **preparation** → **implementation** → [[reflection|en.l17-reflect]] (judge what worked, then modify).", "التحضير ← التنفيذ ← التأمل"]
@@ -7241,8 +7297,12 @@ window.QB = (window.QB || []).concat([
     ["[[**Synchronous**|en.mat.sync]] = same time (Skype, live class); **asynchronous** = different times (email homework, blogs, wikis).", "متزامن / غير متزامن"],
     ["Online + face-to-face = **blended learning**; a downside of web resources: **technical problems**.", "مدمج / المشاكل التقنية"],
     ["Prezi = presentations; OCR = print to editable text (e.g. Braille); OneNote = real-time collaboration.", "أدوات"],
-    ["Evaluate CALL software by its use in the **teaching and learning process**; [[SAMR|en.mat.samr]] shows replace vs transform.", "الاستخدام في التعليم"]
-  ]);
+    ["Evaluate CALL software by its use in the **teaching and learning process**; the first two SAMR levels enhance a task, the last two transform it.", "الاستخدام في التعليم، وSAMR: تحسين ثم تحويل"]
+  ], { map: { type: "fan", title: ["SAMR — Puentedura", "مستويات دمج التقنية"], groups: [
+      { n: "Substitution", ar: "بديل مباشر بلا تغيير وظيفي: الكتابة على الجهاز بدل الورقة", d: "en.mat.samr" },
+      { n: "Augmentation", ar: "بديل مع تحسين وظيفي: التدقيق الإملائي", d: "en.mat.samr" },
+      { n: "Modification", ar: "إعادة تصميم كبيرة للمهمة: مستند مشترك بتعليقات", d: "en.mat.samr" },
+      { n: "Redefinition", ar: "مهمة لم تكن ممكنة من قبل: تبادل فيديو مع مدرسة أخرى", d: "en.mat.samr" }] } });
   E("L13", "Learner autonomy", [
     ["Best way to encourage autonomy: **train students to use reference resources**.", "تدريبهم على المراجع"],
     ["Tasks that help learners take control of their learning develop [[**autonomy**|en.mat.autonomy]].", "تحكّم الطالب بتعلمه"]
@@ -7441,7 +7501,7 @@ window.QB = (window.QB || []).concat([
                 { n: "Critical", ar: "تحليل وحكم" }],
         trap: "«اسمع ونفّذ» = TPR، لا نوع استماع" },
       { n: "Strategies", ar: "الاستراتيجيات",
-        items: [{ n: "Metacognitive", who: "Vandergrift & Goh", ar: "خطّط وراقب وقوّم", d: "en.lis.metacog" },
+        items: [{ n: "Metacognitive", who: "Vandergrift", ar: "خطّط وراقب وقوّم", d: "en.lis.metacog" },
                 { n: "Compensation", ar: "تعويض من السياق", d: "en.lis.strat" }] },
       { n: "Difficulties", ar: "الصعوبات",
         items: [{ n: "Speech factors", who: "Brown", ar: "8 عوامل كالسرعة", d: "en.lis.brown" }] }
@@ -7601,7 +7661,7 @@ window.QB = (window.QB || []).concat([
 
   E("L03", "Reading models", { intro: [], ex: [],
     map: { title: ["Models of reading", "نماذج القراءة"], type: "fan", groups: [
-      { n: "Bottom-up", ar: "من الحروف إلى الكلمات بالترتيب؛ النص يقود الفهم", items: [{ n: "word by word" }, { n: "decoding" }, { n: "un- + believe + -able" }], d: "en.rd.models" },
+      { n: "Bottom-up", who: "Gough", ar: "من الحروف إلى الكلمات بالترتيب؛ النص يقود الفهم", items: [{ n: "word by word" }, { n: "decoding" }, { n: "un- + believe + -able" }], d: "en.rd.models" },
       { n: "Top-down", who: "Goodman", ar: "الخلفية والتوقع يقودان الفهم: «لعبة تخمين نفسية لغوية»", items: [{ n: "schema" }, { n: "predicting" }] },
       { n: "Interactive-compensatory", who: "Stanovich", ar: "يجمعهما، والقوي يعوّض الضعيف", items: [{ n: "both at once" }] }
     ] },
@@ -7610,13 +7670,17 @@ window.QB = (window.QB || []).concat([
       ["**Decoding** is the first stage in learning to read.", "فك الترميز أولاً"]
     ] });
 
-  E("L03", "Comprehension strategies", { intro: [],
-    ex: [["*What did he find?* (literal) — *Why did he hide it?* (interpretive) — *Was it wise?* (critical).", "ماذا؟ لماذا؟ هل كان حكيماً؟"]],
+  // خريطة خطوط: مستويات الفهم الثلاثة بأسئلتها (تحل محل نقطة المستويات ومثالها)
+  E("L03", "Comprehension strategies", { intro: [], ex: [],
+    map: { title: ["Levels of comprehension", "مستويات الفهم"], type: "fan", groups: [
+      { n: "Literal", ar: "قراءة السطور: ما ذُكر صراحة", items: [{ n: "What did he find?" }], d: "en.rd.levels" },
+      { n: "Interpretive/inferential", ar: "ما بين السطور: استنتاج بالمنطق وأدلة النص", items: [{ n: "Why did he hide it?" }], d: "en.rd.levels" },
+      { n: "Critical/applied", ar: "ما وراء السطور: تقويم وحكم", items: [{ n: "Was his decision wise?" }], d: "en.rd.levels" }
+    ] },
     pts: [
       ["Prior knowledge + title before reading = [[**predicting**|en.rd.strategies]]; background knowledge + text clues = **inferring**.", "توقع / استنتاج"],
       ["Main ideas in one's own words = **summarizing**; same idea, different wording = paraphrasing.", "تلخيص / إعادة صياغة"],
       ["Identifying and fixing problems with understanding = **monitoring**.", "مراقبة الفهم"],
-      ["[[Levels|en.rd.levels]]: **literal** (stated) → interpretive/inferential (logic) → critical/applied (evaluates).", "حرفي ← تفسيري ← ناقد"],
       ["'How plausible is the poor man's story?' after reading = **critical reading**.", "تقويم النص = قراءة ناقدة"],
       ["Reading texts by the same author or theme = **text-to-text connections**.", "ربط نص بنص"],
       ["Identifying the **purpose of reading** increases comprehension and retention.", "تحديد الهدف يرفع الفهم"]
@@ -7702,9 +7766,16 @@ window.QB = (window.QB || []).concat([
   /* =========================================================
      L05 — Teaching Writing  (شجرة: مراحل عملية الكتابة)
      ========================================================= */
-  E("L05", "Approaches to writing", { intro: [], ex: [], pts: [
-    ["[[**Process writing**|en.wr.approaches]]: the stages writers go through (exploration, reflection, redrafting); recursive.", "العمليات: مراحل متكررة"],
-    ["**Product writing**: imitate a model text; **genre approach**: text types and their social purposes.", "المنتج تقليد، والنوع أغراض النصوص"],
+  // خريطة خطوط: المداخل الأربعة لتدريس الكتابة (تحل محل نقطتي التعريف)
+  E("L05", "Approaches to writing", { intro: [], ex: [],
+    map: { title: ["Approaches to teaching writing", "مداخل تدريس الكتابة"], type: "fan", groups: [
+      { n: "Product writing", ar: "تقليد نص نموذجي، والتركيز على دقة الناتج", items: [{ n: "model text" }], d: "en.wr.approaches" },
+      { n: "Process writing", ar: "مراحل متكررة: استكشاف وتأمل وإعادة صياغة المسودة", items: [{ n: "recursive" }, { n: "drafts" }], d: "en.wr.approaches" },
+      { n: "Genre approach", ar: "أنواع النصوص وأغراضها الاجتماعية", items: [{ n: "social purpose" }], d: "en.wr.approaches" },
+      { n: "Process-genre", who: "Badger & White", ar: "معرفة النوع + مراحل الكتابة", d: "en.wr.tlc" }
+    ] },
+    pts: [
+    ["[[Approaches|en.wr.approaches]] differ in what they focus on: the final text, the writer's stages, or the text type and its purpose.", "الناتج أم المراحل أم نوع النص"],
     ["Writing is often the hardest skill: graphic form plus organized thought.", "أصعب مهارة"]
   ] });
 
@@ -8013,7 +8084,7 @@ window.QB = (window.QB || []).concat([
                 { n: "Critical period", who: "Lenneberg", ar: "الاكتساب مرتبط بالعمر", kw: ["Critical Period Hypothesis"], d: "en.lenneberg" }],
         trap: "تشومسكي هو من انتقد سكنر (1959)، لا العكس" },
       { n: "Cognitivism", ar: "المعرفية", idea: "المتعلم يعالج المعلومات ويبني معنى",
-        items: [{ n: "Stages", who: "Piaget", ar: "مراحل النمو المعرفي", kw: ["assimilation", "accommodation"], d: "en.piaget" },
+        items: [{ n: "Schemas", who: "Piaget", ar: "تمثّل ومواءمة", kw: ["assimilation", "accommodation"], d: "en.piaget" },
                 { n: "Meaningful", who: "Ausubel", ar: "ربط الجديد بالمعروف", kw: ["meaningful learning", "advance organizer"], d: "en.ausubel" }],
         trap: "التعلم الآلي (rote) عكس التعلم ذي المعنى عند أوزوبل" },
       { n: "Social Constructivism", short: "Constructivism", ar: "البنائية الاجتماعية", idea: "المعرفة تُبنى بالتفاعل مع الآخرين",
@@ -8080,7 +8151,7 @@ window.QB = (window.QB || []).concat([
     title: ["SLA Theories", "نظريات اكتساب اللغة الثانية"],
     groups: [
       { n: "Krashen", ar: "الاكتساب بالمدخل المفهوم",
-        items: [{ n: "Monitor Model", who: "Krashen", ar: "خمس فرضيات: الاكتساب، المراقب، الترتيب، المدخل، المصفاة", d: "en.sla-krashen" },
+        items: [{ n: "Monitor Model", who: "Krashen", ar: "الطلاقة من الاكتساب لا من القواعد", d: "en.sla-krashen" },
                 { n: "Natural Approach", who: "Krashen & Terrell", ar: "الفهم أولاً ثم يظهر الكلام تدريجياً", d: "en.l16-stages" }],
         trap: "فرضية المدخل تخص **الاكتساب** لا التدريس، و i هي الكفاية الحالية" },
       { n: "Interaction", ar: "التفاعل والإنتاج",
@@ -8097,7 +8168,7 @@ window.QB = (window.QB || []).concat([
       { n: "Competence", ar: "ماذا يكتسب المتعلم؟",
         items: [{ n: "Communicative competence", who: "Hymes", ar: "صاحب المصطلح", d: "en.sla-cc" },
                 { n: "Four components", who: "Canale & Swain", ar: "قواعدية، اجتماعية لغوية، خطابية، استراتيجية", d: "en.sla-cc" },
-                { n: "Strategies · SILL", who: "Oxford", ar: "مباشرة وغير مباشرة", d: "en.sla-oxford" }] }
+                { n: "Pragmatic competence", who: "Bachman", ar: "فهم وظيفة العبارة وقصد المتكلم", d: "en.sla-cc" }] }
     ] } });
 
   // خريطة خطوط: الفرضيات الخمس تقسيم قصير؛ تحل محل نقطة لكل فرضية
@@ -8138,13 +8209,14 @@ window.QB = (window.QB || []).concat([
     ["**Speech emergence**: simple sentences, frequent errors → how/why questions, short stories, dialogues.", "جمل بسيطة: لماذا وكيف"],
     ["**Intermediate fluency**: complex sentences, opinions → 'What would happen if…?'; **advanced fluency** ≈ Cummins' CALP.", "جمل مركبة وآراء ثم طلاقة أكاديمية"]
   ]);
+  // خريطة خطوط: تصنيف أكسفورد (مباشرة / غير مباشرة × ثلاث) يُرى أسرع مما يُقرأ — تحل محل ثلاث نقاط
   S("L16", "Learning strategies: Oxford", [
-    ["[[Oxford|en.sla-oxford]] (1990): **direct** strategies work with the language; **indirect** ones manage learning.", "مباشرة / غير مباشرة"],
-    ["Direct: **memory** (grouping, images), **cognitive** (practising, summarising), **compensation** (guessing, gestures, circumlocution).", "ذاكرة، معرفية، تعويضية"],
-    ["Indirect: **metacognitive** (planning, self-evaluating), **affective** (lowering anxiety), **social** (asking for clarification).", "ما وراء معرفية، وجدانية، اجتماعية"],
-    ["Her questionnaire is the **SILL**; O'Malley & Chamot use three groups: metacognitive, cognitive, social/affective.", "استبانة SILL"],
+    ["[[Oxford|en.sla-oxford]]'s questionnaire is the **SILL**; O'Malley & Chamot use three groups: metacognitive, cognitive, social/affective.", "استبانة SILL"],
     ["[[**Good language learner**|en.l16-gll]] (Rubin, 1975): guesses willingly, wants to communicate, is not inhibited by mistakes.", "صفات المتعلم الجيد"]
-  ]);
+  ], { map: { type: "fan", title: ["Oxford (1990): learning strategies", "استراتيجيات التعلم عند أكسفورد"], groups: [
+    { n: "Direct", ar: "تتعامل مع اللغة نفسها: ذاكرة (تصنيف وصور)، معرفية (تدريب وتلخيص)، تعويضية (تخمين وإيماء وشرح بكلمات أخرى)", items: [{ n: "memory" }, { n: "cognitive" }, { n: "compensation" }], d: "en.sla-oxford" },
+    { n: "Indirect", ar: "تدير التعلم: ما وراء معرفية (تخطيط وتقويم ذاتي)، وجدانية (خفض القلق)، اجتماعية (طلب التوضيح)", items: [{ n: "metacognitive" }, { n: "affective" }, { n: "social" }], d: "en.sla-oxford" }
+  ] } });
   S("L16", "More SLA perspectives", [
     ["[[**Skill Acquisition Theory**|en.sla-skill]] (DeKeyser): **declarative** → **procedural** knowledge → automaticity through practice.", "من معرفة القاعدة إلى استعمالها تلقائياً"],
     ["**Investment** ([[Norton|en.sla-norton]]): learners invest when a language promises symbolic and material resources; tied to **identity**.", "الاستثمار والهوية"],
@@ -8352,11 +8424,17 @@ window.QB = (window.QB || []).concat([
         items: [{ n: "/h/ hat", ar: "مهموس احتكاكي" }] }
     ] } });
 
+  // خريطة خطوط: فروع علم الأصوات الأربعة (تحل محل نقطة الفروع)
   S("L19", "Phonetics and phonology", [
-    ["[[Phonetics|en.ling.phonbranches]] branches: **articulatory** (production), acoustic (sound waves), auditory (perception), forensic (identifying speakers).", "فروع علم الأصوات"],
+    ["[[Phonetics|en.ling.phonbranches]] describes speech sounds as physical events in any language; it has **four branches**.", "علم الأصوات يصف الصوت حدثاً فيزيائياً"],
     ["The actions of the speech organs in producing sounds = **articulation**.", "النطق"],
     ["**Phonology** studies the sound system and patterns of a particular language.", "علم وظائف الأصوات"]
-  ]);
+  ], { map: { type: "fan", title: ["Branches of phonetics", "فروع علم الأصوات"], groups: [
+    { n: "Articulatory", ar: "كيف تنتج أعضاء النطق الصوت", items: [{ n: "production" }], d: "en.ling.phonbranches" },
+    { n: "Acoustic", ar: "خصائص موجات الصوت", items: [{ n: "sound waves" }], d: "en.ling.phonbranches" },
+    { n: "Auditory", ar: "كيف تستقبل الأذن والدماغ الصوت", items: [{ n: "perception" }], d: "en.ling.phonbranches" },
+    { n: "Forensic", ar: "تحديد المتكلم من تسجيل", items: [{ n: "identifying speakers" }], d: "en.ling.phonbranches" }
+  ] } });
   S("L19", "Phonemes and allophones", [
     ["[[**Phoneme**|en.ling.phoneme]] = smallest meaning-distinguishing sound; its variants = **allophones** (/t/ in tuck, hits, slept).", "فونيم / ألوفون"],
     ["Two words differing in one sound = **minimal pair**; three or more (cat/mat/rat) = **minimal set**.", "زوج / مجموعة صغرى"],
@@ -8420,8 +8498,7 @@ window.QB = (window.QB || []).concat([
     { n: "Coinage", ar: "كلمة مخترعة، غالباً من اسم تجاري", items: [{ n: "Kleenex" }, { n: "Xerox" }], d: "en.ling.wordform" },
     { n: "Compounding · Blending", ar: "كلمتان كاملتان / جزءان من كلمتين", items: [{ n: "gentleman · fingerprint · bookcase" }, { n: "smog · brunch" }], d: "en.ling.blendcomp" },
     { n: "Clipping · Back-formation · Acronym", ar: "قص الكلمة / حذف لاحقة مظنونة / حروف أولى", items: [{ n: "ad · exam · lab" }, { n: "edit" }, { n: "NASA · laser" }], d: "en.ling.backform" },
-    { n: "Conversion", ar: "تغيير الصنف بلا تغيير الشكل", items: [{ n: "to google" }, { n: "to email" }], d: "en.ling.wordform" },
-    { n: "Derivation", ar: "سابقة أو لاحقة تصنع كلمة جديدة", items: [{ n: "unhappy" }, { n: "metallic" }], d: "en.ling.inflderiv" }
+    { n: "Conversion", ar: "تغيير الصنف بلا تغيير الشكل", items: [{ n: "to google" }, { n: "to email" }], d: "en.ling.wordform" }
   ] } });
   S("L20", "Suppletion", [
     ["[[**Suppletion**|en.ling.suppletion]]: an entirely different word form — go/went, good/better, bad/worse.", "صيغة مختلفة كلياً"],
@@ -8644,6 +8721,9 @@ window.QB = (window.QB || []).concat([
   add("en.ling.speechacts", "ex", [["A teacher near an open window says 'It's cold in here.' Form: a statement; intended function: a request to close the window — an indirect speech act.", "شكلها إخبار ووظيفتها طلب."]]);
 })();
 
+// آخر خطوة بعد كل ملفات d_: عزل النصوص العربية داخل الخرائط (d_00_ltr.js)
+if (window.QX_LTR_FIX) window.QX_LTR_FIX();
+
 </script>
 <script>
 (function(){
@@ -8738,9 +8818,14 @@ const TESTS = {
 
 /* ---------- state & persistence ---------- */
 const LS_KEY = "rakhsa-en2.v1";
-function freshState(){return {v:1,start:todayStr(),exam:null,lessons:{},q:{},terms:{},tests:{},tasks:{},updatedAt:0}}
+// الاختبار التخصصي 1448: فترة 18–31 أكتوبر 2026 (اليوم نقلاً عن الهيئة). العدّ إلى 31 أكتوبر بطلب يوسف.
+// يُحدَّث في المهمة الروتينية لكل دورة
+const EXAM_START = "2026-10-18", EXAM_DEFAULT = "2026-10-31", EXAM_END = EXAM_DEFAULT;
+function freshState(){return {v:1,start:todayStr(),exam:EXAM_DEFAULT,lessons:{},q:{},terms:{},tests:{},tasks:{},updatedAt:0}}
 let S = freshState();
 try{const raw=localStorage.getItem(LS_KEY); if(raw){const p=JSON.parse(raw); if(p&&p.v===1) S=Object.assign(freshState(),p);}}catch(e){}
+// الموعد رسمي للجميع (حُذفت خانة تحديده)
+S.exam=EXAM_DEFAULT; if(diffDays(S.start,S.exam)<1) S.start=todayStr();
 let dbRef=null, remoteBusy=false, remotePending=false, syncOn=false, saveTimer=null;
 function save(){
   S.updatedAt = Date.now();
@@ -8759,7 +8844,7 @@ async function pullRemote(){
   if(!dbRef) return;
   try{
     const snap = await dbRef.get();
-    if(snap.exists){const r=snap.data(); if(r&&r.v===1&&(r.updatedAt||0)>(S.updatedAt||0)){S=Object.assign(freshState(),JSON.parse(JSON.stringify(r)));try{localStorage.setItem(LS_KEY,JSON.stringify(S))}catch(e){};render()}
+    if(snap.exists){const r=snap.data(); if(r&&r.v===1&&(r.updatedAt||0)>(S.updatedAt||0)){S=Object.assign(freshState(),JSON.parse(JSON.stringify(r)));S.exam=EXAM_DEFAULT;try{localStorage.setItem(LS_KEY,JSON.stringify(S))}catch(e){};render()}
       else if((S.updatedAt||0)>(r&&r.updatedAt||0)) pushRemote();}
     else if(S.updatedAt) pushRemote();
     syncOn=true; renderSync();
@@ -8864,7 +8949,7 @@ function renderNav(){
   document.getElementById("tabbar").innerHTML=TABS.map(([k,l])=>btn(k,l,true)).join("");
   const c=document.getElementById("count");
   if(S.exam){const d=diffDays(todayStr(),S.exam); c.innerHTML=`<div class="n">${d>=0?AR(d):"—"}</div><div class="l">${d>0?"يوماً للاختبار":d===0?"اليوم الاختبار":"انتهى الموعد"}</div>`}
-  else c.innerHTML=`<button class="btn sm ghost" data-go="settings">حدد الموعد</button>`;
+
 }
 function renderSync(){renderTheme();const el=document.getElementById("syncline"); if(el){el.className="sync"+(syncOn?" on":""); el.innerHTML=`<i></i>${syncOn?"تقدمك محفوظ على حسابك ويظهر في أي جهاز":"تقدمك محفوظ في هذا الجهاز"}`}}
 
@@ -8924,8 +9009,7 @@ function viewHome(){
   return `
   <section class="stack" style="padding-top:18px">
     ${coverCard()}
-    ${!S.exam?`<div class="sheet"><div class="stack"><h3>متى اختبارك؟</h3><p class="muted small">حدد التاريخ عشان أوزّع الدروس على الأيام المتبقية وأعطيك عدّاً تنازلياً.</p>
-      <div class="set-date"><label for="examDate" class="small">تاريخ الاختبار</label><input type="date" id="examDate" dir="ltr" lang="en" min="${todayStr()}"><button class="btn sm" data-act="setExam">احفظ</button></div></div></div>`:""}
+    
     <div class="sheet today">
       <div class="kicker">${nt?`اليوم ${AR(idx+1)} من ${AR(plan.length+1)} · ${fmtDate(todayStr())}`:"خلصت الخطة كاملة"}</div>
       ${pathLine(doneL)}
@@ -9172,7 +9256,7 @@ function reportText(){
 }
 function viewSettings(){
   return `<section class="stack" style="padding-top:18px"><h1>الإعدادات والتقرير</h1>
-   <div class="sheet stack"><h3>موعد الاختبار</h3><div class="set-date"><input type="date" id="examDate" dir="ltr" lang="en" value="${S.exam||""}"><button class="btn sm" data-act="setExam">احفظ</button></div>
+   <div class="sheet stack"><h3>موعد الاختبار</h3><p class="small muted">موعد الاختبار التخصصي: ${fmtDate(EXAM_DEFAULT)} (فترة الاختبار ${fmtDate(EXAM_START)} – ${fmtDate(EXAM_END)} حسب إعلان هيئة تقويم التعليم والتدريب).</p>
      <p class="small muted">بداية الخطة: ${fmtDate(S.start)}. <button class="btn sm quiet" data-act="restartPlan">ابدأ الخطة من اليوم</button></p></div>
    <div class="sheet stack"><h3>تقريرك</h3><p class="small muted">انسخه واحتفظ به لتتابع تقدمك من أسبوع لأسبوع.</p>
      <textarea class="report" id="report" readonly>${esc(reportText())}</textarea><div><button class="btn sm" data-act="copyReport">انسخ التقرير</button></div></div>
