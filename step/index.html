@@ -435,9 +435,23 @@ html { scrollbar-width: none; }
 .quiz-opt { display: flex; align-items: center; justify-content: center; }
 .lis-row { display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.4rem; }
 .lis-row .transcript-box { flex-basis: 100%; }
+
+/* === ROUND 3 COVER TWEAKS === */
+.credit-ministry { margin-top: clamp(2.2rem, 7vh, 4rem); }
+.cover-year { margin-top: 0.15rem !important; margin-bottom: 0.2rem; }
+.credit-card.credit-wide { grid-column: 1 / -1; }
+.src-note { font-size: clamp(0.7rem, 2.4vw, 0.85rem); opacity: 0.75; margin-top: 0.5rem; }
+
+/* === STAT CARD (what is STEP) === */
+.stat-card { display: flex; flex-direction: column; justify-content: center; gap: 0; padding: clamp(0.8rem, 2vw, 1.4rem); }
+.stat-row { text-align: center; padding: clamp(0.6rem, 1.6vh, 1rem) 0.4rem; display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
+.stat-row + .stat-row { border-top: 1px solid rgba(45,90,61,0.12); }
+.stat-big { font-size: clamp(1.6rem, 3.2vw, 2.4rem); font-weight: 800; color: var(--gold); line-height: 1.35; }
+.stat-word { font-size: clamp(1.4rem, 2.8vw, 2rem); }
+.stat-label { font-size: clamp(0.9rem, 1.6vw, 1.1rem); font-weight: 600; line-height: 1.6; }
 </style>
 <style>.yt-rule{display:inline-flex;align-items:center;gap:.4rem;width:fit-content;max-width:100%;margin:.15rem 0 .35rem;padding:.25rem .8rem;border-radius:999px;border:1px solid currentColor;color:var(--dark-green);font-size:.82rem;font-weight:600;text-decoration:none;line-height:1.5}.yt-rule svg{width:.9em;height:.9em;flex:none}.yt-rule:hover{background:rgba(201,168,76,.12)}.bg-dark .yt-rule{color:var(--gold)}</style><style>@media (max-width:768px){.slide{overflow:visible;min-height:auto;padding-top:clamp(1.5rem,4vw,3rem);padding-bottom:clamp(1.5rem,4vw,3rem)}.slide-content{max-height:none}}</style><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#33449A"><meta name="apple-mobile-web-app-title" content="STEP"></head>
-<body><style>:root{--qt-bg:#121A16;--qt-ink:#E6ECE8;--qt-mut:#A3B1AA;--qt-line:#2A3630;--qt-act:#5BC093;--qt-actink:#0F1512}.qt{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top,0px)) 16px 8px;background:var(--qt-bg);border-bottom:1px solid var(--qt-line);font-family:'Cairo',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6;position:relative;z-index:60;direction:rtl}.qt a{display:inline-flex;align-items:center;gap:6px;flex:none;text-decoration:none;color:var(--qt-ink);border:1px solid var(--qt-line);padding:4px 14px;border-radius:999px;white-space:nowrap;font-weight:600}.qt a.qt-back{color:var(--qt-actink);background:var(--qt-act);border-color:var(--qt-act);font-weight:700;padding-inline-end:16px}.qt a svg{width:16px;height:16px;flex:none}.qt a:focus-visible{outline:2px solid var(--qt-act);outline-offset:2px}.qt .qt-upd{margin-inline-start:auto;color:var(--qt-mut);font-size:12.5px;font-weight:500;line-height:1.4;white-space:nowrap}@media (max-width:520px){.qt .qt-upd{flex-basis:100%;text-align:center;margin:0}}</style><nav class="qt" aria-label="التنقل"><a class="qt-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>العودة إلى التخصصات</a><span class="qt-upd">آخر تحديث: 10 أكتوبر 2026</span></nav>
+<body><style>:root{--qt-bg:#121A16;--qt-ink:#E6ECE8;--qt-mut:#A3B1AA;--qt-line:#2A3630;--qt-act:#5BC093;--qt-actink:#0F1512}.qt{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top,0px)) 16px 8px;background:var(--qt-bg);border-bottom:1px solid var(--qt-line);font-family:'Cairo',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6;position:relative;z-index:60;direction:rtl}.qt a{display:inline-flex;align-items:center;gap:6px;flex:none;text-decoration:none;color:var(--qt-ink);border:1px solid var(--qt-line);padding:4px 14px;border-radius:999px;white-space:nowrap;font-weight:600}.qt a.qt-back{color:var(--qt-actink);background:var(--qt-act);border-color:var(--qt-act);font-weight:700;padding-inline-end:16px}.qt a svg{width:16px;height:16px;flex:none}.qt a:focus-visible{outline:2px solid var(--qt-act);outline-offset:2px}.qt .qt-upd{margin-inline-start:auto;color:var(--qt-mut);font-size:12.5px;font-weight:500;line-height:1.4;white-space:nowrap}@media (max-width:520px){.qt .qt-upd{flex-basis:100%;text-align:center;margin:0}}</style><nav class="qt" aria-label="التنقل"><a class="qt-back" href="../"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>العودة إلى التخصصات</a><span class="qt-upd">آخر تحديث: 14 أكتوبر 2026</span></nav>
 
 <div id="progress"></div>
 
@@ -465,9 +479,8 @@ html { scrollbar-width: none; }
     <div class="gold-line anim anim-d1" style="width:clamp(80px,15vw,200px);margin:0.5rem auto;"></div>
     <h1 class="title-xl anim anim-d2">الدليل الشامل لاختبار STEP</h1>
     <p class="subtitle anim anim-d3" style="max-width:600px;">كل القواعد + المفردات + نماذج الأسئلة + تمارين استماع تفاعلية<br>مع الشرح بالعربي</p>
+    <p class="cover-year anim anim-d4">العام الدراسي 1448 – 1449 هـ</p>
     <div class="gold-line anim anim-d4" style="width:clamp(80px,15vw,200px);margin:0.5rem auto;"></div>
-    <p class="cover-year anim anim-d5">العام الدراسي 1448 – 1449 هـ</p>
-    <p class="body-text anim anim-d5" style="opacity:0.5;">اسحب للأسفل أو اضغط ↓</p>
     <p class="body-text gold-text anim anim-d5" style="margin-top:1.2rem;font-weight:700;">إعداد الأستاذ يوسف الشمراني</p>
   <p class="vcount" hidden style="margin-top:1rem;font-size:.85rem;opacity:.75;font-variant-numeric:tabular-nums;">عدد الزوار: <b class="vcount-n"></b></p></div>
 </section>
@@ -485,25 +498,27 @@ html { scrollbar-width: none; }
       <div class="card">
         <table class="data-table">
           <tr><th>البند</th><th>التفاصيل</th></tr>
-          <tr><td>الجهة</td><td>هيئة تقويم التعليم والتدريب (قياس)</td></tr>
-          <tr><td>عدد الأسئلة</td><td>117 – 133 سؤال اختيار من متعدد</td></tr>
-          <tr><td>المدة</td><td>2.5 – 3 ساعات + 15 دقيقة إجراءات</td></tr>
+          <tr><td>الجهة</td><td>المركز الوطني للقياس — هيئة تقويم التعليم والتدريب</td></tr>
+          <tr><td>ماذا يقيس؟</td><td>كفاءة اللغة الإنجليزية لدى متحدثيها كلغة أجنبية</td></tr>
+          <tr><td>طريقة التطبيق</td><td>رقمي فقط</td></tr>
+          <tr><td>الأسئلة</td><td>اختيار من متعدد — حوالي 100 سؤال حسب تجارب المختبرين</td></tr>
           <tr><td>الدرجة</td><td>من 0 إلى 100 (لا نجاح/رسوب)</td></tr>
-          <tr><td>الصلاحية</td><td>3 سنوات</td></tr>
+          <tr><td>إعلان النتيجة</td><td>من 3 إلى 5 أيام عمل</td></tr>
+          <tr><td>الصلاحية</td><td>3 سنوات من تاريخ الاختبار</td></tr>
         </table>
       </div>
-      <div class="card" style="display:flex;flex-direction:column;justify-content:center;gap:0.8rem;">
-        <div style="text-align:center;">
-          <div class="card-number">4</div>
-          <div class="title-sm">أقسام رئيسية</div>
+      <div class="card stat-card">
+        <div class="stat-row">
+          <div class="stat-big">3</div>
+          <div class="stat-label">مكونات: قراءة • تراكيب نحوية • استماع</div>
         </div>
-        <div style="text-align:center;">
-          <div class="card-number" style="font-family:'Playfair Display';">CEFR</div>
-          <div class="body-text">مبني على الإطار الأوروبي المشترك</div>
+        <div class="stat-row">
+          <div class="stat-big stat-word">رقمي</div>
+          <div class="stat-label">يُطبَّق الاختبار رقميًا فقط</div>
         </div>
-        <div style="text-align:center;">
-          <div class="card-number">+337K</div>
-          <div class="body-text">مختبر في 2024</div>
+        <div class="stat-row">
+          <div class="stat-big">+376 ألف</div>
+          <div class="stat-label">مختبر في 2024</div>
         </div>
       </div>
     </div>
@@ -516,41 +531,34 @@ html { scrollbar-width: none; }
   <div class="deco-circle c2"></div>
   <div class="slide-content">
     <span class="badge anim">TEST MAP</span>
-    <h2 class="title-lg anim anim-d1">أقسام الاختبار الأربعة</h2>
-    <div class="card-grid cols-4 anim anim-d2" style="margin-top:1rem;">
+    <h2 class="title-lg anim anim-d1">مكونات الاختبار ونسبها</h2>
+    <div class="card-grid cols-3 anim anim-d2" style="margin-top:1rem;">
       <div class="card" style="text-align:center;border-top:3px solid var(--sage);">
         <div class="card-number">40%</div>
-        <div class="title-sm">القراءة</div>
-        <div class="body-text" style="opacity:0.6;">~40 سؤال • 60 دقيقة</div>
+        <div class="title-sm">فهم المقروء</div>
+        <div class="body-text" style="opacity:0.7;">Reading — حوالي 40 سؤال</div>
         <div class="pct-bar-wrap" style="margin-top:0.5rem;">
           <div class="pct-bar"><div class="pct-fill" style="width:40%;background:var(--sage);"></div></div>
         </div>
       </div>
       <div class="card" style="text-align:center;border-top:3px solid var(--light-sage);">
-        <div class="card-number">30%</div>
-        <div class="title-sm">القواعد</div>
-        <div class="body-text" style="opacity:0.6;">~40 سؤال • 45 دقيقة</div>
+        <div class="card-number">40%</div>
+        <div class="title-sm">التراكيب النحوية</div>
+        <div class="body-text" style="opacity:0.7;">Grammar + التحليل الكتابي — حوالي 40 سؤال</div>
         <div class="pct-bar-wrap" style="margin-top:0.5rem;">
-          <div class="pct-bar"><div class="pct-fill" style="width:30%;background:var(--light-sage);"></div></div>
+          <div class="pct-bar"><div class="pct-fill" style="width:40%;background:var(--light-sage);"></div></div>
         </div>
       </div>
       <div class="card" style="text-align:center;border-top:3px solid var(--soft-gold);">
         <div class="card-number">20%</div>
-        <div class="title-sm">الاستماع</div>
-        <div class="body-text" style="opacity:0.6;">~20 سؤال • 25 دقيقة</div>
+        <div class="title-sm">فهم المسموع</div>
+        <div class="body-text" style="opacity:0.7;">Listening — حوالي 20 سؤال</div>
         <div class="pct-bar-wrap" style="margin-top:0.5rem;">
           <div class="pct-bar"><div class="pct-fill" style="width:20%;background:var(--soft-gold);"></div></div>
         </div>
       </div>
-      <div class="card" style="text-align:center;border-top:3px solid var(--gold);">
-        <div class="card-number">10%</div>
-        <div class="title-sm">التحليل الكتابي</div>
-        <div class="body-text" style="opacity:0.6;">~15 سؤال • 15 دقيقة</div>
-        <div class="pct-bar-wrap" style="margin-top:0.5rem;">
-          <div class="pct-bar"><div class="pct-fill" style="width:10%;background:var(--gold);"></div></div>
-        </div>
-      </div>
     </div>
+    <div class="warning anim anim-d3" style="margin-top:0.6rem;">⚠ النسب من صفحة الاختبار الرسمية في موقع هيئة تقويم التعليم والتدريب. أسئلة التحليل الكتابي تأتي ضمن التراكيب النحوية، وعدد الأسئلة تقريبي من تجارب المختبرين.</div>
   </div>
 </section>
 
@@ -559,6 +567,7 @@ html { scrollbar-width: none; }
   <div class="slide-content">
     <span class="badge anim">LEVELS</span>
     <h2 class="title-lg anim anim-d1">المستويات والدرجات</h2>
+    <div class="warning" style="margin-bottom:0.4rem;">⚠ تقسيم تقريبي متداول — الصفحة الرسمية لا تنشر جدول المستويات أو مقابلها في IELTS</div>
     <div class="anim anim-d2">
       <table class="data-table">
         <tr><th>المستوى</th><th>الدرجة</th><th>الوصف</th><th>IELTS</th></tr>
@@ -611,10 +620,10 @@ html { scrollbar-width: none; }
     <div class="card-grid cols-2 anim anim-d2">
       <div class="card" style="border-top:3px solid var(--dark-green);">
         <div class="title-sm" style="color:var(--dark-green);margin-bottom:0.5rem;">✅ المؤكد رسميًا</div>
-        <div class="example">طبيعة الاختبار وارتباطه بـ CEFR</div>
-        <div class="example">الأقسام الأساسية الأربعة ووزنها</div>
-        <div class="example">قسم التحليل الكتابي (لا يتطلب كتابة مقال)</div>
-        <div class="example">الاختبار محوسب بالكامل</div>
+        <div class="example">يقيس كفاءة الإنجليزية في المهارات الأساسية بموضوعية وثبات</div>
+        <div class="example">المكونات: قراءة 40% + تراكيب نحوية 40% + استماع 20%</div>
+        <div class="example">يُطبَّق رقميًا فقط</div>
+        <div class="example">النتيجة خلال 3–5 أيام عمل وصلاحيتها 3 سنوات</div>
       </div>
       <div class="card" style="border-top:3px solid var(--gold);">
         <div class="title-sm" style="color:var(--gold);margin-bottom:0.5rem;">💡 المتكرر في تجارب المختبرين</div>
@@ -691,7 +700,7 @@ html { scrollbar-width: none; }
   <div class="slide-content" style="text-align:center;align-items:center;">
     <div class="card-number anim" style="font-size:clamp(3rem,8vw,6rem);">1</div>
     <h2 class="title-xl anim anim-d1">قسم القواعد</h2>
-    <p class="subtitle anim anim-d2">Grammar — 30% من الاختبار — ~40 سؤال — 45 دقيقة</p>
+    <p class="subtitle anim anim-d2">Grammar — التراكيب النحوية 40% مع التحليل الكتابي — حوالي 40 سؤال</p>
     <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
     <p class="body-text anim anim-d4" style="max-width:500px;opacity:0.7;">أهم القواعد المتكررة مع الشرح والأمثلة والاختبارات التفاعلية</p>
   </div>
@@ -825,7 +834,7 @@ html { scrollbar-width: none; }
   <div class="slide-content" style="text-align:center;align-items:center;">
     <div class="card-number anim" style="font-size:clamp(3rem,8vw,6rem);">3</div>
     <h2 class="title-xl anim anim-d1">قسم القراءة</h2>
-    <p class="subtitle anim anim-d2">Reading — 40% من الاختبار — ~40 سؤال — 60 دقيقة</p>
+    <p class="subtitle anim anim-d2">Reading — 40% من الاختبار — حوالي 40 سؤال</p>
     <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
   </div>
 </section>
@@ -944,7 +953,7 @@ html { scrollbar-width: none; }
   <div class="slide-content" style="text-align:center;align-items:center;">
     <div class="card-number anim" style="font-size:clamp(3rem,8vw,6rem);">5</div>
     <h2 class="title-xl anim anim-d1">التحليل الكتابي</h2>
-    <p class="subtitle anim anim-d2">Written Analysis — 10% — ~15 سؤال — لا يتطلب كتابة مقال</p>
+    <p class="subtitle anim anim-d2">Written Analysis — جزء من التراكيب النحوية (40%) — لا يتطلب كتابة مقال</p>
     <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
   </div>
 </section>
@@ -1046,7 +1055,7 @@ html { scrollbar-width: none; }
   <div class="slide-content" style="text-align:center;align-items:center;">
     <div class="card-number anim" style="font-size:clamp(2rem,5vw,4rem);">🎓</div>
     <h2 class="title-xl anim anim-d1">مصادر تعليمية</h2>
-    <p class="subtitle anim anim-d2">قنوات ودورات مجانية موثوقة لشرح كل القواعد بالعربي</p>
+    <p class="subtitle anim anim-d2">قنوات ودورات مجانية (للاطلاع) لشرح كل القواعد بالعربي</p>
     <div class="gold-line anim anim-d3" style="margin:0.5rem auto;"></div>
   </div>
 </section>
@@ -1080,7 +1089,7 @@ html { scrollbar-width: none; }
   <div class="deco-circle c1"></div>
   <div class="slide-content">
     <span class="badge">TELEGRAM CHANNELS</span>
-    <h2 class="title-md">قنوات تلجرام للتجميعات والشروحات</h2>
+    <h2 class="title-md">قنوات تلجرام للشروحات</h2>
     <div class="card-grid cols-2" style="margin-top:0.5rem;">
       <div onclick="window.open('https://t.me/STEPACADEMY0','_blank')" style="cursor:pointer;-webkit-tap-highlight-color:rgba(196,163,90,0.3);">
         <div class="card" style="cursor:pointer;">
@@ -1090,7 +1099,7 @@ html { scrollbar-width: none; }
       </div>
       <div onclick="window.open('https://t.me/step_alhassani','_blank')" style="cursor:pointer;-webkit-tap-highlight-color:rgba(196,163,90,0.3);">
         <div class="card" style="cursor:pointer;">
-          <div class="title-sm gold-text">📢 تجميعات أ. عبدالله الحساني</div>
+          <div class="title-sm gold-text">📢 نماذج أ. عبدالله الحساني</div>
           <div class="body-text" style="opacity:0.8;">ملفات القرامر والقطع والمترادفات — محدّثة باستمرار</div>
         </div>
       </div>
@@ -1120,8 +1129,6 @@ html { scrollbar-width: none; }
     <h2 class="title-xl anim anim-d1" style="margin:1rem 0;">بالتوفيق والنجاح!</h2>
     <div class="gold-line anim anim-d2" style="margin:0 auto;"></div>
     <p class="title-sm anim anim-d3" style="margin-top:1.5rem;color:var(--soft-gold);">افهم القاعدة ← احفظ الأمثلة ← تدرب على الأسئلة ← كرر</p>
-    <p class="body-text anim anim-d4" style="opacity:0.5;margin-top:1rem;">اسحب للأعلى للرجوع للبداية</p>
-    <p class="body-text anim anim-d5" style="opacity:0.7;margin-top:0.5rem;color:var(--soft-gold);">إعداد الأستاذ: يوسف الشمراني</p>
   </div>
 </section><section class="qr-step-wrap" style="background:var(--forest,#0f1f17);padding:2.5rem clamp(1rem,3vw,3rem) 3rem"><div class="qr-full qr-dark" data-exam="step" id="qreviews" style="max-width:820px;margin:0 auto"></div></section>
 
