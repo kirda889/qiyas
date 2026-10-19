@@ -1,0 +1,171 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>اختبارات الرخصة المهنية وSTEP</title>
+<meta name="description" content="مذاكرة منظمة لاختبار STEP واختبارَي الرخص المهنية للوظائف التعليمية: التربوي العام والتخصصي English 2.">
+<meta name="theme-color" content="#1F6B4C"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="الاختبارات">
+<link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap">
+
+<style>
+/* Layout: a calm index of three tests — one column on phones, three on desktop; each card leads with its app icon. */
+:root{
+  --bg:#F2F5F3; --card:#FFFFFF; --ink:#172420; --muted:#5A6B64; --line:#D9E1DD; --soft:#E8EFEB;
+  --accent:#1F6B4C; --gold:#C9A23F;
+  --c-step:#33449A; --c-tarbawi:#1F6B4C; --c-en2:#0B6B66;
+  --shadow:0 1px 0 rgba(23,36,32,.05),0 10px 30px -18px rgba(23,36,32,.35);
+  --f:"Cairo",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1512; --card:#171F1B; --ink:#E6ECE8; --muted:#9BAAA3; --line:#27332D; --soft:#1D2723;
+  --accent:#5BC093; --gold:#E0BE62; --c-step:#8EA0F0; --c-tarbawi:#5BC093; --c-en2:#4FB8AF;
+  --shadow:0 1px 0 rgba(0,0,0,.4),0 12px 30px -16px rgba(0,0,0,.7); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0F1512; --card:#171F1B; --ink:#E6ECE8; --muted:#9BAAA3; --line:#27332D; --soft:#1D2723;
+  --accent:#5BC093; --gold:#E0BE62; --c-step:#8EA0F0; --c-tarbawi:#5BC093; --c-en2:#4FB8AF;
+  --shadow:0 1px 0 rgba(0,0,0,.4),0 12px 30px -16px rgba(0,0,0,.7); color-scheme:dark }
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{margin:0;color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:0 40px}
+.hrow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tb{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.tb svg{width:18px;height:18px}
+.hero{padding-block:calc(16px + env(safe-area-inset-top,0px)) 26px;display:grid;gap:8px}
+.hero .k{font-size:.9rem;color:var(--accent);font-weight:600}
+.hero h1{margin:0;font-size:clamp(1.7rem,4.6vw,2.6rem);line-height:1.35;font-weight:700;text-wrap:balance}
+.hero p{margin:0;color:var(--muted);max-width:60ch;font-size:1.02rem}
+.cards{display:grid;gap:16px;grid-template-columns:1fr;align-items:stretch}
+@media (min-width:900px){.cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;min-width:0;display:flex;flex-direction:column}
+.card .upd{margin-top:auto}
+.card-main{display:grid;gap:6px;padding:20px 20px 16px;text-decoration:none}
+.ic{width:56px;height:56px;border-radius:14px;margin-bottom:6px;box-shadow:0 6px 16px -10px var(--c)}
+.card .k{font-size:.82rem;color:var(--muted);line-height:1.6}
+.card h2{margin:0;font-size:1.45rem;font-weight:700;line-height:1.4;color:var(--ink)}
+.card .d{margin:0;color:var(--muted);font-size:.95rem}
+.figs{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px;padding-top:10px;border-top:1px solid var(--line)}
+.fig{font-size:.88rem;color:var(--muted)}
+.fig b{font-size:1.15rem;font-weight:700;color:var(--ink)}
+.go{margin-top:10px;display:inline-flex;align-items:center;justify-content:center;gap:6px;justify-self:start;background:var(--c);color:#fff;border-radius:999px;padding:9px 20px;font-weight:600;font-size:.95rem}
+:root[data-theme="dark"] .go{color:#0F1512}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .go{color:#0F1512}}
+.go svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+@media (prefers-reduced-motion:no-preference){
+  .card{transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-2px)}
+}
+.vids{border-top:1px solid var(--line);padding:0 20px}
+.vids summary{cursor:pointer;list-style:none;padding:12px 0;font-weight:600;font-size:.92rem;display:flex;justify-content:space-between;gap:8px}
+.vids summary::-webkit-details-marker{display:none}
+.vids summary::after{content:"＋";color:var(--muted)}
+.vids[open] summary::after{content:"－"}
+.vids summary span{color:var(--muted);font-weight:400;margin-inline-end:auto}
+.vids ul{list-style:none;margin:0;padding:0 0 12px;display:grid;gap:12px}
+.fb{list-style:none;margin:0;padding:2px 0 16px;display:grid;gap:8px}
+.fb li{display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:16px;background:color-mix(in srgb,var(--c) 12%,transparent);border:1px solid color-mix(in srgb,var(--c) 28%,transparent);font-weight:600;font-size:.95rem;line-height:1.5}
+.fb svg{width:18px;height:18px;flex:none;fill:none;stroke:var(--c);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+:root[data-theme=dark] .fb li{background:color-mix(in srgb,var(--c) 18%,transparent)}
+.ys{font-size:.82rem;font-weight:600;color:var(--c);margin-bottom:2px}
+.yt{display:grid;text-decoration:none;padding:6px 10px;border-radius:10px;background:var(--soft);margin-top:4px}
+.yt:hover{outline:1px solid var(--c)}
+.yt-t{font-size:.88rem;line-height:1.6}
+.yt-c{font-size:.75rem;color:var(--muted)}
+.upd{margin:0;padding:10px 20px 14px;font-size:.78rem;color:var(--muted);border-top:1px solid var(--line)}
+.about{display:grid;gap:16px;margin-top:28px;grid-template-columns:1fr}
+@media (min-width:900px){.about{grid-template-columns:3fr 2fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;min-width:0}
+.box h3{margin:0 0 6px;font-size:1.1rem;font-weight:700}
+.box p{margin:0;color:var(--muted)}
+.freebar{margin:.2rem 0 .1rem;font-size:.82rem;font-weight:700;color:var(--accent)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:10px;align-items:center}
+.steps li::before{counter-increment:s;content:counter(s);width:32px;height:32px;border-radius:50%;border:2px solid var(--accent);color:var(--accent);display:grid;place-items:center;font-weight:700}
+.credit{margin-top:28px;display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px 18px}
+.credit .cm{width:42px;height:42px;border-radius:50%;background:var(--soft);color:var(--accent);display:grid;place-items:center;flex:none}
+.credit .cm svg{width:22px;height:22px}
+.credit .ck{font-size:.8rem;color:var(--muted)}
+.credit .cn{font-weight:700;font-size:1.08rem}
+.credit .vcount{margin-inline-start:auto;display:flex;flex-direction:column;align-items:center;line-height:1.35;padding-inline-start:14px;border-inline-start:1px solid var(--line)}
+.credit .vcount[hidden]{display:none}
+.credit .vcount-n{font-weight:700;font-size:1.08rem;font-variant-numeric:tabular-nums}
+.legal{margin-top:18px;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.82rem}.legal a{color:var(--muted)}
+.disc{margin-top:12px;color:var(--muted);font-size:.74rem;font-weight:300;line-height:1.9}
+.disc ul{margin:0;padding-inline-start:18px}
+</style></head>
+<body><div class="wrap">
+  <header class="hero">
+    <div class="hrow"><span class="k">الرخص المهنية للوظائف التعليمية + <bdi>STEP</bdi></span><button class="tb" id="tb" type="button" aria-label="الوضع الليلي"></button></div>
+    <h1>اختر اختبارك وابدأ المذاكرة</h1>
+    <p>دروس مرتبة بخطة يومية، وبنوك أسئلة بأسلوب الاختبار، ومحاكيات بنفس وقته. تقدمك يُحفظ في جهازك.</p>
+  </header>
+  <main class="cards">
+  <article class="card" style="--c:var(--c-tarbawi)">
+    <a class="card-main" href="tarbawi/" data-prefetch="tarbawi/">
+      <img class="ic" src="tarbawi/apple-touch-icon.png" alt="" width="56" height="56">
+      <span class="k">دروس اختبار الرخصة المهنية للوظائف التعليمية</span>
+      <h2>الاختبار التربوي</h2>
+      <p class="d">جميعها مبنية على المعايير المهنية الرسمية وأوزانها في اختبار الرخصة.</p>
+      <span class="figs"><span class="fig"><b>16</b> درساً</span><span class="fig"><b>1512</b> سؤالاً</span><span class="fig"><b>3</b> محاكيات</span></span>
+      <span class="go">ابدأ المذاكرة<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></span>
+    </a>
+    <details class="vids feats"><summary>ماذا ستجد عند بدء المذاكرة</summary><ul class="fb"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>المعايير التسعة الرئيسية + المعايير الفرعية</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>شرح مكتوب ومنظم</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>روابط يوتيوب مباشرة لكل معيار</span></li></ul></details><p class="freebar">ابدأ مجاناً · النسخة الكاملة 49 ريال</p><div class="qr-sum" data-exam="tarbawi"></div><p class="upd">آخر تحديث للمحتوى: 18 أكتوبر 2026</p>
+  </article>
+  <article class="card" style="--c:var(--c-en2)">
+    <a class="card-main" href="english2/" data-prefetch="english2/">
+      <img class="ic" src="english2/apple-touch-icon.png" alt="" width="56" height="56">
+      <span class="k">دروس اختبار الرخصة المهنية للوظائف التعليمية</span>
+      <h2>الاختبار التخصصي <bdi>English 2</bdi></h2>
+      <p class="d">للغة الإنجليزية.</p>
+      <span class="figs"><span class="fig"><b>22</b> درساً</span><span class="fig"><b>772</b> سؤالاً</span><span class="fig"><b>3</b> محاكيات</span></span>
+      <span class="go">ابدأ المذاكرة<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></span>
+    </a>
+    <details class="vids feats"><summary>ماذا ستجد عند بدء المذاكرة</summary><ul class="fb"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>المعايير الأحد عشر + المجالات الأربعة</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>شرح مكتوب ومنظم</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>روابط يوتيوب مباشرة لكل معيار</span></li></ul></details><p class="freebar">ابدأ مجاناً · النسخة الكاملة 49 ريال</p><div class="qr-sum" data-exam="english2"></div><p class="upd">آخر تحديث للمحتوى: 18 أكتوبر 2026</p>
+  </article>
+  <article class="card" style="--c:var(--c-step)">
+    <a class="card-main" href="step/" data-prefetch="step/">
+      <img class="ic" src="step/apple-touch-icon.png" alt="" width="56" height="56">
+      <span class="k">اختبار كفايات اللغة الإنجليزية</span>
+      <h2><bdi>STEP</bdi></h2>
+      <p class="d">القواعد والمفردات والقراءة والاستماع والتحليل الكتابي، بشرح عربي وتمارين تفاعلية.</p>
+      <span class="figs"><span class="fig"><b>382</b> سؤالاً</span><span class="fig"><b>3</b> مكونات</span><span class="fig"><b>30</b> يوماً خطة</span></span>
+      <span class="go">ابدأ المذاكرة<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></span>
+    </a>
+    <details class="vids feats"><summary>ماذا ستجد عند بدء المذاكرة</summary><ul class="fb"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>المكونات الثلاثة + 21 قاعدة</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>شرح مكتوب ومنظم</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>روابط يوتيوب مباشرة لكل قاعدة</span></li></ul></details><p class="freebar">ابدأ مجاناً · النسخة الكاملة 29 ريال</p><div class="qr-sum" data-exam="step"></div><p class="upd">آخر تحديث للمحتوى: 14 أكتوبر 2026</p>
+  </article>
+  </main>
+  <section class="about">
+    <div class="box"><h3>عن المحتوى</h3>
+      <p>بُني المحتوى على المعايير المهنية المعلنة لكل اختبار وأوزانها النسبية، ورُتّب في دروس متسلسلة تنتقل بك من المفهوم إلى التطبيق. الأسئلة تدريبية محاكية لأسلوب الاختبار، تقيس الفهم لا الحفظ، ولكل سؤال شرح يبيّن سبب الإجابة، وروجعت إجاباتها من المراجع العلمية المتخصصة في التربية وتعليم اللغة. ويُراجَع المحتوى ويُحدَّث دورياً.</p></div>
+    <div class="box"><h3>كيف تذاكر</h3>
+      <ol class="steps"><li>اختبار تشخيصي يقيس مستواك</li><li>الدروس بالخطة اليومية</li><li>محاكيات بوقت الاختبار الحقيقي</li></ol></div>
+  </section>
+  <footer>
+    <div class="credit"><span class="cm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></span>
+      <div><div class="ck">إعداد وتصميم</div><div class="cn">الأستاذ يوسف الشمراني</div></div><span class="vcount" hidden><span class="ck">الزوار</span><b class="vcount-n"></b></span></div>
+    <nav class="legal"><a href="terms/">شروط الاستخدام</a><a href="privacy/">سياسة الخصوصية</a><a href="comments-policy/">سياسة التعليقات</a><a href="copyright/">حقوق الملكية والإبلاغ عن انتهاك</a></nav>
+    <div class="disc"><ul><li>الموقع مستقل، ولا يتبع هيئة تقويم التعليم والتدريب ولا وزارة التعليم.</li><li>الأسئلة تدريبية مكتوبة بأسلوب الاختبار، وليست أسئلة الاختبار الفعلية. أسئلة الدليلين الرسميين منقولة من أدلة الهيئة المنشورة مع ذكر المصدر.</li><li>لا يوجد ضمان لدرجة معينة أو للنجاح.</li><li>المواعيد والأنظمة تتغير، والمرجع الدائم موقع الهيئة.</li><li>مقاطع يوتيوب ملك أصحابها، والموقع يضع روابطها فقط.</li><li>التقدم يُحفظ في جهازك، والموقع لا يجمع بيانات شخصية.</li><li>حقوق المحتوى محفوظة ليوسف الشمراني، ويُمنع نسخه أو بيعه.</li></ul></div>
+  </footer>
+</div>
+<script>
+(function(){
+  var K="site.theme", r=document.documentElement, b=document.getElementById("tb");
+  try{var t=localStorage.getItem(K); if(t==="dark"||t==="light") r.dataset.theme=t;}catch(e){}
+  var SUN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  var MOON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>';
+  function dark(){var t=r.dataset.theme; return t? t==="dark" : !!(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)}
+  function paint(){var d=dark(); b.innerHTML=d?SUN:MOON; b.setAttribute("aria-label",d?"الوضع النهاري":"الوضع الليلي"); b.title=b.getAttribute("aria-label")}
+  b.addEventListener("click",function(){var n=dark()?"light":"dark"; r.dataset.theme=n; try{localStorage.setItem(K,n)}catch(e){} paint()});
+  paint();
+  // تحميل الصفحة مسبقاً عند الاقتراب من البطاقة، فتفتح فوراً
+  var done={};
+  function pre(h){ if(done[h]) return; done[h]=1; var l=document.createElement("link"); l.rel="prefetch"; l.href=h; document.head.appendChild(l); }
+  document.querySelectorAll("[data-prefetch]").forEach(function(a){
+    ["pointerenter","touchstart","focus"].forEach(function(ev){ a.addEventListener(ev,function(){pre(a.getAttribute("data-prefetch"))},{passive:true}) });
+  });
+})();
+</script>
+<script src="reviews.js" defer></script>
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c26f510a6f2b4339af234504262282f4"}'></script><script>(function(){var K="hub",B=0,F="vcount."+K,s=null,V=null;try{s=localStorage.getItem(F)}catch(e){}function show(){if(V===null)return;var t=Number(V).toLocaleString("en-US");document.querySelectorAll(".vcount").forEach(function(el){var n=el.querySelector(".vcount-n");if(n&&n.textContent!==t)n.textContent=t;if(el.hidden)el.hidden=false})}fetch("https://abacus.jasoncameron.dev/"+(s?"get":"hit")+"/"+(location.hostname==="yousefalshamrani.com"?"yousefalshamrani-com":"yousefalshamrani-test")+"/"+K).then(function(r){return r.json()}).then(function(d){if(typeof d.value!=="number")return;try{localStorage.setItem(F,"1")}catch(e){}var N={"english2": 416, "tarbawi": 354, "alhateem": 254},H=(location.hostname==="yousefalshamrani.com"?"yousefalshamrani-com":"yousefalshamrani-test");Promise.all(["english2","tarbawi","step"].map(function(k){return fetch("https://abacus.jasoncameron.dev/get/"+H+"/"+k).then(function(r){return r.json()}).then(function(x){return (typeof x.value==="number"?x.value:0)+(N[k]||0)}).catch(function(){return N[k]||0})})).then(function(a){V=a.reduce(function(x,y){return x+y},0);show();new MutationObserver(show).observe(document.body,{childList:true,subtree:true})})}).catch(function(){})})();</script></body></html>
