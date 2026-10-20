@@ -3,6 +3,7 @@
    .qr-sum[data-exam]   ملخص في بطاقات البوابة + زر يفتح التعليقات */
 (function () {
   "use strict";
+  var MIN_SHOW = 5;   // لا دليل اجتماعي قبل 5 تقييمات حقيقية (عين الموقع 2026-10-20)
   var API = "https://api.yousefalshamrani.com/v1";
   var SITEKEY = "0x4AAAAAAFTEffh8BwtMo5vB";
   // للاختبار المحلي فقط: خدمة محلية ومفتاح Cloudflare التجريبي
@@ -85,7 +86,7 @@
       ".qr-form{margin-top:16px;padding-top:14px;border-top:1px solid var(--qr-line);display:grid;gap:10px}",
       ".qr-pick{display:flex;gap:6px;direction:ltr;justify-content:flex-end}.qr-pick button{background:none;border:0;padding:2px;border-radius:8px}.qr-pick svg{width:34px;height:34px;fill:var(--qr-off);transition:transform .12s}.qr-pick button.on svg{fill:var(--qr-star)}.qr-pick button:active svg{transform:scale(.9)}",
       ".qr-pick button:focus-visible{outline:2px solid var(--qr-acc)}",
-      ".qr input[type=text],.qr textarea{width:100%;font:inherit;color:var(--qr-ink);background:var(--qr-soft);border:1px solid var(--qr-line);border-radius:12px;padding:10px 12px;direction:rtl}",
+      ".qr input[type=text],.qr textarea{width:100%;font:inherit;font-size:max(16px,1em);color:var(--qr-ink);background:var(--qr-soft);border:1px solid var(--qr-line);border-radius:12px;padding:10px 12px;direction:rtl}",
       ".qr textarea{min-height:92px;resize:vertical}.qr input:focus,.qr textarea:focus{outline:2px solid var(--qr-acc);outline-offset:1px}",
       ".qr-consent{display:flex;gap:8px;align-items:flex-start;font-size:.85rem;color:var(--qr-mut)}.qr-consent input{margin-top:6px;flex:none;width:18px;height:18px;accent-color:var(--qr-acc)}",
       ".qr a{color:var(--qr-acc)}",
@@ -125,7 +126,8 @@
   function loadSummary() { if (!sumP) { sumP = req("GET", "/summary"); sumP.catch(function () { sumP = null; }); } return sumP; }
 
   function summaryHTML(s) {
-    if (!s || !s.count) return '<div class="qr-top"><div><div class="qr-stars-wrap">' + stars(0) + '</div><p class="qr-empty">لا توجد تقييمات بعد. كن أول من يقيّم.</p></div></div>';
+    if (!s || !s.count) return '';
+    if (s.count < MIN_SHOW) return '';
     var rows = "";
     for (var i = 0; i < 5; i++) { var n = s.dist[i], pct = s.count ? Math.round(n / s.count * 100) : 0; rows += '<div class="qr-row"><span>' + (5 - i) + '</span><div class="qr-bar"><i style="width:' + pct + '%"></i></div><span style="min-width:22px">' + n + "</span></div>"; }
     return '<div class="qr-top"><div class="qr-big"><b>' + fmtAvg(s.avg) + "</b>" + stars(s.avg) + "<small>" + countWord(s.count) + '</small></div><div class="qr-dist">' + rows + "</div></div>";
@@ -260,6 +262,7 @@
     el.innerHTML = '<div class="qr-sline"><small>جارٍ تحميل التقييمات…</small></div>';
     loadSummary().then(function (all) {
       var s = all[exam] || { count: 0 };
+      if (!s.count || s.count < MIN_SHOW) { el.innerHTML = ''; el.classList.remove('qr-s'); el.hidden = true; return; }
       var line = s.count ? "<b>" + fmtAvg(s.avg) + "</b>" + stars(s.avg) + "<small>" + countWord(s.count) + "</small>" : stars(0) + "<small>لا توجد تقييمات بعد</small>";
       el.innerHTML = '<div class="qr-sline">' + line + '</div><div class="qr-sbtns">' +
         (s.comments ? '<button class="qr-ghost" type="button" data-act="open">التعليقات (' + s.comments + ")</button>" : "") +
