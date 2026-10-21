@@ -44,7 +44,7 @@ h1{font-size:clamp(1.35rem,4.6vw,1.9rem);line-height:1.45;margin:.5rem 0 .2rem;f
 .opt.no{border-color:var(--bad);background:var(--bad-bg)}.opt.no .lt{background:var(--bad);color:#fff;border-color:var(--bad)}
 .opt.dim{opacity:.55}
 .ans{margin-top:12px;border-radius:14px;background:var(--paper);padding:10px 14px}.ans summary{font-weight:700;cursor:pointer}
-.ans p{margin:.4rem 0}.why{color:var(--ink)}
+.ans p{margin:.4rem 0}.why{color:var(--ink)}.why-en{display:block;text-align:left;line-height:1.6}.why-ar{display:block;font-size:.85em;color:var(--muted);margin-top:4px}
 .fb{display:none;margin-top:12px;border-radius:14px;padding:12px 14px;animation:up .25s ease}
 .fb.ok{display:block;background:var(--ok-bg)}.fb.no{display:block;background:var(--bad-bg)}
 .fb h3{margin:0 0 .2rem;font-size:1rem}.fb.ok h3{color:var(--ok)}.fb.no h3{color:var(--bad)}.fb p{margin:0}
@@ -176,8 +176,9 @@ h1{font-size:clamp(1.35rem,4.6vw,1.9rem);line-height:1.45;margin:.5rem 0 .2rem;f
 <div class="ctas">
 <a class="cta main" href="../#diag" data-site="#diag">اعرف مستواك في كل معيار<small>الاختبار التشخيصي المجاني: 40 سؤالاً، ويعطيك خطة مذاكرة على نقاط ضعفك.</small></a>
 <a class="cta" href="../" data-site="">ابدأ المذاكرة في الموقع مجاناً<small>خطة يومية حتى يوم اختبارك، ودروس بالخرائط، وأسئلة بشرح لكل إجابة.</small></a>
-<a class="cta gold" href="https://wa.me/966557774992?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%20%D8%A7%D9%84%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1%20%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85%20(49%20%D8%B1%D9%8A%D8%A7%D9%84)" target="_blank" rel="noopener">النسخة الكاملة · 49 ريال<small>1512 سؤالاً، منها 607 سؤالاً مشابهاً، بشرح لكل إجابة، و3 اختبارات محاكية. الاشتراك عبر الواتساب.</small></a>
-<a class="cta" id="share" href="https://wa.me/?text=%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1%20%D8%AA%D8%AC%D8%B1%D9%8A%D8%A8%D9%8A%20%D9%85%D8%AC%D8%A7%D9%86%D9%8A%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1%20%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85%3A%2015%20%D8%B3%D8%A4%D8%A7%D9%84%D8%A7%D9%8B%20%D8%A8%D8%A7%D9%84%D8%AA%D8%B5%D8%AD%D9%8A%D8%AD%20%D8%A7%D9%84%D9%81%D9%88%D8%B1%D9%8A%20%D9%88%D8%A7%D9%84%D8%B4%D8%B1%D8%AD%0Ahttps%3A%2F%2Fyousefalshamrani.com%2Fqiyas%2Ftarbawi%2Fquiz%2F%3Fsrc%3Dshare" target="_blank" rel="noopener">أرسل الاختبار لزميل يختبر معك<small>رابط مباشر بدون تسجيل.</small></a>
+<a class="cta gold" href="https://t.me/yousefalshamrani_qiyas_bot?start=T" target="_blank" rel="noopener">النسخة الكاملة · 49 ريال<small>1512 سؤالاً، منها 607 سؤالاً مشابهاً، بشرح لكل إجابة، و3 اختبارات محاكية. الاشتراك عبر بوت تيليجرام ويصلك الكود تلقائياً.</small></a>
+<a class="cta" id="share" href="#" data-share="اختبار تجريبي مجاني في الاختبار التربوي العام: 15 سؤالاً بالتصحيح الفوري والشرح
+https://yousefalshamrani.com/qiyas/tarbawi/quiz/?src=share">أرسل الاختبار لزميل يختبر معك<small>رابط مباشر بدون تسجيل.</small></a>
 <a class="cta" href="tarbawi-1448-quiz.pdf" download="اختبار التربوي العام تجريبي 1448 - 15 سؤالاً بالحل.pdf">حمّل الأسئلة وحلولها PDF<small>للمراجعة بدون إنترنت.</small></a>
 </div>
 <button type="button" class="again" id="again">أعد الاختبار من البداية</button>
@@ -193,6 +194,7 @@ document.documentElement.className+=" js";
 var SRC=((new URLSearchParams(location.search).get("src")||"quiz").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,20))||"quiz",MID=Math.floor(N/2)-1;
 function site(h){return "../?src="+SRC+h}
 document.querySelectorAll("[data-site]").forEach(function(a){a.href=site(a.dataset.site)});
+var sh=document.getElementById("share");if(sh)sh.addEventListener("click",function(e){e.preventDefault();var t=sh.getAttribute("data-share");if(navigator.share){navigator.share({text:t}).catch(function(){})}else if(navigator.clipboard){navigator.clipboard.writeText(t).then(function(){sh.firstChild.textContent="تم نسخ الرابط، أرسله لزميلك"})}});
 document.querySelectorAll("a[download]").forEach(function(a){a.addEventListener("click",function(){var b=document.getElementById("afterpdf");if(b)b.hidden=false})});
 try{var s=JSON.parse(localStorage.getItem(K)||"null");if(s&&s.ans)st=s}catch(e){}
 var m=/^#q(\d+)$/.exec(location.hash);if(m){var k=+m[1]-1;if(k>=0&&k<N)st.i=k}
