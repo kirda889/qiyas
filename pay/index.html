@@ -1,0 +1,165 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>الدفع — اختبارات الرخصة المهنية وSTEP</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../apple-touch-icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/moyasar-payment-form@2.2.14/dist/moyasar.css">
+<!-- صفحة الدفع الإلكتروني (2026-10-23): نموذج ميسّر (مدى، آبل باي، البطاقات) على نطاقنا، والكود يظهر هنا ويُحفظ في الجهاز فيفتح الموقع تلقائياً.
+     الخادم: api/src/pay.js. الروابط: ?p=<حرف المنتج> من نافذة الاشتراك، و &c=<رقم المحادثة موقّعاً> من البوت، و ?id=<رقم الدفع> عند الرجوع من البنك. -->
+<style>
+:root{--bg:#F2F5F3;--card:#FFFFFF;--ink:#172420;--muted:#44534D;--line:#D9E1DD;--accent:#1F6B4C;--soft:#E3EFE8;--good:#1B7A4A;--bad:#B42318}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0F1512;--card:#16201B;--ink:#E6ECE8;--muted:#B3C0BA;--line:#2A3630;--accent:#5BC093;--soft:#1C2822;--good:#5BC093;--bad:#F97066}}
+:root[data-theme=dark]{--bg:#0F1512;--card:#16201B;--ink:#E6ECE8;--muted:#B3C0BA;--line:#2A3630;--accent:#5BC093;--soft:#1C2822;--good:#5BC093;--bad:#F97066}
+*{box-sizing:border-box}html{font-size:112.5%}@media (max-width:430px){html{font-size:106.25%}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Cairo',system-ui,-apple-system,sans-serif;line-height:1.8;font-weight:500;overflow-x:hidden}
+.wrap{max-width:560px;margin:0 auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(40px + env(safe-area-inset-bottom,0px))}
+.back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#fff;background:var(--accent);padding:5px 16px;border-radius:999px;font-weight:700;font-size:.9rem}
+:root[data-theme=dark] .back{color:#0F1512}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .back{color:#0F1512}}
+h1{font-size:1.5rem;margin:18px 0 10px;line-height:1.4}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px 18px;margin-bottom:14px}
+.sum{display:flex;align-items:center;gap:14px}.sum b{font-size:2rem;font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1}.sum b small{font-size:.85rem;font-weight:700;opacity:.75;margin-inline-start:4px}
+.sum .nm{flex:1;min-width:0;font-weight:700;font-size:.98rem;line-height:1.6}
+.k{font-size:.78rem;font-weight:800;color:var(--accent);margin:0 0 4px}
+.note{margin:10px 0 0;font-size:.86rem;color:var(--muted);line-height:1.7}.ok{color:var(--good);font-weight:700}
+.mysr-form{margin-top:4px}
+/* نموذج البوابة: قواعدها كلها تحت div#mysr (معرّف)، فنكتب على نفس المعرّف حتى يغلب لوننا بدل البنفسجي.
+   وبطاقته فاتحة دائماً، حتى في الوضع الليلي، لأن نصوص البوابة وحقولها داكنة ثابتة */
+.paycard{background:#fff;color:#172420;border-color:#D9E1DD}
+div#mysr .bg-primary{background-color:#1F6B4C!important;color:#fff!important;font-family:'Cairo',system-ui,sans-serif!important;font-weight:800}
+div#mysr .text-primary-400{color:#1F6B4C!important}
+.res{text-align:center;display:grid;gap:10px;justify-items:center}
+.res .ic{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-size:1.6rem;font-weight:800;background:var(--soft);color:var(--good)}
+.res.bad .ic{color:var(--bad)}.res h2{margin:0;font-size:1.25rem}.res p{margin:0;font-size:.95rem;line-height:1.8}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:1.35rem;letter-spacing:.06em;direction:ltr;background:var(--bg);border:1.5px dashed var(--accent);border-radius:14px;padding:10px 16px;overflow-wrap:anywhere;user-select:all}
+.btn{font:inherit;font-weight:800;font-size:.95rem;border:0;border-radius:999px;padding:11px 22px;cursor:pointer;background:var(--accent);color:#fff;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px}
+:root[data-theme=dark] .btn{color:#0F1512}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .btn{color:#0F1512}}
+.btn.q,:root[data-theme=dark] .btn.q{background:none;color:var(--accent);border:1.5px solid currentColor}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .btn.q{color:var(--accent)}}
+a{color:var(--accent)}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.steps{text-align:right;justify-self:stretch;background:var(--soft);border-radius:14px;padding:10px 14px;font-size:.9rem;margin:0}
+.steps ol{margin:0;padding-inline-start:20px}
+.list{display:grid;gap:8px}.list a{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;text-decoration:none;color:inherit;background:var(--card);min-height:44px}
+.list a b{font-size:1.2rem;white-space:nowrap}.list a span{flex:1;font-size:.92rem;font-weight:600;line-height:1.6}
+.spin{width:28px;height:28px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);animation:sp 0.9s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.spin{animation-duration:3s}}
+[hidden]{display:none!important}
+</style></head><body><div class="wrap">
+<a class="back" href="../">‹ العودة إلى الاختبارات</a>
+<h1 id="t">الدفع</h1>
+<div id="app"><div class="card res"><div class="spin" aria-hidden="true"></div><p>جاري التحميل…</p></div></div>
+<p class="note">الدفع عبر بوابة دفع سعودية تحت إشراف البنك المركزي السعودي، وبيانات بطاقتك لا تمر على موقعنا ولا نحفظها. <a href="../terms/">شروط الاشتراك</a> · <a href="https://t.me/yousefalshamrani_qiyas_bot" target="_blank" rel="noopener">للاستفسار</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/moyasar-payment-form@2.2.14/dist/moyasar.umd.js"></script>
+<script>
+(function () {
+  "use strict";
+  try { var th = localStorage.getItem("site.theme"); if (th === "dark" || th === "light") document.documentElement.dataset.theme = th; } catch (e) {}
+  var LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  var API = LOCAL ? "http://localhost:8787" : "https://api.yousefalshamrani.com";
+  var BOT = "https://t.me/yousefalshamrani_qiyas_bot";
+  var app = document.getElementById("app"), title = document.getElementById("t");
+  var q = new URLSearchParams(location.search);
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+  var get = function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } };
+  var set = function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} };
+  var ev = function (n) { try { navigator.sendBeacon(API + "/v1/ev", n); } catch (e) {} };
+  var post = function (path, body) {
+    return fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().then(function (d) { if (!r.ok) throw new Error(d.error || "تعذّر الاتصال"); return d; }); });
+  };
+  // الكود يُحفظ بنفس مفاتيح lockloader.js، فيفتح الموقع النسخة الكاملة تلقائياً على هذا الجهاز
+  var SITES = { E: ["english2"], F: ["english2"], X: ["english2"], T: ["tarbawi"], U: ["tarbawi"], Y: ["tarbawi"], S: ["step"], B: ["tarbawi", "english2"], C: ["tarbawi", "english2"] };
+  function saveCode(prod, code) {
+    var n = String(code).toUpperCase().replace(/[^A-Z0-9]/g, "");
+    (SITES[prod] || []).forEach(function (s) { set("qx.code." + s, n); });
+    set("qx.code.last", n);
+  }
+  var PLANS = [["T", "التربوي العام · أهم 120 سؤالاً", 49], ["U", "التربوي العام · كامل الأسئلة", 100], ["E", "English 2 · أهم 120 سؤالاً", 49], ["F", "English 2 · كامل الأسئلة", 100],
+               ["B", "الاختباران · أهم 120 سؤالاً لكل اختبار", 79], ["C", "الاختباران · كامل الأسئلة", 150], ["S", "STEP", 29]];
+
+  function card(html, cls) { app.innerHTML = '<div class="card ' + (cls || "") + '">' + html + "</div>"; }
+
+  // 1) اختيار الاشتراك (لو فُتحت الصفحة بلا منتج)
+  function choose() {
+    title.textContent = "اختر اشتراكك";
+    card('<div class="list">' + PLANS.map(function (p) { return '<a href="?p=' + p[0] + '"><span>' + esc(p[1]) + "</span><b>" + p[2] + " ريال</b></a>"; }).join("") + "</div>");
+  }
+
+  // 2) نموذج الدفع
+  function form(prod) {
+    post("/v1/pay/start", { product: prod, c: q.get("c") || "", src: get("qx.src") || "" }).then(function (d) {
+      set("qx.pay", JSON.stringify({ id: d.id, at: Date.now(), c: q.get("c") || "" }));
+      title.textContent = "ادفع واستلم كودك فوراً";
+      app.innerHTML = '<div class="card"><p class="k">اشتراكك</p><div class="sum"><span class="nm">' + esc(d.name) + "</span><b>" + d.price + "<small>ريال</small></b></div>" +
+        '<p class="note"><span class="ok">✓ ضمان 3 أيام:</span> إذا ما ناسبك المحتوى خلال 3 أيام من التفعيل، يرجع لك المبلغ كاملاً.</p></div>' +
+        '<div class="card paycard"><div class="mysr-form"></div></div>';
+      ev("pay_form/" + prod.toLowerCase());
+      Moyasar.init({
+        element: ".mysr-form", language: "ar",
+        amount: d.amount, currency: "SAR", description: d.name, given_id: d.id,
+        publishable_api_key: d.pk, metadata: { product: prod },
+        callback_url: location.origin + location.pathname,
+        methods: ["applepay", "creditcard"], supported_networks: ["mada", "visa", "mastercard"],
+        // اسم آبل باي (يظهر في شاشة الدفع) لازم إنجليزي، والبوابة ترفض العربي
+        apple_pay: { country: "SA", label: "Yousef Alshamrani", validate_merchant_url: "https://api.moyasar.com/v1/applepay/initiate" },
+        // آبل باي يكمل بدون مغادرة الصفحة؛ البطاقة تمر على صفحة تحقق البنك ثم ترجع هنا بـ ?id=
+        // البوابة تشترط دالة async هنا (ترفض function عادية ترجع Promise)
+        on_completed: async function (payment) { if (payment && payment.status === "paid") confirm(d.id, 0); }
+      });
+    }).catch(function (e) {
+      card('<div class="res bad"><div class="ic">!</div><p>' + esc(e.message) + '</p><a class="btn q" href="' + BOT + '" target="_blank" rel="noopener">اشترك من البوت</a></div>');
+    });
+  }
+
+  // 3) بعد الدفع: نسأل الخادم (وهو يسأل البوابة بنفسه) ونعرض الكود
+  function confirm(id, tries) {
+    title.textContent = "نتأكد من الدفع";
+    if (!tries) card('<div class="res"><div class="spin" aria-hidden="true"></div><p>لحظات، نتأكد من وصول المبلغ…</p></div>');
+    post("/v1/pay/confirm", { id: id }).then(function (d) {
+      if (d.status === "paid" && d.code) return done(d);
+      if (d.status === "nocode") return later(d);
+      if (d.status === "failed") return failed(d);
+      if (tries < 8) return setTimeout(function () { confirm(id, tries + 1); }, 2500);
+      card('<div class="res"><div class="ic">…</div><h2>الدفع قيد التأكيد</h2><p>إذا خُصم المبلغ من حسابك، كودك محفوظ ويظهر هنا لما تحدّث الصفحة بعد دقيقة.</p><div class="row"><button class="btn" onclick="location.reload()">حدّث الصفحة</button><a class="btn q" href="' + BOT + '" target="_blank" rel="noopener">تواصل معنا</a></div></div>');
+    }).catch(function (e) {
+      card('<div class="res bad"><div class="ic">!</div><p>' + esc(e.message) + '</p><div class="row"><button class="btn" onclick="location.reload()">حاول مرة ثانية</button><a class="btn q" href="' + BOT + '" target="_blank" rel="noopener">تواصل معنا</a></div></div>');
+    });
+  }
+  function done(d) {
+    saveCode(d.product, d.code); ev("pay_paid/" + d.product.toLowerCase());
+    title.textContent = "تم الدفع، مبروك!";
+    var site = d.site && d.site.replace("https://yousefalshamrani.com/qiyas/", "../");
+    card('<div class="res"><div class="ic">✓</div><h2>تم تفعيل اشتراكك</h2><p>' + esc(d.name) + '</p><p class="k">كود الدخول الخاص بك</p><div class="code" id="code">' + esc(d.code) + "</div>" +
+      '<div class="row"><a class="btn" href="' + esc(site) + '">افتح النسخة الكاملة</a><button class="btn q" id="cp">انسخ الكود</button></div>' +
+      '<div class="steps">على هذا الجهاز ينفتح الموقع كاملاً تلقائياً. وعلى جهاز ثاني:<ol>' + (d.upgrade ? "<li>افتح «الأسئلة» واضغط «افتح كامل أسئلة الخمس سنوات الماضية»</li><li>الصق الكود في خانة الترقية واضغط «فعّل»</li>" : "<li>اضغط «افتح النسخة الكاملة» ثم «عندك كود؟»</li><li>الصق الكود واضغط «فتح»</li>") + "</ol></div>" +
+      '<p class="note">' + (d.chat ? "وصلك الكود أيضاً في محادثة البوت. " : "احفظ الكود عندك (صورة شاشة تكفي). ") + "الكود خاص بك وحدك، ولا يُشارك مع غيرك.</p></div>");
+    document.getElementById("cp").onclick = function () { var b = this, ok = function () { b.textContent = "تم النسخ ✓"; }; if (navigator.clipboard) navigator.clipboard.writeText(d.code).then(ok, ok); else ok(); };
+  }
+  function later(d) {
+    title.textContent = "وصل الدفع";
+    card('<div class="res"><div class="ic">✓</div><h2>وصل المبلغ، شكراً لك</h2><p>يوسف يرسل لك كود الدخول بنفسه خلال وقت قصير. اكتب لنا في البوت عشان يوصلك هناك.</p><a class="btn" href="' + BOT + '" target="_blank" rel="noopener">افتح البوت</a></div>');
+  }
+  function failed(d) {
+    title.textContent = "ما تمت العملية";
+    // رابط البوت الموقّع (c) لا يرجع مع البنك، فنأخذه من آخر دفع محفوظ حتى تبقى المحاولة الثانية مربوطة بمحادثته
+    var last = {}; try { last = JSON.parse(get("qx.pay") || "{}") || {}; } catch (e) {}
+    var c = q.get("c") || (last.id === d.id ? last.c : "");
+    var again = "?p=" + encodeURIComponent(d.product) + (c ? "&c=" + encodeURIComponent(c) : "");
+    card('<div class="res bad"><div class="ic">✕</div><h2>ما اكتمل الدفع</h2><p>رفض البنك العملية أو أُلغيت، وما خُصم منك شيء.</p>' + (d.message ? '<p class="note">رد البنك: ' + esc(d.message) + "</p>" : "") + '<div class="row"><a class="btn" href="' + again + '">حاول مرة ثانية</a><a class="btn q" href="' + BOT + '" target="_blank" rel="noopener">ادفع بالتحويل</a></div></div>');
+  }
+
+  var id = q.get("id"), prod = (q.get("p") || "").toUpperCase();
+  if (id) {
+    // نحتفظ بالمنتج ورابط البوت في الرابط عند الرجوع، ونمسح رقم الدفع من شريط العنوان
+    try { history.replaceState(null, "", location.pathname); } catch (e) {}
+    confirm(id, 0);
+  } else if (prod) form(prod);
+  else {
+    var last = null; try { last = JSON.parse(get("qx.pay") || "null"); } catch (e) {}
+    // دفع سابق من هذا الجهاز خلال يوم: نعرض كوده إن كان مدفوعاً، وإلا قائمة الاشتراكات
+    if (last && Date.now() - last.at < 864e5) post("/v1/pay/confirm", { id: last.id }).then(function (d) { d.status === "paid" && d.code ? done(d) : choose(); }).catch(choose);
+    else choose();
+  }
+})();
+</script>
+</body></html>
