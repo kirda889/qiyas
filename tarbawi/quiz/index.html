@@ -71,7 +71,7 @@ h1{font-size:clamp(1.35rem,4.6vw,1.9rem);line-height:1.45;margin:.5rem 0 .2rem;f
 <div class="wrap">
 <nav class="top"><a class="brand" href="../../">يوسف الشمراني <span>· الرخصة المهنية</span></a><a class="back" href="../" data-site="">الموقع الكامل</a></nav>
 <header class="hero">
-<span class="eyebrow">اختبار تجريبي مجاني · 1448 · <span id="dleft"></span></span>
+<span class="eyebrow">اختبار تجريبي مجاني · 1448</span>
 <h1>15 سؤالاً في الاختبار التربوي العام</h1>
 <p class="sub">اضغط إجابتك ويظهر لك التصحيح وسببه فوراً. بلا تسجيل.</p>
 <p class="dl"><a href="tarbawi-1448-quiz.pdf" download="اختبار التربوي العام تجريبي 1448 - 15 سؤالاً بالحل.pdf">حمّل الأسئلة وحلولها PDF</a> · <a href="../sharh/">شرح المعايير</a></p>
@@ -201,7 +201,7 @@ var m=/^#q(\d+)$/.exec(location.hash);if(m){var k=+m[1]-1;if(k>=0&&k<N)st.i=k}
 var bar=document.querySelector(".bar");bar.hidden=false;
 function save(){try{localStorage.setItem(K,JSON.stringify(st))}catch(e){}}
 function score(){var c=0;for(var k in st.ans)if(st.ans[k]===+Q[k].dataset.a)c++;return c}
-(function(){var d=Math.ceil((new Date("2026-11-06T00:00:00+03:00")-new Date())/864e5),el=document.getElementById("dleft");if(el)el.textContent=d>0?"باقي "+d+" يوماً على الاختبار":"فترة الاختبار"})();
+
 Q.forEach(function(q,qi){
   var fb=document.createElement("div");fb.className="fb";fb.setAttribute("aria-live","polite");
   var nx=document.createElement("button");nx.type="button";nx.className="next";nx.textContent=qi<N-1?"السؤال التالي":"شوف نتيجتك";
