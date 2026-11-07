@@ -215,7 +215,7 @@ function paint(qi){
   q.querySelectorAll(".opt").forEach(function(b){var i=+b.dataset.i;b.disabled=true;b.classList.toggle("ok",i===a);b.classList.toggle("no",i===v&&v!==a);b.classList.toggle("dim",i!==a&&i!==v)});
   var fb=q.querySelector(".fb"),why=q.querySelector(".why").innerHTML,right=q.querySelector(".right b").outerHTML;
   fb.className="fb "+(v===a?"ok":"no");
-  fb.innerHTML=(v===a?"<h3>Correct ✓</h3>":"<h3 dir="ltr" style="text-align:left">Correct answer: "+right+"</h3>")+"<p>"+why+"</p>"+
+  fb.innerHTML=(v===a?"<h3>Correct ✓</h3>":"<h3 dir='ltr' style='text-align:left'>Correct answer: "+right+"</h3>")+"<p>"+why+"</p>"+
     (q.dataset.ln?'<a class="lsn" href="'+site("#lesson-"+q.dataset.l)+'">اقرأ شرح «'+q.dataset.ln+'» في الموقع ←</a>':"")+
     (qi===MID?'<div class="promo"><b>المذاكرة الكاملة مجاناً في الموقع</b>خطة يومية حتى يوم اختبارك، ودروس بالخرائط، واختبار تشخيصي من 40 سؤالاً يطلع لك نقاط ضعفك.<br><a class="pbtn" href="'+site("")+'">افتح الموقع</a></div>':"");
   document.querySelector(".sc").textContent=score();

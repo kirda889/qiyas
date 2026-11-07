@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":1,"it":120000,"site":"tarbawi","iv":"9BrjVsUp6C+a8Thf","src":"full.dat?v=45f320fe43b1","keys":null,"plus":{"it":120000,"iv":"TAaicsl/CmlDUoSw","src":"full2.dat?v=75f418f77387","keys":null},"keysSrc":"lock-keys.json?v=6ccz7y"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":1,"it":120000,"site":"tarbawi","iv":"RDV7IojWl2BGcIHF","src":"full.dat?v=4afb8f224268","keys":null,"plus":{"it":120000,"iv":"bx8jMGeC4wg+629/","src":"full2.dat?v=ea7ec995c629","keys":null},"keysSrc":"lock-keys.json?v=n0qy94"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -1524,12 +1524,18 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
       '<div class="pw-code pw-code2" id="pw-cb"><label for="pw-c">أدخل الكود</label><input id="pw-c" autocomplete="one-time-code" placeholder="X-XXXXX-XXXXX" dir="ltr"><button data-pw="code">فتح</button></div><div class="pw-msg" id="pw-m" role="status"></div></div>';
   }
   var dim = null;
-  // الكيبورد كان يغطي خانة الكود في الجوال (طلب يوسف 2026-11-07): النافذة تأخذ المساحة الظاهرة فوق الكيبورد، والخانة تصعد لأعلاها
+  // خانة الكود ولوحة المفاتيح (2026-11-08، بلاغ يوسف: النافذة تنسحب للأعلى ويبقى فراغ تحتها): كانت تضيف حشوة سفلية بطول الشاشة تقريباً
+  // لترفع الخانة لأعلى النافذة. الآن: بلا حشوة. إذا ظهرت لوحة المفاتيح (المساحة الظاهرة أقصر من الصفحة بأكثر من 80) تأخذ النافذة المساحة
+  // الظاهرة فوقها، ثم تمرير بأقل قدر يُظهر الخانة ورسالتها في أسفل الجزء الظاهر. بلا لوحة: لا تغيير في الحجم، تمرير فقط إن لزم.
   function kbFit() {
     var v = window.visualViewport;
     var fit = function () { var sh = dim && dim.querySelector(".pw-sheet"), cb = dim && dim.querySelector("#pw-cb"); if (!sh || !cb) return;
-      if (v) { dim.style.top = v.offsetTop + "px"; dim.style.height = v.height + "px"; dim.style.bottom = "auto"; sh.style.maxHeight = (v.height - 6) + "px"; sh.style.paddingBottom = Math.max(0, v.height - cb.offsetHeight - 40) + "px"; }
-      sh.scrollTop += cb.getBoundingClientRect().top - sh.getBoundingClientRect().top - 10; };
+      var kbOpen = !!v && innerHeight - v.height > 80;
+      if (kbOpen) { dim.style.top = v.offsetTop + "px"; dim.style.height = v.height + "px"; dim.style.bottom = "auto"; sh.style.maxHeight = (v.height - 6) + "px"; }
+      else kbReset();
+      var m = dim.querySelector("#pw-m"), r = cb.getBoundingClientRect(), s = sh.getBoundingClientRect();
+      var bot = Math.max(r.bottom, m && m.textContent ? m.getBoundingClientRect().bottom : 0), visBot = Math.min(s.bottom, v ? v.offsetTop + v.height : innerHeight) - 12;
+      if (bot > visBot) sh.scrollTop += Math.ceil(bot - visBot); else if (r.top < s.top + 8) sh.scrollTop -= Math.ceil(s.top + 8 - r.top); };
     fit(); setTimeout(fit, 250); setTimeout(fit, 600);
     if (v && !kbFit.on) { kbFit.on = 1; v.addEventListener("resize", function () { if (!dim) return; var a = document.activeElement; if (a && a.id === "pw-c") fit(); else kbReset(); }); }
   }
@@ -1948,7 +1954,7 @@ function viewHome(){
     </div></details>
     <div class="row" style="justify-content:space-between"><div id="syncline" class="sync"></div><span class="row">${window.SITE_CFG&&window.SITE_CFG.hub?`<a class="btn sm quiet" href="${window.SITE_CFG.hub}" style="text-decoration:none">كل الاختبارات</a>`:""}<button class="btn sm quiet" data-go="settings">الإعدادات والتقرير</button></span></div>
     <div class="qr-full" data-exam="tarbawi" id="qreviews" style="margin-bottom:14px"></div>
-    <div class="credit"><span class="cm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></span><div><div class="ck">إعداد وتصميم · آخر تحديث: 7 نوفمبر 2026</div><div class="cn">الأستاذ يوسف الشمراني</div></div><span class="vcount" hidden><span class="ck">الزوار</span><b class="vcount-n"></b></span></div>
+    <div class="credit"><span class="cm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></span><div><div class="ck">إعداد وتصميم · آخر تحديث: 8 نوفمبر 2026</div><div class="cn">الأستاذ يوسف الشمراني</div></div><span class="vcount" hidden><span class="ck">الزوار</span><b class="vcount-n"></b></span></div>
   </section>`;
 }
 function viewPlan(){
