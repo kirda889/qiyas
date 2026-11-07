@@ -133,7 +133,7 @@
     return '<div class="qr-top"><div class="qr-big"><b>' + fmtAvg(s.avg) + "</b>" + stars(s.avg) + "<small>" + countWord(s.count) + '</small></div><div class="qr-dist">' + rows + "</div></div>";
   }
   function itemHTML(r, canReport) {
-    return '<div class="qr-item" data-id="' + r.id + '"><div class="qr-ih"><b>' + esc(r.name || "زائر") + "</b>" + stars(r.stars) + "<small>" + when(r.created_at) + (r.edited ? " · معدّل" : "") + "</small></div>" +
+    return '<div class="qr-item" data-id="' + (Number(r.id) || 0) + '"><div class="qr-ih"><b>' + esc(r.name || "زائر") + "</b>" + stars(r.stars) + "<small>" + when(r.created_at) + (r.edited ? " · معدّل" : "") + "</small></div>" +
       (r.body ? '<p class="qr-body">' + esc(r.body) + "</p>" : "") +
       (r.reply ? '<div class="qr-reply"><b>رد يوسف الشمراني:</b> ' + esc(r.reply) + "</div>" : "") +
       (canReport ? '<div class="qr-acts"><button class="qr-link" data-act="report" type="button">تبليغ</button></div><div class="qr-rep"></div>' : "") + "</div>";

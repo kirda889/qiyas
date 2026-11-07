@@ -13,30 +13,11 @@
   var TG = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21.4 4.2 2.9 11.3c-1.3.5-1.2 1.2-.2 1.5l4.7 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.4l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.6c.3-1.3-.5-1.9-1.4-1.6zM9.6 14.3l-.4 4-1.4-4.6 10.8-6.8-9 7.4z"/></svg>';
   var waLink = function (t) { return "https://wa.me/" + C.wa + "?text=" + encodeURIComponent(t); };
   // أحداث القمع (GoatCounter إن وُجد): view_pricing · click_whatsapp · code_entered — عين الموقع 2026-10-20
-  var ev = function (n) { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: n, event: true }); } catch (e) {} try { var u = "https://api.yousefalshamrani.com/v1/ev"; if (navigator.sendBeacon) navigator.sendBeacon(u, n); else fetch(u, { method: "POST", body: n, keepalive: true }); } catch (e) {} };
+  var send = function (n) { try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path: n, event: true }); } catch (e) {} try { var u = "https://api.yousefalshamrani.com/v1/ev"; if (navigator.sendBeacon) navigator.sendBeacon(u, n); else fetch(u, { method: "POST", body: n, keepalive: true }); } catch (e) {} };
+  // 2026-11-07 (التسويق): العدّ القديم ضغطات؛ نرسل معه نسخة «مرة لكل جهاز» بلاحقة _u: view_pricing_u/<site> و pick_single_u/<site> و click_whatsapp_u/<site>
+  var UQ = /^(view_pricing|pick_[a-z]+|click_[a-z]+)\/([a-z0-9]+)/;
+  var ev = function (n) { send(n); try { var m = UQ.exec(n); if (!m) return; var u = m[1] + "_u/" + m[2], k = "qx.u." + u; if (!localStorage.getItem(k)) { localStorage.setItem(k, "1"); send(u); } } catch (e) {} };
   var srcCode = function () { try { return localStorage.getItem("qx.src") || ""; } catch (e) { return ""; } };
-  // خصم الزارع (طلب يوسف 2026-11-05): لكل زوار موقع التربوي من أي رابط (تعميم يوسف 2026-11-05)، 15%. مكتوب «يوم واحد» بس بلا موعد انتهاء في الكود: يوسف وحده ينهيه. البوت يعرف السعر من «المرجع» في رسالة الواتساب.
-  var PROMO = { key: "qx.promo.tarbawi", price: { plus: 75, plan: 50 } }, promoBase = null;
-  var promoU = ""; try { promoU = (new URLSearchParams(location.search).get("src") || "").toLowerCase(); } catch (e) {}   // يُقرأ مرة عند الفتح: التطبيق قد يمسح الرابط، والتخزين قد يكون ممنوعاً (عميل 2026-11-05 وصل مرجعه بلا رمز)
-  var promoSrc = function () { return promoU || srcCode(); };
-  var promoOk = function () { return false; };   // خصم الزارع أُزيل من البطاقة والزر العائم (طلب يوسف 2026-11-07)، وكان: C.site === "tarbawi" && !!C.plus
-  var promoOn = function () { return !!promoBase; };
-  var promoSet = function (on) {
-    if (on && !promoBase) { promoBase = { plus: C.plus.price, plan: C.plan.price }; C.plus.price = PROMO.price.plus; C.plan.price = PROMO.price.plan; try { localStorage.setItem(PROMO.key, "1"); } catch (e) {} }
-    if (!on && promoBase) { C.plus.price = promoBase.plus; C.plan.price = promoBase.plan; promoBase = null; }
-  };
-  var promoSync = function () { if (!promoOk()) return promoSet(false); var f = null; try { f = localStorage.getItem(PROMO.key); } catch (e) {} if (f) promoSet(true); };
-  promoSync();
-  var promoApply = function () { promoSet(true); ev("promo_apply/" + C.site + "/" + promoSrc()); try { document.querySelectorAll("button,a,span").forEach(function (el) { if (!el.children.length && /^افتح (كامل الأسئلة|النسخة الكاملة) · /.test((el.textContent || "").trim())) el.textContent = fullBtn(); }); } catch (e) {} var f = document.getElementById("pw-promo-fab"); if (f) f.remove(); };
-  // لحظة الخصم (طلب يوسف 2026-11-05): ينشطب المبلغ القديم بخط يترسم، والسعر ينزل عدّاً إلى الجديد
-  var promoAnim = function (sheet) {
-    if (!sheet) return; try { if (matchMedia("(prefers-reduced-motion: reduce)").matches) return; } catch (e) {}
-    sheet.classList.add("pw-anim");
-    [].forEach.call(sheet.querySelectorAll("[data-to]"), function (el) { var a = +el.dataset.from, b = +el.dataset.to, t0 = 0, D = 750, W = 250; el.textContent = N(a);
-      var step = function (t) { if (!t0) t0 = t; var p = Math.min(1, Math.max(0, (t - t0 - W) / D)), e = 1 - Math.pow(1 - p, 3); el.textContent = N(Math.round(a + (b - a) * e)); if (p < 1) requestAnimationFrame(step); };
-      requestAnimationFrame(step); });
-    setTimeout(function () { sheet.classList.remove("pw-anim"); }, 1500);
-  };
   var daysLeft = function () { if (C.noCount) return null; return Math.round((new Date((C.countTo || C.until) + "T12:00:00") - new Date()) / 864e5); };
   var free = C.free || [];
   // رابط «اذهب للدرس» من قناة التليجرام (2026-10-29، طلب يوسف): ‎?src=chl#lesson-L06 يفتح هذا الدرس المقفل كاملاً على هذا الجهاز،
@@ -109,12 +90,9 @@
     ".pw-tk2 .pw-tkk{display:flex;justify-content:space-between;align-items:center;font-size:.82rem;font-weight:700;color:var(--accent-text,var(--accent,#1F6B4C))}.pw-tk2 .pw-tkd{display:flex;align-items:center;gap:12px;opacity:.85;font-weight:600}.pw-tk2 .pw-x{position:static;float:none;width:32px;height:32px;display:grid;place-items:center;padding:0}",
     ".pw-tk2 h2{margin:8px 0 4px;font-size:1.4rem;line-height:1.3;font-weight:800}.pw-sub{display:flex;gap:8px;align-items:center;margin:0;font-size:.82rem;opacity:.8;line-height:1.6}.pw-sub::before{content:'';flex:none;width:7px;height:7px;border-radius:50%;background:#2E9B6A;box-shadow:0 0 0 4px rgba(46,155,106,.16)}.pw-sub[hidden]{display:none}",
     ".pw-opts{display:grid;gap:8px;margin-top:12px}",
+    "@media (max-height:760px){.pw-tk2{padding-top:10px!important}.pw-tk2 h2{margin:0 !important;font-size:1.3rem!important}.pw-tk2 .pw-opts{margin-top:8px!important}.pw-tk2 .pw-tl li{line-height:1.45!important}.pw-tk2 .pw-cta2{margin-top:10px!important}.pw-tk2 .pw-guar{margin-top:8px!important}.pw-tk2 .pw-hr{margin:4px 24px 0 !important;background:none}}",   // خانة الكود ظاهرة كاملة في شاشة الجوال بلا تمرير (طلب يوسف 2026-11-07)
     "small.mm{display:inline!important;margin:0!important;font-weight:400;font-size:.82em;opacity:.9;white-space:nowrap}",   // «(مماثلة)» في نفس السطر دائماً (طلب يوسف 2026-11-07)
-    ".pw-promo{display:flex;align-items:center;gap:12px;width:100%;margin:10px 0 0;padding:6px 12px 6px 6px;font:inherit;color:inherit;text-align:start;border:1.5px solid #17A862;border-radius:40px;background:color-mix(in srgb,#17C76F 10%,transparent);cursor:pointer;-webkit-tap-highlight-color:transparent}.pw-promo b{display:block;font-size:.95rem;font-weight:800;line-height:1.4}.pw-promo small{display:block;font-size:.78rem;line-height:1.4;opacity:.8}.pw-promo.on{cursor:default;padding-block:4px}",
-    ".pw-promo i{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:1.05rem;font-weight:900;color:#fff;background:#0E9F57;box-shadow:0 0 0 3px rgba(23,199,111,.28);direction:ltr}.pw-promo.on i{width:36px;height:36px;font-size:.8rem}",
     ".pw-tp s,.pw-ap s{display:block;position:relative;text-decoration:none;font-size:.85rem;font-weight:600;opacity:.75;line-height:1.1}.pw-ap s{display:inline-block;margin:0 8px}.pw-tp s::after,.pw-ap s::after{content:'';position:absolute;inset-inline:-3px;top:50%;height:2px;margin-top:-1px;border-radius:2px;background:currentColor;transform:rotate(-10deg)}",
-    ".pw-anim .pw-tp s,.pw-anim .pw-ap s{animation:pwold .7s ease both}.pw-anim .pw-tp s::after,.pw-anim .pw-ap s::after{animation:pwstrike .45s .2s ease-out both}.pw-anim [data-to]{display:inline-block;animation:pwnew .5s .75s ease-out}.pw-anim .pw-promo i{animation:pwnew .5s ease-out}@keyframes pwstrike{from{transform:rotate(-10deg) scaleX(0)}to{transform:rotate(-10deg) scaleX(1)}}@keyframes pwold{from{font-size:1.7rem;opacity:1}to{font-size:.85rem;opacity:.75}}@keyframes pwnew{0%{transform:scale(1)}45%{transform:scale(1.22)}100%{transform:scale(1)}}@media (prefers-reduced-motion:reduce){.pw-anim .pw-tp s,.pw-anim .pw-ap s,.pw-anim .pw-tp s::after,.pw-anim .pw-ap s::after,.pw-anim [data-to],.pw-anim .pw-promo i{animation:none}}",
-    "#pw-promo-fab{position:fixed;left:14px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:900;width:78px;height:78px;padding:0;border:3px solid #fff;border-radius:50%;background:#0E9F57;color:#fff;font:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;line-height:1.15;cursor:pointer;box-shadow:0 8px 22px rgba(8,80,44,.38);animation:pwfab 2.4s ease-in-out 4;-webkit-tap-highlight-color:transparent}html.pw-open #pw-promo-fab{display:none}#pw-promo-fab b{font-size:1.15rem;font-weight:900;direction:ltr}#pw-promo-fab span{font-size:.62rem;font-weight:800}#pw-promo-fab small{font-size:.6rem;font-weight:700;opacity:.95}@keyframes pwfab{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}@media (prefers-reduced-motion:reduce){#pw-promo-fab{animation:none}}",
     ".pw-tkt{position:relative;border:2px solid var(--accent,#1F6B4C);border-radius:20px;overflow:hidden;background:var(--sheet,#fff)}.pw-tag{position:absolute;top:0;left:16px;background:#C9A24A;color:#3A2A05;font-size:.7rem;font-weight:800;border-radius:0 0 8px 8px;padding:1px 10px}",
     ".pw-th2{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--accent,#1F6B4C);color:#fff;padding:10px 16px}.pw-tkt .pw-tag~.pw-th2{padding-top:26px}.pw-th2 .pw-tp b{line-height:1}.pw-t2{display:flex;gap:10px;align-items:center;text-align:start}.pw-th2 b{display:block;font-size:1.06rem;font-weight:800;line-height:1.4}.pw-th2 small{display:block;font-size:.76rem;opacity:.88;line-height:1.5}",
     ".pw-rad{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center}.pw-rad.on::after{content:'';width:10px;height:10px;border-radius:50%;background:currentColor}",
@@ -163,7 +141,7 @@
   // العدّاد الحقيقي (2026-10-23): كم شخصاً أنهى الأسئلة المجانية (20 من 2026-10-23، وقبلها 60)؛ يظهر فقط إذا تجاوز C.proofMin (يوسف يراه دائماً بأمر /counter في البوت)
   var PROOF = null, SOLD = {}, PAYON = false, VIA = null;   // VIA: «telegram» أو «whatsapp» من الخادم — يوسف يبدّله من البوت بـ/tg و/wa
   // لو تحوّل لتيليجرام بعد ما انفتحت النافذة: نعدّل زر «اشترك» نفسه بدل ما نعيد رسمها
-  var applyVia = function () { if (!dim || VIA !== "telegram" || !C.tgBot || promoOn()) return;   // خصم الزارع: يبقى واتساب لأن البوت يقرأ السعر من المرجع
+  var applyVia = function () { if (!dim || VIA !== "telegram" || !C.tgBot) return;
     [].forEach.call(dim.querySelectorAll("a.pw-cta2[data-prod]"), function (a) { if (a.dataset.ch === "telegram" || a.dataset.ch === "card") return; a.href = "https://t.me/" + esc(C.tgBot) + "?start=" + a.dataset.prod; a.setAttribute("target", "_blank"); a.dataset.ch = "telegram"; var g = a.querySelector(".pw-go"); if (g) { g.classList.add("tg"); g.innerHTML = TG + "تيليجرام"; } }); };
   // الدفع الإلكتروني (2026-10-23): متى قال الخادم pay=true، زر «اشترك» يفتح صفحة الدفع بمدى وآبل باي (الكود فوراً)، والبوت يبقى للتحويل
   var card = function () { if (!PAYON || !dim) return;
@@ -176,9 +154,11 @@
     if (PROOF !== null) { go(PROOF); return applyVia(); }
     try { fetch("https://api.yousefalshamrani.com/v1/proof").then(function (r) { return r.json(); }).then(function (d) { SOLD = d.sold || {}; PAYON = !!d.pay; VIA = d.via || null; PROOF = d[{ english2: "en2" }[C.site] || C.site] || 0; go(PROOF); applyVia(); }).catch(function () { PROOF = 0; }); } catch (e) { PROOF = 0; }
   }
+  // تاريخ الانتهاء قبل الدفع (قرار يوسف 2026-11-06): التاريخ فقط، والحساب نفسه في الخادم (/v1/code-check)
+  function expDate() { var d = new Date(Date.now() + 3 * 36e5); d.setUTCMonth(d.getUTCMonth() + 3); return d.getUTCDate() + " " + ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"][d.getUTCMonth()] + " " + d.getUTCFullYear(); }
   function sheetHtml(reason, pick) {
     var d = daysLeft(), exp = null; try { exp = localStorage.getItem("qx.expired." + C.site); } catch (e) {}
-    var msg = function (pl) { var sc = promoOn() ? promoSrc() : srcCode(); return "السلام عليكم، أبغى الاشتراك في " + (/الاختباران/.test(pl.label) ? "" : C.exam + " — ") + pl.label + " (" + pl.price + " ريال) من موقع yousefalshamrani.com/qiyas" + " — المرجع: " + C.site + "-" + pl.price + (sc ? "-" + sc : ""); };
+    var msg = function (pl) { var sc = srcCode(); return "السلام عليكم، أبغى الاشتراك في " + (/الاختباران/.test(pl.label) ? "" : C.exam + " — ") + pl.label + " (" + pl.price + " ريال) من موقع yousefalshamrani.com/qiyas" + " — المرجع: " + C.site + "-" + pl.price + (sc ? "-" + sc : ""); };
     // خياران (2026-10-24، قرار يوسف): الخيار اللي ضغطه العميل في الموقع يطلع «تذكرة» بتفاصيله، والثاني سطر هادئ تحته يبدّل بضغطة.
     // كامل الأسئلة 89 هو الافتراضي؛ وإذا ضغط «أهم 120» (59) يطلع سطر الكامل بسنارة «+N سؤالاً بـ30 ريال فقط» (أسعار 2026-11-01).
     var S1 = { english2: "E", tarbawi: "T", step: "S" }[C.site] || C.site, S2 = { english2: "F", tarbawi: "U" }[C.site];
@@ -186,17 +166,18 @@
     // ملزمتا الدروس (2026-10-26، طلب يوسف): «كامل الأسئلة» فيه المفصّلة 20 صفحة والمختصرة 15، و«أهم 120» فيه المختصرة فقط
     var SUMP = C.summary ? ["<b>ملزمة شرح الدروس</b> تُقرأ في الموقع"] : [], SUMI = C.summaryLite ? ["<b>ملزمة شرح مختصرة</b> تُقرأ في الموقع"] : [];
     var O = { plus: C.plus && S2 ? { pl: C.plus, prod: S2, title: "كامل الأسئلة", sub: (nQ ? "أكثر من " + N(nQ) + " سؤال<br>" : "") + "منها " + N(nAll) + " من الخمس سنوات <small class=mm>(مماثلة)</small>", tag: "الأشمل",
-        items: (nQ ? ["<b>أكثر من " + N(nQ) + " سؤال</b> في الموقع بشرحها"] : []).concat(["<b>" + N(nAll) + " سؤالاً</b> من الخمس سنوات الماضية <small class=mm>(مماثلة)</small>"]).concat([ "<b>ملزمة أهم " + N(nT) + " PDF</b> محلولة"].concat(SUMP, ["<b>3 اختبارات موقوتة</b> ومستواك المتوقع"])) } : null,
+        items: ([   // ترتيب 2026-11-07: عدد الأسئلة و«الخمس سنوات» في رأس البطاقة، فلا يتكرران في القائمة
+ "<b>ملزمة أهم " + N(nT) + " PDF</b> محلولة"].concat(SUMP, ["<b>3 اختبارات موقوتة</b> ومستواك المتوقع"])) } : null,
       single: { pl: C.plan, prod: S1, title: C.site === "step" ? "دليل STEP كاملاً" : "أهم " + N(nT) + " سؤالاً", sub: C.site === "step" ? "القواعد والمفردات والقراءة والاستماع" : "من الثلاث سنوات الماضية <small class=mm>(مماثلة)</small><br>+ الملزمة والمحاكيات",
         items: C.site === "step" ? C.includes.slice(0, 3).map(function (x) { return esc(x); }) : ["<b>" + N(nT) + " سؤالاً</b> من الثلاث سنوات الماضية <small class=mm>(مماثلة)</small>", "<b>ملزمة أهم " + N(nT) + " PDF</b> محلولة"].concat(SUMI, ["<b>3 اختبارات موقوتة</b> ومستواك المتوقع"]) } };
     if (!O.plus) pick = "single"; else if (pick !== "single") pick = "plus";
     var cur = O[pick], other = pick === "plus" ? O.single : O.plus, otherKey = pick === "plus" ? "single" : "plus";
     // زر «اشترك» يفتح واتساب يوسف برسالة جاهزة فيها الاختبار والمنتج والسعر والمرجع (طلب يوسف 2026-10-27: واتساب فقط بدل البوت)
-    var ch = promoOn() && C.wa ? "whatsapp" : VIA === "telegram" && C.tgBot ? "telegram" : C.wa ? "whatsapp" : C.tgBot || C.tgUser ? "telegram" : "whatsapp";
-    var href = function (o) { return ch === "whatsapp" ? waLink(msg(o.pl)) : C.tgBot ? "https://t.me/" + esc(C.tgBot) + "?start=" + o.prod : "https://t.me/" + esc(C.tgUser) + "?text=" + encodeURIComponent(msg(o.pl)); };
-    var was = function (k) { return promoOn() ? "<s>" + N(promoBase[k === "single" ? "plan" : k]) + "</s>" : ""; };
-    var cnt = function (k) { var kk = k === "single" ? "plan" : k; return promoOn() ? ' data-from="' + promoBase[kk] + '" data-to="' + PROMO.price[kk] + '"' : ""; };
-    var promoRow = !promoOk() ? "" : promoOn() ? '<div class="pw-promo on"><i>15%</i><span><b>طُبّق خصم الزارع</b><small>خصم يوم واحد</small></span></div>' : '<button type="button" class="pw-promo" data-pw="promo"><i>15%</i><span><b>خصم الزارع · يوم واحد</b><small>اضغط الدائرة وينزل السعر إلى ' + N(PROMO.price[pick === "single" ? "plan" : pick]) + " ريال</small></span></button>";
+    var ch = VIA === "telegram" && C.tgBot ? "telegram" : C.wa ? "whatsapp" : C.tgBot || C.tgUser ? "telegram" : "whatsapp";
+    // رمز المصدر للبوت (2026-11-07): ?start=<منتج>-<المصدر>، مثل T-gads؛ تيليجرام يقبل حروفاً وأرقاماً و_ و- حتى 64 حرفاً
+    var startSrc = function () { var s = String(srcCode() || "").toLowerCase().replace(/[^a-z0-9_]/g, "").slice(0, 40); return s ? "-" + s : ""; };
+    var href = function (o) { return ch === "whatsapp" ? waLink(msg(o.pl)) : C.tgBot ? "https://t.me/" + esc(C.tgBot) + "?start=" + o.prod + startSrc() : "https://t.me/" + esc(C.tgUser) + "?text=" + encodeURIComponent(msg(o.pl)); };
+    var was = function () { return ""; }, cnt = function () { return ""; };   // سعر مشطوب: لا خصومات حالياً (2026-11-07)
     var rad = function (on) { return '<span class="pw-rad' + (on ? " on" : "") + '"></span>'; };
     var altSub = !other ? "" : otherKey === "plus" ? "+" + N(nAll - nT) + " سؤالاً إضافياً بـ" + N(other.pl.price - cur.pl.price) + " ريال فقط" : other.sub;
     return '<div class="pw-sheet pw-tk2" role="dialog" aria-modal="true" aria-labelledby="pw-t">' +
@@ -204,10 +185,11 @@
       '<h2 id="pw-t">' + (C.site === "step" ? "افتح الدليل كاملاً" : "جهّز مقعدك في الاختبار") + '</h2>' +
       (exp ? '<p class="pw-why">انتهت مدة اشتراكك (' + esc(exp) + "). تقدر تجدد باشتراك جديد من هنا.</p>" : "") +
       '<p class="pw-proof pw-sub" hidden></p>' +
-      promoRow + '<div class="pw-opts"><div class="pw-tkt">' + (cur.tag ? '<span class="pw-tag">' + cur.tag + "</span>" : "") +
+      '<div class="pw-opts"><div class="pw-tkt">' + (cur.tag ? '<span class="pw-tag">' + cur.tag + "</span>" : "") +
         '<div class="pw-th2"><div class="pw-t2">' + rad(true) + '<div><b>' + cur.title + '</b><small>' + cur.sub + '</small></div></div><div class="pw-tp">' + was(pick) + '<b' + cnt(pick) + '>' + N(cur.pl.price) + '</b><span>ريال</span></div></div>' +
         '<div class="pw-perf"></div><ul class="pw-tl">' + cur.items.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul></div>" +
       (other ? '<button type="button" class="pw-alt' + (otherKey === "plus" ? " up" : "") + '" data-pw="pick" data-v="' + otherKey + '"><span class="pw-t2">' + rad(false) + '<span><b>' + other.title + '</b><small>' + altSub + '</small></span></span><span class="pw-ap">' + was(otherKey) + '<span' + cnt(otherKey) + '>' + N(other.pl.price) + "</span><small>ريال</small></span></button>" : "") + "</div>" +
+      '<p class="pw-exp" style="margin:10px 0 6px;text-align:center;font-size:.82rem;line-height:1.5;opacity:.85">إذا دخلت بالكود اليوم، يظل اشتراكك شغّال إلى ' + expDate() + "</p>" +
       '<a class="pw-p pw-cta2" data-ch="' + ch + '" data-prod="' + cur.prod + '" data-plan="' + pick + '" href="' + href(cur) + '" target="_blank" rel="noopener"><span class="pw-pl">اشترك</span><span class="pw-gos"><span class="pw-go' + (ch === "telegram" ? ' tg">' + TG + "تيليجرام" : '">' + WA + "واتساب") + "</span></span></a>" +
       '<div class="pw-guar"><span class="pw-seal">3</span><span><b>ضمان 3 أيام:</b> إذا ما ناسبك يرجع لك المبلغ كاملاً · <a href="' + C.terms + '">الشروط</a></span></div>' +
       '<div class="pw-hr"></div><div class="pw-foot2">' +
@@ -217,18 +199,29 @@
       '<div class="pw-code pw-code2" id="pw-cb"><label for="pw-c">أدخل الكود</label><input id="pw-c" autocomplete="one-time-code" placeholder="X-XXXXX-XXXXX" dir="ltr"><button data-pw="code">فتح</button></div><div class="pw-msg" id="pw-m" role="status"></div></div>';
   }
   var dim = null;
+  // الكيبورد كان يغطي خانة الكود في الجوال (طلب يوسف 2026-11-07): النافذة تأخذ المساحة الظاهرة فوق الكيبورد، والخانة تصعد لأعلاها
+  function kbFit() {
+    var v = window.visualViewport;
+    var fit = function () { var sh = dim && dim.querySelector(".pw-sheet"), cb = dim && dim.querySelector("#pw-cb"); if (!sh || !cb) return;
+      if (v) { dim.style.top = v.offsetTop + "px"; dim.style.height = v.height + "px"; dim.style.bottom = "auto"; sh.style.maxHeight = (v.height - 6) + "px"; sh.style.paddingBottom = Math.max(0, v.height - cb.offsetHeight - 40) + "px"; }
+      sh.scrollTop += cb.getBoundingClientRect().top - sh.getBoundingClientRect().top - 10; };
+    fit(); setTimeout(fit, 250); setTimeout(fit, 600);
+    if (v && !kbFit.on) { kbFit.on = 1; v.addEventListener("resize", function () { if (!dim) return; var a = document.activeElement; if (a && a.id === "pw-c") fit(); else kbReset(); }); }
+  }
+  function kbReset() { if (!dim) return; dim.style.top = dim.style.height = dim.style.bottom = ""; var sh = dim.querySelector(".pw-sheet"); if (sh) { sh.style.maxHeight = ""; sh.style.paddingBottom = ""; } }
   function open(reason, pick) {
-    addCss(); close(true); promoSync(); document.documentElement.classList.add("pw-open");
+    addCss(); close(true); document.documentElement.classList.add("pw-open");
     dim = document.createElement("div"); dim.className = "pw-dim"; dim.innerHTML = sheetHtml(reason, pick); setTimeout(fillProof, 0);
     document.body.appendChild(dim); document.documentElement.style.overflow = "hidden"; ev("view_pricing/" + C.site);
+    dim.addEventListener("focusin", function (e) { if (e.target && e.target.id === "pw-c") kbFit(); });
+    dim.addEventListener("focusout", function (e) { if (e.target && e.target.id === "pw-c") setTimeout(function () { var a = document.activeElement; if (!a || a.id !== "pw-c") kbReset(); }, 300); });
     requestAnimationFrame(function () { dim.classList.add("on"); });
     dim.addEventListener("click", function (e) {
       var go = e.target.closest("[data-ch]"); if (go) ev("click_" + go.dataset.ch + "/" + C.site + "/" + go.dataset.plan);
       var b = e.target.closest("[data-pw]"); if (e.target === dim) return close();
       if (!b) return; if (b.dataset.pw === "close") return close();
       // الخانة تحت حد الشاشة في الآيفون (2026-11-06، يوسف ما شافها): الرابط يوصله لها بضغطة
-      if (b.dataset.pw === "gocode") { var cf = dim.querySelector("#pw-c"); if (cf) { cf.scrollIntoView({ block: "center" }); cf.focus({ preventScroll: true }); } return; }
-      if (b.dataset.pw === "promo") { promoApply(); var oldP = dim.querySelector(".pw-sheet"), plan = dim.querySelector(".pw-cta2").dataset.plan, tmpP = document.createElement("div"); tmpP.innerHTML = sheetHtml(reason, plan); oldP.replaceWith(tmpP.firstChild); dim.querySelector(".pw-sheet").style.transform = "none"; promoAnim(dim.querySelector(".pw-sheet")); fillProof(); var ci3 = dim.querySelector("#pw-c"); if (ci3) ci3.addEventListener("keydown", function (e3) { if (e3.key === "Enter") tryCode(); }); return; }
+      if (b.dataset.pw === "gocode") { var cf = dim.querySelector("#pw-c"); if (cf) { cf.focus({ preventScroll: true }); kbFit(); } return; }
       if (b.dataset.pw === "pick") { var old = dim.querySelector(".pw-sheet"); var tmp = document.createElement("div"); tmp.innerHTML = sheetHtml(reason, b.dataset.v); old.replaceWith(tmp.firstChild); dim.querySelector(".pw-sheet").style.transform = "none"; fillProof(); var ci2 = dim.querySelector("#pw-c"); if (ci2) ci2.addEventListener("keydown", function (e2) { if (e2.key === "Enter") tryCode(); }); ev("pick_" + b.dataset.v + "/" + C.site); return; } if (b.dataset.pw === "showcode") { e.preventDefault(); var cb = dim.querySelector("#pw-cb"), cl = dim.querySelector("#pw-cl"); if (cb) cb.hidden = false; if (cl) cl.hidden = true; var ci = dim.querySelector("#pw-c"); if (ci) ci.focus(); return; } if (b.dataset.pw === "code") return tryCode();
       if (b.dataset.pw === "iban" || b.dataset.pw === "wallet") { var ib = b.dataset.pw === "wallet" ? C.pay.wallet : C.pay.iban, lbl = b.textContent; var done = function () { b.textContent = "تم النسخ ✓"; setTimeout(function () { b.textContent = lbl; }, 1800); }; if (navigator.clipboard) navigator.clipboard.writeText(ib).then(done, done); else { try { var t = document.createElement("textarea"); t.value = ib; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); } catch (e) {} done(); } return; }
     });
@@ -333,7 +326,5 @@
     qCount: function (id) { return ((C.lessonInfo || {})[id] || {}).q || 0; },
     lockIcon: '<span class="pw-ic" title="في النسخة الكاملة">' + LOCK + "</span>"
   };
-  // دائرة خصم الزارع في الصفحة: تطبّق الخصم وتفتح نافذة الاشتراك
-  (function promoFab() { var show = function () { if (!promoOk() || promoOn() || document.getElementById("pw-promo-fab") || !document.body) return; addCss(); var f = document.createElement("button"); f.type = "button"; f.id = "pw-promo-fab"; f.setAttribute("aria-label", "طبّق خصم الزارع 15%، خصم يوم واحد"); f.innerHTML = "<b>15%</b><span>خصم الزارع</span><small>يوم واحد</small>"; f.addEventListener("click", function () { promoApply(); open(undefined, "plus"); if (dim) setTimeout(function () { promoAnim(dim && dim.querySelector(".pw-sheet")); }, 280); }); document.body.appendChild(f); }; if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", show); else show(); })();
   try { fillProof(); } catch (e) {}   // جلب مبكر: «اشترك» يعرف الوضع (واتساب/تيليجرام) قبل ما تنفتح النافذة
 })();
