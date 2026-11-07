@@ -131,7 +131,7 @@ a{color:var(--accent)}
     var site = d.site && d.site.replace("https://yousefalshamrani.com/qiyas/", "../");
     card('<div class="res"><div class="ic">✓</div><h2>تم تفعيل اشتراكك</h2><p>' + esc(d.name) + '</p><p class="k">كود الدخول الخاص بك</p><div class="code" id="code">' + esc(d.code) + "</div>" +
       '<div class="row"><a class="btn" href="' + esc(site) + '">افتح النسخة الكاملة</a><button class="btn q" id="cp">انسخ الكود</button></div>' +
-      '<div class="steps">على هذا الجهاز ينفتح الموقع كاملاً تلقائياً. وعلى جهاز ثاني:<ol>' + (d.upgrade ? "<li>افتح «الأسئلة» واضغط «افتح كامل أسئلة الخمس سنوات الماضية»</li><li>الصق الكود في خانة الترقية واضغط «فعّل»</li>" : "<li>اضغط «افتح النسخة الكاملة» ثم «عندك كود؟»</li><li>الصق الكود واضغط «فتح»</li>") + "</ol></div>" +
+      '<div class="steps">على هذا الجهاز ينفتح الموقع كاملاً تلقائياً. وعلى جهاز ثاني:<ol>' + (d.upgrade ? "<li>افتح «الأسئلة» واضغط «افتح كامل أسئلة الخمس سنوات الماضية (مماثلة)»</li><li>الصق الكود في خانة الترقية واضغط «فعّل»</li>" : "<li>اضغط «افتح النسخة الكاملة» ثم «عندك كود؟»</li><li>الصق الكود واضغط «فتح»</li>") + "</ol></div>" +
       '<p class="note">' + (d.chat ? "وصلك الكود أيضاً في محادثة البوت. " : "احفظ الكود عندك (صورة شاشة تكفي). ") + "الكود خاص بك وحدك، ولا يُشارك مع غيرك.</p></div>");
     document.getElementById("cp").onclick = function () { var b = this, ok = function () { b.textContent = "تم النسخ ✓"; }; if (navigator.clipboard) navigator.clipboard.writeText(d.code).then(ok, ok); else ok(); };
   }
