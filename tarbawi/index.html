@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"59Ni3JSWTsL+UsgH","src":"full.dat?v=8663c18ae34b","keys":null,"plus":{"it":120000,"iv":"3qVsYV5q3PgJachr","src":"full2.dat?v=55a4ea073c80","keys":null},"keysSrc":"lock-keys2.json?v=1grsxbe"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"z3qQ6kgxe8/SYHRn","src":"full.dat?v=a7e49b1a5ce6","keys":null,"plus":{"it":120000,"iv":"mpqrQIPXeSqZ40lU","src":"full2.dat?v=0e5367efeae9","keys":null},"keysSrc":"lock-keys2.json?v=1fgju1s"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -60,9 +60,17 @@
     }
   }
   // صلاحية الكود من الخادم (2026-11-06): ترجع تاريخ الانتهاء، أو null إذا لا تاريخ له أو تعذّر الاتصال
+  // معرّف متصفح عشوائي ثابت (قرار المدير 2026-11-08): 32 حرفاً عشوائياً بلا أي بيانات شخصية، لمنع مشاركة الكود.
+  // إذا التخزين ممنوع (تصفح خاص) لا نرسله، والخادم يرجع للبصمة التقنية.
+  function devId() {
+    try { var v = localStorage.getItem("qx.dev"); if (/^[0-9a-f]{32}$/.test(v || "")) return v;
+      var b = new Uint8Array(16); crypto.getRandomValues(b); v = Array.from(b, function (x) { return x.toString(16).padStart(2, "0"); }).join(""); localStorage.setItem("qx.dev", v); return localStorage.getItem("qx.dev") === v ? v : null;
+    } catch (e) { return null; }
+  }
   function expiry(n) {
     var ctl = typeof AbortController !== "undefined" ? new AbortController() : null, to = ctl ? setTimeout(function () { ctl.abort(); }, 3000) : 0;
-    return fetch("https://api.yousefalshamrani.com/v1/code-check", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code: n }), signal: ctl ? ctl.signal : undefined })
+    var body = { code: n }, d = devId(); if (d) body.d = d;
+    return fetch("https://api.yousefalshamrani.com/v1/code-check", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), signal: ctl ? ctl.signal : undefined })
       .then(function (r) { return r.ok ? r.json() : {}; })
       .then(function (d) { clearTimeout(to); return d && d.e ? d.e : null; })
       .catch(function () { clearTimeout(to); return null; });
@@ -211,6 +219,7 @@ p{margin:0}
 .count .l{font-size:.78rem;color:var(--muted)}
 .nav{display:none}
 .tabbar{position:fixed;bottom:0;left:0;right:0;z-index:30;background:var(--sheet);border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
+.tabbar:empty{min-height:calc(67px + env(safe-area-inset-bottom,0px))}
 .tab{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.72rem;color:var(--muted);padding:4px 0;border-radius:8px}
 .tab svg{width:22px;height:22px}
 .tab[aria-current="page"]{color:var(--accent);font-weight:600}
@@ -479,7 +488,7 @@ body.bkv-on{overflow:hidden}
     <div class="count" id="count"></div>
     <button class="themebtn" id="themeBtn" data-act="theme" aria-label="الوضع الليلي"></button>
   </div></header>
-  <main id="view"><div class="sheet" style="margin-top:20px"><p>يحمّل المنهج…</p></div></main>
+  <main id="view"><div class="sheet"><p>يحمّل المنهج…</p></div></main>
 </div>
 <nav class="tabbar" id="tabbar" dir="rtl"></nav>
 <button class="btn backq" id="backq" data-act="backQuiz" hidden>→ العودة للاختبار</button>
