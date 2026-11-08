@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"k5Z9E9PLobhUM0Pn","src":"full.dat?v=45f09a8a70a8","keys":null,"plus":{"it":120000,"iv":"lhEqOV1meKRZW7I3","src":"full2.dat?v=7401532adc0b","keys":null},"keysSrc":"lock-keys2.json?v=1encios"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"LumvpsdmKS86BEax","src":"full.dat?v=d8fa5f0b1827","keys":null,"plus":{"it":120000,"iv":"BO9Q+S+xidxxLMUY","src":"full2.dat?v=6cfad9de1e35","keys":null},"keysSrc":"lock-keys2.json?v=1eamsli"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -1361,14 +1361,36 @@ body.bkv-on{overflow:hidden}
     /* 2) ظهور متتابع ناعم عند التمرير، فقط حيث يدعمه المتصفح (وإلا يظهر المحتوى كما هو) */
     "@supports (animation-timeline: view()){.sheet,.tile,.stat,.lsec{animation:qxRise linear both;animation-timeline:view();animation-range:entry 0% entry 38%}}",
     "@keyframes qxRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}",
+    /* 2ب) البديل لمتصفح بلا animation-timeline (سفاري آيفون قبل iOS 26، قرار المدير 2026-11-08): مراقب تقاطع يضيف .qx-in.
+       يُخفى بالشفافية فقط (الحركة transform فلا إزاحة تخطيط)، وما يظهر في الشاشة لحظة رسمه يبقى ظاهراً بلا حركة. */
+    ".qx-io .sheet:not(.qx-in),.qx-io .tile:not(.qx-in),.qx-io .stat:not(.qx-in),.qx-io .lsec:not(.qx-in){opacity:0}",
+    ".qx-io .qx-in.qx-go{animation:qxRise .45s " + ease + " both}",
     /* 5) تموّج دائري عند لمس خيار الإجابة */
     "button.opt{position:relative;overflow:hidden;isolation:isolate}",
     ".qx-rip{position:absolute;border-radius:50%;pointer-events:none;background:currentColor;opacity:.14;transform:scale(0);z-index:-1;animation:qxRip .52s " + ease + " forwards}",
     "@keyframes qxRip{to{transform:scale(1);opacity:0}}",
     /* لا حركة لمن طلب تقليلها */
-    "@media (prefers-reduced-motion:reduce){.qx-wave i,.sheet,.tile,.stat,.lsec,.qx-rip{animation:none!important}.qx-rip{display:none}}"
+    "@media (prefers-reduced-motion:reduce){.qx-wave i,.sheet,.tile,.stat,.lsec,.qx-rip{animation:none!important}.qx-rip{display:none}.qx-io .sheet,.qx-io .tile,.qx-io .stat,.qx-io .lsec{opacity:1!important}}"
   ].join("");
   var st = document.createElement("style"); st.id = "qx-motion"; st.textContent = css; (document.head || document.documentElement).appendChild(st);
+  // 2ب) بديل الظهور عند التمرير: فقط إذا المتصفح لا يدعم animation-timeline، وبلا «تقليل الحركة»
+  (function () {
+    var sup = false; try { sup = !!(window.CSS && CSS.supports && CSS.supports("animation-timeline: view()")); } catch (e) {}
+    if (sup || reduce || typeof IntersectionObserver !== "function" || typeof MutationObserver !== "function") return;
+    var SEL = ".sheet,.tile,.stat,.lsec", seen = typeof WeakSet === "function" ? new WeakSet() : null;
+    // يدخل حين تتجاوز حافته العليا 85% من ارتفاع الشاشة (أي دخل 15% منها)، بلا اعتماد على طول العنصر
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("qx-in", "qx-go"); io.unobserve(e.target); } }); }, { rootMargin: "0px 0px -15% 0px", threshold: 0 });
+    var scan = function (root) {
+      var list = []; if (root.matches && root.matches(SEL)) list.push(root); if (root.querySelectorAll) list = list.concat([].slice.call(root.querySelectorAll(SEL)));
+      var h = window.innerHeight || document.documentElement.clientHeight;
+      list.forEach(function (el) { if (seen) { if (seen.has(el)) return; seen.add(el); } if (el.classList.contains("qx-in")) return;
+        var r = el.getBoundingClientRect(); if (r.top < h * 0.85) el.classList.add("qx-in"); else io.observe(el); });   // الظاهر الآن: بلا إخفاء ولا حركة
+    };
+    var start = function () { if (!document.body) return; scan(document.body); document.documentElement.classList.add("qx-io");
+      new MutationObserver(function (ms) { ms.forEach(function (m) { for (var i = 0; i < m.addedNodes.length; i++) if (m.addedNodes[i].nodeType === 1) scan(m.addedNodes[i]); }); }).observe(document.body, { childList: true, subtree: true });
+      addEventListener("beforeprint", function () { [].forEach.call(document.querySelectorAll(SEL), function (el) { el.classList.add("qx-in"); }); }); };
+    if (document.body) start(); else document.addEventListener("DOMContentLoaded", start);
+  })();
   // لون الموجة من لون الموقع (يتبع النهاري والليلي)
   var wave = function () {
     if (reduce || document.querySelector(".qx-wave") || !document.body) return;
