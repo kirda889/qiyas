@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"Y66VLhwiFVCvkwqT","src":"full.dat?v=359c859a5e4f","keys":null,"plus":{"it":120000,"iv":"uupT7G480/ZOhkmX","src":"full2.dat?v=840961dbfa8a","keys":null},"keysSrc":"lock-keys2.json?v=sp1tgr"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"UWAJT5lTxmz4WTpu","src":"full.dat?v=8aa80245ddd2","keys":null,"plus":{"it":120000,"iv":"gSpTDvo3SoakW3bm","src":"full2.dat?v=03d664065470","keys":null},"keysSrc":"lock-keys2.json?v=1o03r8g"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -1695,8 +1695,10 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
   // مع لوحة المفاتيح وبدونها، فحافتها السفلى على حافة لوحة المفاتيح أو فوق شريط سفاري العائم، بلا فراغ تظهر منه الصفحة؛
   // والصفحة خلفها مثبّتة (body ثابت بإزاحة التمرير) فلا يمرّرها سفاري ليُظهر الحقل، وتعود لمكانها بالضبط عند الإغلاق.
   var lockY = 0;
-  function lockScroll() { lockY = window.scrollY || 0; var b = document.body.style; b.position = "fixed"; b.top = -lockY + "px"; b.left = "0"; b.right = "0"; b.width = "100%"; }
-  function unlockScroll() { var b = document.body.style; if (b.position !== "fixed") return; b.position = b.top = b.left = b.right = b.width = ""; var h = document.documentElement, sb = h.style.scrollBehavior; h.style.scrollBehavior = "auto"; window.scrollTo(0, lockY); h.style.scrollBehavior = sb; }
+  /* قفل التمرير بلا تحريك الصفحة (ج1، 2026-11-09): body بـposition:fixed كان يجبر سفاري على إعادة رسم الصفحة كلها فتظهر فارغة 1–2 إطار؛
+     الآن overflow:hidden على html فقط (سفاري 16+ يمنع به السحب) والموضع لا يتغير، ونحفظه لنرجعه إن حرّكته لوحة المفاتيح (البند 1) */
+  function lockScroll() { lockY = window.scrollY || 0; var h = document.documentElement.style; h.overflow = "hidden"; h.overscrollBehavior = "none"; document.body.style.overscrollBehavior = "none"; }
+  function unlockScroll() { var H = document.documentElement, h = H.style; h.overflow = ""; h.overscrollBehavior = ""; document.body.style.overscrollBehavior = ""; if (Math.abs((window.scrollY || 0) - lockY) > 1) { var sb = h.scrollBehavior; h.scrollBehavior = "auto"; window.scrollTo(0, lockY); h.scrollBehavior = sb; } }
   function vvFit() { if (!dim) return; var v = window.visualViewport, sh = dim.querySelector(".pw-sheet"); if (!v || !sh) return;
     dim.style.top = v.offsetTop + "px"; dim.style.height = v.height + "px"; dim.style.bottom = "auto"; sh.style.maxHeight = Math.max(240, v.height - 8) + "px"; }
   function kbFit() {
@@ -1713,7 +1715,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
   function open(reason, pick) {
     addCss(); close(true); document.documentElement.classList.add("pw-open");
     dim = document.createElement("div"); dim.className = "pw-dim"; dim.innerHTML = sheetHtml(reason, pick); setTimeout(fillProof, 0);
-    lockScroll(); document.body.appendChild(dim); document.documentElement.style.overflow = "hidden"; vvFit(); ev("view_pricing/" + C.site);
+    lockScroll(); document.body.appendChild(dim); vvFit(); ev("view_pricing/" + C.site);
     dim.addEventListener("focusin", function (e) { if (e.target && e.target.id === "pw-c") kbFit(); });
     dim.addEventListener("focusout", function (e) { if (e.target && e.target.id === "pw-c") setTimeout(function () { var a = document.activeElement; if (!a || a.id !== "pw-c") kbReset(); }, 300); });
     requestAnimationFrame(function () { dim.classList.add("on"); });
@@ -1728,7 +1730,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     });
     dim.querySelector("#pw-c").addEventListener("keydown", function (e) { if (e.key === "Enter") tryCode(); });
   }
-  function close(now) { if (!dim) return; var d = dim; dim = null; try { var ae = document.activeElement; if (ae && ae.id === "pw-c") ae.blur(); } catch (e) {} document.documentElement.style.overflow = ""; unlockScroll(); document.documentElement.classList.remove("pw-open"); if (now) return d.remove(); var H0 = document.documentElement; H0.classList.add("pw-closing"); setTimeout(function () { H0.classList.remove("pw-closing"); }, 360); var s0 = d.querySelector(".pw-sheet"); if (s0) s0.style.transform = ""; d.classList.remove("on"); setTimeout(function () { d.remove(); }, 320); }
+  function close(now) { if (!dim) return; var d = dim; dim = null; try { var ae = document.activeElement; if (ae && ae.id === "pw-c") ae.blur(); } catch (e) {} unlockScroll(); document.documentElement.classList.remove("pw-open"); if (now) return d.remove(); var H0 = document.documentElement; H0.classList.add("pw-closing"); setTimeout(function () { H0.classList.remove("pw-closing"); }, 360); var s0 = d.querySelector(".pw-sheet"); if (s0) s0.style.transform = ""; d.classList.remove("on"); setTimeout(function () { d.remove(); }, 320); }
   var PAGE_ID = Date.now() + "-" + Math.random();   // يميّز تحميل الصفحة: نعرف إذا حدّثها العميل بين محاولتين
   async function tryCode() {
     var inp = document.getElementById("pw-c"), m = document.getElementById("pw-m"), v = inp.value.trim();
