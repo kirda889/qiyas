@@ -1,0 +1,1 @@
+window.__chlDone&&window.__chlDone({"id":"L10","sec":[{"h":["About the listening section","عن قسم الاستماع"],"p":["**قسم الاستماع:** ⁦20%⁩ من الاختبار، والمقطع يُشغَّل مرة واحدة فقط."]}],"trap":[],"deep":{}});
