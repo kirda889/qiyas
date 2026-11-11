@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"vDLWGJMhHpHwU7/s","src":"full.dat?v=bc4478dc78e7","keys":null,"plus":{"it":120000,"iv":"7B958gb7iteS1exY","src":"full2.dat?v=d2423e409637","keys":null},"keysSrc":"lock-keys2.json?v=1pghvi"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"GjLIw55n1F5p89Es","src":"full.dat?v=18b82e05ba1e","keys":null,"plus":{"it":120000,"iv":"2Z6u62pOFSkt0F8f","src":"full2.dat?v=da3ed26d122f","keys":null},"keysSrc":"lock-keys2.json?v=7tg69m"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -541,7 +541,7 @@ body.bkv-on{overflow:hidden}
       
       <div class="row"><button class="btn" data-open-task="diag">ابدأ</button><span class="or">أو انتقل إلى</span><button class="btn ghost" data-go="lessons">الدروس</button></div>
       <div class="row"><button class="btn sm quiet" data-act="daily">سؤال اليوم ×10</button></div>
-    </div><div class="pw-banner"><p><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg> أنت على <b>النسخة المجانية</b>: اختبار مصغّر بأسلوب الهيئة (20 سؤالاً)، و 20 سؤالاً من الاختبارات الماضية (مماثلة) بشرحها، وأسئلة الدليلين الرسميين، و 13 درساً من 16.</p><div class="pw-row"><button class="pw-btn" onclick="PW.open()">افتح كامل الأسئلة · 89 ريال</button><button class="pw-btn q" onclick="PW.open()">عندي كود</button></div></div><div class="section-title"><h2>الدروس حسب المعيار</h2><span class="line"></span></div></section></main><script src="../paint.js"></script>
+    </div><div class="pw-banner"><p><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 018 0v3"></path></svg> أنت على <b>النسخة المجانية</b>: اختبار مصغّر بأسلوب الهيئة (20 سؤالاً)، و 20 سؤالاً من الاختبارات الماضية (مماثلة) بشرحها، وأسئلة الدليلين الرسميين، و 13 درساً من 16.</p><div class="pw-row"><button class="pw-btn" onclick="PW.open()">افتح كامل الأسئلة · 89 ريال</button><button class="pw-btn q" onclick="PW.open()">عندي كود</button></div></div><div class="section-title"><h2>الدروس حسب المعيار</h2><span class="line qxm-w"></span></div></section></main><script src="../paint.js"></script>
 </div>
 <nav class="tabbar" id="tabbar" dir="rtl"></nav>
 <button class="btn backq" id="backq" data-act="backQuiz" hidden>→ العودة للاختبار</button>
@@ -1710,8 +1710,9 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     var SUMP = C.summary ? ["<b>ملزمة شرح الدروس</b> تُقرأ في الموقع"] : [], SUMI = C.summaryLite ? ["<b>ملزمة شرح مختصرة</b> تُقرأ في الموقع"] : [];
     // وصف «أهم N» من الإعداد (pw.tierSub في sales_config)، وإلا القديم. الإنجليزي: 72 فقط من آخر ثلاث سنوات (المدير 2026-11-11)؛ يُضاف tierSub بعد موافقة يوسف على صورة النافذة (مرجع معتمد)
     var T3 = C.tierSub || "من الثلاث سنوات الماضية";   // قرار يوسف 2026-11-11: «أهم 120» يبقى «من الثلاث سنوات الماضية (مماثلة)»، بلا ذكر جولة
+    var P5 = C.plusSub || "من الخمس سنوات الماضية";   // الإنجليزي: «+700 سؤال من الاختبارات الماضية (مماثلة)» (قرار يوسف 2026-11-11)
     var O = { plus: C.plus && S2 ? { pl: C.plus, prod: S2, title: "كامل الأسئلة", sub: nQ ? '<bdi dir="rtl">+' + N(nQ) + "</bdi> سؤال" : "", tag: "الأشمل",
-        items: ((nP ? ['<b><bdi dir="rtl">+' + N(nP) + "</bdi> سؤال</b> من الخمس سنوات الماضية <small class=mm>(مماثلة)</small>"] : []).concat([   // 2026-11-08 (قرار يوسف): «الخمس سنوات» أول بند في القائمة بخطها، لا سطراً صغيراً في الرأس
+        items: ((nP ? ['<b><bdi dir="rtl">+' + N(nP) + "</bdi> سؤال</b> " + P5 + " <small class=mm>(مماثلة)</small>"] : []).concat([   // 2026-11-08 (قرار يوسف): «الخمس سنوات» أول بند في القائمة بخطها، لا سطراً صغيراً في الرأس
  "<b>ملف PDF</b> لأهم " + N(nT) + " سؤالاً بحلولها"].concat(SUMP, ["<b>3 اختبارات محاكية</b> للاختبار الحقيقي <small class=mm>(مع التصحيح)</small>"]))) } : null,   // نصوص يوسف 2026-11-08ب
       // «أهم 120» في الإنجليزي 2 ليست كلها من آخر ثلاث سنوات: 72 فقط (قسم المحتوى، المدير 2026-11-11)
       single: { pl: C.plan, prod: S1, title: C.site === "step" ? "دليل STEP كاملاً" : "أهم " + N(nT) + " سؤالاً", sub: C.site === "step" ? "القواعد والمفردات والقراءة والاستماع" : T3 + " <small class=mm>(مماثلة)</small>",   // حُذف «+ الملزمة والمحاكيات» (يوسف 2026-11-08ب)
@@ -1864,7 +1865,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
       return '<div class="pw-res"><p><b>' + head + '</b></p>' +
         (w ? '<p>أكبر مجال يرفع درجتك: <b>' + esc(w.name) + '</b>، وزنه ' + N(w.w) + '% من الاختبار، وأجبت فيه ' + N(w.c) + ' من ' + N(w.n) + '.</p>' : "") +
         '<button class="pw-btn" onclick="PW.open(\'!درجتك في الاختبار المجاني ' + N(score) + '%. هذا ما يفتحه الاشتراك:\')">' + fullBtn() + '</button>' +
-        '<small>كل أسئلة الخمس سنوات الماضية (أكثر من ' + N(Math.floor((C.similarTotal || 0) / 100) * 100) + '، مماثلة) بشرحها + 3 اختبارات محاكية للاختبار الحقيقي (' + N(C.mockQ || 88) + ' سؤالاً)' + (pd ? ' · تقريباً ' + N(pd) + ' ريال لليوم' : "") + '</small>' +
+        '<small>كل أسئلة ' + (C.plusSub ? 'الاختبارات الماضية' : 'الخمس سنوات الماضية') + ' (أكثر من ' + N(Math.floor((C.similarTotal || 0) / 100) * 100) + '، مماثلة) بشرحها + 3 اختبارات محاكية للاختبار الحقيقي (' + N(C.mockQ || 88) + ' سؤالاً)' + (pd ? ' · تقريباً ' + N(pd) + ' ريال لليوم' : "") + '</small>' +
         '<small>أو كمّل مجاناً: <a href="#" onclick="startTest(\'diag\');return false">الاختبار التشخيصي، 40 سؤالاً جديدة</a></small></div>';
     },
     bankNudge: function (k, total) {
@@ -1882,7 +1883,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     similarDone: function () {
       addCss(); var n = (C.similar || []).length, pd = perDay();
       return '<div class="pw-banner"><p>أحسنت، أنهيت ' + N(n) + ' سؤالاً من الاختبارات الماضية <small class=mm>(مماثلة)</small>. تكمل على:</p>' +
-        '<p>• <b>كامل الأسئلة</b> (أكثر من ' + N(Math.floor((C.qTotal || 0) / 100) * 100) + ' سؤال، منها أكثر من ' + N(Math.floor((C.similarTotal || 0) / 100) * 100) + ' من الخمس سنوات الماضية، مماثلة) بـ' + N((C.plus || C.plan).price) + ' ريال<br>• أو <b>أهم ' + N(C.tierN || 120) + ' سؤالاً</b> بـ' + N(C.plan.price) + ' ريال، وفي الاثنين الملزمة والاختبارات المحاكية.</p>' +
+        '<p>• <b>كامل الأسئلة</b> (أكثر من ' + N(Math.floor((C.qTotal || 0) / 100) * 100) + ' سؤال، منها أكثر من ' + N(Math.floor((C.similarTotal || 0) / 100) * 100) + ' ' + (C.plusSub || 'من الخمس سنوات الماضية') + '، مماثلة) بـ' + N((C.plus || C.plan).price) + ' ريال<br>• أو <b>أهم ' + N(C.tierN || 120) + ' سؤالاً</b> بـ' + N(C.plan.price) + ' ريال، وفي الاثنين الملزمة والاختبارات المحاكية.</p>' +
         '<p class="small pw-proof" hidden></p>' + '<p class="small">ضمان 3 أيام: إذا ما ناسبك المحتوى يرجع لك المبلغ كاملاً.</p>' + (setTimeout(fillProof, 60), "") +
         '<div class="pw-row"><button class="pw-btn" onclick="PW.open(\'!أنهيت الأسئلة المجانية، اختر اللي يناسب وقتك\')">اختر اشتراكك</button><button class="pw-btn q" onclick="startTest(\'diag\')">أو اختبر نفسك في التشخيصي مجاناً</button></div></div>';
     },
@@ -2704,5 +2705,73 @@ if(hot&&hot.snapshot) hot.snapshot(()=>({route,session,fc}));
 if(hot&&hot.ready) hot.ready(start); else start(hot&&hot.data||{});
 })();
 </script>
-<script>(function(){var K="tarbawi",B=354,F="vcount."+K,s=null,V=null;try{s=localStorage.getItem(F)}catch(e){}function show(){if(V===null)return;var t=Number(V).toLocaleString("en-US");document.querySelectorAll(".vcount").forEach(function(el){var n=el.querySelector(".vcount-n");if(n&&n.textContent!==t)n.textContent=t;if(el.hidden)el.hidden=false})}fetch("https://abacus.jasoncameron.dev/"+(s?"get":"hit")+"/"+(location.hostname==="yousefalshamrani.com"?"yousefalshamrani-com":"yousefalshamrani-test")+"/"+K).then(function(r){return r.json()}).then(function(d){if(typeof d.value!=="number")return;try{localStorage.setItem(F,"1")}catch(e){}V=d.value+B;show();new MutationObserver(show).observe(document.body,{childList:true,subtree:true})}).catch(function(){})})();</script><script src="../reviews.js" defer></script><script>(function(){try{var s=(new URLSearchParams(location.search).get("src")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,20);if(!s)return;try{localStorage.setItem("qx.src",s)}catch(e){}var p=location.pathname.indexOf("/quiz")>0?"quiz":location.pathname.indexOf("/sharh")>0?"sharh":"home",x=location.pathname.split("/")[2]||"hub",k="src-"+x+"-"+p+"-"+s,F="srcseen."+k;if(localStorage.getItem(F))return;localStorage.setItem(F,"1");fetch("https://abacus.jasoncameron.dev/hit/"+(location.hostname==="yousefalshamrani.com"?"yousefalshamrani-com":"yousefalshamrani-test")+"/"+k).catch(function(){})}catch(e){}})();</script><script>(function(){var H="<script data-goatcounter=\"https://yousefqiyas.goatcounter.com/count\" async src=\"//gc.zgo.at/count.js\"><\/script><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"c26f510a6f2b4339af234504262282f4\"}'><\/script>";function go(){if(window.__3p)return;window.__3p=1;var d=document.createElement('div');d.innerHTML=H;[].forEach.call(d.querySelectorAll('script'),function(o){var s=document.createElement('script');[].forEach.call(o.attributes,function(a){s.setAttribute(a.name,a.value)});s.text=o.text;document.body.appendChild(s)})}if(document.readyState==='complete')setTimeout(go,1500);else addEventListener('load',function(){setTimeout(go,1500)})})();</script><script>(function(){try{var k="qx.gads";if(/[?&](gclid|gbraid|wbraid)=|[?&]src=gads\b/.test(location.search))localStorage.setItem(k,"1");if(localStorage.getItem(k)!=="1")return}catch(e){return}var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=AW-341680170";document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config","AW-341680170");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="t.me/yousefalshamrani_qiyas_bot"]');if(a)gtag("event","conversion",{send_to:"AW-341680170/0X63CMTU860dEKrA9qIB"})},true)})();</script>
+<script>(function(){var K="tarbawi",B=354,F="vcount."+K,s=null,V=null;try{s=localStorage.getItem(F)}catch(e){}function show(){if(V===null)return;var t=Number(V).toLocaleString("en-US");document.querySelectorAll(".vcount").forEach(function(el){var n=el.querySelector(".vcount-n");if(n&&n.textContent!==t)n.textContent=t;if(el.hidden)el.hidden=false})}fetch("https://abacus.jasoncameron.dev/"+(s?"get":"hit")+"/"+(location.hostname==="yousefalshamrani.com"?"yousefalshamrani-com":"yousefalshamrani-test")+"/"+K).then(function(r){return r.json()}).then(function(d){if(typeof d.value!=="number")return;try{localStorage.setItem(F,"1")}catch(e){}V=d.value+B;show();new MutationObserver(show).observe(document.body,{childList:true,subtree:true})}).catch(function(){})})();</script><script src="../reviews.js" defer></script><script>window.__QXM_KEY="rakhsa-tarbawi.v1";/* حركة الظهور داخل التربوي والإنجليزي (طلب يوسف 2026-11-11: «المستطيلات والمربعات تصطف بشكل ناعم مثل STEP»).
+   نفس قيم static/step2_motion.js (حركة STEP القديم): صعود 30px وتلاشٍ 0.6 ث ease-out، وتدرّج 0.1 ث حتى 0.5 ث.
+   يتحرك «الصندوق» فقط (بطاقة، صف، شرح، خريطة، خيار: له خلفية أو حد أو زوايا مدوّرة)، لا الفقرات، فلا تبطؤ القراءة.
+   الصندوق الأطول من الشاشة (قسم درس كامل) لا يتحرك كتلة واحدة: تتحرك صناديقه الداخلية (مثل شرائح STEP القديم).
+   الشاشة الأولى عند التحميل لا تُخفى (مرسومة مسبقاً، وأول ظهور لا يتأخر)، والحركة عند تغيّر الصفحة وعند التمرير فقط.
+   «تقليل الحركة» = لا شيء. يُحقن وقت البناء بمفتاح التخزين window.__QXM_KEY (build.py، خلف QX_MOTION=1 حتى موافقة يوسف). */
+(function () {
+  try {
+    if (!window.IntersectionObserver || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var KEY = (window.__QXM_KEY || "") + ".route";
+    var css = document.createElement("style");
+    css.id = "qxm-motion";
+    css.textContent =
+      "@keyframes qxmUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}" +
+      "#view .qxm-w{opacity:0;animation:none!important}" +
+      "#view .qxm-go{opacity:1;animation:qxmUp .6s ease-out both;animation-delay:var(--qxm-d,0s)}";
+    (document.head || document.documentElement).appendChild(css);
+    var V = null, last = null, armedAt = 0;
+    var key = function () { try { return localStorage.getItem(KEY) || location.hash; } catch (e) { return location.hash; } };
+    var isBox = function (el) {
+      var cs = getComputedStyle(el);
+      if (cs.display === "none" || cs.position === "fixed" || cs.position === "sticky") return false;
+      var bg = cs.backgroundColor, bw = parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth) + parseFloat(cs.borderInlineStartWidth || cs.borderRightWidth);
+      return (bg && bg !== "transparent" && !/rgba\([^)]*,\s*0\)$/.test(bg)) || bw > 0 || parseFloat(cs.borderTopLeftRadius) >= 8;
+    };
+    // الصناديق بترتيب القراءة: الصندوق الأقصر من الشاشة يُؤخذ كما هو، والأطول (أو غير الصندوق) نبحث داخله، حتى عمق 6
+    var collect = function (el, depth, out) {
+      if (depth > 6 || el.nodeType !== 1 || /^(SCRIPT|STYLE|SVG|PATH|BR|IMG|INPUT|AUDIO|SOURCE)$/i.test(el.tagName)) return;
+      var h = el.offsetHeight; if (!h || el.closest(".qx-dk,.pw-dim,.backq")) return;
+      if (depth > 0 && isBox(el) && h <= innerHeight * 1.1) { out.push(el); return; }
+      for (var i = 0; i < el.children.length; i++) collect(el.children[i], depth + 1, out);
+    };
+    var go = function (list) {
+      list.forEach(function (el, i) {
+        el.style.setProperty("--qxm-d", Math.min(i, 5) * 0.1 + "s");
+        el.classList.remove("qxm-w"); el.classList.add("qxm-go"); el.setAttribute("data-qx-anim", "");
+        el.addEventListener("animationend", function done(e) { if (e.target !== el) return; el.classList.remove("qxm-go"); el.removeAttribute("data-qx-anim"); el.style.removeProperty("--qxm-d"); el.removeEventListener("animationend", done); });
+      });
+    };
+    var io = new IntersectionObserver(function (es) {
+      var now = es.filter(function (e) { return e.isIntersecting; }).map(function (e) { io.unobserve(e.target); return e.target; });
+      if (now.length) go(now);
+    }, { rootMargin: "0px 0px -10% 0px", threshold: 0 });
+    var arm = function (initial) {
+      io.disconnect();
+      var list = []; collect(V, 0, list);
+      var h = innerHeight, vis = [];
+      list.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < h * 0.92) { if (!initial) { el.classList.add("qxm-w"); vis.push(el); } }
+        else { el.classList.add("qxm-w"); io.observe(el); }
+      });
+      if (vis.length) requestAnimationFrame(function () { go(vis); });
+    };
+    var start = function () {
+      V = document.getElementById("view"); if (!V) return;
+      last = key(); arm(true);
+      new MutationObserver(function () {
+        var k = key();
+        // نفس الصفحة أعيد رسمها (إجابة، فتح شرح): بلا حركة. إلا خلال 0.8 ث من تغيّر الصفحة: التطبيق يرسم «جاري التحميل» ثم المحتوى (تبويب الدروس في التربوي)
+        if (k === last) { if (Date.now() - armedAt < 800) arm(false); return; }
+        last = k; armedAt = Date.now(); arm(false);
+      }).observe(V, { childList: true });
+      addEventListener("beforeprint", function () { [].forEach.call(V.querySelectorAll(".qxm-w"), function (el) { el.classList.remove("qxm-w"); }); });
+    };
+    document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", start) : start();
+  } catch (e) {}
+})();
+</script><script>(function(){try{var s=(new URLSearchParams(location.search).get("src")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,20);if(!s)return;try{localStorage.setItem("qx.src",s)}catch(e){}var p=location.pathname.indexOf("/quiz")>0?"quiz":location.pathname.indexOf("/sharh")>0?"sharh":"home",x=location.pathname.split("/")[2]||"hub",k="src-"+x+"-"+p+"-"+s,F="srcseen."+k;if(localStorage.getItem(F))return;localStorage.setItem(F,"1");fetch("https://abacus.jasoncameron.dev/hit/"+(location.hostname==="yousefalshamrani.com"?"yousefalshamrani-com":"yousefalshamrani-test")+"/"+k).catch(function(){})}catch(e){}})();</script><script>(function(){var H="<script data-goatcounter=\"https://yousefqiyas.goatcounter.com/count\" async src=\"//gc.zgo.at/count.js\"><\/script><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"c26f510a6f2b4339af234504262282f4\"}'><\/script>";function go(){if(window.__3p)return;window.__3p=1;var d=document.createElement('div');d.innerHTML=H;[].forEach.call(d.querySelectorAll('script'),function(o){var s=document.createElement('script');[].forEach.call(o.attributes,function(a){s.setAttribute(a.name,a.value)});s.text=o.text;document.body.appendChild(s)})}if(document.readyState==='complete')setTimeout(go,1500);else addEventListener('load',function(){setTimeout(go,1500)})})();</script><script>(function(){try{var k="qx.gads";if(/[?&](gclid|gbraid|wbraid)=|[?&]src=gads\b/.test(location.search))localStorage.setItem(k,"1");if(localStorage.getItem(k)!=="1")return}catch(e){return}var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=AW-341680170";document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config","AW-341680170");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="t.me/yousefalshamrani_qiyas_bot"]');if(a)gtag("event","conversion",{send_to:"AW-341680170/0X63CMTU860dEKrA9qIB"})},true)})();</script>
 </body></html>
