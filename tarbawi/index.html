@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"T9N9UiKdOuP0jcTb","src":"full.dat?v=244e3120741b","keys":null,"plus":{"it":120000,"iv":"sZxag/w+1FekV88a","src":"full2.dat?v=5ac1736fe49f","keys":null},"keysSrc":"lock-keys2.json?v=1q9egvc"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"T9N9UiKdOuP0jcTb","src":"full.dat?v=244e3120741b","keys":null,"plus":{"it":120000,"iv":"sZxag/w+1FekV88a","src":"full2.dat?v=5ac1736fe49f","keys":null},"keysSrc":"lock-keys2.json?v=g4lq1i"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -1979,8 +1979,12 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     var root = document.documentElement;
     var XS = '<svg viewBox="0 0 16.7 16.7" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><path d="M1.05 1.05L15.65 15.65M15.65 1.05L1.05 15.65"/></svg>';
     var css =
-      "html body .pw-dim.ap-live{background:rgba(8,14,11,calc(.5 * var(--ap-p,1)))!important;transition:none!important}" +
-      "html body .pw-dim.ap-live .pw-sheet{transform:translate3d(0,var(--ap-y,0px),0)!important;transition:none!important;will-change:transform}" +
+      // العتمة طبقة ثابتة من لحظة الفتح (بدل لون خلفية .pw-dim): بداية السحب لا تغيّر أي خلفية، وفتحها وإغلاقها بانتقال النافذة الأصلي نفسه
+      ".ap-bd{position:fixed;left:0;right:0;top:-50vh;height:200vh;background:rgba(6,14,10,.55);opacity:0;pointer-events:none;will-change:opacity;transition:opacity .3s cubic-bezier(.4,0,.6,1)}" +
+      "html body .pw-dim.apx.apx,html body .pw-dim.apx.apx.on{background:transparent!important}html body .pw-dim.apx.apx::before,html body .pw-dim.apx.apx::after{background:transparent!important}" +
+      "html body .pw-dim.apx.on .ap-bd{opacity:1;transition-duration:.38s;transition-timing-function:cubic-bezier(.16,1,.3,1)}html body .pw-dim.ap-live .ap-bd{transition:none}" +
+      "@media (prefers-reduced-motion:reduce){.ap-bd{transition:none}}" +
+      "html body .pw-dim.ap-live .pw-sheet{transition:none!important}" +
       "html body .pw-dim .pw-sheet.pw-tk2.ap{padding-top:16px!important;position:relative;overscroll-behavior:contain}" +
       ".ap-grab{position:absolute;top:5px;left:50%;width:36px;height:5px;margin-left:-18px;border-radius:2.5px;background:rgba(21,32,27,.22);pointer-events:none}" +
       "html body .pw-tk2 .ap-bar{order:0;position:relative;display:flex;align-items:center;justify-content:center;min-height:44px;margin:0 -4px 0;padding:0 52px;touch-action:none;cursor:grab}" +
@@ -2032,45 +2036,47 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
       alignPrice(sh); if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { alignPrice(sh); });
     }
 
-    /* السحب لتحت: y = إزاحة النافذة بالبكسل */
-    var dim = null, sh = null, y = 0, H = 1, raf = 0, drag = null, moved = false, pd = null, t0 = null;
+    /* السحب لتحت (يوسف 2026-11-12: «يهنق وتظلم الشاشة شوي»): كانت العتمة لوناً يُعاد رسمه كل إطار (ثلاث طبقات بحجم الشاشة)
+       وبدرجة غير درجة العتمة الأصلية. الآن: طبقة عتمة ثابتة بنفس اللون (.55) تتغير شفافيتها فقط، والنافذة transform مباشرة،
+       وكلاهما داخل requestAnimationFrame، والإفلات حركة جاهزة على بطاقة الرسوميات بمنحنى زر X. */
+    var dim = null, sh = null, bd = null, y = 0, H = 1, drag = null, moved = false, pd = null, t0 = null, rq = 0, rel = [];
     var NOGRAB = "input,textarea,select";
+    var CLOSE_EASE = "cubic-bezier(.4,0,.6,1)", BACK_EASE = "cubic-bezier(.16,1,.3,1)";
     function H_() { return Math.max(1, innerHeight - sh.getBoundingClientRect().top + y); }
-    function paint() { dim.style.setProperty("--ap-y", y.toFixed(2) + "px"); dim.style.setProperty("--ap-p", Math.max(0, Math.min(1, 1 - y / H)).toFixed(3)); }
-    function stop() { if (raf) cancelAnimationFrame(raf); raf = 0; }
-    function live(on) { if (dim) dim.classList.toggle("ap-live", on); }
-    // نابض بكتلة 1: response بالثواني، وdamping أقل من 1 فيه ارتداد خفيف
-    function spring(to, v0, response, damping, done) {
-      stop();
-      var k = Math.pow(2 * Math.PI / response, 2), c = 4 * Math.PI * damping / response, v = v0 * 1000, last = performance.now();
-      (function step(now) {
-        if (!dim) return;
-        var dt = Math.min(0.064, (now - last) / 1000); last = now;
-        for (var t = 0; t < dt; t += 0.004) { var h = Math.min(0.004, dt - t), a = -k * (y - to) - c * v; v += a * h; y += v * h; }
-        paint();
-        if (Math.abs(y - to) < 0.4 && Math.abs(v) < 20) { y = to; paint(); raf = 0; if (done) done(); return; }
-        if (to > 0 && y >= to) { y = to; paint(); raf = 0; if (done) done(); return; }
-        raf = requestAnimationFrame(step);
-      })(last);
+    function apply() { rq = 0; if (!sh) return; sh.style.transform = "translate3d(0," + y.toFixed(1) + "px,0)"; if (bd) bd.style.opacity = Math.max(0, Math.min(1, 1 - y / H)).toFixed(3); }
+    function frame() { if (!rq) rq = requestAnimationFrame(apply); }
+    function prep(d, s) {   // قبل اللمسة: will-change جاهز، والعتمة مبنية من لحظة الفتح (attach)
+      dim = d; sh = s; bd = d.querySelector(".ap-bd"); sh.style.willChange = "transform";
     }
+    function live(on) { if (dim) dim.classList.toggle("ap-live", on); }
+    function stopRel() { rel.forEach(function (a) { a.cancel(); }); rel = []; }
     // الإغلاق الفعلي من paywall.js نفسه (يفك قفل التمرير ويحذف النافذة): ضغطة على زر الإغلاق
     function nativeClose() { var b = sh && sh.querySelector('.ap-x[data-pw="close"]'); if (b) { b.__apGo = 1; b.click(); } }
+    function finishTo(to, dur, ease, done) {
+      stopRel(); var s0 = sh.style.transform, o0 = bd ? bd.style.opacity : "1";
+      var a = sh.animate([{ transform: s0 }, { transform: "translate3d(0," + to + "px,0)" }], { duration: dur, easing: ease, fill: "forwards" });
+      rel.push(a); if (bd) rel.push(bd.animate([{ opacity: o0 }, { opacity: to > 0 ? 0 : 1 }], { duration: dur, easing: ease, fill: "forwards" }));
+      a.onfinish = function () { y = to; if (done) done(); };
+    }
     function close(v) {
       H = H_();
-      if (RM.matches) { stop(); live(false); nativeClose(); return; }
-      spring(H + 2, Math.max(v || 0, 0.9), 0.36, 1, nativeClose);   // سرعة دنيا حتى ما تبطئ في آخرها
+      if (RM.matches) { live(false); nativeClose(); return; }
+      var dur = Math.max(160, Math.min(320, (H - y) / Math.max(1.2, v || 0)));   // سحبة سريعة = إغلاق أسرع، بحد زر X (0.32 ث)
+      finishTo(H + 2, dur, CLOSE_EASE, nativeClose);
     }
-    function back(v) {
-      if (RM.matches) { stop(); y = 0; paint(); live(false); return; }
-      spring(0, v, 0.42, 0.74, function () { live(false); });
+    function back() {
+      if (RM.matches) { y = 0; apply(); reset(); return; }
+      finishTo(0, 380, BACK_EASE, reset);
     }
-    function begin(py) { stop(); if (!dim.classList.contains("ap-live")) y = 0; H = H_(); drag = { y0: py - y, s: [] }; root.classList.add("ap-dragging"); live(true); }
+    // رجوع العتمة الأصلية بلا انتقال (وإلا تبدأ شفافة ثم تغمق خلال 0.38 ث فيبان وميض)
+    function reset() { stopRel(); live(false); if (sh) { sh.style.transform = ""; sh.style.willChange = ""; } if (bd) bd.style.opacity = ""; y = 0; }
+    function begin(py) { stopRel(); if (!dim.classList.contains("ap-live")) y = 0; H = H_(); drag = { y0: py - y, s: [] }; root.classList.add("ap-dragging"); live(true); }
     function move(py) {
       var d = py - drag.y0;
       // لفوق: مطاطي خفيف لا يتجاوز 24px
       y = d >= 0 ? d : -(1 - 1 / (1 - d / 120)) * 24;
       var now = performance.now(); drag.s.push([now, py]); while (drag.s.length > 2 && now - drag.s[0][0] > 90) drag.s.shift();
-      paint();
+      frame();
     }
     function end() {
       var s = drag.s, v = 0; if (s.length > 1) { var a = s[0], b = s[s.length - 1]; v = (b[1] - a[1]) / Math.max(1, b[0] - a[0]); }
@@ -2081,8 +2087,9 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     }
     function attach(d) {
       if (d.__ap) return; d.__ap = 1;
+      var b0 = document.createElement("div"); b0.className = "ap-bd"; d.insertBefore(b0, d.firstChild); d.classList.add("apx");
       // نافذة جديدة: الإزاحة من الصفر (لا تبقى من نافذة أُغلقت بالسحب)
-      stop(); y = 0;
+      stopRel(); y = 0;
       decorate(d.querySelector(".pw-sheet"));
       // «اختر الثانية» يستبدل النافذة الداخلية: نركّب عليها من جديد
       new MutationObserver(function () { decorate(d.querySelector(".pw-sheet")); }).observe(d, { childList: true });
@@ -2090,12 +2097,12 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
         var s = e.target.closest && e.target.closest(".pw-sheet"); if (!s) return;
         if (e.pointerType === "touch" && !e.target.closest(".ap-bar")) return;   // لمس المحتوى تتولاه أحداث اللمس تحت
         if (e.button !== 0 || e.target.closest(NOGRAB) || e.target.closest(".ap-x") || s.scrollTop > 0) return;
-        dim = d; sh = s; pd = { id: e.pointerId, y: e.clientY }; moved = false;
+        prep(d, s); pd = { id: e.pointerId, y: e.clientY }; moved = false;
       });
       d.addEventListener("click", function (e) { if (e.target && e.target.__apGo) { e.target.__apGo = 0; return; } if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
       d.addEventListener("touchstart", function (e) {
         var s = e.target.closest && e.target.closest(".pw-sheet"); if (!s || e.target.closest(".ap-bar") || e.touches.length > 1) return;
-        dim = d; sh = s; t0 = { y: e.touches[0].clientY, ok: !e.target.closest(NOGRAB) };
+        prep(d, s); t0 = { y: e.touches[0].clientY, ok: !e.target.closest(NOGRAB) };
       }, { passive: true });
       d.addEventListener("touchmove", function (e) {
         if (!t0 || !t0.ok || dim !== d) return; var py = e.touches[0].clientY;
