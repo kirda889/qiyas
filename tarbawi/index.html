@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"clcTVr7nqq2g3+Vu","src":"full.dat?v=3010e62aadb9","keys":null,"plus":{"it":120000,"iv":"L/KvYpAs9X3bzb+I","src":"full2.dat?v=c99e7ad6068f","keys":null},"keysSrc":"lock-keys2.json?v=nlwhb4"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"T9N9UiKdOuP0jcTb","src":"full.dat?v=244e3120741b","keys":null,"plus":{"it":120000,"iv":"sZxag/w+1FekV88a","src":"full2.dat?v=5ac1736fe49f","keys":null},"keysSrc":"lock-keys2.json?v=18de5cu"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -146,7 +146,7 @@
 const WAW_ISO = "ﻭ";
 const AR = /[؀-ۿ]/;
 const T = "(?:<[^>]+>)*";
-const WS = "(?:[\\s\\u00A0]|&nbsp;|&#160;)";   // مسافة نصية أو كيان HTML   // وسوم HTML شفافة: «و <b>40</b>»
+const WS = "(?:[\\s\\u00A0]|&nbsp;|&#160;)";   // مسافة نصية أو كيان HTML   // وسوم HTML شفافة: «و» ثم وسم b فيه رقم
 const LAT = "A-Za-z0-9\\u00C0-\\u024F\\u0250-\\u02FF+\\u2212";   // لاتيني + رموز النطق IPA + علامة +
 function fixWaw(s) {
   if (typeof s !== "string" || !AR.test(s) || !/و/.test(s)) return s;
