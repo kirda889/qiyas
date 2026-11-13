@@ -95,7 +95,7 @@
       ".qr-ghost{background:none;border:1px solid var(--qr-line);border-radius:999px;padding:6px 14px;color:var(--qr-ink);font-weight:600;font-size:.88rem}",
       ".qr-link{background:none;border:0;padding:0;color:var(--qr-mut);font-size:.84rem;text-decoration:underline;text-underline-offset:3px}",
       ".qr-msg{font-size:.88rem;border-radius:12px;padding:8px 12px;background:var(--qr-soft)}.qr-msg.bad{color:var(--qr-bad)}",
-      ".qr-list{margin-top:16px;display:grid;gap:10px}",
+      ".qr-list{margin-top:16px;display:grid;gap:10px}.qr-list[hidden]{display:none!important}",
       ".qr-item{border-top:1px solid var(--qr-line);padding-top:12px}.qr-item:first-child{border-top:0;padding-top:0}",
       ".qr-ih{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.qr-ih b{font-weight:700}.qr-ih small{color:var(--qr-mut);font-size:.8rem}",
       ".qr-body{margin:4px 0 0;white-space:pre-wrap;word-break:break-word}",
