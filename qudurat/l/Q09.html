@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><script>if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add("emb");addEventListener("storage",function(e){if(e.key==="site.theme"&&e.newValue)document.documentElement.classList.toggle("dk",e.newValue==="dark")})</script><style>html.emb .top,html.emb .tabbar,html.emb .drawer,html.emb .lbar>.pill{display:none!important}html.emb .lbar{padding-top:6px;padding-bottom:6px}html.emb .lbar:not(:has(#parts>*)){display:none}</style></head><body><title>قدرات الجامعيين بالشرائح</title>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300..700&text=%D9%A0%D9%A1%D9%A2%D9%A3%D9%A4%D9%A5%D9%A6%D9%A7%D9%A8%D9%A9%D9%AB%D9%AA&display=swap"><style>[hidden]{display:none!important}body{margin:0}</style><script>window.SMLESSON={"title": "المسائل الكلامية: أعمار وأسعار ومتوسطات"};</script><script>if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add("emb");addEventListener("storage",function(e){if(e.key==="site.theme"&&e.newValue)document.documentElement.classList.toggle("dk",e.newValue==="dark")})</script><style>html.emb .top,html.emb .tabbar,html.emb .drawer,html.emb .lbar>.pill{display:none!important}html.emb .lbar{padding-top:6px;padding-bottom:6px}html.emb .lbar:not(:has(#parts>*)){display:none}</style></head><body><title>قدرات الجامعيين بالشرائح</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@200..800&display=swap" rel="stylesheet">
@@ -395,6 +395,75 @@ sup.ex{font-size:.62em;line-height:0;vertical-align:.55em;font-family:inherit;fo
 .jn2{margin-top:.7em;padding-top:.6em;border-top:1px solid var(--line)}#P .jn .h2{margin-bottom:.3em}#P .jn2 .h2,#P .jn2 .q{margin-top:.2em}.jn2>.in{position:relative}.jn .jn2 .kick{margin-top:0}
 #psheet .cmp{width:100%;margin:.4em 0 .8em;font-size:15px}#psheet .fig svg{max-height:260px}
 body,.sl,#psheet{font-variant-emoji:text}
+</style><style>/* === وضع الدرس بالتمرير (تصحيح يوسف 2026-11-14: نفس الشرائح أكبر وبالتمرير، بلا تصميم جديد) ===
+   نفس شرائح المسرح وأسلوبها، لكن تحت بعض بارتفاعها الطبيعي، ويكبّرها zoom حسب الجهاز.
+   كمبيوتر: land بعرض تصميم 1440 تملأ العرض (عنوان 72 وفقرة 31 عند 1440) · آيباد: tall بعرض 1100 · جوال: port بعرض 860 */
+html.sm{--f:'Noto Sans Arabic','Noto Kufi Arabic','Geeza Pro',sans-serif;scroll-behavior:smooth;scroll-padding-top:70px}
+html.sm body{background:var(--bg)}
+html.sm .top,html.sm .lbar,html.sm .tabbar,html.sm .drawer,html.sm .bnav,html.sm .bbar,html.sm #A,html.sm #P{display:none!important}
+html.sm #B{position:relative;overflow:visible;height:auto!important;background:var(--bg);touch-action:auto;padding-top:64px}
+html.sm #stage{position:relative;left:auto;top:auto;transform:none!important;height:auto!important;margin:0 auto}
+html.sm #stage[hidden]{display:block!important}
+html.sm #B .sl{position:relative;inset:auto;opacity:1;visibility:visible;overflow:visible;justify-content:flex-start;transition:none}
+html.sm #B .sl.cover{justify-content:center}
+/* الحشو: نفس الخط العمودي، والنص يبعد عنه */
+html.sm #stage.land .sl{padding:96px 120px 96px 96px;--vl-r:60px;--vl-t:10%}
+html.sm #stage.land .h2{font-size:72px}html.sm #stage.land .h1{font-size:96px}
+html.sm #stage.tall .sl{padding:100px 104px 100px 64px;--vl-r:52px;--vl-t:10%}
+html.sm #stage.tall .h2{font-size:66px}
+html.sm.phone #stage.tall .sl{padding:76px 64px 76px 34px;--vl-r:30px;--vl-t:7%}
+html.sm.phone #stage.tall .bign{font-size:260px;left:34px;bottom:40px}
+html.sm #stage:is(.land,.tall) .sl.cover .lead{max-width:560px}
+html.sm #stage.land .sl.cover .bign{font-size:300px;left:40px;bottom:36px}
+html.sm.phone #stage.tall .sl.cover .lead{max-width:none}
+/* الظهور عند الوصول: حركة خفيفة رائقة */
+html.sm #B .sl .r{opacity:0;transform:translateY(26px);animation:none}
+html.sm #B .sl.seen .r{animation:up .9s cubic-bezier(.2,.8,.2,1) forwards}
+html.sm #B .sl.seen .r:nth-child(2){animation-delay:.08s}html.sm #B .sl.seen .r:nth-child(3){animation-delay:.16s}html.sm #B .sl.seen .r:nth-child(4){animation-delay:.24s}html.sm #B .sl.seen .r:nth-child(5){animation-delay:.32s}
+/* الفاصل: خط نحيف بالعرض يُرسم عند الوصول */
+.smsep{display:block;height:1px;margin:0;background:var(--line);transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.smsep.seen{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){html.sm #B .sl .r{opacity:1;transform:none;animation:none!important}.smsep{transform:none;transition:none}html.sm{scroll-behavior:auto}}
+
+/* === الرياضيات: أرقام عربية ومن اليمين لليسار مثل كتيب الهيئة === */
+.mi{direction:rtl;unicode-bidi:isolate;white-space:nowrap}
+.eqb{display:block;width:fit-content;max-width:100%;margin:.5em 0 .6em;padding:.28em .85em;background:var(--bg2);border-radius:.45em;direction:rtl;unicode-bidi:isolate;font-weight:600;line-height:1.7;color:var(--ink)}
+html.dk .eqb{background:rgba(212,175,106,.10)}
+.eqb .op,.mi .op{color:var(--acc);margin:0 .28em;font-weight:500}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.15;font-size:.82em;margin:0 .12em}
+.fr>span:first-child{border-bottom:.09em solid currentColor;padding:0 .25em .05em}
+.fr>span:last-child{padding:.05em .25em 0}
+.cmpt{display:grid;grid-template-columns:1fr 1fr;margin:.5em 0 .6em;font-size:.8em!important;border:1px solid var(--line);border-radius:.5em;overflow:hidden;font-size:.95em;line-height:1.6}
+.cmpt .th{background:var(--bg2);color:var(--acc);font-weight:600;font-size:.8em;white-space:nowrap;padding:.35em .6em;text-align:center}
+.cmpt .td{padding:.5em .6em;text-align:center;border-top:1px solid var(--line);font-weight:600;color:var(--ink)}.cmpt .th+.th,.cmpt .td+.td{border-inline-start:1px solid var(--line)}
+
+/* زر الوضع الليلي والنهاري: في مكانه الطبيعي بالشاشة، لا داخل الحبة */
+#thm2{position:fixed;top:calc(8px + env(safe-area-inset-top,0px));left:max(12px,env(safe-area-inset-left,0px));z-index:59;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--ink);display:grid;place-items:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+#thm2 svg{width:18px;height:18px}#thm2 .sun{display:none}html.dk #thm2 .sun{display:block}html.dk #thm2 .moon{display:none}
+html:not(.lm) #thm2{display:none}
+
+/* === نهاية الدرس === */
+#smEnd{text-align:center;padding:72px 16px calc(96px + env(safe-area-inset-bottom,0px));font-family:var(--f);color:var(--ink)}
+#smEnd .k{font-size:15px;color:var(--mute);font-weight:600}
+#smEnd .t{font-size:clamp(22px,3vw,34px);font-weight:var(--hw);margin:6px 0 26px}
+#smEnd button,#smEnd .nextL{text-decoration:none;border:0;background:var(--acc);color:var(--onacc);font-weight:700;font-size:clamp(17px,1.9vw,22px);padding:16px 34px;border-radius:999px;min-height:56px;display:inline-flex;align-items:center;gap:12px;box-shadow:0 10px 24px rgba(168,135,63,.28)}
+#smEnd button:hover,#smEnd .nextL:hover{filter:brightness(1.06)}
+#smEnd small{display:block;margin-top:14px;color:var(--mute);font-size:14px}
+
+/* === قائمة الدروس (خارج وضع الدرس) === */
+#home{display:none;min-height:100dvh;background:var(--s-bg);padding:48px 16px;font-family:var(--f)}
+html:not(.lm) #home{display:block}
+html:not(.lm) #B,html:not(.lm) #isl{display:none!important}
+#home .w{max-width:720px;margin:0 auto}
+#home .k{color:var(--s-mute);font-size:14px;font-weight:600}
+#home h1{font-size:clamp(28px,4vw,40px);margin:4px 0 22px;color:var(--s-ink)}
+#home .card{display:grid;grid-template-columns:auto 1fr;gap:14px 18px;align-items:center;width:100%;text-align:right;background:var(--s-sheet);border:1px solid var(--s-rule);border-radius:18px;padding:20px;color:var(--s-ink);transition:transform .25s,box-shadow .25s}
+#home .card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.08)}
+#home .card .n{width:52px;height:52px;border-radius:50%;background:var(--s-acc);color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px}
+#home .card h2{font-size:clamp(18px,2.4vw,24px);line-height:1.5}
+#home .card p{grid-column:1/-1;color:var(--s-mute);font-size:15px;line-height:1.8}
+#home .card span.go{grid-column:1/-1;justify-self:start;color:var(--s-acc);font-weight:700}
+html.sm #stage.land .kick{font-size:29.5px}html.sm #stage.tall .kick{font-size:31.8px}
 </style>
 
 <div class="top">
@@ -412,7 +481,20 @@ body,.sl,#psheet{font-variant-emoji:text}
   <div class="vsw" role="group" aria-label="أجزاء الدرس" id="parts"></div>
 </div>
 
-<div id="B"><div id="stage"></div><div id="P" hidden></div><div class="bbar" id="bbar"></div>
+
+<div id="home"><div class="w"><div class="k">قدرات الجامعيين</div><h1>الدروس</h1>
+<button type="button" class="card" data-open><span class="n">24</span><h2>المسائل الكلامية: أعمار وأسعار ومتوسطات</h2><p>تحوّل مسألة الأعمار والأسعار إلى معادلة بمجهول واحد، وتحسب المتوسط والوسيط والمدى، وتعرف أثر إضافة قيمة أو حذفها على المتوسط.</p><span class="go">ابدأ الدرس ←</span></button></div></div>
+<button type="button" id="thm2" aria-label="الوضع الليلي والنهاري"><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+<div id="isl" role="navigation" aria-label="تبويبات الموقع">
+  <button type="button" class="ih" aria-expanded="false"><span>الدروس</span><span class="lens" aria-hidden="true"></span></button>
+  <div class="ip"><div>
+    <nav class="tabs"><a href="../#home">الرئيسية</a><a href="../#plan">الخطة</a><a href="../#lessons" class="on" aria-current="page">الدروس</a><a href="../#questions">الأسئلة</a></nav>
+    <div class="ifoot"><button type="button" class="xcl">إغلاق الدرس</button></div>
+  </div></div>
+</div>
+<div id="B"><div id="stage"></div><div id="P" hidden></div><div class="bbar" id="bbar"></div><div id="smEnd"><div class="k">انتهى الدرس 24</div><div class="t">أحسنت، الدرس التالي جاهز</div>
+<a class="nextL" href="Q10.html">الدرس التالي: الزمن والحركة والعمل <span aria-hidden="true">←</span></a>
+<small>الدرس 25 من 51</small></div>
   <div class="bnav"><button type="button" id="bPrev" aria-label="السابقة">›</button><span id="bHud"></span><button type="button" id="bNext" aria-label="التالية">‹</button></div>
 </div>
 <div id="A" hidden></div>
@@ -423,13 +505,184 @@ body,.sl,#psheet{font-variant-emoji:text}
   <ol id="lessons"></ol>
 </aside>
 
-<script src="qx.js" charset="utf-8"></script>
-
-
-
-<script src="art.js" charset="utf-8"></script>
+<script src="qx.js" charset="utf-8"></script><script src="art.js" charset="utf-8"></script>
 <script>if(window.ART_CSS){var _st=document.createElement('style');_st.textContent=window.ART_CSS;document.head.appendChild(_st)}</script>
-<script>var LNUM="24",LKICK="قدرات الجامعيين · الدرس 24";</script>
+<script>/* الجزيرة «جزيرة»: حبة سوداء بحركة جزيرة الآيفون لوضع التركيز (الدرس، حل الأسئلة، المحاكي). اعتمدها يوسف 2026-11-14.
+   الاستعمال من الموقع:
+     Jazira.mount({ label: "الأسئلة 4/20", tabs: [{t:"الرئيسية",href:"#home"},{t:"الأسئلة",href:"#q",on:true}], close: "إنهاء الحل", onClose: fn })
+     Jazira.set("الأسئلة 5/20")   // يغيّر النص بتلاشٍ خفيف ويعدّل العرض بالنابض
+     Jazira.show() / Jazira.hide(cb) / Jazira.open() / Jazira.close()
+   إذا كان في الصفحة #isl جاهز (صفحات الدروس) يستعمله، وإلا يبنيه. */
+(function(){
+if (window.Jazira) return;
+var CSS = "/* === الحبة «الدروس»: مثل جزيرة الآيفون الديناميكية (طلب يوسف 2026-11-14) ===\n   من إرشادات أبل (Live Activities): خلفية سوداء معتمة، ارتفاع المضغوطة 36.67، زوايا 44 بشكل الكاميرا، والموسّعة عرضها 371 وارتفاعها 84–160،\n   وخط حافة رفيع في الداكن، والتحول يحفظ العناصر الموجودة بدل ما يشيلها، وأي حركة أقل من ثانيتين.\n   النابض: الفتح ζ≈0.72 بارتداد خفيف، والإغلاق ζ≈0.9 أهدأ (قيم أبل الدقيقة غير منشورة؛ هذي مقاربة بالعين). */\n:root{--spo:cubic-bezier(.34,1.36,.64,1);--spc:cubic-bezier(.25,1,.5,1)}\n@supports (transition-timing-function:linear(0,1)){:root{--spo:linear(0, 0.0343, 0.1193, 0.2327, 0.3578, 0.4826, 0.5992, 0.7028, 0.7911, 0.8635, 0.9206, 0.9639, 0.9951, 1.0162, 1.0293, 1.0361, 1.0384, 1.0374, 1.0344, 1.0301, 1.0253, 1.0205, 1.016, 1.0119, 1.0085, 1.0056, 1.0033, 1.0016, 1.0003, 0.9995, 0.9989, 0.9986, 0.9985, 0.9986, 0.9988, 0.9992, 0.9995, 1);--spc:linear(0, 0.0249, 0.0865, 0.169, 0.2612, 0.3555, 0.4467, 0.5317, 0.6086, 0.6768, 0.7361, 0.7869, 0.8298, 0.8655, 0.895, 0.9191, 0.9384, 0.9539, 0.966, 0.9755, 0.9828, 0.9883, 0.9925, 0.9955, 0.9977, 0.9992, 1.0002, 1.0009, 1.0013, 1.0015, 1.001, 1.0005, 1)}}\n#isl{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:60;width:var(--cw,124px);background:#000;color:#F4F1EA;border-radius:18.5px;font-family:var(--f,'Noto Kufi Arabic','Geeza Pro',sans-serif);direction:rtl;overflow:hidden;\n  box-shadow:0 2px 3px rgba(0,0,0,.22),0 8px 16px -4px rgba(0,0,0,.30),0 18px 30px -12px rgba(0,0,0,.35);\n  transition:width .55s var(--spc),border-radius .55s var(--spc),box-shadow .4s}\n#isl.open{width:min(371px,calc(100vw - 24px));border-radius:40px;transition:width .75s var(--spo),border-radius .75s var(--spo),box-shadow .4s;\n  box-shadow:0 4px 6px rgba(0,0,0,.2),0 24px 48px -12px rgba(0,0,0,.5)}\nhtml.dk #isl{box-shadow:0 0 0 1px rgba(255,255,255,.13),0 8px 16px -4px rgba(0,0,0,.45),0 18px 30px -12px rgba(0,0,0,.5)}\n#isl .ih{position:relative;display:flex;align-items:center;justify-content:center;gap:9px;border:0;background:none;color:inherit;padding:0 16px;height:37px;width:100%;font-size:13.5px;font-weight:700;white-space:nowrap}\n#isl .ih::after{content:\"\";position:absolute;inset:-6px 0}\n#isl .lens{flex:none;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#3a4a6a 0,#141a28 45%,#06070b 75%);box-shadow:0 0 0 1.5px #111}\n#isl .ip{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--spc)}\n#isl.open .ip{grid-template-rows:1fr;transition:grid-template-rows .75s var(--spo)}\n#isl .ip>div{overflow:hidden;min-width:min(371px,calc(100vw - 24px))}\n/* المحتوى الموسّع يطلع من الضباب ويتكبّر قليلاً، ويختفي بسرعة عند الإغلاق */\n#isl .tabs,#isl .ifoot{opacity:0;filter:blur(8px);transform:scale(.94) translateY(-6px);transition:opacity .14s,filter .14s,transform .2s}\n#isl.open .tabs,#isl.open .ifoot{opacity:1;filter:none;transform:none;transition:opacity .4s .1s,filter .45s .1s,transform .6s .08s var(--spo)}\n#isl .tabs{display:flex;gap:4px;padding:4px 12px 6px}\n#isl .tabs a{flex:1;text-align:center;color:#B9B4A8;text-decoration:none;font-size:14px;font-weight:600;padding:8px 6px;border-radius:999px;min-height:44px;display:grid;place-items:center;white-space:nowrap}\n#isl .tabs a.on{background:#1D4A3B;color:#fff}\n#isl .ifoot{display:flex;justify-content:center;padding:0 10px 10px;margin:0 14px;border-top:1px solid rgba(255,255,255,.08)}\n#isl .ifoot button{border:0;background:none;font-size:13.5px;font-weight:600;min-height:44px;padding:0 12px;color:#E3B98A}\n/* الدخول: تطلع من نقطة سوداء صغيرة وتتمدد بالنابض · الخروج: ترجع نقطة وتختفي */\n@keyframes islIn{from{width:37px;opacity:0;transform:translateX(-50%) scale(.55)}35%{opacity:1}to{width:var(--cw,124px);opacity:1;transform:translateX(-50%) scale(1)}}\n@keyframes islOut{from{width:var(--cw,124px);opacity:1;transform:translateX(-50%) scale(1)}to{width:37px;opacity:0;transform:translateX(-50%) scale(.55)}}\n#isl.in{animation:islIn .8s var(--spo) both}\n#isl.out{animation:islOut .38s var(--spc) both}\n#isl.in .ih>*,#isl.out .ih>*{transition:none}\n@keyframes lblIn{from{opacity:0;filter:blur(6px)}to{opacity:1;filter:none}}\n#isl.in .ih>*{animation:lblIn .45s .25s both}\n@media (prefers-reduced-motion:reduce){#isl,#isl *{transition-duration:.01s!important;animation:none!important}}\n#isl .lbl{display:inline-block;transition:opacity .18s,filter .18s}#isl .lbl.sw{opacity:0;filter:blur(5px)}\n";
+function css(){ if (document.getElementById("jazira-css")) return; var s = document.createElement("style"); s.id = "jazira-css"; s.textContent = CSS; document.head.appendChild(s); }
+var isl, ih, lbl, opts = {};
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function fit(){ /* العرض حسب النص: نص + عدسة + حشو، وأقلها 124 */
+  var r = lbl.getBoundingClientRect().width; isl.style.setProperty("--cw", Math.max(124, Math.ceil(r + 62)) + "px"); }
+function build(o){
+  isl = document.getElementById("isl");
+  if (!isl){
+    isl = document.createElement("div"); isl.id = "isl"; isl.setAttribute("role", "navigation"); isl.setAttribute("aria-label", "التنقل");
+    isl.innerHTML = '<button type="button" class="ih" aria-expanded="false"><span class="lbl"></span><span class="lens" aria-hidden="true"></span></button><div class="ip"><div><nav class="tabs"></nav><div class="ifoot"><button type="button" class="xcl"></button></div></div></div>';
+    document.body.appendChild(isl);
+  }
+  ih = isl.querySelector(".ih");
+  lbl = isl.querySelector(".lbl");
+  if (!lbl){ var f = ih.querySelector("span:not(.lens)"); lbl = f || document.createElement("span"); lbl.className = "lbl"; if (!f) ih.insertBefore(lbl, ih.firstChild); }
+  if (o.label != null) lbl.textContent = o.label;
+  if (o.tabs) isl.querySelector(".tabs").innerHTML = o.tabs.map(function(t){ return '<a href="' + esc(t.href || "#") + '"' + (t.on ? ' class="on" aria-current="page"' : "") + ">" + esc(t.t) + "</a>"; }).join("");
+  var x = isl.querySelector(".xcl"); if (o.close != null) x.textContent = o.close; if (x) x.hidden = o.close === false;
+  ih.onclick = function(){ isl.classList.toggle("open"); ih.setAttribute("aria-expanded", isl.classList.contains("open")); };
+  if (x) x.onclick = function(){ api.close(); setTimeout(function(){ api.hide(function(){ if (opts.onClose) opts.onClose(); }); }, 420); };
+  fit();
+}
+document.addEventListener("click", function(e){ if (isl && !isl.contains(e.target)) isl.classList.remove("open"); });
+document.addEventListener("keydown", function(e){ if (isl && e.key === "Escape") isl.classList.remove("open"); });
+var api = {
+  mount: function(o){ opts = o || {}; css(); build(opts); if (opts.show !== false) api.show(); return api; },
+  set: function(t){ if (!lbl || lbl.textContent === t) return; lbl.classList.add("sw"); setTimeout(function(){ lbl.textContent = t; fit(); lbl.classList.remove("sw"); }, 180); },
+  show: function(){ isl.hidden = false; isl.classList.remove("out", "open"); void isl.offsetWidth; isl.classList.add("in"); setTimeout(function(){ isl.classList.remove("in"); }, 900); },
+  hide: function(cb){ isl.classList.remove("open"); isl.classList.add("out"); setTimeout(function(){ isl.hidden = true; isl.classList.remove("out"); if (cb) cb(); }, 380); },
+  open: function(){ isl.classList.add("open"); ih.setAttribute("aria-expanded", "true"); },
+  close: function(){ isl.classList.remove("open"); ih.setAttribute("aria-expanded", "false"); },
+  el: function(){ return isl; }
+};
+window.Jazira = api;
+})();
+
+/* === وضع الدرس بالتمرير: يشتغل بعد ما يبني العرض شرائح المسرح (window.READY) === */
+window.SM = 1;
+(function(){
+var root = document.documentElement, Z = 1, MODE = "", DW = 0, ready = false;
+var AR = "٠١٢٣٤٥٦٧٨٩";
+function arD(s){ return s.replace(/(\d),(?=\d{3}(?!\d))/g, "$1").replace(/\d/g, function(d){ return AR[+d]; }).replace(/([٠-٩])%/g, "$1٪"); }
+var OPS = /([=×÷+−\-])/;
+/* الأرقام (قرار يوسف 2026-11-14، الأخير): بلا فاصل آلاف أبداً مثل كتيب الهيئة (٦١٢٠، ١٠٠٠٠٠)، والكسر العشري نقطة «.» (٠.٨٥) */
+/* صيغة رياضية: أرقام عربية، والعمليات نحاسية، والكسر a/b مكدّس */
+function mathHTML(e){
+  e = e.replace(/ /g, " ").trim();
+  return e.split(/\s+/).map(function(tok){
+    if (/^[=×÷+−]$/.test(tok)) return '<span class="op">' + tok + '</span>';
+    var f = tok.match(/^([0-9.,]+)\/([0-9.,]+)$/);
+    if (f) return '<span class="fr"><span>' + arD(f[1]) + '</span><span>' + arD(f[2]) + '</span></span>';
+    return arD(tok);
+  }).join(" ");
+}
+var UI = ".kick,.bign,.ix,.fn,.k,.qn,.psb,.cta,.ans .k";
+function inUI(n){ var p = n.parentElement; return p && p.closest(UI); }
+function fixMath(sc){
+  /* 1) العبارات المعزولة ⁦…⁩ من المصدر */
+  var w = document.createTreeWalker(sc, NodeFilter.SHOW_TEXT), list = [], n;
+  while ((n = w.nextNode())) if (n.nodeValue.indexOf("⁦") >= 0) list.push(n);
+  list.forEach(function(t){
+    var parts = t.nodeValue.split(/⁦([^⁩]*)⁩/), frag = document.createDocumentFragment(), dropPunct = false;
+    parts.forEach(function(p, k){
+      if (k % 2 === 0){
+        if (dropPunct) p = p.replace(/^\s*[.،:؛]?\s*/, "");
+        dropPunct = false;
+        if (p) frag.appendChild(document.createTextNode(p.replace(/[⁦⁩]/g, "")));
+      } else {
+        var isEq = /=/.test(p) && !inUI(t), sp = document.createElement("span");
+        sp.className = isEq ? "eqb" : "mi"; sp.dir = "rtl"; sp.innerHTML = mathHTML(p);
+        if (isEq && frag.lastChild && frag.lastChild.nodeType === 3) frag.lastChild.nodeValue = frag.lastChild.nodeValue.replace(/\s+$/, "");
+        frag.appendChild(sp); dropPunct = isEq;
+      }
+    });
+    t.parentNode.replaceChild(frag, t);
+  });
+  /* 2) bdi ltr القديمة من ltrx: نفس المعاملة */
+  [].slice.call(sc.querySelectorAll('bdi[dir="ltr"]')).forEach(function(b){
+    var s = b.textContent, isEq = /=/.test(s), sp = document.createElement("span");
+    sp.className = isEq ? "eqb" : "mi"; sp.dir = "rtl"; sp.innerHTML = mathHTML(s); b.replaceWith(sp);
+  });
+  /* 2ب) رياضيات الخرائط (art.js): .a-ltr ونصوص svg باتجاه ltr تصير من اليمين، والخريطة نفسها ما تتغير */
+  [].slice.call(sc.querySelectorAll(".a-ltr")).forEach(function(el){
+    if (!el.children.length){ el.innerHTML = mathHTML(el.textContent); el.classList.add("mi"); }
+    el.dir = "rtl"; el.style.setProperty("direction", "rtl", "important");
+  });
+  [].slice.call(sc.querySelectorAll('svg text[direction="ltr"]')).forEach(function(t){ if (/\d/.test(t.textContent)) t.setAttribute("direction", "rtl"); });
+  /* 3) بقية أرقام المحتوى عربية؛ أرقام الواجهة (العدّاد، الترقيم، الحروف) تبقى إنجليزية */
+  w = document.createTreeWalker(sc, NodeFilter.SHOW_TEXT);
+  while ((n = w.nextNode())) if (/\d/.test(n.nodeValue) && !inUI(n) && !(n.parentElement && n.parentElement.closest(".mi,.eqb"))) n.nodeValue = arD(n.nodeValue);
+  /* 3ب) لا كلمة يتيمة: آخر كلمة قصيرة (رقم أو حرف) تلتصق بما قبلها بمسافة غير منكسرة */
+  [].slice.call(sc.querySelectorAll("li,p,.why,.opt")).forEach(function(el){
+    var w2 = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), t, lastT = null;
+    while ((t = w2.nextNode())) if (t.nodeValue.trim()) lastT = t;
+    if (lastT && !inUI(lastT)) lastT.nodeValue = lastT.nodeValue.replace(/\s+(\S{1,3})(\s*)$/, "\u00a0$1$2");
+  });
+  /* 4) المقارنة الكمية: «القيمة الأولى: … القيمة الثانية: …» ← جدول بعمودين داخل نفس الفقرة (في السؤال والموقف والشرح) */
+  [].slice.call(sc.querySelectorAll(".qs,.q,p,li")).forEach(function(q){
+    if (q.querySelector(".cmpt") || q.textContent.indexOf("القيمة الثانية") < 0) return;
+    var h = q.innerHTML, m = h.match(/القيمة الأولى\s*:\s*([\s\S]+?)\s*[.،]?\s*القيمة الثانية\s*:\s*([\s\S]+?)(\s*[.،]\s*(?=\((?:أ|ا)\))|\s*[.،]?\s*(?=»?\s*$))/);
+    if (!m) return;
+    var t = '<span class="cmpt"><span class="th">القيمة الأولى</span><span class="th">القيمة الثانية</span><span class="td">' + m[1] + '</span><span class="td">' + m[2] + '</span></span>';
+    var pre = h.slice(0, m.index), post = h.slice(m.index + m[0].length);
+    if (/^\s*«\s*$/.test(pre)){ pre = ""; post = post.replace(/»(\s*)$/, "$1"); }  /* «» حول الجدول تصير سطراً يتيماً */
+    q.innerHTML = pre + t + post;
+  });
+}
+
+/* المقاس: يختار شكل المسرح وعرض التصميم، ثم يكبّره zoom ليملأ العرض */
+function size(){
+  var st = document.getElementById("stage"), W = document.documentElement.clientWidth, m, dw, avail;
+  var FS = 0.88; /* «أصغر شوية»: التصميم أعرض بـ1/0.88 فيملأ نفس العرض بخط أصغر 12% */
+  if (W >= 1100){ m = "land"; dw = Math.round(1440 / FS); avail = W; }
+  else if (W >= 700){ m = "tall"; dw = Math.round(1100 / FS); avail = W; }
+  else { m = "tall"; dw = Math.round(760 / FS); avail = W; }
+  Z = Math.min(1.3 * FS, avail / dw); MODE = m; DW = dw;
+  root.classList.toggle("phone", W < 700);
+  st.hidden = false; st.className = m; st.style.width = dw + "px"; st.style.zoom = Z;
+  var cv = st.querySelector(".sl.cover"); if (cv) cv.style.minHeight = Math.round((innerHeight - 64) / Z) + "px";
+  smFitArt();
+}
+/* الخرائط والرسوم: تكبر لعرض العمود ولا تتجاوز 80% من الشاشة، وما تنقسم أبداً */
+window.smFitArt = function(){
+  if (!ready) return;
+  [].slice.call(document.querySelectorAll("#stage .art")).forEach(function(a){
+    var sl = a.closest(".sl"), fr = a.querySelector(".frame"); if (!sl || !fr) return;
+    a.style.zoom = 1; fr.style.height = "auto";
+    var cs = getComputedStyle(sl), sr = sl.getBoundingClientRect(), fw = fr.getBoundingClientRect();
+    if (!fw.width || !fw.height) return;
+    var aw = sr.width * (1 - (parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)) / DW);
+    var r = Math.min(aw * 0.98 / fw.width, innerHeight * 0.8 / fw.height, 3);
+    a.style.zoom = Math.max(0.5, r).toFixed(3);
+  });
+};
+
+function titleOf(s){
+  if (s.classList.contains("quiz")) return "اختبر نفسك";
+  var h = s.querySelector(".h2,.h1,h2,h3"); return h ? h.textContent.trim().replace(/\s+/g, " ") : "";
+}
+window.smInit = function(){
+  root.classList.add("sm"); ready = true;
+  var st = document.getElementById("stage"), S = [].slice.call(st.querySelectorAll(":scope > .sl"));
+  fixMath(st);
+  /* زر «الدرس التالي» في شريحة النهاية يتكرر مع زر آخر الصفحة */
+  [].slice.call(st.querySelectorAll(".sl.end .cta button")).forEach(function(b){ if (/الدرس التالي/.test(b.textContent)) b.hidden = true; });
+  /* فواصل بين النقاط */
+  S.forEach(function(s, k){ if (k){ var hr = document.createElement("i"); hr.className = "smsep"; hr.setAttribute("aria-hidden", "true"); st.insertBefore(hr, s); } });
+  size();
+  /* الظهور عند الوصول */
+  var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("seen"); } }); }, {threshold: 0, rootMargin: "0px 0px -12% 0px"});
+  S.concat([].slice.call(st.querySelectorAll(".smsep"))).forEach(function(x){ io.observe(x); });
+  /* كبسولة التبويبات: تنفتح بالضغط فقط */
+  /* الجزيرة (jazira.js): النص من الخارج عبر window.SMISL أو ?isl=، والافتراضي «الدروس» */
+  var qs = new URLSearchParams(location.search), label = qs.get("isl") || window.SMISL || "الدروس";
+  Jazira.mount({ label: label, show: root.classList.contains("lm"), onClose: function(){ root.classList.remove("lm"); history.replaceState(null, "", "#list"); scrollTo(0, 0); } });
+  window.islIn = function(){ Jazira.show(); };
+  addEventListener("hashchange", function(){ if (location.hash === "#list"){ root.classList.remove("lm"); scrollTo(0, 0); } });
+  [].slice.call(document.querySelectorAll("[data-open]")).forEach(function(b){ b.onclick = function(){ root.classList.add("lm"); islIn(); history.replaceState(null, "", "#lesson"); scrollTo(0, 0); setTimeout(function(){ size(); onScroll(); }, 30); }; });
+  var lw = document.documentElement.clientWidth;
+  addEventListener("resize", function(){ var w = document.documentElement.clientWidth; if (w !== lw){ lw = w; size(); onScroll(); } });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ smFitArt(); });
+  window.SMREADY = true;
+};
+/* الدرس يفتح مباشرة بملء الشاشة؛ #list يعرض بطاقة القائمة (احتياط حتى يربطه الموقع) */
+if (location.hash !== "#list") root.classList.add("lm");
+})();
+</script><script>var LNUM="24",LKICK="قدرات الجامعيين · الدرس 24";</script>
 <script>window.__deckMain=function(){
 (function(){
 /* === الوضع: يتبع الموقع (زر القمر) أو الجهاز === */
@@ -561,7 +814,7 @@ function arWho(root){[].forEach.call(root.querySelectorAll('.leaves .qx-who'),fu
 function renumber(root){[].forEach.call(root.querySelectorAll('.qxw[data-off]'),function(w){var off=+w.dataset.off;if(!off)return;
   var it=document.createTreeWalker(w,4,null),t;while((t=it.nextNode())){var v=t.nodeValue,m=/^(\s*)(\d{1,2})(\.?\s|$)/.exec(v);if(m)t.nodeValue=m[1]+(+m[2]+off)+v.slice(m[1].length+m[2].length)}})}
 function deco(){return '<div class="deco-l"><i></i><i></i></div><div class="deco-d"></div>'}
-function fitArt(){[].slice.call(document.querySelectorAll("#stage .art")).forEach(function(a){var sl=a.closest(".sl"),fr=a.querySelector(".frame");if(!sl||!fr)return;a.style.zoom=1;fr.style.height="auto";var cs=getComputedStyle(sl),aw=sl.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight),ah=sl.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom),w=fr.offsetWidth,h=fr.offsetHeight;if(!w||!h)return;a.style.zoom=Math.max(1,Math.min(aw*0.92/w,ah*0.94/h,3)).toFixed(3)})}
+function fitArt(){if(window.SM)return window.smFitArt&&smFitArt();[].slice.call(document.querySelectorAll("#stage .art")).forEach(function(a){var sl=a.closest(".sl"),fr=a.querySelector(".frame");if(!sl||!fr)return;a.style.zoom=1;fr.style.height="auto";var cs=getComputedStyle(sl),aw=sl.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight),ah=sl.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom),w=fr.offsetWidth,h=fr.offsetHeight;if(!w||!h)return;a.style.zoom=Math.max(1,Math.min(aw*0.92/w,ah*0.94/h,3)).toFixed(3)})}
 document.addEventListener("click",function(e){var b=e.target.closest(".psb");if(!b)return;var d=b.dataset,P=null;if(d.ctx&&window.PSG&&window.PSG[d.ctx])P=window.PSG[d.ctx];else if(d.q&&window.QCTX&&window.QCTX[d.q]){var c=window.QCTX[d.q];P={t:c.t,b:String(c.x||"").split("\n").filter(function(z){return z.trim()}),svg:c.svg,alt:c.alt}}if(!P)return;var sh=document.getElementById("psheet");if(!sh){sh=document.createElement("div");sh.id="psheet";sh.setAttribute("role","dialog");sh.innerHTML='<div class="ps"><div class="ph"><h3></h3><button type="button" class="px">إغلاق</button></div><div class="pb"></div></div>';document.body.appendChild(sh);sh.addEventListener("click",function(ev){if(ev.target===sh||ev.target.closest(".px"))sh.hidden=true})}sh.querySelector("h3").textContent=P.t;sh.querySelector(".pb").innerHTML=(P.svg?fig(P):"")+(ctxT(P.b)||P.b.map(function(t,i){return "<p>"+md(t)+"</p>"}).join(""));sh.hidden=false;e.stopPropagation();e.preventDefault()},true);
 function psbLabels(){[].slice.call(document.querySelectorAll(".psb")).forEach(function(b){var t="";if(b.dataset.ctx&&window.PSG&&window.PSG[b.dataset.ctx])t=window.PSG[b.dataset.ctx].t;else if(b.dataset.q&&window.QCTX&&window.QCTX[b.dataset.q])t=window.QCTX[b.dataset.q].t;if(t&&t!=="القطعة")b.textContent="اعرض "+t})}
 document.addEventListener("click",function(e){var b=e.target.closest(".rvb");if(!b)return;var x=b.parentNode.nextElementSibling;if(x&&x.classList.contains("rvx")){x.hidden=false;b.hidden=true}e.stopPropagation()},true);
@@ -592,7 +845,7 @@ Promise.resolve([splitParts(mergeSlides(applyDesign(window.SLIDES.Q09,(window.DE
   var B=document.getElementById("B"),st=document.getElementById("stage"),i=0,PS=[];
   st.innerHTML=SL.map(function(x){return '<section class="sl '+(x.c||"")+'">'+deco()+x.h+'</section>'}).join("");
   var S=[].slice.call(st.querySelectorAll(".sl"));
-  function layout(){
+  function layout(){if(window.SM)return;
     var top=B.getBoundingClientRect().top+window.scrollY, tab=document.getElementById("tabbar").offsetHeight*(getComputedStyle(document.getElementById("tabbar")).display==="none"?0:1);
     var W=B.clientWidth||innerWidth, H=Math.max(320,(window.visualViewport?visualViewport.height:innerHeight)-top-tab);
     B.style.height=H+"px"; var r=W/H,sw,sh,m;
@@ -603,12 +856,12 @@ Promise.resolve([splitParts(mergeSlides(applyDesign(window.SLIDES.Q09,(window.DE
     st.className=m;st.style.width=sw+"px";st.style.height=sh+"px";
     st.style.transform="translate(-50%,-50%) scale("+Math.min(W/sw,H/sh)+")";
   }
-  function go(k){i=Math.max(0,Math.min(S.length-1,k));S.forEach(function(x,j){x.classList.toggle("on",j===i)});PS.forEach(function(x,j){x.classList.toggle("on",j===i);if(j===i)x.scrollTop=0});document.getElementById("bHud").textContent=(i+1)+" من "+S.length;document.getElementById("bbar").style.width=((i+1)/S.length*100)+"%"}
+  function go(k){if(window.SM){var _t=S[Math.max(0,Math.min(S.length-1,k))];if(_t&&window.SMREADY)_t.scrollIntoView({behavior:"smooth",block:"start"});return}i=Math.max(0,Math.min(S.length-1,k));S.forEach(function(x,j){x.classList.toggle("on",j===i)});PS.forEach(function(x,j){x.classList.toggle("on",j===i);if(j===i)x.scrollTop=0});document.getElementById("bHud").textContent=(i+1)+" من "+S.length;document.getElementById("bbar").style.width=((i+1)/S.length*100)+"%"}
   addEventListener("resize",layout); if(window.visualViewport)visualViewport.addEventListener("resize",layout);
   document.getElementById("bNext").onclick=function(){go(i+1)};document.getElementById("bPrev").onclick=function(){go(i-1)};
-  document.addEventListener("keydown",function(e){if(B.hidden)return;if(["ArrowLeft","ArrowDown"," ","PageDown"].indexOf(e.key)>=0){e.preventDefault();go(i+1)}else if(["ArrowRight","ArrowUp","PageUp"].indexOf(e.key)>=0){e.preventDefault();go(i-1)}});
+  document.addEventListener("keydown",function(e){if(B.hidden||window.SM)return;if(["ArrowLeft","ArrowDown"," ","PageDown"].indexOf(e.key)>=0){e.preventDefault();go(i+1)}else if(["ArrowRight","ArrowUp","PageUp"].indexOf(e.key)>=0){e.preventDefault();go(i-1)}});
   var t0=null;B.addEventListener("touchstart",function(e){var p=e.touches[0];t0=[p.clientX,p.clientY]},{passive:true});
-  B.addEventListener("touchend",function(e){if(!t0)return;var p=e.changedTouches[0],dx=p.clientX-t0[0],dy=p.clientY-t0[1];t0=null;
+  B.addEventListener("touchend",function(e){if(!t0||window.SM)return;var p=e.changedTouches[0],dx=p.clientX-t0[0],dy=p.clientY-t0[1];t0=null;
     if(Math.max(Math.abs(dx),Math.abs(dy))<40)return; if(Math.abs(dy)>Math.abs(dx))go(i+(dy<0?1:-1));else go(i+(dx>0?1:-1))},{passive:true});
   wireQuiz(st);
   window.DEMO={go:go,n:S.length,layout:layout};
@@ -618,15 +871,15 @@ Promise.resolve([splitParts(mergeSlides(applyDesign(window.SLIDES.Q09,(window.DE
   function fluid(x){var mp=/<div class="in mp">/.test(x.h);return '<section class="sl '+(x.c||"")+'">'+deco()+'<div class="sc'+(mp?' mp':'')+'">'+x.h.replace(/^(<div class="bign">[0-9]+<\/div>)?<div class="in( mp)?">/,"").replace(/<\/div>$/,"").replace(/(class="(?:[^"]* )?)r"/g,'$1anim"')+'</div>'+(x.c==="cover"?'<div class="bign">'+LNUM+'</div>':'')+'</section>'}
   A.innerHTML=SL.map(fluid).join("");
   var Pp=document.getElementById("P"); Pp.innerHTML=SL.map(fluid).join("").replace(/ anim"/g,'"').replace(/class="anim"/g,'class=""'); PS=[].slice.call(Pp.querySelectorAll(".sl")); renumber(Pp); renumber(st); arWho(Pp); wireQuiz(Pp); go(i);
-  addEventListener("resize",function(){var ph=innerWidth<=768&&innerWidth/innerHeight<0.72;if(ph!==PHONE)location.reload()});
+  addEventListener("resize",function(){var ph=innerWidth<=768&&innerWidth/innerHeight<0.72;if(ph!==PHONE&&!window.SM)location.reload()});
   [].slice.call(A.querySelectorAll(".sl")).forEach(function(s){[].slice.call(s.querySelectorAll(".anim")).forEach(function(a,k){a.classList.add("d"+Math.min(k,4))})});
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)en.target.classList.add("visible")})},{threshold:.3});
   [].slice.call(A.querySelectorAll(".sl")).forEach(function(s){io.observe(s)});
   wireQuiz(A);
 
   /* --- مبدّل النسختين (للمقارنة فقط، لا يدخل الموقع) --- */
-  A.hidden=true;B.hidden=false;layout(); fitArt(); psbLabels(); addEventListener("resize",fitArt); go(0); window.READY=true;
+  A.hidden=true;B.hidden=false;layout(); fitArt(); psbLabels(); addEventListener("resize",fitArt); go(0); window.READY=true;if(window.smInit)smInit();
 });
 })();
-}</script><script>(function(){var K=null;try{K=window.parent!==window&&window.parent.QDK}catch(e){}function no(m){document.body.innerHTML='<p style="font:600 1.05rem/1.9 system-ui;text-align:center;padding:48px 20px;direction:rtl">'+m+'</p>'}if(!K){no("هذا الدرس ضمن اشتراك قدرات الجامعيين. افتحه من صفحة الدروس بعد إدخال الكود.");return}fetch("Q09.dat?v=5d0d0695e4").then(function(r){if(!r.ok)throw 0;return r.arrayBuffer()}).then(function(b){var u=new Uint8Array(b);return crypto.subtle.importKey("raw",Uint8Array.from(atob(K),function(c){return c.charCodeAt(0)}),"AES-GCM",false,["decrypt"]).then(function(k){return crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},k,u.slice(12))})}).then(function(p){return new Response(new Blob([p]).stream().pipeThrough(new DecompressionStream("gzip"))).text()}).then(function(js){(0,eval)(js);window.__deckMain()}).catch(function(){no("تعذّر فتح الدرس. تأكد من النت ثم أعد فتحه.")})})()</script>
+}</script><script>(function(){var K=null;try{K=window.parent!==window&&window.parent.QDK}catch(e){}try{K=K||localStorage.getItem("qx.qdk.qudurat")}catch(e){}function no(m){document.body.innerHTML='<p style="font:600 1.05rem/1.9 system-ui;text-align:center;padding:48px 20px;direction:rtl">'+m+'</p>'}if(!K){no("هذا الدرس ضمن اشتراك قدرات الجامعيين. افتحه من صفحة الدروس بعد إدخال الكود.");return}fetch("Q09.dat?v=5d0d0695e4").then(function(r){if(!r.ok)throw 0;return r.arrayBuffer()}).then(function(b){var u=new Uint8Array(b);return crypto.subtle.importKey("raw",Uint8Array.from(atob(K),function(c){return c.charCodeAt(0)}),"AES-GCM",false,["decrypt"]).then(function(k){return crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},k,u.slice(12))})}).then(function(p){return new Response(new Blob([p]).stream().pipeThrough(new DecompressionStream("gzip"))).text()}).then(function(js){(0,eval)(js);window.__deckMain()}).catch(function(){no("تعذّر فتح الدرس. تأكد من النت ثم أعد فتحه.")})})()</script>
 </body></html>
