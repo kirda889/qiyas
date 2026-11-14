@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"mtOnEe6N9TJroXNx","src":"full.dat?v=40ccf5d910ba","keys":null,"plus":{"it":120000,"iv":"f/GxMwdwK4rPr5CZ","src":"full2.dat?v=5de336bf7266","keys":null},"keysSrc":"lock-keys2.json?v=1qafz53"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"KcTwo/rOqA1sxzKT","src":"full.dat?v=28dc91fab0af","keys":null,"plus":{"it":120000,"iv":"CrBGPuN2L9clvGlR","src":"full2.dat?v=53522727fe3d","keys":null},"keysSrc":"lock-keys2.json?v=1x0lgby"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -1771,7 +1771,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     var msg = function (pl) { var sc = srcCode(); return "السلام عليكم، أبغى الاشتراك في " + (/الاختباران/.test(pl.label) ? "" : (C.exam || C.examMsg) + " — ") + pl.label + " (" + pl.price + " ريال) من موقع yousefalshamrani.com/qiyas" + " — المرجع: " + C.site + "-" + pl.price + (sc ? "-" + sc : ""); };
     // خياران (2026-10-24، قرار يوسف): الخيار اللي ضغطه العميل في الموقع يطلع «تذكرة» بتفاصيله، والثاني سطر هادئ تحته يبدّل بضغطة.
     // كامل الأسئلة 89 هو الافتراضي؛ وإذا ضغط «أهم 120» (59) يطلع سطر الكامل بسنارة «+N سؤالاً بـ30 ريال فقط» (أسعار 2026-11-01).
-    var S1 = { english2: "E", tarbawi: "T", step: "S" }[C.site] || C.site, S2 = { english2: "F", tarbawi: "U" }[C.site];
+    var S1 = { english2: "E", tarbawi: "T", step: "S", qudurat: "J" }[C.site] || C.site, S2 = { english2: "F", tarbawi: "U" }[C.site];
     var nAll = C.similarTotal || 0, nT = C.tierN || 120, nQ = Math.floor((C.qTotal || 0) / 100) * 100, nP = Math.floor(nAll / 100) * 100;   // nP: «أكثر من 600» من similarTotal (قرار يوسف 2026-11-08)
     // ملزمتا الدروس (2026-10-26، طلب يوسف): «كامل الأسئلة» فيه المفصّلة 20 صفحة والمختصرة 15، و«أهم 120» فيه المختصرة فقط
     var SUMP = C.summary ? ["<b>ملزمة شرح الدروس</b> تُقرأ في الموقع"] : [], SUMI = C.summaryLite ? ["<b>ملزمة شرح مختصرة</b> تُقرأ في الموقع"] : [];
@@ -1782,8 +1782,8 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
         items: ((nP ? ['<b><bdi dir="rtl">+' + N(nP) + "</bdi> سؤال</b> " + P5 + " <small class=mm>(مماثلة)</small>"] : []).concat([   // 2026-11-08 (قرار يوسف): «الخمس سنوات» أول بند في القائمة بخطها، لا سطراً صغيراً في الرأس
  "<b>ملف PDF</b> لأهم " + N(nT) + " سؤالاً بحلولها"].concat(SUMP, ["<b>3 اختبارات محاكية</b> للاختبار الحقيقي <small class=mm>(مع التصحيح)</small>"]))) } : null,   // نصوص يوسف 2026-11-08ب
       // «أهم 120» في الإنجليزي 2 ليست كلها من آخر ثلاث سنوات: 72 فقط (قسم المحتوى، المدير 2026-11-11)
-      single: { pl: C.plan, prod: S1, title: C.site === "step" ? "دليل STEP كاملاً" : "أهم " + N(nT) + " سؤالاً", sub: C.site === "step" ? "القواعد والمفردات والقراءة والاستماع" : T3 + " <small class=mm>(مماثلة)</small>",   // حُذف «+ الملزمة والمحاكيات» (يوسف 2026-11-08ب)
-        items: C.site === "step" ? C.includes.slice(0, 3).map(function (x) { return esc(x); }) : ["<b>" + N(nT) + " سؤالاً</b> " + T3 + " <small class=mm>(مماثلة)</small>", "<b>ملف PDF</b> لأهم " + N(nT) + " سؤالاً بحلولها"].concat(SUMI, ["<b>3 اختبارات محاكية</b> للاختبار الحقيقي <small class=mm>(مع التصحيح)</small>"]) } };
+      single: { pl: C.plan, prod: S1, title: C.site === "step" ? "دليل STEP كاملاً" : C.site === "qudurat" ? "قدرات الجامعيين كاملاً" : "أهم " + N(nT) + " سؤالاً", sub: C.site === "step" ? "القواعد والمفردات والقراءة والاستماع" : C.site === "qudurat" ? "الدروس والأسئلة والمحاكيات" : T3 + " <small class=mm>(مماثلة)</small>",   // حُذف «+ الملزمة والمحاكيات» (يوسف 2026-11-08ب)
+        items: C.site === "step" || C.site === "qudurat" ? C.includes.slice(0, C.site === "qudurat" ? 4 : 3).map(function (x) { return esc(x).replace(/\(مماثلة\)/, "<small class=mm>(مماثلة)</small>").replace(/^\+([\d,]+)/, '<bdi dir="rtl">+$1</bdi>'); }) : ["<b>" + N(nT) + " سؤالاً</b> " + T3 + " <small class=mm>(مماثلة)</small>", "<b>ملف PDF</b> لأهم " + N(nT) + " سؤالاً بحلولها"].concat(SUMI, ["<b>3 اختبارات محاكية</b> للاختبار الحقيقي <small class=mm>(مع التصحيح)</small>"]) } };
     if (!O.plus) pick = "single"; else if (pick !== "single") pick = "plus";
     var cur = O[pick], other = pick === "plus" ? O.single : O.plus, otherKey = pick === "plus" ? "single" : "plus";
     // زر «اشترك» يفتح واتساب يوسف برسالة جاهزة فيها الاختبار والمنتج والسعر والمرجع (طلب يوسف 2026-10-27: واتساب فقط بدل البوت)
@@ -2441,7 +2441,7 @@ function viewHome(){
     </div></details>
     <div class="row" style="justify-content:space-between"><div id="syncline" class="sync"></div><span class="row">${window.SITE_CFG&&window.SITE_CFG.hub?`<a class="btn sm quiet" href="${window.SITE_CFG.hub}" style="text-decoration:none">كل الاختبارات</a>`:""}<button class="btn sm quiet" data-go="settings">الإعدادات والتقرير</button></span></div>
     <div class="qr-full" data-exam="tarbawi" id="qreviews" style="margin-bottom:14px"></div>
-    <div class="credit"><span class="cm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></span><div><div class="ck">إعداد وتصميم · آخر تحديث: 13 نوفمبر 2026</div><div class="cn">الأستاذ يوسف الشمراني</div></div><span class="vcount" hidden><span class="ck">الزوار</span><b class="vcount-n"></b></span></div>
+    <div class="credit"><span class="cm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></span><div><div class="ck">إعداد وتصميم · آخر تحديث: 14 نوفمبر 2026</div><div class="cn">الأستاذ يوسف الشمراني</div></div><span class="vcount" hidden><span class="ck">الزوار</span><b class="vcount-n"></b></span></div>
   </section>`;
 }
 function viewPlan(){
