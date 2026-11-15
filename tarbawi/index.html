@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"pAIXdYvMazJT1/XB","src":"full.dat?v=a854ba839745","keys":null,"plus":{"it":120000,"iv":"70wIUde2G5VyUs1T","src":"full2.dat?v=ee61dbbb23e7","keys":null},"keysSrc":"lock-keys2.json?v=1bhsn2y"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"pAIXdYvMazJT1/XB","src":"full.dat?v=a854ba839745","keys":null,"plus":{"it":120000,"iv":"70wIUde2G5VyUs1T","src":"full2.dat?v=ee61dbbb23e7","keys":null},"keysSrc":"lock-keys2.json?v=155lxd0"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -35,7 +35,7 @@
     if ((L.v || 1) >= 2) {
       // v2 (2026-11-08): المعرّف والمفتاح من اشتقاق PBKDF2 واحد بملح الموقع، فلا تخمين سريع بلا اتصال. زمن الفتح كما كان:
       // نفس الاشتقاق، والتنزيل يبدأ بالتوازي معه (المستوى يُعرف من أول حرف: U وF وC وA = الكامل)
-      if (/^[A-Z][A-Z0-9]{10}$/.test(n)) { var P0 = L.plus && /^[UFCA]/.test(n) && L.site !== "step" ? L.plus : L; if (!P0.ct && !PRE[P0.src]) PRE[P0.src] = load(P0.src); }
+      if (/^[A-Z][A-Z0-9]{10}$/.test(n)) { var P0 = L.plus && /^[UFCAJ]/.test(n) && L.site !== "step" ? L.plus : L; if (!P0.ct && !PRE[P0.src]) PRE[P0.src] = load(P0.src); }
       var kp = keys().then(function () { return true; }, function () { return false; });
       var b2 = await S.importKey("raw", te.encode(n), "PBKDF2", false, ["deriveBits"]);
       var bits = new Uint8Array(await S.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: ub64(L.ns), iterations: L.it }, b2, 320));
@@ -1771,7 +1771,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     var msg = function (pl) { var sc = srcCode(); return "السلام عليكم، أبغى الاشتراك في " + (/الاختباران/.test(pl.label) ? "" : (C.exam || C.examMsg) + " — ") + pl.label + " (" + pl.price + " ريال) من موقع yousefalshamrani.com/qiyas" + " — المرجع: " + C.site + "-" + pl.price + (sc ? "-" + sc : ""); };
     // خياران (2026-10-24، قرار يوسف): الخيار اللي ضغطه العميل في الموقع يطلع «تذكرة» بتفاصيله، والثاني سطر هادئ تحته يبدّل بضغطة.
     // كامل الأسئلة 89 هو الافتراضي؛ وإذا ضغط «أهم 120» (59) يطلع سطر الكامل بسنارة «+N سؤالاً بـ30 ريال فقط» (أسعار 2026-11-01).
-    var S1 = { english2: "E", tarbawi: "T", step: "S", qudurat: "J" }[C.site] || C.site, S2 = { english2: "F", tarbawi: "U" }[C.site];
+    var S1 = { english2: "E", tarbawi: "T", step: "S", qudurat: C.plus ? "K" : "J" }[C.site] || C.site, S2 = { english2: "F", tarbawi: "U", qudurat: "J" }[C.site];   /* القدرات 2026-11-15: K أهم 120 بـ59، وJ الكامل 89 */
     var nAll = C.similarTotal || 0, nT = C.tierN || 120, nQ = Math.floor((C.qTotal || 0) / 100) * 100, nP = Math.floor(nAll / 100) * 100;   // nP: «أكثر من 600» من similarTotal (قرار يوسف 2026-11-08)
     // ملزمتا الدروس (2026-10-26، طلب يوسف): «كامل الأسئلة» فيه المفصّلة 20 صفحة والمختصرة 15، و«أهم 120» فيه المختصرة فقط
     var SUMP = C.summary ? ["<b>ملزمة شرح الدروس</b> تُقرأ في الموقع"] : [], SUMI = C.summaryLite ? ["<b>ملزمة شرح مختصرة</b> تُقرأ في الموقع"] : [];
@@ -1784,6 +1784,12 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
       // «أهم 120» في الإنجليزي 2 ليست كلها من آخر ثلاث سنوات: 72 فقط (قسم المحتوى، المدير 2026-11-11)
       single: { pl: C.plan, prod: S1, title: C.site === "step" ? "دليل STEP كاملاً" : C.site === "qudurat" ? "قدرات الجامعيين كاملاً" : "أهم " + N(nT) + " سؤالاً", sub: C.site === "step" ? "القواعد والمفردات والقراءة والاستماع" : C.site === "qudurat" ? "الدروس والأسئلة والمحاكيات" : T3 + " <small class=mm>(مماثلة)</small>",   // حُذف «+ الملزمة والمحاكيات» (يوسف 2026-11-08ب)
         items: C.site === "step" || C.site === "qudurat" ? C.includes.slice(0, C.site === "qudurat" ? 4 : 3).map(function (x) { return esc(x).replace(/\(مماثلة\)/, "<small class=mm>(مماثلة)</small>").replace(/^\+([\d,]+)/, '<bdi dir="rtl">+$1</bdi>'); }) : ["<b>" + N(nT) + " سؤالاً</b> " + T3 + " <small class=mm>(مماثلة)</small>", "<b>ملف PDF</b> لأهم " + N(nT) + " سؤالاً بحلولها"].concat(SUMI, ["<b>3 اختبارات محاكية</b> للاختبار الحقيقي <small class=mm>(مع التصحيح)</small>"]) } };
+    if (C.site === "qudurat" && O.plus) {   /* خيارا القدرات بنفس بنود البوت (products.js: K_ITEMS = أهم 120 + الدروس والمحاكيات والتشخيصي) */
+      var QI = C.includes.map(function (x) { return esc(x).replace(/\(مماثلة\)/, "<small class=mm>(مماثلة)</small>").replace(/^\+([\d,]+)/, '<bdi dir="rtl">+$1</bdi>'); });
+      O.plus.title = "كامل الأسئلة"; O.plus.sub = "الدروس والأسئلة والمحاكيات"; O.plus.items = QI;
+      O.single.title = "أهم " + N(nT) + " سؤالاً"; O.single.sub = "من الاختبارات الماضية <small class=mm>(مماثلة)</small>";
+      O.single.items = ["<b>أهم " + N(nT) + " سؤالاً</b> من الاختبارات الماضية <small class=mm>(مماثلة)</small> بتصحيح فوري", QI[0], QI[2], QI[3]];
+    }
     if (!O.plus) pick = "single"; else if (pick !== "single") pick = "plus";
     var cur = O[pick], other = pick === "plus" ? O.single : O.plus, otherKey = pick === "plus" ? "single" : "plus";
     // زر «اشترك» يفتح واتساب يوسف برسالة جاهزة فيها الاختبار والمنتج والسعر والمرجع (طلب يوسف 2026-10-27: واتساب فقط بدل البوت)
@@ -1916,7 +1922,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     afterDiag: function (weak) {
       addCss();
       return '<div class="pw-banner"><p><b>خطتك من نتيجتك:</b> أضعف المعايير عندك ' + weak.map(function (w) { return "<b>" + esc(w) + "</b>"; }).join("، ") +
-        ". النسخة الكاملة تعالجها بدروسها كاملة، و " + N(C.qTotal) + " سؤالاً، و 3 اختبارات محاكية.</p>" +
+        ". النسخة الكاملة تعالجها بدروسها كاملة، و " + N(C.qTotal) + " سؤالاً، و " + N(C.nMock || 3) + " اختبارات محاكية.</p>" +
         '<div class="pw-row"><button class="pw-btn" onclick="PW.open(\'خطة علاج نقاط ضعفك\')">افتح النسخة الكاملة</button></div></div>';
     },
     afterTest: function (score, cor, total, doms) {
@@ -1925,21 +1931,21 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
       var lvl = score >= 80 ? "خبير" : score >= 70 ? "متقدم" : score >= 50 ? "ممارس" : "دون ممارس";
       var head = score < 50 ? "درجتك " + N(score) + "%، والنجاح من 50%. ينقصك " + ans(need(50)) + " صحيحة للنجاح، و" + ans(need(70)) + " لمستوى متقدم."
         : score < 70 ? "ناجح بـ" + N(score) + "% (مستوى ممارس). باقي " + ans(need(70)) + " وتصير متقدم."
-        : "مستوى " + lvl + " بـ" + N(score) + "%. المحاكيات الثلاث (88 سؤالاً لكل واحد) تعطيك مستواك المتوقع وتتأكد أنه ثابت.";
+        : "مستوى " + lvl + " بـ" + N(score) + "%. " + (C.nMock ? "الاختبارات المحاكية (" + N(C.mockQ) + " سؤالاً لكل واحد)" : "المحاكيات الثلاث (88 سؤالاً لكل واحد)") + " تعطيك مستواك المتوقع وتتأكد أنه ثابت.";   /* القدرات 2026-11-15: 4 محاكيات × 120 */
       var w = (doms || []).slice().sort(function (x, y) { return y.w * (1 - y.c / Math.max(1, y.n)) - x.w * (1 - x.c / Math.max(1, x.n)); })[0];
       var rest = Math.max(0, (C.similarTotal || 0) - (C.similar || []).length);
       var pd = perDay();
       return '<div class="pw-res"><p><b>' + head + '</b></p>' +
         (w ? '<p>أكبر مجال يرفع درجتك: <b>' + esc(w.name) + '</b>، وزنه ' + N(w.w) + '% من الاختبار، وأجبت فيه ' + N(w.c) + ' من ' + N(w.n) + '.</p>' : "") +
         '<button class="pw-btn" onclick="PW.open(\'!درجتك في الاختبار المجاني ' + N(score) + '%. هذا ما يفتحه الاشتراك:\')">' + fullBtn() + '</button>' +
-        '<small>كل أسئلة ' + (C.plusSub ? 'الاختبارات الماضية' : 'الخمس سنوات الماضية') + ' (أكثر من ' + N(Math.floor((C.similarTotal || 0) / 100) * 100) + '، مماثلة) بشرحها + 3 اختبارات محاكية للاختبار الحقيقي (' + N(C.mockQ || 88) + ' سؤالاً)' + (pd ? ' · تقريباً ' + N(pd) + ' ريال لليوم' : "") + '</small>' +
+        '<small>كل أسئلة ' + (C.plusSub ? 'الاختبارات الماضية' : 'الخمس سنوات الماضية') + ' (أكثر من ' + N(Math.floor((C.similarTotal || 0) / 100) * 100) + '، مماثلة) بشرحها + ' + N(C.nMock || 3) + ' اختبارات محاكية للاختبار الحقيقي (' + N(C.mockQ || 88) + ' سؤالاً)' + (pd ? ' · تقريباً ' + N(pd) + ' ريال لليوم' : "") + '</small>' +
         '<small>أو كمّل مجاناً: <a href="#" onclick="startTest(\'diag\');return false">الاختبار التشخيصي، 40 سؤالاً جديدة</a></small></div>';
     },
     bankNudge: function (k, total) {
       addCss(); var rest = Math.max(0, (C.similarTotal || 0) - total);
       if (total > 30 && k === 20) return '<p class="pw-nudge">حلّيت 20 من ' + N(total) + ' سؤالاً المجانية. في النسخة الكاملة ' + N(rest) + ' سؤالاً غيرها بنفس الشرح. <a href="#" onclick="PW.open(\'بقية أسئلة الاختبارات الماضية (مماثلة)\');return false">شوف ما فيها</a></p>';
       var mid = total > 30 ? 40 : Math.round(total / 2);   // المجاني 20 (2026-10-23): العرض الهادئ في المنتصف، والنهاية لها عرضها
-      if (k === mid && k < total) return '<p class="pw-nudge">باقي ' + N(total - mid) + ' سؤالاً مجانياً. وبعدها تكمل على كامل أسئلة الخمس سنوات الماضية <small class=mm>(مماثلة)</small> (أكثر من ' + N(Math.floor((C.similarTotal || 0) / 100) * 100) + ' سؤال) بـ' + N((C.plus || C.plan).price) + ' ريال، مع ضمان 3 أيام. <a href="#" onclick="PW.open(\'!وش في الاشتراك\');return false">شوف ما فيه</a></p>';
+      if (k === mid && k < total) return '<p class="pw-nudge">باقي ' + N(total - mid) + ' سؤالاً مجانياً. وبعدها تكمل على كامل أسئلة ' + (C.plusSub ? 'الاختبارات الماضية' : 'الخمس سنوات الماضية') + ' <small class=mm>(مماثلة)</small> (أكثر من ' + N(Math.floor((C.similarTotal || 0) / 100) * 100) + ' سؤال) بـ' + N((C.plus || C.plan).price) + ' ريال، مع ضمان 3 أيام. <a href="#" onclick="PW.open(\'!وش في الاشتراك\');return false">شوف ما فيه</a></p>';
       return "";
     },
     similar: C.similar || [],
@@ -1950,7 +1956,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     similarDone: function () {
       addCss(); var n = (C.similar || []).length, pd = perDay();
       return '<div class="pw-banner"><p>أحسنت، أنهيت ' + N(n) + ' سؤالاً من الاختبارات الماضية <small class=mm>(مماثلة)</small>. تكمل على:</p>' +
-        '<p>• <b>كامل الأسئلة</b> (أكثر من ' + N(Math.floor((C.qTotal || 0) / 100) * 100) + ' سؤال، منها أكثر من ' + N(Math.floor((C.similarTotal || 0) / 100) * 100) + ' ' + (C.plusSub || 'من الخمس سنوات الماضية') + '، مماثلة) بـ' + N((C.plus || C.plan).price) + ' ريال<br>• أو <b>أهم ' + N(C.tierN || 120) + ' سؤالاً</b> بـ' + N(C.plan.price) + ' ريال، وفي الاثنين الملزمة والاختبارات المحاكية.</p>' +
+        '<p>• <b>كامل الأسئلة</b> (أكثر من ' + N(Math.floor((C.qTotal || 0) / 100) * 100) + ' سؤال، منها أكثر من ' + N(Math.floor((C.similarTotal || 0) / 100) * 100) + ' ' + (C.plusSub || 'من الخمس سنوات الماضية') + '، مماثلة) بـ' + N((C.plus || C.plan).price) + ' ريال<br>• أو <b>أهم ' + N(C.tierN || 120) + ' سؤالاً</b> بـ' + N(C.plan.price) + ' ريال، وفي الاثنين ' + (C.bothInc || 'الملزمة والاختبارات المحاكية') + '.</p>' +
         '<p class="small pw-proof" hidden></p>' + '<p class="small">ضمان 3 أيام: إذا ما ناسبك المحتوى يرجع لك المبلغ كاملاً.</p>' + (setTimeout(fillProof, 60), "") +
         '<div class="pw-row"><button class="pw-btn" onclick="PW.open(\'!أنهيت الأسئلة المجانية، اختر اللي يناسب وقتك\')">اختر اشتراكك</button><button class="pw-btn q" onclick="startTest(\'diag\')">أو اختبر نفسك في التشخيصي مجاناً</button></div></div>';
     },
