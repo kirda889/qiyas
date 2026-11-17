@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"7+edHvrE2eD/yVTI","src":"full.dat?v=39adcb93ec0a","keys":null,"plus":{"it":120000,"iv":"w/gfjVvDwAt55/l4","src":"full2.dat?v=0f6e8c4d53a1","keys":null},"keysSrc":"lock-keys2.json?v=t6z3rm"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"zcYrCd6nEMfqXo0L","src":"full.dat?v=eb2a871b0439","keys":null,"plus":{"it":120000,"iv":"jRWc8fMXYJtJyxVi","src":"full2.dat?v=c0600505e00b","keys":null},"keysSrc":"lock-keys2.json?v=134j14j"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -3070,13 +3070,21 @@ if(hot&&hot.ready) hot.ready(start); else start(hot&&hot.data||{});
       var r = d.body.dataset.route || "";
       if (r === "lesson") return true;
       if (r === "quiz") { var o = d.querySelectorAll("button.opt"); for (var i = 0; i < o.length; i++) if (vis(o[i])) return true; }
-      return !!d.querySelector(".pw-dim.on") || d.body.classList.contains("locked");   /* النافذة مفتوحة: لا نغطي «اشترك» */
+      return !!d.querySelector(".pw-dim.on") || d.body.classList.contains("locked") || overBuy();   /* النافذة مفتوحة: لا نغطي «اشترك» */
+    }
+    function overBuy() {   /* زر اشتراك أو بدء تحت الفقاعة الآن (التمرير يحرّكه): تختفي حتى يبتعد */
+      var m = new DOMMatrixReadOnly(getComputedStyle(b).transform), x = m.m41, y = m.m42;
+      var L = d.querySelectorAll(".pw-btn,.pw-banner button,.subq,.lsub,a.go,.go,.btn.wide,[data-pw]");
+      for (var i = 0; i < L.length; i++) { var r = L[i].getBoundingClientRect();
+        if (r.width && r.height && r.left < x + S + 6 && r.right > x - 6 && r.top < y + S + 6 && r.bottom > y - 6 && L[i] !== b) return true; }
+      return false;
     }
     var q = 0;
-    function check() { q = 0; b.classList.toggle("off", solving()); }
+    function check() { q = 0; if (down) return; b.classList.toggle("off", solving()); }
     function later() { if (!q) q = requestAnimationFrame(check); }
     new MutationObserver(later).observe(d.body, { attributes: true, childList: true, subtree: true });
     addEventListener("resize", function () { place(); later(); });
+    addEventListener("scroll", later, { passive: true });
     place(); check();
   });
 })();

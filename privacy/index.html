@@ -302,13 +302,21 @@ h1,h2,h3,.rowi .t b{text-wrap:balance}
       var r = d.body.dataset.route || "";
       if (r === "lesson") return true;
       if (r === "quiz") { var o = d.querySelectorAll("button.opt"); for (var i = 0; i < o.length; i++) if (vis(o[i])) return true; }
-      return !!d.querySelector(".pw-dim.on") || d.body.classList.contains("locked");   /* النافذة مفتوحة: لا نغطي «اشترك» */
+      return !!d.querySelector(".pw-dim.on") || d.body.classList.contains("locked") || overBuy();   /* النافذة مفتوحة: لا نغطي «اشترك» */
+    }
+    function overBuy() {   /* زر اشتراك أو بدء تحت الفقاعة الآن (التمرير يحرّكه): تختفي حتى يبتعد */
+      var m = new DOMMatrixReadOnly(getComputedStyle(b).transform), x = m.m41, y = m.m42;
+      var L = d.querySelectorAll(".pw-btn,.pw-banner button,.subq,.lsub,a.go,.go,.btn.wide,[data-pw]");
+      for (var i = 0; i < L.length; i++) { var r = L[i].getBoundingClientRect();
+        if (r.width && r.height && r.left < x + S + 6 && r.right > x - 6 && r.top < y + S + 6 && r.bottom > y - 6 && L[i] !== b) return true; }
+      return false;
     }
     var q = 0;
-    function check() { q = 0; b.classList.toggle("off", solving()); }
+    function check() { q = 0; if (down) return; b.classList.toggle("off", solving()); }
     function later() { if (!q) q = requestAnimationFrame(check); }
     new MutationObserver(later).observe(d.body, { attributes: true, childList: true, subtree: true });
     addEventListener("resize", function () { place(); later(); });
+    addEventListener("scroll", later, { passive: true });
     place(); check();
   });
 })();
