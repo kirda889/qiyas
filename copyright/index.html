@@ -180,7 +180,7 @@ h1,h2,h3,.rowi .t b{text-wrap:balance}
 }
 </style></head><body><div class="wrap">
 <a class="back" href="../">‹ العودة إلى التخصصات</a>
-<h1>حقوق الملكية والإبلاغ عن انتهاك</h1><p class="upd">آخر تحديث: 17 نوفمبر 2026</p>
+<h1>حقوق الملكية والإبلاغ عن انتهاك</h1><p class="upd">آخر تحديث: 18 نوفمبر 2026</p>
 
 <div class="card"><h2>حقوق المحتوى</h2>
 <p><b>© 2026 يوسف الشمراني. جميع الحقوق محفوظة.</b></p>
@@ -228,5 +228,76 @@ document.getElementById("td").addEventListener("submit",function(e){e.preventDef
 </script>
 <script>(function(){var W="966544891340",N={"T": "الاختبار التربوي العام — أهم 120 سؤالاً من اختبارات الثلاث سنوات الماضية (مماثلة)", "E": "التخصصي English 2 — أهم 120 سؤالاً من اختبارات الثلاث سنوات الماضية (مماثلة)", "U": "الاختبار التربوي العام — كامل أسئلة الخمس سنوات الماضية (مماثلة)", "F": "التخصصي English 2 — كامل الأسئلة، منها +700 من الاختبارات الماضية (مماثلة)", "C": "الاختبار التربوي العام + التخصصي English 2 — كامل الأسئلة للاثنين", "S": "STEP", "J": "قدرات الجامعيين", "X": "ترقية English 2 إلى كامل الأسئلة", "Y": "ترقية التربوي العام إلى كامل الأسئلة"};if(!W)return;fetch("https://api.yousefalshamrani.com/v1/proof").then(function(r){return r.json()}).then(function(d){if(!d||d.via!=="whatsapp")return;var s="";try{s=localStorage.getItem("qx.src")||""}catch(e){}document.querySelectorAll('a[href*="t.me/yousefalshamrani_qiyas_bot?start="]').forEach(function(a){var m=a.getAttribute("href").match(/start=([A-Z])/);if(!m||!N[m[1]])return;a.href="https://wa.me/"+W+"?text="+encodeURIComponent("السلام عليكم أستاذ يوسف، أبغى الاشتراك في "+N[m[1]]+" — من الموقع"+(s?" (المرجع: "+s+")":""))})}).catch(function(){})})();</script>
 <script>try{var t=localStorage.getItem("site.theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
-<script>(function(){try{var k="qx.gads";if(/[?&](gclid|gbraid|wbraid)=|[?&]src=gads\b/.test(location.search))localStorage.setItem(k,"1");if(localStorage.getItem(k)!=="1")return}catch(e){return}var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=AW-341680170";document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config","AW-341680170");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="t.me/yousefalshamrani_qiyas_bot"]');if(a)gtag("event","conversion",{send_to:"AW-341680170/0X63CMTU860dEKrA9qIB"})},true)})();</script>
+<script>/* فقاعة واتساب عائمة (يوسف 2026-11-18): في كل صفحات التصفح، وتختفي وقت حل الأسئلة (الخيارات قدامه، ومنها المحاكي) ووقت فتح الدرس، وترجع بعدها.
+   دائرة صغيرة بظل ناعم، تنسحب وتلتصق بأقرب طرف، وسحبها إلى الطرف يخفيها خلفه ويبقى منها جزء يرجّعها باللمس. مكانها في localStorage "qx.wa".
+   الرقم يُحقن وقت البناء من SALES["wa"]. لا تعليق // آخر سطر (قاعدة المواقع). */
+(function () {
+  window.__qxwa = 1;   /* بلا رجوع مبكر: فتح النسخة المدفوعة يعيد كتابة الصفحة بنفس النافذة، فالفحص على العنصر نفسه */
+  var NUM = "966544891340", KEY = "qx.wa", d = document, S = 52, M = 14, PEEK = 18;
+  function ready(f) { if (d.body) f(); else d.addEventListener("DOMContentLoaded", f); }
+  ready(function () {
+    if (d.getElementById("qxwa")) return;
+    var st = d.createElement("style");
+    st.textContent = "#qxwa{position:fixed;left:0;top:0;z-index:45;width:" + S + "px;height:" + S + "px;border-radius:50%;background:#25D366;display:grid;place-items:center;" +
+      "box-shadow:0 8px 22px -6px rgba(0,0,0,.38),0 2px 6px rgba(0,0,0,.14);touch-action:none;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;" +
+      "transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .22s ease}" +
+      "#qxwa svg{width:28px;height:28px;fill:#fff;pointer-events:none}#qxwa.drag{transition:opacity .22s ease}#qxwa.off{opacity:0;pointer-events:none}" +
+      "#qxwa:focus-visible{outline:2px solid #128C7E;outline-offset:3px}@media print{#qxwa{display:none}}" +
+      "@media (prefers-reduced-motion:reduce){#qxwa{transition:opacity .2s}}";
+    d.head.appendChild(st);
+    var b = d.createElement("a");
+    b.id = "qxwa"; b.setAttribute("aria-label", "تواصل معنا في واتساب"); b.setAttribute("role", "button"); b.tabIndex = 0;
+    b.href = "https://wa.me/" + NUM + "?text=" + encodeURIComponent("السلام عليكم، عندي سؤال عن الاشتراك");
+    b.target = "_blank"; b.rel = "noopener";
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.18 8.18 0 0 1 8.23 8.24c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>';
+    d.body.appendChild(b);
+    var P = { s: "l", y: null, t: false };
+    try { var o = JSON.parse(localStorage.getItem(KEY) || "null"); if (o && (o.s === "l" || o.s === "r")) P = o; } catch (e) {}
+    function bottomLimit() {   /* لا تغطي شريط التبويبات في الجوال */
+      var tb = d.getElementById("tabbar"), h = 0;
+      if (tb) { var r = tb.getBoundingClientRect(); if (r.height && r.top < innerHeight) h = innerHeight - r.top; }
+      return h + 16;
+    }
+    function clampY(y) { return Math.max(72, Math.min(innerHeight - bottomLimit() - S, y)); }
+    function place() {
+      var y = clampY(P.y == null ? innerHeight : P.y), x;
+      if (P.s === "l") x = P.t ? PEEK - S : M; else x = P.t ? innerWidth - PEEK : innerWidth - S - M;
+      b.style.transform = "translate(" + x + "px," + y + "px)";
+    }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} }
+    var down = null, moved = false;
+    b.addEventListener("pointerdown", function (e) { down = { x: e.clientX, y: e.clientY }; moved = false; try { b.setPointerCapture(e.pointerId); } catch (x) {} });
+    b.addEventListener("pointermove", function (e) {
+      if (!down) return;
+      if (!moved && Math.abs(e.clientX - down.x) + Math.abs(e.clientY - down.y) < 7) return;
+      moved = true; b.classList.add("drag");
+      b.style.transform = "translate(" + (e.clientX - S / 2) + "px," + (e.clientY - S / 2) + "px)";
+    });
+    function up(e) {
+      if (!down) return; down = null; b.classList.remove("drag");
+      if (!moved) return;
+      var cx = e.clientX; P.s = cx < innerWidth / 2 ? "l" : "r"; P.t = cx < 30 || cx > innerWidth - 30; P.y = clampY(e.clientY - S / 2);
+      place(); save();
+    }
+    b.addEventListener("pointerup", up); b.addEventListener("pointercancel", up);
+    b.addEventListener("click", function (e) {
+      if (moved) { e.preventDefault(); moved = false; return; }
+      if (P.t) { e.preventDefault(); P.t = false; place(); save(); }   /* المخفية: اللمسة ترجّعها، والثانية تفتح واتساب */
+    });
+    function vis(e) { return !!e && e.offsetWidth > 0 && e.offsetHeight > 0; }
+    function solving() {
+      var r = d.body.dataset.route || "";
+      if (r === "lesson") return true;
+      if (r === "quiz") { var o = d.querySelectorAll("button.opt"); for (var i = 0; i < o.length; i++) if (vis(o[i])) return true; }
+      return !!d.querySelector(".pw-dim.on") || d.body.classList.contains("locked");   /* النافذة مفتوحة: لا نغطي «اشترك» */
+    }
+    var q = 0;
+    function check() { q = 0; b.classList.toggle("off", solving()); }
+    function later() { if (!q) q = requestAnimationFrame(check); }
+    new MutationObserver(later).observe(d.body, { attributes: true, childList: true, subtree: true });
+    addEventListener("resize", function () { place(); later(); });
+    place(); check();
+  });
+})();
+</script><script>(function(){try{var k="qx.gads";if(/[?&](gclid|gbraid|wbraid)=|[?&]src=gads\b/.test(location.search))localStorage.setItem(k,"1");if(localStorage.getItem(k)!=="1")return}catch(e){return}var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=AW-341680170";document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config","AW-341680170");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="t.me/yousefalshamrani_qiyas_bot"]');if(a)gtag("event","conversion",{send_to:"AW-341680170/0X63CMTU860dEKrA9qIB"})},true)})();</script>
 </body></html>

@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"+ZnOhgj75EyuFqNY","src":"full.dat?v=7cf8e0246c04","keys":null,"plus":{"it":120000,"iv":"PuC0bvYhp2L6ggI+","src":"full2.dat?v=37ca76386936","keys":null},"keysSrc":"lock-keys2.json?v=8jayp8"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"7+edHvrE2eD/yVTI","src":"full.dat?v=39adcb93ec0a","keys":null,"plus":{"it":120000,"iv":"w/gfjVvDwAt55/l4","src":"full2.dat?v=0f6e8c4d53a1","keys":null},"keysSrc":"lock-keys2.json?v=t6z3rm"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -2447,7 +2447,7 @@ function viewHome(){
     </div></details>
     <div class="row" style="justify-content:space-between"><div id="syncline" class="sync"></div><span class="row">${window.SITE_CFG&&window.SITE_CFG.hub?`<a class="btn sm quiet" href="${window.SITE_CFG.hub}" style="text-decoration:none">كل الاختبارات</a>`:""}<button class="btn sm quiet" data-go="settings">الإعدادات والتقرير</button></span></div>
     <div class="qr-full" data-exam="tarbawi" id="qreviews" style="margin-bottom:14px"></div>
-    <div class="credit"><span class="cm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></span><div><div class="ck">إعداد وتصميم · آخر تحديث: 17 نوفمبر 2026</div><div class="cn">الأستاذ يوسف الشمراني</div></div><span class="vcount" hidden><span class="ck">الزوار</span><b class="vcount-n"></b></span></div>
+    <div class="credit"><span class="cm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></span><div><div class="ck">إعداد وتصميم · آخر تحديث: 18 نوفمبر 2026</div><div class="cn">الأستاذ يوسف الشمراني</div></div><span class="vcount" hidden><span class="ck">الزوار</span><b class="vcount-n"></b></span></div>
   </section>`;
 }
 function viewPlan(){
@@ -3008,6 +3008,77 @@ if(hot&&hot.ready) hot.ready(start); else start(hot&&hot.data||{});
     };
     document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", start) : start();
   } catch (e) {}
+})();
+</script><script>/* فقاعة واتساب عائمة (يوسف 2026-11-18): في كل صفحات التصفح، وتختفي وقت حل الأسئلة (الخيارات قدامه، ومنها المحاكي) ووقت فتح الدرس، وترجع بعدها.
+   دائرة صغيرة بظل ناعم، تنسحب وتلتصق بأقرب طرف، وسحبها إلى الطرف يخفيها خلفه ويبقى منها جزء يرجّعها باللمس. مكانها في localStorage "qx.wa".
+   الرقم يُحقن وقت البناء من SALES["wa"]. لا تعليق // آخر سطر (قاعدة المواقع). */
+(function () {
+  window.__qxwa = 1;   /* بلا رجوع مبكر: فتح النسخة المدفوعة يعيد كتابة الصفحة بنفس النافذة، فالفحص على العنصر نفسه */
+  var NUM = "966544891340", KEY = "qx.wa", d = document, S = 52, M = 14, PEEK = 18;
+  function ready(f) { if (d.body) f(); else d.addEventListener("DOMContentLoaded", f); }
+  ready(function () {
+    if (d.getElementById("qxwa")) return;
+    var st = d.createElement("style");
+    st.textContent = "#qxwa{position:fixed;left:0;top:0;z-index:45;width:" + S + "px;height:" + S + "px;border-radius:50%;background:#25D366;display:grid;place-items:center;" +
+      "box-shadow:0 8px 22px -6px rgba(0,0,0,.38),0 2px 6px rgba(0,0,0,.14);touch-action:none;cursor:pointer;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;" +
+      "transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .22s ease}" +
+      "#qxwa svg{width:28px;height:28px;fill:#fff;pointer-events:none}#qxwa.drag{transition:opacity .22s ease}#qxwa.off{opacity:0;pointer-events:none}" +
+      "#qxwa:focus-visible{outline:2px solid #128C7E;outline-offset:3px}@media print{#qxwa{display:none}}" +
+      "@media (prefers-reduced-motion:reduce){#qxwa{transition:opacity .2s}}";
+    d.head.appendChild(st);
+    var b = d.createElement("a");
+    b.id = "qxwa"; b.setAttribute("aria-label", "تواصل معنا في واتساب"); b.setAttribute("role", "button"); b.tabIndex = 0;
+    b.href = "https://wa.me/" + NUM + "?text=" + encodeURIComponent("السلام عليكم، عندي سؤال عن الاشتراك");
+    b.target = "_blank"; b.rel = "noopener";
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.18 8.18 0 0 1 8.23 8.24c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>';
+    d.body.appendChild(b);
+    var P = { s: "l", y: null, t: false };
+    try { var o = JSON.parse(localStorage.getItem(KEY) || "null"); if (o && (o.s === "l" || o.s === "r")) P = o; } catch (e) {}
+    function bottomLimit() {   /* لا تغطي شريط التبويبات في الجوال */
+      var tb = d.getElementById("tabbar"), h = 0;
+      if (tb) { var r = tb.getBoundingClientRect(); if (r.height && r.top < innerHeight) h = innerHeight - r.top; }
+      return h + 16;
+    }
+    function clampY(y) { return Math.max(72, Math.min(innerHeight - bottomLimit() - S, y)); }
+    function place() {
+      var y = clampY(P.y == null ? innerHeight : P.y), x;
+      if (P.s === "l") x = P.t ? PEEK - S : M; else x = P.t ? innerWidth - PEEK : innerWidth - S - M;
+      b.style.transform = "translate(" + x + "px," + y + "px)";
+    }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(P)); } catch (e) {} }
+    var down = null, moved = false;
+    b.addEventListener("pointerdown", function (e) { down = { x: e.clientX, y: e.clientY }; moved = false; try { b.setPointerCapture(e.pointerId); } catch (x) {} });
+    b.addEventListener("pointermove", function (e) {
+      if (!down) return;
+      if (!moved && Math.abs(e.clientX - down.x) + Math.abs(e.clientY - down.y) < 7) return;
+      moved = true; b.classList.add("drag");
+      b.style.transform = "translate(" + (e.clientX - S / 2) + "px," + (e.clientY - S / 2) + "px)";
+    });
+    function up(e) {
+      if (!down) return; down = null; b.classList.remove("drag");
+      if (!moved) return;
+      var cx = e.clientX; P.s = cx < innerWidth / 2 ? "l" : "r"; P.t = cx < 30 || cx > innerWidth - 30; P.y = clampY(e.clientY - S / 2);
+      place(); save();
+    }
+    b.addEventListener("pointerup", up); b.addEventListener("pointercancel", up);
+    b.addEventListener("click", function (e) {
+      if (moved) { e.preventDefault(); moved = false; return; }
+      if (P.t) { e.preventDefault(); P.t = false; place(); save(); }   /* المخفية: اللمسة ترجّعها، والثانية تفتح واتساب */
+    });
+    function vis(e) { return !!e && e.offsetWidth > 0 && e.offsetHeight > 0; }
+    function solving() {
+      var r = d.body.dataset.route || "";
+      if (r === "lesson") return true;
+      if (r === "quiz") { var o = d.querySelectorAll("button.opt"); for (var i = 0; i < o.length; i++) if (vis(o[i])) return true; }
+      return !!d.querySelector(".pw-dim.on") || d.body.classList.contains("locked");   /* النافذة مفتوحة: لا نغطي «اشترك» */
+    }
+    var q = 0;
+    function check() { q = 0; b.classList.toggle("off", solving()); }
+    function later() { if (!q) q = requestAnimationFrame(check); }
+    new MutationObserver(later).observe(d.body, { attributes: true, childList: true, subtree: true });
+    addEventListener("resize", function () { place(); later(); });
+    place(); check();
+  });
 })();
 </script><script>(function(){try{var s=(new URLSearchParams(location.search).get("src")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,20);if(!s)return;try{localStorage.setItem("qx.src",s)}catch(e){}var p=location.pathname.indexOf("/quiz")>0?"quiz":location.pathname.indexOf("/sharh")>0?"sharh":"home",x=location.pathname.split("/")[2]||"hub",k="src-"+x+"-"+p+"-"+s,F="srcseen."+k;if(localStorage.getItem(F))return;localStorage.setItem(F,"1");fetch("https://abacus.jasoncameron.dev/hit/"+(location.hostname==="yousefalshamrani.com"?"yousefalshamrani-com":"yousefalshamrani-test")+"/"+k).catch(function(){})}catch(e){}})();</script><script>(function(){var H="<script data-goatcounter=\"https://yousefqiyas.goatcounter.com/count\" async src=\"//gc.zgo.at/count.js\"><\/script><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"c26f510a6f2b4339af234504262282f4\"}'><\/script>";function go(){if(window.__3p)return;window.__3p=1;var d=document.createElement('div');d.innerHTML=H;[].forEach.call(d.querySelectorAll('script'),function(o){var s=document.createElement('script');[].forEach.call(o.attributes,function(a){s.setAttribute(a.name,a.value)});s.text=o.text;document.body.appendChild(s)})}if(document.readyState==='complete')setTimeout(go,1500);else addEventListener('load',function(){setTimeout(go,1500)})})();</script><script>(function(){try{var k="qx.gads";if(/[?&](gclid|gbraid|wbraid)=|[?&]src=gads\b/.test(location.search))localStorage.setItem(k,"1");if(localStorage.getItem(k)!=="1")return}catch(e){return}var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=AW-341680170";document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config","AW-341680170");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="t.me/yousefalshamrani_qiyas_bot"]');if(a)gtag("event","conversion",{send_to:"AW-341680170/0X63CMTU860dEKrA9qIB"})},true)})();</script>
 </body></html>
