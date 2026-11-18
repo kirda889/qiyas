@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"J7I7maNrIu7CpZlq","src":"full.dat?v=a4cd9e4c7eb4","keys":null,"plus":{"it":120000,"iv":"P5lUG+Z4A4ieB5fF","src":"full2.dat?v=7a7777a4721b","keys":null},"keysSrc":"lock-keys2.json?v=16qyntb"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"VPvE8ZHWDhnda6Xm","src":"full.dat?v=0fb5cfc89b29","keys":null,"plus":{"it":120000,"iv":"Szwwi/trkkieaJXi","src":"full2.dat?v=6ae384e93d96","keys":null},"keysSrc":"lock-keys2.json?v=e6eeqa"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -1449,6 +1449,8 @@ body.bkv-on{overflow:hidden}
     var gs = o.groups || [], G = gs.filter(function (x) { return x.k === d.g; })[0]; if (!G) d.g = "";
     var key = o.sid + "|" + o.i + "|" + d.g + "|" + o.items.map(function (x) { return (x.s || "-") + (x.f ? "f" : ""); }).join(",");
     d.o = o; d.L.hidden = false; hasDock();
+    // نص الحبة المصغّرة إن أرسله التطبيق (القدرات 2026-11-18: «الأسئلة 4/20» و«المحاكي 1»)؛ ومن لا يرسله تبقى «الأسئلة»
+    if (o.label) { var pt = d.L.querySelector(".qx-dkp .qx-dkpt"); if (pt && pt.textContent !== o.label) pt.textContent = o.label; }
     if (d.key === key) return; d.key = key;
     var sel = o.items.map(function (x, i) { return [x, i]; }).filter(function (p) { return !d.g || p[0].g === d.g; });
     var done = sel.filter(function (p) { return p[0].s; }).length, ok = sel.filter(function (p) { return p[0].s === "ok"; }).length;
