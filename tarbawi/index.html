@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"558Krzie16ole/0T","src":"full.dat?v=b13cb3d95db1","keys":null,"plus":{"it":120000,"iv":"fhmVFTE+7pCM7QFV","src":"full2.dat?v=0dd82ed2894d","keys":null},"keysSrc":"lock-keys2.json?v=500yss"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"558Krzie16ole/0T","src":"full.dat?v=b13cb3d95db1","keys":null,"plus":{"it":120000,"iv":"fhmVFTE+7pCM7QFV","src":"full2.dat?v=0dd82ed2894d","keys":null},"keysSrc":"lock-keys2.json?v=13245j4"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -1778,7 +1778,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     var msg = function (pl) { var sc = srcCode(); return "السلام عليكم، أبغى الاشتراك في " + (/الاختباران/.test(pl.label) ? "" : (C.exam || C.examMsg) + " — ") + pl.label + " (" + pl.price + " ريال) من موقع yousefalshamrani.com/qiyas" + " — المرجع: " + C.site + "-" + pl.price + (sc ? "-" + sc : ""); };
     // خياران (2026-10-24، قرار يوسف): الخيار اللي ضغطه العميل في الموقع يطلع «تذكرة» بتفاصيله، والثاني سطر هادئ تحته يبدّل بضغطة.
     // كامل الأسئلة 89 هو الافتراضي؛ وإذا ضغط «أهم 120» (59) يطلع سطر الكامل بسنارة «+N سؤالاً بـ30 ريال فقط» (أسعار 2026-11-01).
-    var S1 = { english2: "E", tarbawi: "T", step: "S", qudurat: C.plus ? "K" : "J" }[C.site] || C.site, S2 = { english2: "F", tarbawi: "U", qudurat: "J" }[C.site];   /* القدرات 2026-11-15: K أهم 120 بـ59، وJ الكامل 89 */
+    var S1 = { english2: "E", tarbawi: "T", step: "S", qudurat: C.plus ? "K" : "J", gat: C.plus ? "H" : "G" }[C.site] || C.site, S2 = { english2: "F", tarbawi: "U", qudurat: "J", gat: "G" }[C.site];   /* العامة 2026-11-18: H بـ59، وG الكامل 89 (lock.mjs وproducts.js) */   /* القدرات 2026-11-15: K أهم 120 بـ59، وJ الكامل 89 */
     var nAll = C.similarTotal || 0, nT = C.tierN || 120, nQ = Math.floor((C.qTotal || 0) / 100) * 100, nP = Math.floor(nAll / 100) * 100;   // nP: «أكثر من 600» من similarTotal (قرار يوسف 2026-11-08)
     // ملزمتا الدروس (2026-10-26، طلب يوسف): «كامل الأسئلة» فيه المفصّلة 20 صفحة والمختصرة 15، و«أهم 120» فيه المختصرة فقط
     var SUMP = C.summary ? ["<b>ملزمة شرح الدروس</b> تُقرأ في الموقع"] : [], SUMI = C.summaryLite ? ["<b>ملزمة شرح مختصرة</b> تُقرأ في الموقع"] : [];
@@ -1797,6 +1797,11 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
       O.single.title = "أهم " + N(nT) + " سؤالاً"; O.single.sub = "من الاختبارات الماضية <small class=mm>(مماثلة)</small>";
       O.single.items = ["<b>أهم " + N(nT) + " سؤالاً</b> من الاختبارات الماضية <small class=mm>(مماثلة)</small> بتصحيح فوري", QI[0], QI[2], QI[3]];
     }
+    if (C.site === "gat" && O.plus) {   /* القدرات العامة (2026-11-18): العنوان والوصف والبنود من sales_config (pw.plus/pw.plan وincludes/planIncludes) بأعداد البيانات */
+      var GI = function (a) { return (a || []).map(function (x) { return esc(x).replace(/\(مماثلة\)/, "<small class=mm>(مماثلة)</small>").replace(/^\+([\d,]+)/, '<bdi dir="rtl">+$1</bdi>'); }); };
+      O.plus.title = C.plus.label; O.plus.sub = C.plus.note || ""; O.plus.items = GI(C.includes);
+      O.single.title = C.plan.label; O.single.sub = C.plan.note || ""; O.single.items = GI(C.planIncludes || C.includes);
+    }
     if (!O.plus) pick = "single"; else if (pick !== "single") pick = "plus";
     var cur = O[pick], other = pick === "plus" ? O.single : O.plus, otherKey = pick === "plus" ? "single" : "plus";
     // زر «اشترك» يفتح واتساب يوسف برسالة جاهزة فيها الاختبار والمنتج والسعر والمرجع (طلب يوسف 2026-10-27: واتساب فقط بدل البوت)
@@ -1806,7 +1811,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     var href = function (o) { return ch === "whatsapp" ? waLink(msg(o.pl)) : C.tgBot ? "https://t.me/" + esc(C.tgBot) + "?start=" + o.prod + startSrc() : "https://t.me/" + esc(C.tgUser) + "?text=" + encodeURIComponent(msg(o.pl)); };
     var was = function () { return ""; }, cnt = function () { return ""; };   // سعر مشطوب: لا خصومات حالياً (2026-11-07)
     var rad = function (on) { return '<span class="pw-rad' + (on ? " on" : "") + '"></span>'; };
-    var altSub = !other ? "" : otherKey === "plus" ? "+" + N(nAll - nT) + " سؤالاً إضافياً بـ" + N(other.pl.price - cur.pl.price) + " ريال فقط" : other.sub;
+    var altSub = !other ? "" : C.site === "gat" ? other.sub : otherKey === "plus" ? "+" + N(nAll - nT) + " سؤالاً إضافياً بـ" + N(other.pl.price - cur.pl.price) + " ريال فقط" : other.sub;
     return '<div class="pw-sheet pw-tk2" role="dialog" aria-modal="true" aria-labelledby="pw-t">' +
       '<div class="pw-tkk"><span>' + esc(C.exam) + '</span><span class="pw-tkd"><button class="pw-x" data-pw="close" aria-label="إغلاق">✕</button></span></div>' +   // «عندي كود» حُذف من الرأس (يوسف 2026-11-08ب): خانة الكود ظاهرة تحت
       '<h2 id="pw-t">' + (C.site === "step" ? "افتح الدليل كاملاً" : "جهّز مقعدك في الاختبار") + '</h2>' +
