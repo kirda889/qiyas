@@ -480,6 +480,8 @@ html.sm .qx-dkR .qx-dkw{transform-origin:bottom right}html.sm .qx-dkL .qx-dkw{tr
 html.sm .qx-dkclose{display:block;margin:0;padding:12px 16px;border:0;border-top:1px solid var(--rule);background:none;color:var(--acc);font:inherit;font-weight:700;font-size:.95rem;text-align:center;cursor:pointer;width:100%}
 html.sm .qx-dkclose:hover{background:var(--paper)}
 html:not(.lm) .qx-dk,html:not(.lm) .qx-tab{display:none!important}
+
+html.dk .deco-d::after{display:none!important}
 </style>
 
 <div class="top">
@@ -939,6 +941,7 @@ function titleOf(s){
   if (s.classList.contains("quiz")) return "اختبر نفسك";
   var h = s.querySelector(".h2,.h1,h2,h3"); return h ? h.textContent.trim().replace(/\s+/g, " ") : "";
 }
+window.smFixMath = fixMath;  /* لإعادة رسم أسئلة التدريب الجديدة (القدرات العامة) */
 window.smInit = function(){
   root.classList.add("sm"); ready = true;
   var st = document.getElementById("stage"), S = [].slice.call(st.querySelectorAll(":scope > .sl"));
@@ -955,8 +958,11 @@ window.smInit = function(){
   /* فقاعة «الدرس» نفس التربوي العام بالضبط (QX.dock من static/enrich.js، طلب يوسف 2026-11-15):
      عائمة أسفل اليمين، تنسحب وتنخبي كسهم على الطرف، وبالضغط تكبر وتفتح قائمة الدروس في مكانها، وفيها «إغلاق الدرس» */
   var LST = window.SMLIST || [], CL = {V:"#2E6B57",Q:"#3D4E7A",C:"#7A3B4A",L:"#A8873F",F:"#0B6B66",Z:"#6B665C"}, SN = {V:"اللفظي",Q:"الكمي",C:"الدراسات",L:"الاستدلال",F:"الأشكال",Z:"يوم الاختبار"};
+  /* اختبار آخر (القدرات العامة 2026-11-18): ألوان المعايير وأسماؤها من window.SMCL، والمفتاح std من الفهرس بدل أول حرف */
+  if (window.SMCL){ CL = window.SMCL.CL; SN = window.SMCL.SN; }
+  var KY = function(x){ return x.std || x.id[0]; };
   if (window.QXD && LST.length){
-    QXD.dock({ id: window.SMID, rtl: true, lessons: LST.map(function(x){ return { id: x.id, n: x.n, t: x.title, s: SN[x.id[0]] || "", c: CL[x.id[0]] || "#A8873F" }; }) });
+    QXD.dock({ id: window.SMID, rtl: true, lessons: LST.map(function(x){ return { id: x.id, n: x.n, t: x.title, s: SN[KY(x)] || "", c: CL[KY(x)] || "#A8873F" }; }) });
     var dk = document.querySelector(".qx-dk");
     if (dk){
       var x0 = dk.querySelector(".qx-dkx"); if (x0) x0.click();  /* يبدأ صغيراً حتى ما يغطي الشريحة */
