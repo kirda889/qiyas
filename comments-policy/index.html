@@ -180,7 +180,7 @@ h1,h2,h3,.rowi .t b{text-wrap:balance}
 }
 </style></head><body><div class="wrap">
 <a class="back" href="../">‹ العودة إلى التخصصات</a>
-<h1>سياسة التعليقات</h1><p class="upd">آخر تحديث: 19 نوفمبر 2026</p>
+<h1>سياسة التعليقات</h1><p class="upd">آخر تحديث: 20 نوفمبر 2026</p>
 
 <div class="card"><h2>كيف تُنشر التعليقات</h2>
 <ul><li>التقييم بالنجوم يُحسب مباشرة.</li>
@@ -292,6 +292,54 @@ h1,h2,h3,.rowi .t b{text-wrap:balance}
     addEventListener("scroll", onScroll, { passive: true });
     place(); check();
   });
+})();
+</script><script>/* سجل المتصفح داخل الاختبار (يوسف 2026-11-20: «سهم الخلف يرجعني للبوابة بدل خطوة داخل الاختبار»).
+   - كل انتقال بضغطة الطالب (go في التطبيق) = مدخل في السجل، والانتقال الآلي (تهيئة، نهاية مؤقت) يستبدل المدخل الحالي.
+   - أول دخول من خارج الموقع: مدخل «بوابة» قبل الاختبار، فالخلف من رئيسية الاختبار يودي /qiyas/ (location.replace، بلا حلقة).
+   - الخلف أثناء اختبار مؤقت يرجع للأسئلة بلا مسح الجلسة (الإجابات والحفظ 24 ساعة باقية)، والأمام يرجّع له.
+   - النافذة مفتوحة: الخلف يقفلها بس.
+   يُحقن مع فقاعة الواتساب في كل الصفحات؛ بلا window.__qxgo (البوابة والصفحات الثابتة) ما يسوي شي. لا تعليق // آخر سطر. */
+(function () {
+  if (typeof window.__qxgo !== "function" || !window.history || !history.pushState) return;
+  var H = history, restoring = false, lastUser = 0, cur = null;
+  function url() { return location.pathname + location.search; }
+  function slim(r) { var o = {}; for (var k in (r || {})) if (r[k] == null || typeof r[k] !== "object" && typeof r[k] !== "function") o[k] = r[k]; return o; }
+  function key(r) { try { return JSON.stringify(r); } catch (e) { return ""; } }
+  function portal() { return new URL("../", location.href).href; }
+  var mark = function () { lastUser = Date.now(); };
+  ["pointerdown", "touchstart", "keydown", "click"].forEach(function (t) { addEventListener(t, mark, true); });
+  window.QXNAV = {
+    go: function (r) {
+      r = slim(r); if (restoring) { cur = r; return; }
+      if (cur && key(cur) === key(r)) return;
+      var user = Date.now() - lastUser < 1500; cur = r;
+      /* الكتابة في السجل بعد ما ينرسم الانتقال: pushState وقت الضغط كان يأخّر رسم التبويب إطاراً في كروم (بوابة الحركة 2026-11-20) */
+      setTimeout(function () { try { if (user) H.pushState({ qx: 1, r: r }, "", url()); else H.replaceState({ qx: 1, r: r }, "", url()); } catch (e) {} }, 80);
+    }
+  };
+  /* أول تحميل */
+  (function () {
+    var st = H.state, r = { name: document.body.dataset.route || "home" }; cur = r;
+    if (st && st.qx) { try { H.replaceState({ qx: 1, r: r }, "", url()); } catch (e) {} return; }
+    var ref = null; try { ref = document.referrer ? new URL(document.referrer) : null; } catch (e) {}
+    var inSite = !!ref && ref.origin === location.origin && ref.pathname.indexOf("/qiyas/") === 0, lg = false;
+    try { lg = sessionStorage.getItem("qx.lgate") === "1"; sessionStorage.removeItem("qx.lgate"); } catch (e) {}
+    try {
+      if (inSite && !lg) H.replaceState({ qx: 1, r: r }, "", url());
+      else { H.replaceState({ qx: "gate" }, "", url()); H.pushState({ qx: 1, r: r }, "", url()); }
+    } catch (e) {}
+  })();
+  if (window.__qxpop) removeEventListener("popstate", window.__qxpop);   /* فتح النسخة المدفوعة يعيد كتابة الصفحة بنفس النافذة */
+  window.__qxpop = function (e) {
+    var st = e.state; if (!st || !st.qx) return;
+    if (st.qx === "gate") { location.replace(portal()); return; }
+    var dim = document.querySelector(".pw-dim.on");
+    if (dim && window.PW && typeof PW.close === "function") { PW.close(); try { H.pushState({ qx: 1, r: cur }, "", url()); } catch (x) {} return; }
+    var r = st.r || { name: "home" };
+    if (r.name === "quiz" && !window.__qxses()) r = { name: "practice" };
+    restoring = true; try { window.__qxgo(r); } catch (x) {} restoring = false;
+  };
+  addEventListener("popstate", window.__qxpop);
 })();
 </script><script>(function(){try{var k="qx.gads";if(/[?&](gclid|gbraid|wbraid)=|[?&]src=gads\b/.test(location.search))localStorage.setItem(k,"1");if(localStorage.getItem(k)!=="1")return}catch(e){return}var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=AW-341680170";document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config","AW-341680170");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="t.me/yousefalshamrani_qiyas_bot"]');if(a)gtag("event","conversion",{send_to:"AW-341680170/0X63CMTU860dEKrA9qIB"})},true)})();</script>
 </body></html>
