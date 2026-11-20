@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"bZzQskM6bLxMHTg1","src":"full.dat?v=db76898b9866","keys":null,"plus":{"it":120000,"iv":"I1ML5n+4N0lr2s8q","src":"full2.dat?v=8ff4be7ce71e","keys":null},"keysSrc":"lock-keys2.json?v=n2wkz5"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"J0XLSqAkbHYgrD0R","src":"full.dat?v=8369422f35fa","keys":null,"plus":{"it":120000,"iv":"K57tu3m9HbC91T9c","src":"full2.dat?v=4f91f0e24a82","keys":null},"keysSrc":"lock-keys2.json?v=1cay6bk"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -1958,7 +1958,6 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
   // من انتهت مدة كوده يشوف السبب مرة واحدة عند الفتح، بدل ما يرجع للنسخة المجانية بلا تفسير (2026-11-06)
   try { if (localStorage.getItem("qx.expired." + C.site) && !sessionStorage.getItem("qx.expnote")) { sessionStorage.setItem("qx.expnote", "1"); setTimeout(function () { open(); }, 900); } } catch (e) {}
   window.PW = {
-    close: function () { close(); },   /* سهم الخلف والنافذة مفتوحة يقفلها (static/qx_nav.js، 2026-11-20) */
     diag: C.diag || null,
     locked: function (id) { return free.indexOf(id) < 0; },
     open: open,
@@ -2443,10 +2442,8 @@ function go(r){
   if(session && session.mode==="exam" && !session.done && r.name!=="quiz"){ stopTimer(); }
   if(r.name!=="lesson") backQ=null;
   route=r; try{localStorage.setItem(LS_KEY+".route",JSON.stringify(r.name==="quiz"?{name:"practice"}:r))}catch(e){}
-  if(window.QXNAV)QXNAV.go(r);   /* سجل المتصفح داخل الاختبار: الخلف يرجع خطوة هنا (static/qx_nav.js، يوسف 2026-11-20) */
   render(); window.scrollTo({top:0,behavior:"instant"in window?"instant":"auto"});
 }
-window.__qxgo=function(r){go(r)}; window.__qxses=function(){return session&&!session.done?(session.mode||"practice"):null};
 
 /* ---------- icons ---------- */
 const IC = {
@@ -2514,7 +2511,7 @@ function viewHome(){
     </div></details>
     <div class="row" style="justify-content:space-between"><div id="syncline" class="sync"></div><span class="row">${window.SITE_CFG&&window.SITE_CFG.hub?`<a class="btn sm quiet" href="${window.SITE_CFG.hub}" style="text-decoration:none">كل الاختبارات</a>`:""}<button class="btn sm quiet" data-go="settings">الإعدادات والتقرير</button></span></div>
     <div class="qr-full" data-exam="tarbawi" id="qreviews" style="margin-bottom:14px"></div>
-    <div class="credit"><span class="cm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></span><div><div class="ck">إعداد وتصميم · آخر تحديث: 20 نوفمبر 2026</div><div class="cn">الأستاذ يوسف الشمراني</div></div><span class="vcount" hidden><span class="ck">الزوار</span><b class="vcount-n"></b></span></div>
+    <div class="credit"><span class="cm" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></span><div><div class="ck">إعداد وتصميم · آخر تحديث: 19 نوفمبر 2026</div><div class="cn">الأستاذ يوسف الشمراني</div></div><span class="vcount" hidden><span class="ck">الزوار</span><b class="vcount-n"></b></span></div>
   </section>`;
 }
 function viewPlan(){
@@ -3162,53 +3159,6 @@ if(hot&&hot.ready) hot.ready(start); else start(hot&&hot.data||{});
     addEventListener("scroll", onScroll, { passive: true });
     place(); check();
   });
-})();
-</script><script>/* سجل المتصفح داخل الاختبار (يوسف 2026-11-20: «سهم الخلف يرجعني للبوابة بدل خطوة داخل الاختبار»).
-   - كل انتقال بضغطة الطالب (go في التطبيق) = مدخل في السجل، والانتقال الآلي (تهيئة، نهاية مؤقت) يستبدل المدخل الحالي.
-   - أول دخول من خارج الموقع: مدخل «بوابة» قبل الاختبار، فالخلف من رئيسية الاختبار يودي /qiyas/ (location.replace، بلا حلقة).
-   - الخلف أثناء اختبار مؤقت يرجع للأسئلة بلا مسح الجلسة (الإجابات والحفظ 24 ساعة باقية)، والأمام يرجّع له.
-   - النافذة مفتوحة: الخلف يقفلها بس.
-   يُحقن مع فقاعة الواتساب في كل الصفحات؛ بلا window.__qxgo (البوابة والصفحات الثابتة) ما يسوي شي. لا تعليق // آخر سطر. */
-(function () {
-  if (typeof window.__qxgo !== "function" || !window.history || !history.pushState) return;
-  var H = history, restoring = false, lastUser = 0, cur = null;
-  function url() { return location.pathname + location.search; }
-  function slim(r) { var o = {}; for (var k in (r || {})) if (r[k] == null || typeof r[k] !== "object" && typeof r[k] !== "function") o[k] = r[k]; return o; }
-  function key(r) { try { return JSON.stringify(r); } catch (e) { return ""; } }
-  function portal() { return new URL("../", location.href).href; }
-  var mark = function () { lastUser = Date.now(); };
-  ["pointerdown", "touchstart", "keydown", "click"].forEach(function (t) { addEventListener(t, mark, true); });
-  window.QXNAV = {
-    go: function (r) {
-      r = slim(r); if (restoring) { cur = r; return; }
-      if (cur && key(cur) === key(r)) return;
-      var user = Date.now() - lastUser < 1500; cur = r;
-      try { if (user) H.pushState({ qx: 1, r: r }, "", url()); else H.replaceState({ qx: 1, r: r }, "", url()); } catch (e) {}
-    }
-  };
-  /* أول تحميل */
-  (function () {
-    var st = H.state, r = { name: document.body.dataset.route || "home" }; cur = r;
-    if (st && st.qx) { try { H.replaceState({ qx: 1, r: r }, "", url()); } catch (e) {} return; }
-    var ref = null; try { ref = document.referrer ? new URL(document.referrer) : null; } catch (e) {}
-    var inSite = !!ref && ref.origin === location.origin && ref.pathname.indexOf("/qiyas/") === 0, lg = false;
-    try { lg = sessionStorage.getItem("qx.lgate") === "1"; sessionStorage.removeItem("qx.lgate"); } catch (e) {}
-    try {
-      if (inSite && !lg) H.replaceState({ qx: 1, r: r }, "", url());
-      else { H.replaceState({ qx: "gate" }, "", url()); H.pushState({ qx: 1, r: r }, "", url()); }
-    } catch (e) {}
-  })();
-  if (window.__qxpop) removeEventListener("popstate", window.__qxpop);   /* فتح النسخة المدفوعة يعيد كتابة الصفحة بنفس النافذة */
-  window.__qxpop = function (e) {
-    var st = e.state; if (!st || !st.qx) return;
-    if (st.qx === "gate") { location.replace(portal()); return; }
-    var dim = document.querySelector(".pw-dim.on");
-    if (dim && window.PW && typeof PW.close === "function") { PW.close(); try { H.pushState({ qx: 1, r: cur }, "", url()); } catch (x) {} return; }
-    var r = st.r || { name: "home" };
-    if (r.name === "quiz" && !window.__qxses()) r = { name: "practice" };
-    restoring = true; try { window.__qxgo(r); } catch (x) {} restoring = false;
-  };
-  addEventListener("popstate", window.__qxpop);
 })();
 </script><script>(function(){try{var s=(new URLSearchParams(location.search).get("src")||"").toLowerCase().replace(/[^a-z0-9_-]/g,"").slice(0,20);if(!s)return;try{localStorage.setItem("qx.src",s)}catch(e){}var p=location.pathname.indexOf("/quiz")>0?"quiz":location.pathname.indexOf("/sharh")>0?"sharh":"home",x=location.pathname.split("/")[2]||"hub",k="src-"+x+"-"+p+"-"+s,F="srcseen."+k;if(localStorage.getItem(F))return;localStorage.setItem(F,"1");fetch("https://abacus.jasoncameron.dev/hit/"+(location.hostname==="yousefalshamrani.com"?"yousefalshamrani-com":"yousefalshamrani-test")+"/"+k).catch(function(){})}catch(e){}})();</script><script>(function(){var H="<script data-goatcounter=\"https://yousefqiyas.goatcounter.com/count\" async src=\"//gc.zgo.at/count.js\"><\/script><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\": \"c26f510a6f2b4339af234504262282f4\"}'><\/script>";function go(){if(window.__3p)return;window.__3p=1;var d=document.createElement('div');d.innerHTML=H;[].forEach.call(d.querySelectorAll('script'),function(o){var s=document.createElement('script');[].forEach.call(o.attributes,function(a){s.setAttribute(a.name,a.value)});s.text=o.text;document.body.appendChild(s)})}if(document.readyState==='complete')setTimeout(go,1500);else addEventListener('load',function(){setTimeout(go,1500)})})();</script><script>(function(){try{var k="qx.gads";if(/[?&](gclid|gbraid|wbraid)=|[?&]src=gads\b/.test(location.search))localStorage.setItem(k,"1");if(localStorage.getItem(k)!=="1")return}catch(e){return}var s=document.createElement("script");s.async=1;s.src="https://www.googletagmanager.com/gtag/js?id=AW-341680170";document.head.appendChild(s);window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config","AW-341680170");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="t.me/yousefalshamrani_qiyas_bot"]');if(a)gtag("event","conversion",{send_to:"AW-341680170/0X63CMTU860dEKrA9qIB"})},true)})();</script>
 </body></html>
