@@ -346,9 +346,12 @@ document.getElementById("td").addEventListener("submit",function(e){e.preventDef
     var ref = null; try { ref = document.referrer ? new URL(document.referrer) : null; } catch (e) {}
     var inSite = !!ref && ref.origin === location.origin && ref.pathname.indexOf("/qiyas/") === 0, lg = false;
     try { lg = sessionStorage.getItem("qx.lgate") === "1"; sessionStorage.removeItem("qx.lgate"); } catch (e) {}
+    /* أول فتح على غير الرئيسية (اختبار مستعاد من الحفظ، أو رابط ‎#questions): الرئيسية تحته، فالخلف يمرها قبل البوابة (الفاحص 2026-11-20).
+       إلا من صفحة درس (‎/l/): «ارجع للدرس» يعتمد على history.back */
+    var fromLesson = inSite && /\/l\/[^\/]*$/.test(ref.pathname), home = r.name !== "home" && !fromLesson;
     try {
-      if (inSite && !lg) H.replaceState({ qx: 1, r: r }, "", url());
-      else { H.replaceState({ qx: "gate" }, "", url()); H.pushState({ qx: 1, r: r }, "", url()); }
+      if (inSite && !lg) { if (home) { H.replaceState({ qx: 1, r: { name: "home" } }, "", url()); H.pushState({ qx: 1, r: r }, "", url()); } else H.replaceState({ qx: 1, r: r }, "", url()); }
+      else { H.replaceState({ qx: "gate" }, "", url()); if (home) H.pushState({ qx: 1, r: { name: "home" } }, "", url()); H.pushState({ qx: 1, r: r }, "", url()); }
     } catch (e) {}
   })();
   if (window.__qxpop) removeEventListener("popstate", window.__qxpop);   /* فتح النسخة المدفوعة يعيد كتابة الصفحة بنفس النافذة */
