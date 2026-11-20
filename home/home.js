@@ -155,7 +155,7 @@
     sub: () => `<p class="q-sub">${E(HERO.sub)}</p>`,
     ctas: () => `<div class="q-ctas"><a class="q-btn q-btn--pri" href="#ex">${E(HERO.cta)}</a><a class="q-link" href="#try">${E(HERO.alt)}</a></div>`,
     guarantee: () => `<p class="q-guar">${E(HERO.guarantee)}</p>`,
-    rating: () => `<p class="q-rating"><span class="q-stars" aria-hidden="true">${STAR}</span> <b>${HERO.rating.score}</b> من ${HERO.rating.count} تقييماً</p>`,
+    rating: () => `<p class="q-rating"><span class="q-r1"><span class="q-stars" aria-hidden="true">${STAR}</span> <b>${HERO.rating.score}</b></span> <small>من ${HERO.rating.count} تقييماً</small></p>`,
     heroText(o = {}) { return `${this.eyebrow()}${this.h1(o)}${this.sub()}${this.ctas()}${this.guarantee()}${this.rating()}` },
     card(x, i) {
       const icon = `<span class="q-ic" style="--c:${x.c}"><small>${E(x.ic[0])}</small><b>${E(x.ic[1])}</b></span>`;
