@@ -1,0 +1,330 @@
+[
+ {
+  "n": 1,
+  "id": "GV01",
+  "title": "التناظر 1: جملة الربط واتجاه العلاقة",
+  "file": "GV01.html",
+  "std": "V-ANA",
+  "half": "GV01.half.html"
+ },
+ {
+  "n": 2,
+  "id": "GV02",
+  "title": "التناظر 2: الترادف والتضاد والتدرّج",
+  "file": "GV02.html",
+  "std": "V-ANA",
+  "half": "GV02.half.html"
+ },
+ {
+  "n": 3,
+  "id": "GV03",
+  "title": "التناظر 3: الجزء والكل والفئوية",
+  "file": "GV03.html",
+  "std": "V-ANA",
+  "half": "GV03.half.html"
+ },
+ {
+  "n": 4,
+  "id": "GV04",
+  "title": "التناظر 4: السبب والوظيفة",
+  "file": "GV04.html",
+  "std": "V-ANA",
+  "half": "GV04.half.html"
+ },
+ {
+  "n": 5,
+  "id": "GV05",
+  "title": "التناظر 5: المكان والزمن والتتابع",
+  "file": "GV05.html",
+  "std": "V-ANA",
+  "half": "GV05.half.html"
+ },
+ {
+  "n": 6,
+  "id": "GV06",
+  "title": "التناظر 6: حين يتنافس خياران",
+  "file": "GV06.html",
+  "std": "V-ANA",
+  "half": "GV06.half.html"
+ },
+ {
+  "n": 7,
+  "id": "GV07",
+  "title": "الارتباط والاختلاف: الكلمة المختلفة",
+  "file": "GV07.html",
+  "std": "V-ANA",
+  "half": "GV07.half.html"
+ },
+ {
+  "n": 8,
+  "id": "GV08",
+  "title": "إكمال الجمل 1: توقّع الكلمة قبل الخيارات",
+  "file": "GV08.html",
+  "std": "V-SEN",
+  "half": "GV08.half.html"
+ },
+ {
+  "n": 9,
+  "id": "GV09",
+  "title": "إكمال الجمل 2: أدوات الربط واتجاه الجملة",
+  "file": "GV09.html",
+  "std": "V-SEN",
+  "half": "GV09.half.html"
+ },
+ {
+  "n": 10,
+  "id": "GV10",
+  "title": "إكمال الجمل 3: فراغان والتلازم",
+  "file": "GV10.html",
+  "std": "V-SEN",
+  "half": "GV10.half.html"
+ },
+ {
+  "n": 11,
+  "id": "GV11",
+  "title": "الخطأ السياقي 1: الفكرة ثم الكلمة المعاكسة",
+  "file": "GV11.html",
+  "std": "V-ERR",
+  "half": "GV11.half.html"
+ },
+ {
+  "n": 12,
+  "id": "GV12",
+  "title": "الخطأ السياقي 2: الكلمة المضلّلة",
+  "file": "GV12.html",
+  "std": "V-ERR",
+  "half": "GV12.half.html"
+ },
+ {
+  "n": 13,
+  "id": "GV13",
+  "title": "الاستيعاب 1: خريطة القطعة والفكرة الرئيسة",
+  "file": "GV13.html",
+  "std": "V-RC",
+  "half": "GV13.half.html"
+ },
+ {
+  "n": 14,
+  "id": "GV14",
+  "title": "الاستيعاب 2: معنى الكلمة والإحالة",
+  "file": "GV14.html",
+  "std": "V-RC",
+  "half": "GV14.half.html"
+ },
+ {
+  "n": 15,
+  "id": "GV15",
+  "title": "الاستيعاب 3: ما لم يُذكر والاستنتاج",
+  "file": "GV15.html",
+  "std": "V-RC",
+  "half": "GV15.half.html"
+ },
+ {
+  "n": 16,
+  "id": "GV16",
+  "title": "الاستيعاب 4: العلاقة بين عبارتين وغرض الكاتب",
+  "file": "GV16.html",
+  "std": "V-RC",
+  "half": "GV16.half.html"
+ },
+ {
+  "n": 17,
+  "id": "GQ01",
+  "title": "الحساب بلا آلة والتقدير",
+  "file": "GQ01.html",
+  "std": "Q-ARI",
+  "half": "GQ01.half.html"
+ },
+ {
+  "n": 18,
+  "id": "GQ02",
+  "title": "الكسور والعشريات ومقارنتها",
+  "file": "GQ02.html",
+  "std": "Q-ARI",
+  "half": "GQ02.half.html"
+ },
+ {
+  "n": 19,
+  "id": "GQ03",
+  "title": "النسبة المئوية 1: الجزء والكل والتغيّر",
+  "file": "GQ03.html",
+  "std": "Q-ARI",
+  "half": "GQ03.half.html"
+ },
+ {
+  "n": 20,
+  "id": "GQ04",
+  "title": "النسبة المئوية 2: الخصم المتتالي والربح",
+  "file": "GQ04.html",
+  "std": "Q-ARI",
+  "half": "GQ04.half.html"
+ },
+ {
+  "n": 21,
+  "id": "GQ05",
+  "title": "النسبة والتناسب والتقسيم",
+  "file": "GQ05.html",
+  "std": "Q-ARI",
+  "half": "GQ05.half.html"
+ },
+ {
+  "n": 22,
+  "id": "GQ06",
+  "title": "مقياس الرسم والتحويل بين الوحدات والعملات",
+  "file": "GQ06.html",
+  "std": "Q-ARI",
+  "half": "GQ06.half.html"
+ },
+ {
+  "n": 23,
+  "id": "GQ07",
+  "title": "القوى والجذور",
+  "file": "GQ07.html",
+  "std": "Q-ARI",
+  "half": "GQ07.half.html"
+ },
+ {
+  "n": 24,
+  "id": "GQ08",
+  "title": "خصائص الأعداد",
+  "file": "GQ08.html",
+  "std": "Q-ARI",
+  "half": "GQ08.half.html"
+ },
+ {
+  "n": 25,
+  "id": "GQ09",
+  "title": "مقاييس النزعة المركزية",
+  "file": "GQ09.html",
+  "std": "Q-ARI",
+  "half": "GQ09.half.html"
+ },
+ {
+  "n": 26,
+  "id": "GQ10",
+  "title": "المسائل الكلامية: من الكلام إلى معادلة",
+  "file": "GQ10.html",
+  "std": "Q-ARI",
+  "half": "GQ10.half.html"
+ },
+ {
+  "n": 27,
+  "id": "GQ11",
+  "title": "الزمن والحركة والعمل",
+  "file": "GQ11.html",
+  "std": "Q-ARI",
+  "half": "GQ11.half.html"
+ },
+ {
+  "n": 28,
+  "id": "GQ12",
+  "title": "العدّ والاحتمال",
+  "file": "GQ12.html",
+  "std": "Q-ARI",
+  "half": "GQ12.half.html"
+ },
+ {
+  "n": 29,
+  "id": "GQ13",
+  "title": "المتتاليات والأنماط العددية",
+  "file": "GQ13.html",
+  "std": "Q-ARI",
+  "half": "GQ13.half.html"
+ },
+ {
+  "n": 30,
+  "id": "GQ14",
+  "title": "المقارنة الكمية 1: الطريقة والخيارات الثابتة",
+  "file": "GQ14.html",
+  "std": "Q-ARI",
+  "half": "GQ14.half.html"
+ },
+ {
+  "n": 31,
+  "id": "GQ15",
+  "title": "الهندسة 1: الزوايا والمستقيمات والمضلعات",
+  "file": "GQ15.html",
+  "std": "Q-GEO",
+  "half": "GQ15.half.html"
+ },
+ {
+  "n": 32,
+  "id": "GQ16",
+  "title": "الهندسة 2: المثلث وفيثاغورس والتشابه",
+  "file": "GQ16.html",
+  "std": "Q-GEO",
+  "half": "GQ16.half.html"
+ },
+ {
+  "n": 33,
+  "id": "GQ17",
+  "title": "الهندسة 3: المحيط والمساحة والدائرة والمظلّل",
+  "file": "GQ17.html",
+  "std": "Q-GEO",
+  "half": "GQ17.half.html"
+ },
+ {
+  "n": 34,
+  "id": "GQ18",
+  "title": "الهندسة 4: الحجم والمجسمات",
+  "file": "GQ18.html",
+  "std": "Q-GEO",
+  "half": "GQ18.half.html"
+ },
+ {
+  "n": 35,
+  "id": "GQ19",
+  "title": "الهندسة 5: النظام الإحداثي",
+  "file": "GQ19.html",
+  "std": "Q-GEO",
+  "half": "GQ19.half.html"
+ },
+ {
+  "n": 36,
+  "id": "GQ20",
+  "title": "الجبر 1: المعادلات والمتباينات",
+  "file": "GQ20.html",
+  "std": "Q-ALG",
+  "half": "GQ20.half.html"
+ },
+ {
+  "n": 37,
+  "id": "GQ21",
+  "title": "الجبر 2: تبسيط المقادير والمتطابقات",
+  "file": "GQ21.html",
+  "std": "Q-ALG",
+  "half": "GQ21.half.html"
+ },
+ {
+  "n": 38,
+  "id": "GQ22",
+  "title": "المقارنة الكمية 2: المتغيرات والقيم الخاصة",
+  "file": "GQ22.html",
+  "std": "Q-ALG",
+  "half": "GQ22.half.html"
+ },
+ {
+  "n": 39,
+  "id": "GQ23",
+  "title": "البيانات 1: الجداول والأعمدة والمنحنيات",
+  "file": "GQ23.html",
+  "std": "Q-DAT",
+  "half": "GQ23.half.html"
+ },
+ {
+  "n": 40,
+  "id": "GQ24",
+  "title": "البيانات 2: القطاعات الدائرية وأشكال فن",
+  "file": "GQ24.html",
+  "std": "Q-DAT",
+  "half": "GQ24.half.html"
+ },
+ {
+  "n": 41,
+  "id": "GZ01",
+  "title": "خطة يوم الاختبار: الأقسام المختلطة والوقت والاستبعاد",
+  "file": "GZ01.html",
+  "std": "Z",
+  "half": "GZ01.half.html"
+ }
+]
