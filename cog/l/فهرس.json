@@ -1,0 +1,274 @@
+[
+ {
+  "n": 1,
+  "id": "V01",
+  "title": "المترادفات: المعنى الأقرب لا المشابه",
+  "file": "V01.html",
+  "std": "V",
+  "half": "V01.half.html"
+ },
+ {
+  "n": 2,
+  "id": "V02",
+  "title": "المتضادات والكلمة الشاذة",
+  "file": "V02.html",
+  "std": "V",
+  "half": "V02.half.html"
+ },
+ {
+  "n": 3,
+  "id": "V03",
+  "title": "إكمال الجمل 1: توقّع الكلمة من إشارة السياق",
+  "file": "V03.html",
+  "std": "V",
+  "half": "V03.half.html"
+ },
+ {
+  "n": 4,
+  "id": "V04",
+  "title": "إكمال الجمل 2: فراغان وثلاثة",
+  "file": "V04.html",
+  "std": "V",
+  "half": "V04.half.html"
+ },
+ {
+  "n": 5,
+  "id": "V05",
+  "title": "الاستيعاب 1: الفكرة الرئيسة والعنوان",
+  "file": "V05.html",
+  "std": "V",
+  "half": "V05.half.html"
+ },
+ {
+  "n": 6,
+  "id": "V06",
+  "title": "الاستيعاب 2: التفاصيل والاستنتاج",
+  "file": "V06.html",
+  "std": "V",
+  "half": "V06.half.html"
+ },
+ {
+  "n": 7,
+  "id": "V07",
+  "title": "الاستيعاب 3: الكلمة في سياقها والإحالة",
+  "file": "V07.html",
+  "std": "V",
+  "half": "V07.half.html"
+ },
+ {
+  "n": 8,
+  "id": "V08",
+  "title": "ملحق: التناظر في درس واحد",
+  "file": "V08.html",
+  "std": "V",
+  "half": "V08.half.html"
+ },
+ {
+  "n": 9,
+  "id": "N01",
+  "title": "الحساب بلا آلة",
+  "file": "N01.html",
+  "std": "N",
+  "half": "N01.half.html"
+ },
+ {
+  "n": 10,
+  "id": "N02",
+  "title": "الكسور والعشريات",
+  "file": "N02.html",
+  "std": "N",
+  "half": "N02.half.html"
+ },
+ {
+  "n": 11,
+  "id": "N03",
+  "title": "النسبة المئوية 1: الجزء والكل",
+  "file": "N03.html",
+  "std": "N",
+  "half": "N03.half.html"
+ },
+ {
+  "n": 12,
+  "id": "N04",
+  "title": "النسبة المئوية 2: الزيادة والنقص والخصم",
+  "file": "N04.html",
+  "std": "N",
+  "half": "N04.half.html"
+ },
+ {
+  "n": 13,
+  "id": "N05",
+  "title": "النسبة والتناسب",
+  "file": "N05.html",
+  "std": "N",
+  "half": "N05.half.html"
+ },
+ {
+  "n": 14,
+  "id": "N06",
+  "title": "المسائل الكلامية: السرعة والعمل",
+  "file": "N06.html",
+  "std": "N",
+  "half": "N06.half.html"
+ },
+ {
+  "n": 15,
+  "id": "N07",
+  "title": "من الكلام إلى معادلة",
+  "file": "N07.html",
+  "std": "N",
+  "half": "N07.half.html"
+ },
+ {
+  "n": 16,
+  "id": "N08",
+  "title": "المتوسط والاحتمال",
+  "file": "N08.html",
+  "std": "N",
+  "half": "N08.half.html"
+ },
+ {
+  "n": 17,
+  "id": "N09",
+  "title": "سلاسل الأرقام 1: الفرق",
+  "file": "N09.html",
+  "std": "N",
+  "half": "N09.half.html"
+ },
+ {
+  "n": 18,
+  "id": "N10",
+  "title": "سلاسل الأرقام 2: الضرب والقوى",
+  "file": "N10.html",
+  "std": "N",
+  "half": "N10.half.html"
+ },
+ {
+  "n": 19,
+  "id": "N11",
+  "title": "سلاسل الأرقام 3: المتداخلة والمركّبة",
+  "file": "N11.html",
+  "std": "N",
+  "half": "N11.half.html"
+ },
+ {
+  "n": 20,
+  "id": "N12",
+  "title": "تفسير البيانات 1: الجدول",
+  "file": "N12.html",
+  "std": "N",
+  "half": "N12.half.html"
+ },
+ {
+  "n": 21,
+  "id": "N13",
+  "title": "تفسير البيانات 2: الأعمدة والخط والدائرة",
+  "file": "N13.html",
+  "std": "N",
+  "half": "N13.half.html"
+ },
+ {
+  "n": 22,
+  "id": "N14",
+  "title": "ملحق: المحيط والمساحة",
+  "file": "N14.html",
+  "std": "N",
+  "half": "N14.half.html"
+ },
+ {
+  "n": 23,
+  "id": "R01",
+  "title": "الاستنباط 1: الترتيب والمقارنة",
+  "file": "R01.html",
+  "std": "R",
+  "half": "R01.half.html"
+ },
+ {
+  "n": 24,
+  "id": "R02",
+  "title": "الاستنباط 2: كل وبعض ولا",
+  "file": "R02.html",
+  "std": "R",
+  "half": "R02.half.html"
+ },
+ {
+  "n": 25,
+  "id": "R03",
+  "title": "الاستنباط 3: الشروط والمواقف",
+  "file": "R03.html",
+  "std": "R",
+  "half": "R03.half.html"
+ },
+ {
+  "n": 26,
+  "id": "R04",
+  "title": "الاستنباط 4: التوزيع وجدول الاستبعاد",
+  "file": "R04.html",
+  "std": "R",
+  "half": "R04.half.html"
+ },
+ {
+  "n": 27,
+  "id": "R05",
+  "title": "استنباط أم استقراء؟",
+  "file": "R05.html",
+  "std": "R",
+  "half": "R05.half.html"
+ },
+ {
+  "n": 28,
+  "id": "R06",
+  "title": "سلاسل الأشكال والحروف",
+  "file": "R06.html",
+  "std": "R",
+  "half": "R06.half.html"
+ },
+ {
+  "n": 29,
+  "id": "R07",
+  "title": "معادلات الأشكال",
+  "file": "R07.html",
+  "std": "R",
+  "half": "R07.half.html"
+ },
+ {
+  "n": 30,
+  "id": "S01",
+  "title": "الشكل المماثل والتدوير",
+  "file": "S01.html",
+  "std": "S",
+  "half": "S01.half.html"
+ },
+ {
+  "n": 31,
+  "id": "S02",
+  "title": "انعكاس المرآة",
+  "file": "S02.html",
+  "std": "S",
+  "half": "S02.half.html"
+ },
+ {
+  "n": 32,
+  "id": "S03",
+  "title": "شبكة المكعب",
+  "file": "S03.html",
+  "std": "S",
+  "half": "S03.half.html"
+ },
+ {
+  "n": 33,
+  "id": "S04",
+  "title": "المكعب المغلق",
+  "file": "S04.html",
+  "std": "S",
+  "half": "S04.half.html"
+ },
+ {
+  "n": 34,
+  "id": "Z01",
+  "title": "يوم الاختبار: 100 سؤال في 125 دقيقة",
+  "file": "Z01.html",
+  "std": "Z",
+  "half": "Z01.half.html"
+ }
+]

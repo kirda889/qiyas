@@ -52,12 +52,19 @@
       past: '+700', pastText: 'سؤال من الخمس سنوات الماضية', st: [['41', 'درساً'], ['+900', 'سؤال تدريبي'], ['4', 'محاكيات']], btn: 'ابدأ مذاكرة القدرات العامة', free: 20,
       promo: 'خصم الطالب 35% داخل صفحة الاشتراك',
       price: [['كامل الأسئلة', '89 ريال'], ['أهم 120 سؤالاً', '59 ريال']],
-      get: [['+700 سؤال', ' من الخمس سنوات الماضية (مع التصحيح)'], ['41 درساً', ' في الكمي واللفظي (كاملة)'], ['+900 سؤال تدريبي', ' بعد كل قسم'], ['4 اختبارات محاكية', ' للاختبار الحقيقي (مع التصحيح)']] }
+      get: [['+700 سؤال', ' من الخمس سنوات الماضية (مع التصحيح)'], ['41 درساً', ' في الكمي واللفظي (كاملة)'], ['+900 سؤال تدريبي', ' بعد كل قسم'], ['4 اختبارات محاكية', ' للاختبار الحقيقي (مع التصحيح)']] },
+    /* القدرة المعرفية (إطلاق 2026-11-21، يوسف عبر مدير قياس): نفس شكل بطاقة العامة. الأرقام هنا احتياط، والبناء يكتبها من cog_data.js (QH.ex.cog) */
+    { k: 'cog', href: 'cog/', name: 'القدرة المعرفية', ic: ['القدرة', 'المعرفية'], c: '#4A5BA8', tint: '#ECEEF9',
+      who: 'للجامعيين: اللفظي والكمي والاستدلال والمكاني.', line: '',
+      past: '+650', pastText: 'سؤالاً من اختبارات الأعوام الماضية', st: [['34', 'درساً'], ['100', 'سؤال في كل محاكٍ'], ['4', 'محاكيات']], btn: 'ابدأ مذاكرة القدرة المعرفية', free: 20,
+      price: [['كامل الأسئلة', '89 ريال'], ['أهم 120 سؤالاً', '59 ريال']],
+      get: [['+650 سؤالاً', ' من اختبارات الأعوام الماضية (بالتصحيح)'], ['34 درساً', ' في القدرات الأربع (كاملة)'], ['170 سؤالاً', ' في اختبارات الدروس'], ['4 اختبارات محاكية', ' بتوزيع الاختبار الرسمي، في ساعتين وخمس دقائق']] }
   ];
   // أرقام البناء الحقيقية (build.py → home6) تغلب القيم المكتوبة هنا، وبطاقة القدرات العامة لا تظهر قبل إطلاقها
-  if (QH.ex) EXAMS.forEach(x => { const o = QH.ex[x.k]; if (!o) return; if (o.past) x.past = o.past; if (o.q) x.st[1][0] = o.q; if (o.lessons) x.st[0][0] = String(o.lessons); if (o.mocks) x.st[2][0] = String(o.mocks); });
+  if (QH.ex) EXAMS.forEach(x => { const o = QH.ex[x.k]; if (!o) return; if (o.past) x.past = o.past; if (o.q) x.st[1][0] = o.q; if (o.lessons) x.st[0][0] = String(o.lessons); if (o.mocks) x.st[2][0] = String(o.mocks); if (o.get) x.get = o.get; });
   if (QH.gat === false) { const gi = EXAMS.findIndex(x => x.k === 'gat'); if (gi > -1) EXAMS.splice(gi, 1); }
-  const SOON = 'القدرة المعرفية · قريباً';
+  if (!QH.cog) { const ci = EXAMS.findIndex(x => x.k === 'cog'); if (ci > -1) EXAMS.splice(ci, 1); }
+  const SOON = QH.cog ? '' : 'القدرة المعرفية · قريباً';
   const EX_HEAD = { h: 'اختر اختبارك', p: 'لكل اختبار دروسه وأسئلته واختباراته المحاكية.' };
 
   // 【3】 سؤال واحد لكل اختبار: أول سؤال من العشرين المجانية في الموقع الحي (قُرئ 2026-11-19، نص البنك كما هو)
@@ -177,7 +184,7 @@
         <details class="q-card__get"><summary>ماذا ستجد عند بدء المذاكرة <span aria-hidden="true">+</span></summary><ul>${x.get.map(([a, b]) => `<li><b>${E(a)}</b>${E(b)}</li>`).join('')}</ul></details>
         <p class="q-card__upd">${E(UPD)}</p></article>`;
     },
-    cards() { return `<div class="q-cards">${EXAMS.map((x, i) => this.card(x, i)).join('')}</div><p class="q-soon">${E(SOON)}</p>` },
+    cards() { return `<div class="q-cards">${EXAMS.map((x, i) => this.card(x, i)).join('')}</div>${SOON ? `<p class="q-soon">${E(SOON)}</p>` : ''}` },
     exHead: () => `<h2 class="q-h2">${E(EX_HEAD.h)}</h2><p class="q-lead">${E(EX_HEAD.p)}</p>`,
     quiz() {
       const tabs = QUIZ.items.map((it, i) => `<button class="q-tab" type="button" role="tab" aria-selected="${i === 0}" data-i="${i}">${E(it.tab)}</button>`).join('');
