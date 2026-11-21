@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"QM4I46bcMyferH0d","src":"full.dat?v=251445f7667b","keys":null,"plus":{"it":120000,"iv":"kbXCEvWHGQoXIb66","src":"full2.dat?v=d20abb248d07","keys":null},"keysSrc":"lock-keys2.json?v=dtrdns"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><script>window.__LOCK={"v":2,"it":120000,"ns":"6iz6eKtsDaRnh42bjPrrIA==","site":"tarbawi","iv":"QM4I46bcMyferH0d","src":"full.dat?v=251445f7667b","keys":null,"plus":{"it":120000,"iv":"kbXCEvWHGQoXIb66","src":"full2.dat?v=d20abb248d07","keys":null},"keysSrc":"lock-keys2.json?v=wkjhtd"};</script><script>/* يُحقن في رأس النسخة المجانية (قبل أي محتوى). window.__LOCK = {v,it,site,iv,ct,keys:{id:{s,i,w,e}}}
    - لو في الجهاز كود محفوظ: يوقف تحميل النسخة المجانية، يفك النسخة الكاملة ويعرضها مكانها.
    - window.__QXUNLOCK(code) يتحقق من كود جديد (من نافذة الاشتراك) ويحفظه. */
 (function () {
@@ -1657,7 +1657,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
   var codeVis = function () { try { if (!dim) return; var sh = dim.querySelector(".pw-sheet"), cb = document.getElementById("pw-cb"); if (!sh || !cb) return;
     var vv = window.visualViewport ? visualViewport.offsetTop + visualViewport.height : innerHeight, dd = cb.getBoundingClientRect().bottom - (vv - 8); if (dd > 0) sh.scrollTop += dd; } catch (e) {} };
   if (window.visualViewport) visualViewport.addEventListener("resize", function () { if (dim && dim.classList.contains("on") && document.activeElement && document.activeElement.closest && !document.activeElement.closest("#pw-cb")) codeVis(); });
-  var gatFit = function () { if (C.site !== "gat" || !dim) return;
+  var gatFit = function () { if ((C.site !== "gat" && C.site !== "cog") || !dim) return;
     var one = function (li) { li.style.removeProperty("font-size"); var f = parseFloat(getComputedStyle(li).fontSize) || 14; for (var k = 0; k < 24 && li.scrollWidth > li.clientWidth + 1 && f > 10; k++) { f -= .5; li.style.setProperty("font-size", f + "px", "important"); } return f; };   /* important: قواعد ‎.pw-tk2 للشاشات القصيرة تفرض الحجم */
     /* البنود بحجم واحد = حجم أطول بند بعد التصغير (يوسف 2026-11-19: البنود أكبر ومرتبة)، والعنوان «كامل الأسئلة» وسطر الترقية في سطر واحد */
     var lis = dim.querySelectorAll(".pw-gat .pw-tkt .pw-tl li"), m = 99;
@@ -1822,7 +1822,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     var msg = function (pl) { var sc = srcCode(); return "السلام عليكم، أبغى الاشتراك في " + (/الاختباران/.test(pl.label) ? "" : (C.exam || C.examMsg) + " — ") + pl.label + " (" + pl.price + " ريال) من موقع yousefalshamrani.com/qiyas" + " — المرجع: " + C.site + "-" + pl.price + (sc ? "-" + sc : ""); };
     // خياران (2026-10-24، قرار يوسف): الخيار اللي ضغطه العميل في الموقع يطلع «تذكرة» بتفاصيله، والثاني سطر هادئ تحته يبدّل بضغطة.
     // كامل الأسئلة 89 هو الافتراضي؛ وإذا ضغط «أهم 120» (59) يطلع سطر الكامل بسنارة «+N سؤالاً بـ30 ريال فقط» (أسعار 2026-11-01).
-    var S1 = { english2: "E", tarbawi: "T", step: "S", qudurat: C.plus ? "K" : "J", gat: C.plus ? "H" : "G" }[C.site] || C.site, S2 = { english2: "F", tarbawi: "U", qudurat: "J", gat: "G" }[C.site];   /* العامة 2026-11-18: H بـ59، وG الكامل 89 (lock.mjs وproducts.js) */   /* القدرات 2026-11-15: K أهم 120 بـ59، وJ الكامل 89 */
+    var S1 = { english2: "E", tarbawi: "T", step: "S", qudurat: C.plus ? "K" : "J", gat: C.plus ? "H" : "G", cog: C.plus ? "N" : "M" }[C.site] || C.site, S2 = { english2: "F", tarbawi: "U", qudurat: "J", gat: "G", cog: "M" }[C.site];   /* المعرفية 2026-11-21: N بـ59، وM الكامل 89 (lock.mjs) */   /* العامة 2026-11-18: H بـ59، وG الكامل 89 (lock.mjs وproducts.js) */   /* القدرات 2026-11-15: K أهم 120 بـ59، وJ الكامل 89 */
     var nAll = C.similarTotal || 0, nT = C.tierN || 120, nQ = Math.floor((C.qTotal || 0) / 100) * 100, nP = Math.floor(nAll / 100) * 100;   // nP: «أكثر من 600» من similarTotal (قرار يوسف 2026-11-08)
     // ملزمتا الدروس (2026-10-26، طلب يوسف): «كامل الأسئلة» فيه المفصّلة 20 صفحة والمختصرة 15، و«أهم 120» فيه المختصرة فقط
     var SUMP = C.summary ? ["<b>ملزمة شرح الدروس</b> تُقرأ في الموقع"] : [], SUMI = C.summaryLite ? ["<b>ملزمة شرح مختصرة</b> تُقرأ في الموقع"] : [];
@@ -1841,7 +1841,7 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
       O.single.title = "أهم " + N(nT) + " سؤالاً"; O.single.sub = "من الاختبارات الماضية <small class=mm>(مماثلة)</small>";
       O.single.items = ["<b>أهم " + N(nT) + " سؤالاً</b> من الاختبارات الماضية <small class=mm>(مماثلة)</small> بتصحيح فوري", QI[0], QI[2], QI[3]];
     }
-    if (C.site === "gat" && O.plus) {   /* القدرات العامة (2026-11-18): العنوان والوصف والبنود من sales_config (pw.plus/pw.plan وincludes/planIncludes) بأعداد البيانات */
+    if ((C.site === "gat" || C.site === "cog") && O.plus) {   /* القدرات العامة (2026-11-18): العنوان والوصف والبنود من sales_config (pw.plus/pw.plan وincludes/planIncludes) بأعداد البيانات */
       var GI = function (a) { return (a || []).map(function (x) { var s = esc(x), m = /^(\+?[\d,]+ (?:سؤال تدريبي|اختبارات محاكية|\S+)|أهم [\d,]+ \S+)/.exec(s), h = m ? "<b>" + m[1].replace(/^\+([\d,]+)/, '<bdi dir="rtl">+$1</bdi>') + "</b>" + s.slice(m[1].length) : s;
         return h.replace(/\s*(\([^()]*\))\s*$/, ' <small class="pw-lt">$1</small>'); }); };   /* يوسف 2026-11-19: غامق ثم عادي، والمخفف للقوس فقط */
       O.plus.title = C.plus.label; O.plus.sub = C.plus.note || ""; O.plus.items = GI(C.includes);
@@ -1859,13 +1859,13 @@ window.__PWCFG = {"exam":"الاختبار التربوي العام","until":""
     var cnt = function (k) { var kk = k === "single" ? "plan" : k; return promoOn() ? ' data-from="' + promoBase[kk] + '" data-to="' + PROMO.price[kk] + '"' : ""; };
     var promoRow = !promoOk() ? "" : promoOn() ? '<div class="pw-promo on"><i>' + N(C.promo.pct || 35) + '%</i><span><b>طُبّق خصم الطالب <bdi dir="ltr">' + N(C.promo.pct || 35) + '%</bdi></b></span></div>' : '<button type="button" class="pw-promo" data-pw="promo"><i>' + N(C.promo.pct || 35) + '%</i><span><b>فعّل خصم الطالب <bdi dir="ltr">' + N(C.promo.pct || 35) + '%</bdi></b></span></button>';   // بلا سطر شرح تحت (يوسف 2026-11-19): «فعّل خصم الطالب 35%» فقط
     var rad = function (on) { return '<span class="pw-rad' + (on ? " on" : "") + '"></span>'; };
-    var altSub = !other ? "" : C.site === "gat" ? (otherKey === "plus" && C.plusExtra ? "+" + N(C.plusExtra) + " سؤالاً إضافياً مقابل " + N(other.pl.price - cur.pl.price) + (promoOn() ? " ريالاً" : " ريالاً فقط") : other.sub) : otherKey === "plus" ? "+" + N(nAll - nT) + " سؤالاً إضافياً مقابل " + N(other.pl.price - cur.pl.price) + " ريالاً فقط" : other.sub;
-    return '<div class="pw-sheet pw-tk2' + (C.site === "gat" ? " pw-gatS" : C.site === "qudurat" ? " pw-qdS" : "") + '" role="dialog" aria-modal="true" aria-labelledby="pw-t">' +
+    var altSub = !other ? "" : (C.site === "gat" || C.site === "cog") ? (otherKey === "plus" && C.plusExtra ? "+" + N(C.plusExtra) + " سؤالاً إضافياً مقابل " + N(other.pl.price - cur.pl.price) + (promoOn() ? " ريالاً" : " ريالاً فقط") : other.sub) : otherKey === "plus" ? "+" + N(nAll - nT) + " سؤالاً إضافياً مقابل " + N(other.pl.price - cur.pl.price) + " ريالاً فقط" : other.sub;
+    return '<div class="pw-sheet pw-tk2' + (C.site === "gat" || C.site === "cog" ? " pw-gatS" : C.site === "qudurat" ? " pw-qdS" : "") + '" role="dialog" aria-modal="true" aria-labelledby="pw-t">' +
       '<div class="pw-tkk"><span>' + esc(C.exam) + '</span><span class="pw-tkd"><button class="pw-x" data-pw="close" aria-label="إغلاق">✕</button></span></div>' +   // «عندي كود» حُذف من الرأس (يوسف 2026-11-08ب): خانة الكود ظاهرة تحت
       '<h2 id="pw-t">' + (C.site === "step" ? "افتح الدليل كاملاً" : "جهّز مقعدك في الاختبار") + '</h2>' +
       (exp ? '<p class="pw-why">انتهت مدة اشتراكك (' + esc(exp) + "). تقدر تجدد باشتراك جديد من هنا.</p>" : "") +
       '<p class="pw-proof pw-sub" hidden></p>' +
-      promoRow + '<div class="pw-opts' + (C.site === "gat" ? " pw-gat" : "") + '"><div class="pw-tkt">' + (cur.tag ? '<span class="pw-tag">' + cur.tag + "</span>" : "") +
+      promoRow + '<div class="pw-opts' + (C.site === "gat" || C.site === "cog" ? " pw-gat" : "") + '"><div class="pw-tkt">' + (cur.tag ? '<span class="pw-tag">' + cur.tag + "</span>" : "") +
         '<div class="pw-th2"><div class="pw-t2">' + rad(true) + '<div><b>' + cur.title + '</b><small>' + cur.sub + '</small></div></div><div class="pw-tp">' + was(pick) + '<b' + cnt(pick) + '>' + N(cur.pl.price) + '</b><span>ريال</span></div></div>' +
         '<div class="pw-perf"></div><ul class="pw-tl">' + cur.items.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul></div>" +
       (other ? '<button type="button" class="pw-alt' + (otherKey === "plus" ? " up" : "") + '" data-pw="pick" data-v="' + otherKey + '"><span class="pw-t2">' + rad(false) + '<span><b>' + other.title + '</b><small>' + altSub + '</small></span></span><span class="pw-ap">' + was(otherKey) + '<span' + cnt(otherKey) + '>' + N(other.pl.price) + "</span><small>ريال</small></span></button>" : "") + "</div>" +      '<div class="pw-guar"><span class="pw-seal">3</span><span><b>ضمان 3 أيام:</b> إذا ما ناسبك يرجع لك المبلغ كاملاً · <a href="' + C.terms + '">الشروط</a></span></div>' +

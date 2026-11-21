@@ -9,7 +9,7 @@
   // للاختبار المحلي فقط: خدمة محلية ومفتاح Cloudflare التجريبي
   try { if (location.hostname === "localhost" && localStorage.getItem("qr.dev") === "1") { API = "http://localhost:8787/v1"; SITEKEY = "1x00000000000000000000AA"; } } catch (e) {}
   var BASE = (document.currentScript && document.currentScript.src || "").replace(/reviews\.js.*$/, "");
-  var EX = { tarbawi: "الاختبار التربوي", english2: "التخصصي English 2", step: "STEP", qudurat: "قدرات الجامعيين", gat: "القدرات العامة" };   /* العامة 2026-11-19 (الخادم يحتاج gat في EXAMS) */   /* قدرات الجامعيين 2026-11-15: الخادم جاهز */
+  var EX = { tarbawi: "الاختبار التربوي", english2: "التخصصي English 2", step: "STEP", qudurat: "قدرات الجامعيين", gat: "القدرات العامة", cog: "القدرة المعرفية" };   /* العامة 2026-11-19 (الخادم يحتاج gat في EXAMS) */   /* قدرات الجامعيين 2026-11-15: الخادم جاهز */
   var MONTHS = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
   var LS = "qr.owner";
 
