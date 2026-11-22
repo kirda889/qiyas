@@ -10,6 +10,7 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const E = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const QH = window.QX_HOME || {};
+  const rcount = n => { const m = n % 100; return 'من ' + Number(n).toLocaleString('en-US') + ' ' + (m >= 3 && m <= 10 ? 'تقييمات' : m >= 11 ? 'تقييماً' : 'تقييم') };
   const BASE = QH.base || 'https://yousefalshamrani.com/qiyas/';
   const PAY_ONLINE = false; // /v1/proof → pay=false يوم 2026-11-19
   const UPD = QH.upd ? 'آخر تحديث للمحتوى: ' + QH.upd : 'آخر تحديث للمحتوى: 19 نوفمبر 2026';
@@ -22,7 +23,7 @@
     sub: 'دروس وأسئلة تفاعلية تساعدك على مراجعة المفاهيم، وفهم أخطائك، والتدرّب على طريقة الحل. اختر اختبارك وجرّب المحتوى مجانًا.',
     cta: 'اختر اختبارك', alt: '\u0623\u0648 جرّب سؤالاً الآن',
     guarantee: 'ضمان 3 أيام بعد التفعيل: ما ناسبك؟ يرجع لك المبلغ كاملاً.',
-    rating: { score: '5.0', count: 46 }
+    rating: QH.rating || { score: '5.0', count: 48 }   /* البناء يكتبه من /v1/summary، والصفحة تحدّثه بعد التحميل (يوسف 2026-11-22). الاحتياط آخر قراءة حقيقية 2026-11-22 */
   };
 
   // البطاقات: الترتيب والنصوص من السكريبت 【2】. free: من similarFree (STEP بلا similarFree اليوم ← بلا سطر).
@@ -167,7 +168,7 @@
     sub: () => `<p class="q-sub">${E(HERO.sub)}</p>`,
     ctas: () => `<div class="q-ctas"><a class="q-btn q-btn--pri" href="#ex">${E(HERO.cta)}</a><a class="q-link" href="#try">${E(HERO.alt)}</a></div>`,
     guarantee: () => `<p class="q-guar">${E(HERO.guarantee)}</p>`,
-    rating: () => `<p class="q-rating"><span class="q-r1"><span class="q-stars" aria-hidden="true">${STAR}</span> <b>${HERO.rating.score}</b></span> <small>من ${HERO.rating.count} تقييماً</small></p>`,
+    rating: () => `<p class="q-rating"><span class="q-r1"><span class="q-stars" aria-hidden="true">${STAR}</span> <b class="q-rs">${HERO.rating.score}</b></span> <small class="q-rc">${rcount(HERO.rating.count)}</small></p>`,
     heroText(o = {}) { return `${this.eyebrow()}${this.h1(o)}${this.sub()}${this.ctas()}${this.guarantee()}${this.rating()}` },
     card(x, i) {
       const icon = `<span class="q-ic" style="--c:${x.c}"><small>${E(x.ic[0])}</small><b>${E(x.ic[1])}</b></span>`;
@@ -293,6 +294,11 @@
       const io2 = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting) && !seen) { seen = true; io2.disconnect(); countTo(shown, Math.floor(shown * .96), 2000) } }, { threshold: .4 });
       vns.forEach(e => io2.observe(e)); if (!shot) { pull(); setInterval(() => { if (!document.hidden) pull() }, 90000) }
     }
+    /* التقييم الحي: نفس مصدر البناء (/v1/summary)، يتحدّث بعد التحميل فقط ولا يغيّر شيئاً لو فشل */
+    if (!shot && document.querySelector('.q-rs')) fetch('https://api.yousefalshamrani.com/v1/summary').then(r => r.json()).then(d => {
+      let n = 0, s = 0; Object.values(d).forEach(o => { n += +o.count || 0; (o.dist || []).forEach((c, i) => { s += (5 - i) * c }) });
+      if (n > 0) { document.querySelectorAll('.q-rs').forEach(e => e.textContent = (s / n).toFixed(1)); document.querySelectorAll('.q-rc').forEach(e => e.textContent = rcount(n)) }
+    }).catch(() => { });
     const go = () => requestAnimationFrame(() => requestAnimationFrame(() => H.classList.add('ready')));   // الحركة بعد اكتمال التحميل (أكبر عنصر أولاً)
     if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
   }
